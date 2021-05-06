@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:kelp"
+        },
+        {
+            "item": "minecraft:kelp"
+        },
+        {
+            "item": "minecraft:clay_ball"
+        },
+        {
+            "item": "minecraft:clay_ball"
+        }
+    ],
+    "result": {
+        "count": 4,
+        "item": "architects_palette:algal_blend"
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "architects_palette",
+  "version": "${version}",
+
+  "name": "Architect's Palette Fabric",
+  "description": "This is a port to fabric of jsburg's mod",
+  "authors": [
+    "Jsburg & Slomaxonical"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "mit",
+  "icon": "assets/architects_palette/icon.png",
+  "accessWidener" : "architects_palette.accesswidener",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.slomaxonical.architectspalette.core.ArchitectsPalette"
+    ]
+  },
+  "mixins": [
+    "modid.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.8.8",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
