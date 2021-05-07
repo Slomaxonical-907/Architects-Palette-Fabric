@@ -62,8 +62,8 @@ public class ArchitectsPalette implements ModInitializer {
         APSounds.registerSounds();
         APBlockEntities.registerBlockEntity();
         WarpingRecipe.registerRecipe();
-//        APTrades.registerVillagerTrades();
-        APTrades.registerWanderingTrades();
+        APTrades.registerVillagerTrades();
+//        APTrades.registerWanderingTrades();
 
         APBlockData.addStrippables();
         APBlockData.getCutoutLayer();

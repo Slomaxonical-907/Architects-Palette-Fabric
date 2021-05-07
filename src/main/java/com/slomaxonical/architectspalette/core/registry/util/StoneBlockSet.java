@@ -10,7 +10,6 @@ import net.minecraft.block.WallBlock;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
 
-import java.util.Collection;
 import java.util.List;
 
 
@@ -20,7 +19,6 @@ public class StoneBlockSet {
     public Block WALL;
     public Block BLOCK;
     private final String material_name;
-    private List<Block> all;
 
     public StoneBlockSet(Block  base_block) {
         this(base_block, true);

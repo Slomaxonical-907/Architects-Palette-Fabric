@@ -16,7 +16,6 @@ import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,14 +48,14 @@ public class APBlocks {
     public static final Block ILLUMINATED_OLIVESTONE    = createBlock("illuminated_olivestone",  new Block(AbstractBlock.Settings.copy(OLIVESTONE_BRICK.get()).luminance((state) -> 15)));
 
     // Algal Brick
-    public static final StoneBlockSet ALGAL_BRICKS = new StoneBlockSet(createBlock("algal_bricks",  new Block(APBlockSettings.ALGAL_BRICK)));
+    public static final StoneBlockSet ALGAL_BRICKS = new StoneBlockSet(createBlock("algal_bricks",  new Block(APBlockSettings.ALGAL_BRICK), ItemGroup.BUILDING_BLOCKS));
     public static final Block CRACKED_ALGAL_BRICKS  = createBlock("cracked_algal_bricks",   new Block(APBlockSettings.ALGAL_BRICK));
     public static final Block CHISELED_ALGAL_BRICKS = createBlock("chiseled_algal_bricks",  new Block(APBlockSettings.ALGAL_BRICK));
     public static final StoneBlockSet OVERGROWN_ALGAL_BRICK = new StoneBlockSet(createBlock("overgrown_algal_bricks",  new Block(APBlockSettings.ALGAL_BRICK)));
     public static final Block ALGAL_LAMP = createBlock("algal_lamp",  new Block(AbstractBlock.Settings.copy(Blocks.SEA_LANTERN) ));
 
     // Sunmetal
-    public static final StoneBlockSet SUNMETAL = new StoneBlockSet(createBlock("sunmetal_block",  new Block(APBlockSettings.SUNMETAL)), false).addSlabs().addStairs();
+    public static final StoneBlockSet SUNMETAL = new StoneBlockSet(createBlock("sunmetal_block",  new Block(APBlockSettings.SUNMETAL), ItemGroup.BUILDING_BLOCKS), false).addSlabs().addStairs();
     public static final Block CHISELED_SUNMETAL_BLOCK = createBlock("chiseled_sunmetal_block",  new Block(APBlockSettings.SUNMETAL));
     public static final Block SUNMETAL_PILLAR         = createBlock("sunmetal_pillar",  new PillarBlock(APBlockSettings.SUNMETAL));
     public static final Block SUNMETAL_BARS           = createBlock("sunmetal_bars",  new APPaneBlock(APBlockSettings.SUNMETAL.nonOpaque()));
@@ -97,41 +96,35 @@ public class APBlocks {
         return l;
     }
 
-
-    // Osseous Bricks
-    public static final StoneBlockSet OSSEOUS_BRICK = new StoneBlockSet(createBlock("osseous_bricks",  new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK))));
-    public static final Block OSSEOUS_PILLAR = createBlock("osseous_pillar",  new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK)));
-    // Withered
-     // Todo: Replace bone block recipe to one that uses withered bone meal if that gets in
-    public static final Block WITHERED_BONE_BLOCK = createBlock("withered_bone_block",  new PillarBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)));
-    public static final StoneBlockSet      WITHERED_OSSEOUS_BRICK = new StoneBlockSet(createBlock("withered_osseous_bricks",  new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK))));
-    public static final Block WITHERED_OSSEOUS_PILLAR = createBlock("withered_osseous_pillar",  new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK)));
-    // Wither Lamp
-    public static final Block WITHER_LAMP = createBlock("wither_lamp",  new Block(AbstractBlock.Settings.copy(Blocks.SEA_LANTERN)));
-
-    // Heavy Stone Bricks
-    public static final Block HEAVY_STONE_BRICKS = createBlock("heavy_stone_bricks",  new BigBrickBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block HEAVY_MOSSY_STONE_BRICKS = createBlock("heavy_mossy_stone_bricks",  new BigBrickBlock(AbstractBlock.Settings.copy(Blocks.MOSSY_STONE_BRICKS)));
-    public static final Block HEAVY_CRACKED_STONE_BRICKS = createBlock("heavy_cracked_stone_bricks",  new BigBrickBlock(AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS)));
+    // Polished Packed Ice
+    public static final StoneBlockSet POLISHED_PACKED_ICE = new StoneBlockSet(createBlock("polished_packed_ice",  new Block(APBlockSettings.BUILDING_ICE)));
+    public static final Block CHISELED_PACKED_ICE = createBlock("chiseled_packed_ice",  new Block(APBlockSettings.BUILDING_ICE));
+    public static final Block PACKED_ICE_PILLAR   = createBlock("packed_ice_pillar",    new PillarBlock(APBlockSettings.BUILDING_ICE));
 
     // Gilded Sandstone
     public static final StoneBlockSet GILDED_SANDSTONE = new StoneBlockSet(createBlock("gilded_sandstone",  new Block(AbstractBlock.Settings.copy(Blocks.SANDSTONE))), false).addSlabs().addStairs();
     public static final Block GILDED_SANDSTONE_PILLAR = createBlock("gilded_sandstone_pillar",  new PillarBlock(AbstractBlock.Settings.copy(Blocks.SANDSTONE)));
     public static final Block CHISELED_GILDED_SANDSTONE = createBlock("chiseled_gilded_sandstone",  new Block(AbstractBlock.Settings.copy(Blocks.SANDSTONE)));
 
+    // Polished Glowstone
+    public static final StoneBlockSet POLISHED_GLOWSTONE = new StoneBlockSet(createBlock("polished_glowstone",  new Block(AbstractBlock.Settings.copy(Blocks.GLOWSTONE))), false).addSlabs();
+    public static final Block RUNIC_GLOWSTONE = createBlock("runic_glowstone",  new Block(AbstractBlock.Settings.copy(Blocks.GLOWSTONE)));
+
+    // Osseous Bricks
+    public static final StoneBlockSet OSSEOUS_BRICK = new StoneBlockSet(createBlock("osseous_bricks",  new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK))));
+    public static final Block OSSEOUS_PILLAR = createBlock("osseous_pillar",  new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK)));
+    // Withered
+     // Todo: Replace bone block recipe to one that uses withered bone meal if that gets in
+    public static final Block WITHERED_BONE_BLOCK = createBlock("withered_bone_block",  new PillarBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)), ItemGroup.BUILDING_BLOCKS);
+    public static final StoneBlockSet      WITHERED_OSSEOUS_BRICK = new StoneBlockSet(createBlock("withered_osseous_bricks",  new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK))));
+    public static final Block WITHERED_OSSEOUS_PILLAR = createBlock("withered_osseous_pillar",  new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK)));
+    // Wither Lamp
+    public static final Block WITHER_LAMP = createBlock("wither_lamp",  new Block(AbstractBlock.Settings.copy(Blocks.SEA_LANTERN)));
+
     // Flint Blocks
     public static final Block FLINT_BLOCK  	= createBlock("flint_block",   new FlintBlock(APBlockSettings.FLINT));
     public static final StoneBlockSet FLINT_TILES  			= new StoneBlockSet(createBlock("flint_tiles",   new FlintBlock(APBlockSettings.FLINT)));
     public static final Block FLINT_PILLAR 	= createBlock("flint_pillar",  new FlintPillarBlock(APBlockSettings.FLINT));
-
-    // Polished Packed Ice
-    public static final StoneBlockSet POLISHED_PACKED_ICE = new StoneBlockSet(createBlock("polished_packed_ice",  new Block(APBlockSettings.BUILDING_ICE)));
-    public static final Block CHISELED_PACKED_ICE = createBlock("chiseled_packed_ice",  new Block(APBlockSettings.BUILDING_ICE));
-    public static final Block PACKED_ICE_PILLAR   = createBlock("packed_ice_pillar",    new PillarBlock(APBlockSettings.BUILDING_ICE));
-
-    // Polished Glowstone
-    public static final StoneBlockSet POLISHED_GLOWSTONE = new StoneBlockSet(createBlock("polished_glowstone",  new Block(AbstractBlock.Settings.copy(Blocks.GLOWSTONE))), false).addSlabs();
-    public static final Block RUNIC_GLOWSTONE = createBlock("runic_glowstone",  new Block(AbstractBlock.Settings.copy(Blocks.GLOWSTONE)));
 
     // Mossy Blackstone Variants
     public static final Block WEEPING_BLACKSTONE = createBlock("weeping_blackstone",  new Block(AbstractBlock.Settings.copy(Blocks.BLACKSTONE)));
@@ -144,8 +137,13 @@ public class APBlocks {
     public static final Block  CRACKED_BASALT_TILES = createBlock("cracked_basalt_tiles",   new Block(AbstractBlock.Settings.copy(Blocks.BASALT)));
     public static final Block CHISELED_BASALT_TILES = createBlock("chiseled_basalt_tiles",  new Block(AbstractBlock.Settings.copy(Blocks.BASALT)));
 
+    // Heavy Stone Bricks
+    public static final Block HEAVY_STONE_BRICKS = createBlock("heavy_stone_bricks",  new BigBrickBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block HEAVY_MOSSY_STONE_BRICKS = createBlock("heavy_mossy_stone_bricks",  new BigBrickBlock(AbstractBlock.Settings.copy(Blocks.MOSSY_STONE_BRICKS)));
+    public static final Block HEAVY_CRACKED_STONE_BRICKS = createBlock("heavy_cracked_stone_bricks",  new BigBrickBlock(AbstractBlock.Settings.copy(Blocks.CRACKED_STONE_BRICKS)));
+
     // Entwine
-    public static final StoneBlockSet ENTWINE = new StoneBlockSet(createBlock("entwine_block",  new Block(APBlockSettings.ENTWINE)), false).addSlabs().addStairs();
+    public static final StoneBlockSet ENTWINE = new StoneBlockSet(createBlock("entwine_block",  new Block(APBlockSettings.ENTWINE), ItemGroup.BUILDING_BLOCKS), false).addSlabs().addStairs();
     public static final Block ENTWINE_PILLAR = createBlock("entwine_pillar",  new PillarBlock(APBlockSettings.ENTWINE));
     public static final Block CHISELED_ENTWINE = createBlock("chiseled_entwine",  new Block(APBlockSettings.ENTWINE));
     public static final Block ENTWINE_BARS = createBlock("entwine_bars",  new APPaneBlock(AbstractBlock.Settings.copy(ENTWINE.get()).nonOpaque()));
@@ -210,6 +208,11 @@ public class APBlocks {
 
     //Create Blocks
         // Default ItemGroup is BuildingBlocks
+    public static int INDEX_ALGAL;
+    public static int INDEX_SUNMETAL;
+    public static int INDEX_WITHERED;
+    public static int INDEX_ENTWINE;
+
     public static <B extends Block> B createBlock(String name, B anyBlock) {
         return createBlock(name, anyBlock, ItemGroup.BUILDING_BLOCKS);
     }
@@ -220,16 +223,34 @@ public class APBlocks {
         BlockItem blockItem = new BlockItem(block, new Item.Settings().group(group));
         Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID,name), blockItem);
 
-        APItemgroup.modItems.add(new ItemStack(block));
-        System.out.println(APItemgroup.modItems);
+        ItemStack stack = new ItemStack(block);
+        APItemgroup.ITEMGROUP_LIST.add(stack);
+        switch (name){
+            case "algal_bricks":
+                INDEX_ALGAL = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
+                System.out.println(INDEX_ALGAL+ " is algies");
+                break;
+            case "sunmetal_block":
+                INDEX_SUNMETAL = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
+                System.out.println(INDEX_SUNMETAL+ " is sunmetal");
+                break;
+            case "withered_bone_block":
+                INDEX_WITHERED = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
+                System.out.println(INDEX_WITHERED+ " is wither");
+                break;
+            case "entwine_block":
+                INDEX_ENTWINE = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
+                System.out.println(INDEX_ENTWINE + " is entwine");
+                break;
+            default:
+        }
         return block;
     }
 
 
 
     public static <B extends Block> B createBlockNoItem(String name, B anyBlock) {
-        B block = Registry.register(Registry.BLOCK, new Identifier(ArchitectsPalette.MOD_ID, name), anyBlock);
-        return block;
+        return Registry.register(Registry.BLOCK, new Identifier(ArchitectsPalette.MOD_ID, name), anyBlock);
     }
     private static Block createPottedPlant(Block plant) {
         String name = Registry.BLOCK.getId(plant).getPath();

@@ -7,7 +7,7 @@
     ],
     "key": {
         "I": {
-            "tag": "forge:rods/wooden"
+            "item": "minecraft:stick"
         },
         "#": {
             "item": "architects_palette:twisted_planks"

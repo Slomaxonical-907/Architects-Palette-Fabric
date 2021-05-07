@@ -12,7 +12,6 @@ public class BasicTradeFactory implements TradeOffers.Factory {
     private final TradeOffer trade;
 
     public BasicTradeFactory(TradeOffer trade) {
-        System.out.println(APItemgroup.modItems);
         this.trade = trade;
     }
 
