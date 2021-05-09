@@ -248,7 +248,6 @@ public class APBlocks {
     }
 
 
-
     public static <B extends Block> B createBlockNoItem(String name, B anyBlock) {
         return Registry.register(Registry.BLOCK, new Identifier(ArchitectsPalette.MOD_ID, name), anyBlock);
     }

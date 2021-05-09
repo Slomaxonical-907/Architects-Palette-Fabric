@@ -15,6 +15,7 @@ import java.util.Optional;
 
 
 public class ChangeDimensionHandler {
+    //old not used
     public static void onDimensionsChanged (ItemEntity itemIn, ServerWorld server) {
         RegistryKey<World> dimension = server.getRegistryKey();
         Identifier dimensionId = dimension.getValue();
@@ -61,7 +62,6 @@ public class ChangeDimensionHandler {
 
 
     public static void warpItem(ItemEntity itemIn, ServerWorld worldIn) {
-        System.out.println("warped alright");
         ItemStack baseStack = itemIn.getStack();
         ItemStack recipeStack = new ItemStack(baseStack.getItem(), 1);
         ItemStack resultStack = getTransformedItem(recipeStack, worldIn);
