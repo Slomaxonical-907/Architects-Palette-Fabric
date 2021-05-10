@@ -1,19 +1,10 @@
 package com.slomaxonical.architectspalette.core;
 
-import com.google.gson.JsonObject;
-import com.slomaxonical.architectspalette.common.blockentity.ChiseledAbyssalineBlockEntity;
 import com.slomaxonical.architectspalette.core.crafting.WarpingRecipe;
 import com.slomaxonical.architectspalette.core.integration.APBlockData;
 import com.slomaxonical.architectspalette.core.registry.*;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -63,7 +54,7 @@ public class ArchitectsPalette implements ModInitializer {
         APBlockEntities.registerBlockEntity();
         WarpingRecipe.registerRecipe();
         APTrades.registerVillagerTrades();
-//        APTrades.registerWanderingTrades();
+        APTrades.registerWanderingTrades();
 
         APBlockData.addStrippables();
         APBlockData.getCutoutLayer();

@@ -1,9 +1,20 @@
 package com.slomaxonical.architectspalette.core.registry;
 
 
+import com.slomaxonical.architectspalette.common.factories.BasicTradeFactory;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import static net.minecraft.village.VillagerProfession.*;
 import static net.minecraft.village.TradeOffers.PROFESSION_TO_LEVELED_TRADE;
@@ -35,11 +46,19 @@ public class APTrades {
 
     }
 
-    //public static void registerWanderingTrades(){
-    //        TradeOfferHelper.registerWanderingTraderOffers(6,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 2),new ItemStack(APBlocks.SUNSTONE, 6),20,2,0.0F))));
-    //        TradeOfferHelper.registerWanderingTraderOffers(4,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 2),new ItemStack(APBlocks.MOONSTONE, 6),20,2,0.0F))));
-    //}
+    public static void registerWanderingTrades(){
+      TradeOfferHelper.registerWanderingTraderOffers(2, factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 2),new ItemStack(APBlocks.SUNSTONE, 6),20,2,0.0F))));
+      TradeOfferHelper.registerWanderingTraderOffers(2,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 2),new ItemStack(APBlocks.MOONSTONE, 6),20,2,0.0F))));
 
+//        addWanderingRareTrade(new TradeOffers.SellItemFactory(new ItemStack(APBlocks.MOONSTONE),2,6,20, 2, 0.0f));
+//        addWanderingRareTrade(new TradeOffers.SellItemFactory(new ItemStack(APBlocks.SUNSTONE),2,6,20, 2, 0.0f));
+    }
+//    public static void addWanderingRareTrade(TradeOffers.Factory trade) {
+//        List<TradeOffers.Factory> fixedRareTrades = DefaultedList.of();
+//        fixedRareTrades.addAll(Arrays.asList(TradeOffers.WANDERING_TRADER_TRADES.get(1)));
+//        fixedRareTrades.add(trade);
+//        TradeOffers.WANDERING_TRADER_TRADES.put(1, fixedRareTrades.toArray(new TradeOffers.Factory[0]));
+//    }
     public static void addTrade (VillagerProfession profession, int level, TradeOffers.Factory trade){
         TradeOffers.Factory[] fixedTrades = PROFESSION_TO_LEVELED_TRADE.get(profession).get(level);
         int newSize = fixedTrades.length + 1;
