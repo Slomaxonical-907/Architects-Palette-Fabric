@@ -9,7 +9,9 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
+
+
+import static com.slomaxonical.architectspalette.common.blocks.abyssaline.AbyssalineBlock.CHARGED;
 
 public class APBlockSettings {
 	public static final FabricBlockSettings ABYSSALINE = FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
@@ -17,6 +19,12 @@ public class APBlockSettings {
 			.emissiveLighting(AbyssalineHelper::needsPostProcessing)
 			.postProcess(AbyssalineHelper::needsPostProcessing)
 			.allowsSpawning(AbyssalineHelper::allowsMobSpawning);
+	public static final FabricBlockSettings CHISELED_ABYSSALINE = FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
+			.strength(25.0F, 600.0F)
+			.emissiveLighting(AbyssalineHelper::needsPostProcessing)
+			.postProcess(AbyssalineHelper::needsPostProcessing)
+			.allowsSpawning(AbyssalineHelper::allowsMobSpawning)
+			.luminance(ChiseledAbyssalineBlock.getLuminance());
 
 	public static FabricBlockSettings Meat(MaterialColor color) {
 		return FabricBlockSettings.of(Material.GOURD, color).strength(1.0F).sounds(BlockSoundGroup.CORAL);

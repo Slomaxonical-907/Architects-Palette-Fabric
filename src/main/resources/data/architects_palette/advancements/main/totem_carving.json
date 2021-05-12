@@ -19,7 +19,14 @@
     "carve_totem": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "tag" : "c:axes"
+        "location": {
+          "block": {
+            "item": "architects_palette:grinning_acacia_totem"
+          }
+        },
+        "item": {
+          "tag" : "c:axes"
+        }
       }
     }
   },

@@ -1,11 +1,7 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
-import com.slomaxonical.architectspalette.common.blockentity.ChiseledAbyssalineBlockEntity;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
@@ -26,10 +22,11 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
+import java.util.function.ToIntFunction;
 
 import static com.slomaxonical.architectspalette.common.blocks.abyssaline.NewAbyssalineBlock.CHARGED;
 
-public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargeable, BlockEntityProvider {
+public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargeable {
 
 	public final static Item KEY = Items.HEART_OF_THE_SEA;
 	private final static BlockPos OFFSET = new BlockPos(0, 0, 0);
@@ -53,13 +50,6 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 		this.setDefaultState(this.stateManager.getDefaultState().with(CHARGED, false));
 	}
 
-	@Nullable
-	@Override
-	public BlockEntity createBlockEntity(BlockView world) {
-		return new ChiseledAbyssalineBlockEntity();
-	}
-
-
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
 		return state;
@@ -69,27 +59,21 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 	public BlockState getPlacementState(ItemPlacementContext context) {
 		return this.getDefaultState();
 	}
-	
+
 //	@Override
-//	public int getLightValue(BlockState state, BlockView world, BlockPos pos) {
+//	public int getLuminance(BlockState state, BlockView world, BlockPos pos) {
 //		return this.isCharged(state) ? 14 : 0;
 //	}
-//
+public static ToIntFunction<BlockState> getLuminance() {
+	return blockState -> blockState.get(AbyssalineBlock.CHARGED) ? 14 : 0;
+}
+
 	@Override
 	protected void appendProperties(Builder<Block, BlockState> builder) {
-		builder.add(LIGHT, CHARGED);
+		builder.add(LIGHT,CHARGED);
 	}
-	
-	/*@Override
-	public boolean hasTileEntity(BlockState state) {
-		return true;
-	}
-	
-	@Override
-	public BlockEntity createTileEntity(BlockState state, BlockView world) {
-		return new ChiseledAbyssalineBlockEntity();
-	}*/
-	
+
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult traceResult) {
 		ItemStack stack = player.getStackInHand(hand);
@@ -97,11 +81,13 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 			if(!player.isCreative())
 				stack.decrement(1);
 			world.setBlockState(pos, this.getStateWithCharge(state, true));
+			System.out.println("Charged");
 			world.playSound(null, pos, SoundEvents.BLOCK_CONDUIT_ACTIVATE, SoundCategory.BLOCKS, 0.5F, new Random().nextFloat() * 0.2F + 0.8F);
 			return ActionResult.CONSUME;
 		}
 		else if (this.isCharged(state) && stack.isEmpty()) {
 			world.setBlockState(pos, this.getStateWithCharge(state, false));
+			System.out.println("UNCharged");
 			world.playSound(null, pos, SoundEvents.BLOCK_CONDUIT_DEACTIVATE, SoundCategory.BLOCKS, 0.5F, new Random().nextFloat() * 0.2F + 0.8F);
 			if(!player.isCreative() || (player.inventory.count(KEY) <= 0))
 				player.giveItemStack(new ItemStack(KEY));
