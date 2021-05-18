@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common.blocks;
 
+import com.slomaxonical.architectspalette.common.blocks.abyssaline.AbyssalineBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
@@ -14,6 +15,7 @@ import net.minecraft.world.WorldAccess;
 
 import java.util.Random;
 import java.util.function.Function;
+import java.util.function.ToIntFunction;
 
 @SuppressWarnings("deprecation")
 public class SunstoneBlock extends Block {
@@ -42,11 +44,9 @@ public class SunstoneBlock extends Block {
         return state.get(LIGHT) * 7;
     }
 */
-    //todo: fix this see if it has any meaning aslan
-   /* @Override
-    public int getLuminance(BlockState state) {
-        return state.getLuminance()*7;
-    }*/
+    public static ToIntFunction<BlockState> getLuminance() {
+        return blockState -> blockState.get(SunstoneBlock.LIGHT) * 7;
+    }
     public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         worldIn.getBlockTickScheduler().schedule(pos, this, 100 + rand.nextInt(5));
         Integer lightstate = this.lightSupplier.apply(worldIn);

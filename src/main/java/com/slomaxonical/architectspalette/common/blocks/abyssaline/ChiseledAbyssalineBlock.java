@@ -10,13 +10,11 @@ import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager.Builder;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
@@ -43,11 +41,13 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 		return OFFSET;
 	}
 
-	public static final IntProperty LIGHT = IntProperty.of("light", 0, 20);
-
 	public ChiseledAbyssalineBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(CHARGED, false));
+	}
+
+	public static ToIntFunction<BlockState> getLuminance() {
+		return blockState -> blockState.get(AbyssalineBlock.CHARGED) ? 14 : 0;
 	}
 
 	@Override
@@ -60,17 +60,9 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 		return this.getDefaultState();
 	}
 
-//	@Override
-//	public int getLuminance(BlockState state, BlockView world, BlockPos pos) {
-//		return this.isCharged(state) ? 14 : 0;
-//	}
-public static ToIntFunction<BlockState> getLuminance() {
-	return blockState -> blockState.get(AbyssalineBlock.CHARGED) ? 14 : 0;
-}
-
 	@Override
 	protected void appendProperties(Builder<Block, BlockState> builder) {
-		builder.add(LIGHT,CHARGED);
+		builder.add(CHARGED);
 	}
 
 
@@ -81,13 +73,11 @@ public static ToIntFunction<BlockState> getLuminance() {
 			if(!player.isCreative())
 				stack.decrement(1);
 			world.setBlockState(pos, this.getStateWithCharge(state, true));
-			System.out.println("Charged");
 			world.playSound(null, pos, SoundEvents.BLOCK_CONDUIT_ACTIVATE, SoundCategory.BLOCKS, 0.5F, new Random().nextFloat() * 0.2F + 0.8F);
 			return ActionResult.CONSUME;
 		}
 		else if (this.isCharged(state) && stack.isEmpty()) {
 			world.setBlockState(pos, this.getStateWithCharge(state, false));
-			System.out.println("UNCharged");
 			world.playSound(null, pos, SoundEvents.BLOCK_CONDUIT_DEACTIVATE, SoundCategory.BLOCKS, 0.5F, new Random().nextFloat() * 0.2F + 0.8F);
 			if(!player.isCreative() || (player.inventory.count(KEY) <= 0))
 				player.giveItemStack(new ItemStack(KEY));

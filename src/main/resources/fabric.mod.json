@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "com.slomaxonical.architectspalette.core.ArchitectsPalette"
+    ],
+    "client": [
+      "com.slomaxonical.architectspalette.core.ArchitectsPaletteClient"
     ]
   },
   "mixins": [

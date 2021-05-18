@@ -19,6 +19,7 @@ public class APBlockSettings {
 			.emissiveLighting(AbyssalineHelper::needsPostProcessing)
 			.postProcess(AbyssalineHelper::needsPostProcessing)
 			.allowsSpawning(AbyssalineHelper::allowsMobSpawning);
+
 	public static final FabricBlockSettings CHISELED_ABYSSALINE = FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
 			.strength(25.0F, 600.0F)
 			.emissiveLighting(AbyssalineHelper::needsPostProcessing)

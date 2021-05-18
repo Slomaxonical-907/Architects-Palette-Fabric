@@ -184,12 +184,12 @@ public class APBlocks {
     public static final Block POTTED_TWISTED_SAPLING = createPottedPlant(TWISTED_SAPLING);
 
     // Celestial Stones
-    public static final Block SUNSTONE  = createBlock("sunstone",   new SunstoneBlock(AbstractBlock.Settings.copy(Blocks.BASALT).nonOpaque(), SunstoneBlock::sunstoneLight));
-    public static final Block MOONSTONE = createBlock("moonstone",  new SunstoneBlock(AbstractBlock.Settings.copy(Blocks.BASALT).nonOpaque(), SunstoneBlock::moonstoneLight));
+    public static final Block SUNSTONE  = createBlock("sunstone",   new SunstoneBlock(FabricBlockSettings.copy(Blocks.BASALT).nonOpaque(), SunstoneBlock::sunstoneLight));
+    public static final Block MOONSTONE = createBlock("moonstone",  new SunstoneBlock(FabricBlockSettings.copy(Blocks.BASALT).nonOpaque(), SunstoneBlock::moonstoneLight));
 
     // Odd block variants
     public static final Block MOLTEN_NETHER_BRICKS = createBlock("molten_nether_bricks",  new Block(APBlockSettings.MOLTEN_BRICK));
-    public static final Block COARSE_SNOW = createBlock("coarse_snow",  new Block(AbstractBlock.Settings.copy(Blocks.SNOW_BLOCK)));
+    public static final Block COARSE_SNOW = createBlock("coarse_snow",  new Block(FabricBlockSettings.copy(Blocks.SNOW_BLOCK)));
          // Charcoal Block
     public static final Block CHARCOAL_BLOCK = createBlock("charcoal_block",  new PillarBlock(FabricBlockSettings.copy(Blocks.COAL_BLOCK)));
 
