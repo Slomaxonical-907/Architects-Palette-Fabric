@@ -86,7 +86,8 @@ public class TotemBlock extends Block {
             worldIn.setBlockState(pos, newState, 3);
             playerItem.damage(1, player, (p) -> p.sendToolBreakStatus(handIn));
             worldIn.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1, 1);
-           //todo: remember to uncomment that and the import up once ur doing the advancements/criterions
+           //Did i acheive the same thing using vanillas criterions?
+
             /* if (player instanceof ServerPlayerEntity) {
                 APCriterion.CARVE_TOTEM.trigger((ServerPlayerEntity) player);
             }*/
