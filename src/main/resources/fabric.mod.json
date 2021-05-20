@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Architect's Palette Fabric",
-  "description": "This is a port to fabric of jsburg's mod",
+  "description": "A mod that adds new stylish and unique building blocks. This is a port of jsburg's mod",
   "authors": [
     "Jsburg & Slomaxonical"
   ],
   "contact": {
     "homepage": "",
-    "sources": ""
+    "sources": "https://github.com/Slomaxonical-907/Architects-Palette-Fabric"
   },
 
   "license": "mit",

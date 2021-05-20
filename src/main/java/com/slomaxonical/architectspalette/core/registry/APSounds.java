@@ -19,7 +19,8 @@ public class APSounds {
     public static final SoundEvent CAGE_LANTERN_TOGGLE_OFF = createSounds("block.cage_lantern.toggle_off");
 
     private static SoundEvent createSounds(String key) {
-        return Registry.register(Registry.SOUND_EVENT,key, new SoundEvent(new Identifier(ArchitectsPalette.MOD_ID, key)));
+        Identifier id = new Identifier(ArchitectsPalette.MOD_ID, key);
+        return Registry.register(Registry.SOUND_EVENT,id, new SoundEvent(id));
     }
     public static void registerSounds(){}
 
@@ -30,9 +31,9 @@ public class APSounds {
                 new Lazy<>(() -> SoundEvents.BLOCK_GLASS_STEP),
                 new Lazy<>(() -> BLOCK_ENTWINE_PLACE),
                 new Lazy<>(() -> BLOCK_ENTWINE_HIT),
+                new Lazy<>(() -> SoundEvents.BLOCK_GLASS_FALL)
 //                new Lazy<>(BLOCK_ENTWINE_PLACE),
 //                new Lazy<>(BLOCK_ENTWINE_HIT),
-                new Lazy<>(() -> SoundEvents.BLOCK_GLASS_FALL)
         );
 
         public static final BlockSoundGroup ENDER_PEARL = new BlockSoundGroup(
@@ -53,7 +54,6 @@ public class APSounds {
         private final Lazy<SoundEvent> fallSound;
 
         public LazySoundType(float volumeIn, float pitchIn, Lazy<SoundEvent> breakSoundIn, Lazy<SoundEvent> stepSoundIn, Lazy<SoundEvent> placeSoundIn, Lazy<SoundEvent> hitSoundIn, Lazy<SoundEvent> fallSoundIn) {
-            // shut up java i dont care about the original constructor i just want this to be a sound type
             super(volumeIn, pitchIn, SoundEvents.BLOCK_STONE_BREAK, SoundEvents.BLOCK_STONE_STEP, SoundEvents.BLOCK_STONE_PLACE, SoundEvents.BLOCK_STONE_HIT, SoundEvents.BLOCK_STONE_FALL);
             // now we're talking
             this.breakSound = breakSoundIn;
