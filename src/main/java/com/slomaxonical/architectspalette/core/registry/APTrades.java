@@ -24,26 +24,29 @@ public class APTrades {
     public static void registerVillagerTrades(){
 
         // Fish Blocks
-        addTrade(FISHERMAN, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.COD_LOG), 2, 8, 6, 4, 0.05F));
-        addTrade(FISHERMAN, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.SALMON_LOG), 2, 8, 6, 4, 0.05F));
+//        addTrade(FISHERMAN, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.COD_LOG), 2, 8, 6, 4, 0.05F));
+//        addTrade(FISHERMAN, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.SALMON_LOG), 2, 8, 6, 4, 0.05F));
 
         // Entrails
-        addTrade(BUTCHER, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.ENTRAILS), 1, 5, 5, 4, 0.0F));
+//        addTrade(BUTCHER, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.ENTRAILS), 1, 5, 5, 4, 0.0F));
 
         // Plating
-        addTrade(ARMORER, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.PLATING_BLOCK.BLOCK), 3, 12, 6, 4, 0.1F));
+//        addTrade(ARMORER, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.PLATING_BLOCK.BLOCK), 3, 12, 6, 4, 0.1F));
 
         // Pipes
-        addTrade(TOOLSMITH, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.PIPE), 4, 12, 6, 4, 0.1F));
+//        addTrade(TOOLSMITH, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.PIPE), 4, 12, 6, 4, 0.1F));
 
         // Spools
-        addTrade(SHEPHERD, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.SPOOL), 1, 2, 5, 4, 0.0F));
+//        addTrade(SHEPHERD, 2, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.SPOOL), 1, 2, 5, 4, 0.0F));
 
 
         // Temporary survival recipes until properly implemented
-        addTrade(MASON, 1, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.LIMESTONE.BLOCK), 1, 16, 5, 3, 0.05F));
-        addTrade(MASON, 1, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.OLIVESTONE_BRICK.BLOCK), 1, 16, 5, 3, 0.05F));
-
+//        addTrade(MASON, 1, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.LIMESTONE.BLOCK), 1, 16, 5, 3, 0.05F));
+//        addTrade(MASON, 1, new TradeOffers.SellItemFactory(new ItemStack(APBlocks.OLIVESTONE_BRICK.BLOCK), 1, 16, 5, 3, 0.05F));
+        TradeOfferHelper.registerVillagerOffers(MASON,1,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 1),
+                new ItemStack(APBlocks.LIMESTONE.BLOCK,16),5,3,0.05F))));
+        TradeOfferHelper.registerVillagerOffers(MASON,1,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 1),
+                new ItemStack(APBlocks.OLIVESTONE_BRICK.BLOCK,16),5,3,0.05F))));
     }
 
     public static void registerWanderingTrades(){

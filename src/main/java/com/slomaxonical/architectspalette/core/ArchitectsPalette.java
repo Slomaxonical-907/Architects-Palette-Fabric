@@ -26,7 +26,7 @@ public class ArchitectsPalette implements ModInitializer {
         APTrades.registerVillagerTrades();
         APTrades.registerWanderingTrades();
 
-        APBlockData.addStrippables();
+//        APBlockData.addStrippables();
 
         LootTableModifications.registerWitheredBones();
     }

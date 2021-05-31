@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public class APBlockData {
     public static void addStrippables() {
-        AxeItem.STRIPPED_BLOCKS = new HashMap<>(AxeItem.STRIPPED_BLOCKS);
-        AxeItem.STRIPPED_BLOCKS.put(APBlocks.TWISTED_LOG, APBlocks.STRIPPED_TWISTED_LOG);
-        AxeItem.STRIPPED_BLOCKS.put(APBlocks.TWISTED_WOOD, APBlocks.STRIPPED_TWISTED_WOOD);
+//        AxeItem.STRIPPED_BLOCKS = new HashMap<>(AxeItem.STRIPPED_BLOCKS);
+//        AxeItem.STRIPPED_BLOCKS.put(APBlocks.TWISTED_LOG, APBlocks.STRIPPED_TWISTED_LOG);
+//        AxeItem.STRIPPED_BLOCKS.put(APBlocks.TWISTED_WOOD, APBlocks.STRIPPED_TWISTED_WOOD);
     }
     public static void getCutoutLayer(){
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
