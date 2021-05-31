@@ -73,7 +73,7 @@ public class WarpingRecipe implements Recipe<Inventory> {
         return this.id;
     }
 
-//chaged warpingrecipe.type / .serial to this
+//changed warpingrecipe.type / .serial to this
     @Override
     public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
@@ -99,7 +99,7 @@ public class WarpingRecipe implements Recipe<Inventory> {
             final JsonElement inputElement = JsonHelper.hasArray(json, "ingredient") ?
                     JsonHelper.getArray(json, "ingredient") : JsonHelper.getObject(json, "ingredient");
             final Ingredient input = Ingredient.fromJson(inputElement);
-            final ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
+            final ItemStack output = new ItemStack(ShapedRecipe.getItem(JsonHelper.getObject(json, "result")));
             final Identifier dimensionId = new Identifier(JsonHelper.getString(json, "dimension"));
 
             return new WarpingRecipe(recipeId, input, output, dimensionId);

@@ -17,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 import java.util.function.ToIntFunction;
@@ -79,7 +78,7 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 		else if (this.isCharged(state) && stack.isEmpty()) {
 			world.setBlockState(pos, this.getStateWithCharge(state, false));
 			world.playSound(null, pos, SoundEvents.BLOCK_CONDUIT_DEACTIVATE, SoundCategory.BLOCKS, 0.5F, new Random().nextFloat() * 0.2F + 0.8F);
-			if(!player.isCreative() || (player.inventory.count(KEY) <= 0))
+			if(!player.isCreative() || (player.getInventory().count(KEY) <= 0))
 				player.giveItemStack(new ItemStack(KEY));
 			return ActionResult.SUCCESS;
 		}
