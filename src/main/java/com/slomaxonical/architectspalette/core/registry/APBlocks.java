@@ -61,16 +61,16 @@ public class APBlocks {
     public static final Block SUNMETAL_BARS           = createBlock("sunmetal_bars",  new APPaneBlock(APBlockSettings.SUNMETAL.nonOpaque()));
 
     // Rotten Flesh Block
-    public static final Block ROTTEN_FLESH_BLOCK = createBlock("rotten_flesh_block",  new Block(APBlockSettings.Meat(MaterialColor.ORANGE)));
+    public static final Block ROTTEN_FLESH_BLOCK = createBlock("rotten_flesh_block",  new Block(APBlockSettings.Meat(MapColor.ORANGE)));
 
     // Villager Trade blocks
     // Entrails
-    public static final Block ENTRAILS = createBlock("entrails",  new DrippyBlock(APBlockSettings.Meat(MaterialColor.PINK_TERRACOTTA)));
+    public static final Block ENTRAILS = createBlock("entrails",  new DrippyBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK)));
     // Funny fish blocks
-    public static final Block  SALMON_LOG = createBlock("salmon_log",    new PillarBlock(APBlockSettings.Meat(MaterialColor.RED_TERRACOTTA)));
-    public static final Block       COD_LOG = createBlock("cod_log",        new PillarBlock(APBlockSettings.Meat(MaterialColor.YELLOW_TERRACOTTA)));
-    public static final Block SALMON_SCALES = createBlock("salmon_scales",  new PillarBlock(APBlockSettings.Meat(MaterialColor.RED_TERRACOTTA)));
-    public static final Block    COD_SCALES = createBlock("cod_scales",     new PillarBlock(APBlockSettings.Meat(MaterialColor.YELLOW_TERRACOTTA)));
+    public static final Block  SALMON_LOG = createBlock("salmon_log",    new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED)));
+    public static final Block       COD_LOG = createBlock("cod_log",        new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW)));
+    public static final Block SALMON_SCALES = createBlock("salmon_scales",  new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED)));
+    public static final Block    COD_SCALES = createBlock("cod_scales",     new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW)));
         // Plating & Piping
     public static final StoneBlockSet PLATING_BLOCK = new StoneBlockSet(createBlock("plating_block",  new Block(APBlockSettings.PLATING)));
     public static final Block PIPE = createBlock("pipe",  new PipeBlock(APBlockSettings.PLATING.nonOpaque()));
@@ -78,7 +78,7 @@ public class APBlocks {
     public static final Block SPOOL = createBlock("spool",  new PillarBlock(AbstractBlock.Settings.copy(Blocks.WHITE_WOOL)));
 
     // Scute Block
-    public static final Block SCUTE_BLOCK = createBlock("scute_block",  new Block(AbstractBlock.Settings.of(Material.STONE, MaterialColor.LIME).strength(5.0F, 6.0F).sounds(BlockSoundGroup.BASALT)));
+    public static final Block SCUTE_BLOCK = createBlock("scute_block",  new Block(AbstractBlock.Settings.of(Material.STONE, MapColor.LIME).strength(5.0F, 6.0F).sounds(BlockSoundGroup.BASALT)));
 
     // Ore Bricks
     public static final List<StoneBlockSet> ORE_BRICKS = addOreBricks();

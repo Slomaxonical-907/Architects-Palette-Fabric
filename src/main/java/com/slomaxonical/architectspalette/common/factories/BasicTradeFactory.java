@@ -18,6 +18,6 @@ public class BasicTradeFactory implements TradeOffers.Factory {
     @Nullable
     @Override
     public TradeOffer create(Entity entity, Random random) {
-        return new TradeOffer(this.trade.toTag());
+        return new TradeOffer(this.trade.toNbt());
     }
 }
