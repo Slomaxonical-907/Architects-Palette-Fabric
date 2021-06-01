@@ -223,7 +223,7 @@ public class APBlocks {
         BlockItem blockItem = new BlockItem(block, new Item.Settings().group(group));
         Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID,name), blockItem);
 
-        ItemStack stack = new ItemStack(block);
+        ItemStack stack = new ItemStack(blockItem);
         APItemgroup.ITEMGROUP_LIST.add(stack);
         switch (name){
             case "algal_bricks":
@@ -255,8 +255,6 @@ public class APBlocks {
         String name = Registry.BLOCK.getId(plant).getPath();
         return createBlockNoItem("potted_" + name, new FlowerPotBlock(plant, FabricBlockSettings.copy(Blocks.POTTED_ACACIA_SAPLING).breakInstantly().nonOpaque()));
     }
-// todo: move to APBlockData?
-
     public static void registerBlocks(){}
 
 }

@@ -27,9 +27,9 @@ public class TotemWingBlock extends Block implements Waterloggable {
 
     private static final Map<Direction, VoxelShape> SHAPES = new ImmutableMap.Builder<Direction, VoxelShape>()
             .put(Direction.NORTH, Block.createCuboidShape(8, 0, 0, 9, 16, 16))
-            .put(Direction.SOUTH, Block.createCuboidShape(9, 0, 0, 8, 16, 16))
+            .put(Direction.SOUTH, Block.createCuboidShape(8, 0, 0, 9, 16, 16))
             .put(Direction.WEST, Block.createCuboidShape(0, 0, 8, 16, 16, 9))
-            .put(Direction.EAST, Block.createCuboidShape(0, 0, 9, 16, 16, 8))
+            .put(Direction.EAST, Block.createCuboidShape(0, 0, 8, 16, 16, 9))
             .build();
 
 

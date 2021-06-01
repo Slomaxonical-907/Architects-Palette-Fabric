@@ -40,11 +40,11 @@ public class CageLanternBlock extends Block implements Waterloggable {
 
     private static final Map<Direction, VoxelShape> SHAPES = new ImmutableMap.Builder<Direction, VoxelShape>()
             .put(Direction.DOWN, Block.createCuboidShape(5, 0, 5, 11, 6, 11))
-            .put(Direction.UP, Block.createCuboidShape(5, 16, 6, 11, 10, 11))
+            .put(Direction.UP, Block.createCuboidShape(5, 10, 6, 11, 16, 11))
             .put(Direction.NORTH, Block.createCuboidShape(5, 5, 0, 11, 11, 6))
-            .put(Direction.SOUTH, Block.createCuboidShape(5, 5, 16, 11, 11, 10))
+            .put(Direction.SOUTH, Block.createCuboidShape(5, 5, 10, 11, 11, 16))
             .put(Direction.WEST, Block.createCuboidShape(0, 5, 5, 6, 11, 11))
-            .put(Direction.EAST, Block.createCuboidShape(16, 5, 5, 10, 11, 11))
+            .put(Direction.EAST, Block.createCuboidShape(10, 5, 5, 16, 11, 11))
             .build();
 
     public CageLanternBlock(Settings properties, int poweredLightLevel) {
