@@ -1,6 +1,5 @@
 package com.slomaxonical.architectspalette.common.factories;
 
-import com.slomaxonical.architectspalette.core.registry.APItemgroup;
 import net.minecraft.entity.Entity;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;

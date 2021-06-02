@@ -19,8 +19,8 @@ public class LootTableModifications {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .with(ItemEntry.builder(APItems.WITHERED_BONE))
-                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f,2.0f)).build())
-                        .withFunction(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0f,1.0f)).build());
+                        .withFunction(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.1f,3.0f)).build())
+                        .withFunction(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0.0f,1.5f)).build());
                 supplier.withPool(poolBuilder.build());
             }
         });
