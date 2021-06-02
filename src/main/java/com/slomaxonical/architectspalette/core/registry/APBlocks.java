@@ -270,12 +270,12 @@ public class APBlocks {
 
         // Olivestone
         new StoneBlockSet(createBlock("olivestone_bricks",OLIVESTONE_BRICK));
+        createBlock("cracked_olivestone_bricks",CRACKED_OLIVESTONE_BRICKS);
         new StoneBlockSet(createBlock("olivestone_tiles",OLIVESTONE_TILE));
+        createBlock("cracked_olivestone_tiles",CRACKED_OLIVESTONE_TILES);
 
-         createBlock("olivestone_pillar",OLIVESTONE_PILLAR);
-         createBlock("cracked_olivestone_bricks",CRACKED_OLIVESTONE_BRICKS);
-         createBlock("cracked_olivestone_tiles",CRACKED_OLIVESTONE_TILES);
-         createBlock("chiseled_olivestone",CHISELED_OLIVESTONE);
+        createBlock("olivestone_pillar",OLIVESTONE_PILLAR);
+        createBlock("chiseled_olivestone",CHISELED_OLIVESTONE);
          createBlock("illuminated_olivestone",ILLUMINATED_OLIVESTONE);
 
         // Algal Brick

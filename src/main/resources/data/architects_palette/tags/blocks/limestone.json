@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "architects_palette:limestone",
+    "architects_palette:limestone_slab",
+    "architects_palette:limestone_stairs",
+    "architects_palette:limestone_wall",
+
+    "architects_palette:limestone_bricks",
+    "architects_palette:limestone_brick_slab",
+    "architects_palette:limestone_brick_stairs",
+    "architects_palette:limestone_brick_wall",
+
+    "architects_palette:mushy_limestone_bricks",
+    "architects_palette:mushy_limestone_brick_slab",
+    "architects_palette:mushy_limestone_brick_stairs",
+    "architects_palette:mushy_limestone_brick_wall"
+  ]
+}

@@ -33,8 +33,8 @@ public class StoneBlockSet {
     }
 
     // Stone Bricks Slab -> Stone Brick Slab. Oak Planks Stairs -> Oak Stairs
-    private String getMaterialFromBlock(String block) {
-        return block
+    private String getMaterialFromBlock(String blockName) {
+        return blockName
                 .replace("bricks", "brick")
                 .replace("_planks", "")
                 .replace("_block", "")

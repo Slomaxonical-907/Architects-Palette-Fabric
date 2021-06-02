@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "architects_palette:olivestone_bricks",
+    "architects_palette:olivestone_brick_slab",
+    "architects_palette:olivestone_brick_stairs",
+    "architects_palette:olivestone_brick_wall",
+
+    "architects_palette:olivestone_tiles",
+    "architects_palette:olivestone_tile_slab",
+    "architects_palette:olivestone_tile_stairs",
+    "architects_palette:olivestone_tile_wall",
+
+    "architects_palette:olivestone_pillar",
+    "architects_palette:cracked_olivestone_bricks",
+    "architects_palette:cracked_olivestone_tiles",
+    "architects_palette:chiseled_olivestone",
+    "architects_palette:illuminated_olivestone"
+  ]
+}
