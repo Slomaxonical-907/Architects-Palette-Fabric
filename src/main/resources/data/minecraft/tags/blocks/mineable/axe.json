@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "architects_palette:charcoal_block"
+    "architects_palette:charcoal_block",
+    "#architects_palette:acacia_totems"
+
   ]
 }
