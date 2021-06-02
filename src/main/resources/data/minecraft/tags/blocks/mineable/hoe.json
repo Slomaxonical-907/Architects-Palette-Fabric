@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "architects_palette:twisted_leaves"
+    "architects_palette:twisted_leaves",
+    "architects_palette:ender_pearl_block"
+
   ]
 }
