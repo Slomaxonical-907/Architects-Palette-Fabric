@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "architects_palette:osseous_bricks",
+    "architects_palette:osseous_bricks_slab",
+    "architects_palette:osseous_brick_stairs",
+    "architects_palette:osseous_brick_wall",
+    "architects_palette:osseous_pillar"
+  ]
+}

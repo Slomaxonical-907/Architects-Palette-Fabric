@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "architects_palette:polished_packed_ice",
+    "architects_palette:polished_packed_ice_slab",
+    "architects_palette:polished_packed_ice_stairs",
+    "architects_palette:polished_packed_ice_wall",
+    "architects_palette:chiseled_packed_ice",
+    "architects_palette:packed_ice_pillar"
+  ]
+}

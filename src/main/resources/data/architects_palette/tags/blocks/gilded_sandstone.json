@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "architects_palette:gilded_sandstone",
+    "architects_palette:gilded_sandstone_slab",
+    "architects_palette:gilded_sandstone_stairs",
+    "architects_palette:gilded_sandstone_pillar",
+    "architects_palette:chiseled_gilded_sandstone"
+  ]
+}
