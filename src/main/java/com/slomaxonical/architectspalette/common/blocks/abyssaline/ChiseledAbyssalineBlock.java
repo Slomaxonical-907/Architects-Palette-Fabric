@@ -25,8 +25,8 @@ import static com.slomaxonical.architectspalette.common.blocks.abyssaline.NewAby
 
 public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargeable {
 
-	public final static Item KEY = Items.HEART_OF_THE_SEA;
-	private final static BlockPos OFFSET = new BlockPos(0, 0, 0);
+//	private static final Item KEY = Items.HEART_OF_THE_FUCKING_SEA;
+	private static final BlockPos OFFSET = new BlockPos(0, 0, 0);
 
 	public boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
 		return stateIn.get(CHARGED);
@@ -68,7 +68,7 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult traceResult) {
 		ItemStack stack = player.getStackInHand(hand);
-		if (!this.isCharged(state) && stack.getItem() == KEY) {
+		if (!this.isCharged(state) && stack.getItem() == Items.HEART_OF_THE_SEA) {
 			if(!player.isCreative())
 				stack.decrement(1);
 			world.setBlockState(pos, this.getStateWithCharge(state, true));
@@ -78,8 +78,8 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 		else if (this.isCharged(state) && stack.isEmpty()) {
 			world.setBlockState(pos, this.getStateWithCharge(state, false));
 			world.playSound(null, pos, SoundEvents.BLOCK_CONDUIT_DEACTIVATE, SoundCategory.BLOCKS, 0.5F, new Random().nextFloat() * 0.2F + 0.8F);
-			if(!player.isCreative() || (player.getInventory().count(KEY) <= 0))
-				player.giveItemStack(new ItemStack(KEY));
+			if(!player.isCreative() || (player.getInventory().count(Items.HEART_OF_THE_SEA) <= 0))
+				player.giveItemStack(new ItemStack(Items.HEART_OF_THE_SEA));
 			return ActionResult.SUCCESS;
 		}
 		return ActionResult.PASS;

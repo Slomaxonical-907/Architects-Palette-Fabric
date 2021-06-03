@@ -21,7 +21,9 @@
       "conditions": {
         "location": {
           "block": {
-            "block": "architects_palette:placid_acacia_totem"
+            "blocks": [
+              "architects_palette:placid_acacia_totem"
+            ]
           }
         },
         "item": {
