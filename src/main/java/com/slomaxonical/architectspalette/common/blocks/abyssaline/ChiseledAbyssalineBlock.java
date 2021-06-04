@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
+import com.slomaxonical.architectspalette.common.APBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 import java.util.function.ToIntFunction;
@@ -47,7 +47,7 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 	}
 
 	public static ToIntFunction<BlockState> getLuminance() {
-		return blockState -> blockState.get(AbyssalineBlock.CHARGED) ? 14 : 0;
+		return blockState -> blockState.get(APBlockSettings.CHARGED) ? 14 : 0;
 	}
 
 	@Override

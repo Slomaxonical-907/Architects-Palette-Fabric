@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
+import com.slomaxonical.architectspalette.common.APBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
@@ -15,7 +16,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class NewAbyssalineBlock extends Block implements IAbyssalineChargeable {
-    public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
+    public static final BooleanProperty CHARGED = APBlockSettings.CHARGED;
     public static final DirectionProperty CHARGE_SOURCE = DirectionProperty.of("charge_source",
             Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.UP, Direction.DOWN);
 

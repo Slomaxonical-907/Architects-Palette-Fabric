@@ -8,10 +8,8 @@ import com.slomaxonical.architectspalette.core.registry.APSounds;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.state.property.BooleanProperty;
 
-
-import static com.slomaxonical.architectspalette.common.blocks.abyssaline.AbyssalineBlock.CHARGED;
 
 public class APBlockSettings {
 	public static final FabricBlockSettings ABYSSALINE = FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
@@ -26,6 +24,9 @@ public class APBlockSettings {
 			.postProcess(AbyssalineHelper::needsPostProcessing)
 			.allowsSpawning(AbyssalineHelper::allowsMobSpawning)
 			.luminance(ChiseledAbyssalineBlock.getLuminance());
+
+	public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
+
 
 	public static FabricBlockSettings Meat(MaterialColor color) {
 		return FabricBlockSettings.of(Material.GOURD, color).strength(1.0F).sounds(BlockSoundGroup.CORAL);
