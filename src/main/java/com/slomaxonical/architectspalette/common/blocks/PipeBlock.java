@@ -61,7 +61,6 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
 
         return state.with(PART, checkNearbyPipes(state, worldIn, currentPos));
     }
-    // todo: see if corners are behaving right... no connection?
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         //stole this from chains, dunno if im supposed to.

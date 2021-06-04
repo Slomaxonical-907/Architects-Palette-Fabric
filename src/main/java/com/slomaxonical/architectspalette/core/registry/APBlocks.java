@@ -29,7 +29,7 @@ public class APBlocks {
     public static final AbyssalineSlabBlock     ABYSSALINE_BRICK_SLAB      = createBlock("abyssaline_brick_slab", new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE));
     public static final AbyssalineSlabBlock     ABYSSALINE_TILE_SLAB       = createBlock("abyssaline_tile_slab", new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE));
     public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = createBlock("abyssaline_pillar", new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE));
-    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = createBlock("abyssaline_lamp", new AbyssalineLampBlock(APBlockSettings.ABYSSALINE.sounds(BlockSoundGroup.GLASS)));
+    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = createBlock("abyssaline_lamp", new AbyssalineLampBlock(APBlockSettings.ABYSSALINE.sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance())));
     public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = createBlock("chiseled_abyssaline_bricks", new ChiseledAbyssalineBlock(APBlockSettings.CHISELED_ABYSSALINE));
 
     // Limestone
