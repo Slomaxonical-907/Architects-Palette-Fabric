@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
+import com.slomaxonical.architectspalette.common.APBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;
@@ -8,12 +9,12 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.Random;
+import java.util.function.ToIntFunction;
 
-import static com.slomaxonical.architectspalette.common.blocks.abyssaline.NewAbyssalineBlock.CHARGED;
+import static com.slomaxonical.architectspalette.common.APBlockSettings.CHARGED;
 import static com.slomaxonical.architectspalette.common.blocks.abyssaline.NewAbyssalineBlock.CHARGE_SOURCE;
 
 public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineChargeable {
@@ -28,11 +29,6 @@ public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineCharg
         builder.add(AXIS, CHARGED, CHARGE_SOURCE);
     }
 
-//    @Override
-//    public int getLightValue(BlockState state, BlockView world, BlockPos pos) {
-//        return this.isCharged(state) ? 16 : 0;
-//    }
-
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         context.getWorld().getBlockTickScheduler().schedule(context.getBlockPos(), this, 1);
@@ -46,6 +42,10 @@ public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineCharg
 
     public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         AbyssalineHelper.abyssalineTick(state, worldIn, pos);
+    }
+
+    public static ToIntFunction<BlockState> getLuminance() {
+        return blockState -> blockState.get(APBlockSettings.CHARGED) ? 16 : 0;
     }
 
 }

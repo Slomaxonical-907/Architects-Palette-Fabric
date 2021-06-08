@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
+import com.slomaxonical.architectspalette.common.APBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
@@ -13,9 +14,11 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.Random;
+import java.util.function.ToIntFunction;
 
 public class NewAbyssalineBlock extends Block implements IAbyssalineChargeable {
-    public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
+    public static final BooleanProperty CHARGED = APBlockSettings.CHARGED;
+
     public static final DirectionProperty CHARGE_SOURCE = DirectionProperty.of("charge_source",
             Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.UP, Direction.DOWN);
 
@@ -28,10 +31,9 @@ public class NewAbyssalineBlock extends Block implements IAbyssalineChargeable {
         builder.add(CHARGED, CHARGE_SOURCE);
     }
 
-//    @Override
-//    public int getLightValue(BlockState state, BlockView world, BlockPos pos) {
-//        return state.get(CHARGED) ? AbyssalineHelper.CHARGE_LIGHT : 0;
-//    }
+    public static ToIntFunction<BlockState> getLuminance() {
+        return blockState -> blockState.get(CHARGED) ? 1 : 0;
+    }
 
     @Override
     public void neighborUpdate(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {

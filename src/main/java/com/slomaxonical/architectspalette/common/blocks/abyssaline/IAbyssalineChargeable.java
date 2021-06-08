@@ -1,12 +1,13 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
+import com.slomaxonical.architectspalette.common.APBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public interface IAbyssalineChargeable {
     default boolean isCharged(BlockState stateIn){
-        return stateIn.get(NewAbyssalineBlock.CHARGED);
+        return stateIn.get(APBlockSettings.CHARGED);
     }
     default Direction getSourceDirection(BlockState stateIn) {
         return stateIn.get(NewAbyssalineBlock.CHARGE_SOURCE);
@@ -22,7 +23,7 @@ public interface IAbyssalineChargeable {
         return new BlockPos(getSourceDirection(stateIn).getVector());
     }
     default BlockState getStateWithCharge(BlockState stateIn, boolean charged) {
-        return stateIn.with(NewAbyssalineBlock.CHARGED, charged);
+        return stateIn.with(APBlockSettings.CHARGED, charged);
     }
     //faceOut is the place that power is coming from, so it should point to that.
     default BlockState getStateWithChargeDirection(BlockState stateIn, Direction faceOut) {

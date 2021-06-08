@@ -23,13 +23,13 @@ import java.util.List;
 public class APBlocks {
 
     // Abyssaline
-    public static final NewAbyssalineBlock      ABYSSALINE                 = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE);
-    public static final NewAbyssalineBlock      ABYSSALINE_BRICKS          = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE);
-    public static final NewAbyssalineBlock      ABYSSALINE_TILES           = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE);
-    public static final AbyssalineSlabBlock     ABYSSALINE_BRICK_SLAB      = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE);
-    public static final AbyssalineSlabBlock     ABYSSALINE_TILE_SLAB       = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE);
-    public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE);
-    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE.sounds(BlockSoundGroup.GLASS));
+    public static final NewAbyssalineBlock      ABYSSALINE                 = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final NewAbyssalineBlock      ABYSSALINE_BRICKS          = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final NewAbyssalineBlock      ABYSSALINE_TILES           = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final AbyssalineSlabBlock     ABYSSALINE_BRICK_SLAB      = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final AbyssalineSlabBlock     ABYSSALINE_TILE_SLAB       = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE.sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance()));
     public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(APBlockSettings.CHISELED_ABYSSALINE);
 
     // Limestone

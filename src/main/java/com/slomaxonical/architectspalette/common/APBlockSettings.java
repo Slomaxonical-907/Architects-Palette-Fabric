@@ -1,16 +1,18 @@
 package com.slomaxonical.architectspalette.common;
 
 import com.slomaxonical.architectspalette.common.blocks.abyssaline.AbyssalineHelper;
-//import com.slomaxonical.architectspalette.common.blocks.abyssaline.ChiseledAbyssalineBlock;
 import com.slomaxonical.architectspalette.common.blocks.CageLanternBlock;
 import com.slomaxonical.architectspalette.common.blocks.abyssaline.ChiseledAbyssalineBlock;
 import com.slomaxonical.architectspalette.core.registry.APSounds;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.state.property.BooleanProperty;
 
 public class APBlockSettings {
+
+	public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
+
 	public static final FabricBlockSettings ABYSSALINE = FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
 			.strength(25.0F, 600.0F)
 			.emissiveLighting(AbyssalineHelper::needsPostProcessing)
