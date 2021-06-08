@@ -13,7 +13,7 @@
     "sources": "https://github.com/Slomaxonical-907/Architects-Palette-Fabric"
   },
 
-  "license": "mit",
+  "license": "GPL-3",
   "icon": "assets/architects_palette/icon.png",
   "environment": "*",
   "entrypoints": {
