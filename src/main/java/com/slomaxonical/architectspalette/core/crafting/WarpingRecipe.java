@@ -65,15 +65,13 @@ public class WarpingRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack getOutput() {
-        return this.output;
+        return output.copy();
     }
-
     @Override
     public Identifier getId() {
         return this.id;
     }
 
-//changed warpingrecipe.type / .serial to this
     @Override
     public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;

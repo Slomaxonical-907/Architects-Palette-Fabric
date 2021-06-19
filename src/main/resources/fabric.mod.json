@@ -22,6 +22,9 @@
     ],
     "client": [
       "com.slomaxonical.architectspalette.core.ArchitectsPaletteClient"
+    ],
+    "rei_plugins": [
+      "com.slomaxonical.architectspalette.compat.rei.APPlugin"
     ]
   },
   "mixins": [

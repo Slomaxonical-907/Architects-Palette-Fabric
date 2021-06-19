@@ -15,9 +15,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class APBlocks {
@@ -205,10 +203,9 @@ public class APBlocks {
 
     //Create Blocks
         // Default ItemGroup is BuildingBlocks
-    public static int INDEX_ALGAL;
-    public static int INDEX_SUNMETAL;
-    public static int INDEX_WITHERED;
-    public static int INDEX_ENTWINE;
+
+    private static Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block");
+    public static List<Integer> INDEXS = new ArrayList<>();
 
     public static <B extends Block> B createBlock(String name, B anyBlock) {
         return createBlock(name, anyBlock, ItemGroup.BUILDING_BLOCKS);
@@ -222,24 +219,9 @@ public class APBlocks {
 
         ItemStack stack = new ItemStack(blockItem);
         APItemgroup.ITEMGROUP_LIST.add(stack);
-        switch (name){
-            case "algal_bricks":
-                INDEX_ALGAL = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_ALGAL+ " is algies");
-                break;
-            case "sunmetal_block":
-                INDEX_SUNMETAL = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_SUNMETAL+ " is sunmetal");
-                break;
-            case "withered_bone_block":
-                INDEX_WITHERED = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_WITHERED+ " is wither");
-                break;
-            case "entwine_block":
-                INDEX_ENTWINE = APItemgroup.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_ENTWINE + " is entwine");
-                break;
-            default:
+        if(STRING_SET.contains(name)){
+            INDEXS.add(APItemgroup.ITEMGROUP_LIST.indexOf(stack));
+            System.out.println("index is:" + APItemgroup.ITEMGROUP_LIST.indexOf(stack));
         }
         return block;
     }
