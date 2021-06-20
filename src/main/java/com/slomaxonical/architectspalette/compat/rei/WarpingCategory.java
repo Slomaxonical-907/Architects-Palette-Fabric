@@ -44,7 +44,7 @@ public class WarpingCategory implements DisplayCategory<WarpingDisplay> {
 
         widgets.add(Widgets.createSlot(new Point(bounds.x + 15, bounds.y + 75)).entries(getInput(recipeDisplay,0)).markInput());
         widgets.add(Widgets.createTexturedWidget(new Identifier("architects_palette", "textures/gui/nether_portal_lit.png"), bounds.getX() - 64, bounds.getY() -50, 0, 0, 280, 280,280,285));
-        widgets.add(Widgets.createSlot(new Point(bounds.getMaxX() -28, bounds.y + 75)).entries(getOutput(recipeDisplay, 1)).markOutput());
+        widgets.add(Widgets.createSlot(new Point(bounds.getMaxX() -28, bounds.y + 75)).entries(getOutput(recipeDisplay, 0)).markOutput());
 
         return widgets;
     }
@@ -52,6 +52,7 @@ public class WarpingCategory implements DisplayCategory<WarpingDisplay> {
     public int getDisplayHeight() {
         return 175;
     }
+
     public EntryIngredient getInput(WarpingDisplay recipeDisplay, int index) {
         List<EntryIngredient> inputs = recipeDisplay.getInputEntries();
         return inputs.size() > index ? inputs.get(index) : EntryIngredient.empty();
