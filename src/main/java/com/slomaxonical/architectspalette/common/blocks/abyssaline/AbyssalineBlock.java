@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
+import com.slomaxonical.architectspalette.common.APBlockSettings;
 import com.slomaxonical.architectspalette.core.registry.APBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -8,11 +9,10 @@ import net.minecraft.state.StateManager.Builder;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
 public class AbyssalineBlock extends Block {
-	public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
+	public static final BooleanProperty CHARGED = APBlockSettings.CHARGED;
 
 	public AbyssalineBlock(Settings properties) {
 		super(properties);

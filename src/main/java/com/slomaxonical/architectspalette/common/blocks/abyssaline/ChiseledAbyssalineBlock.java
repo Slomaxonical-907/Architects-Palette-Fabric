@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common.blocks.abyssaline;
 
+import com.slomaxonical.architectspalette.common.APBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +10,7 @@ import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager.Builder;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -20,11 +22,11 @@ import net.minecraft.world.WorldAccess;
 import java.util.Random;
 import java.util.function.ToIntFunction;
 
-import static com.slomaxonical.architectspalette.common.APBlockSettings.CHARGED;
-
 public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargeable {
 
-//	private static final Item KEY = Items.HEART_OF_THE_FUCKING_SEA;
+	public static final BooleanProperty CHARGED = APBlockSettings.CHARGED;
+
+	//	private static final Item KEY = Items.HEART_OF_THE_FUCKING_SEA;
 	private static final BlockPos OFFSET = new BlockPos(0, 0, 0);
 
 	public boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
@@ -45,7 +47,7 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 	}
 
 	public static ToIntFunction<BlockState> getLuminance() {
-		return blockState -> blockState.get(AbyssalineBlock.CHARGED) ? 14 : 0;
+		return blockState -> blockState.get(CHARGED) ? 14 : 0;
 	}
 
 	@Override

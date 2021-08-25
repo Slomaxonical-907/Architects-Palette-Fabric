@@ -34,7 +34,7 @@ public class TwistedTree extends SaplingGenerator {
 
     @Nullable
     @Override
-    protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random randomIn, boolean largeHive) {
+    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
         return Feature.TREE.configure(TWISTED_TREE_CONFIG.get());
     }
 }

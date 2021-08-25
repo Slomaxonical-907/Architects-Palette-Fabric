@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common;
 
+import com.slomaxonical.architectspalette.common.blocks.SunstoneBlock;
 import com.slomaxonical.architectspalette.common.blocks.abyssaline.AbyssalineHelper;
 import com.slomaxonical.architectspalette.common.blocks.CageLanternBlock;
 import com.slomaxonical.architectspalette.common.blocks.abyssaline.ChiseledAbyssalineBlock;
@@ -64,7 +65,6 @@ public class APBlockSettings {
 			.sounds(BlockSoundGroup.WOOD);
 
 	// This makes a new property each time so that setting the door to not solid doesn't interfere.
-	// That might not be a thing but I don't care to come up with a way of checking.
 	public static FabricBlockSettings TwistedWood() {
 		return FabricBlockSettings.of(Material.WOOD, MapColor.PURPLE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD);
 	}
@@ -75,15 +75,8 @@ public class APBlockSettings {
 		}
 		return p;
 	}
-// i think not needed:
-
-//	private static boolean setEmmisiveRendering(BlockState state, BlockView reader, BlockPos pos) {
-//		return state.get(ChiseledAbyssalineBlock.LIGHT) / 2 > 4;
-//	}
-//
-//	private static boolean needsPostProcessing(BlockState state, BlockView reader, BlockPos pos) {
-//		int light = state.get(ChiseledAbyssalineBlock.LIGHT) / 2;
-//		return light < 4;
-//	}
+	public static final FabricBlockSettings SUNSTONE = FabricBlockSettings.copyOf(Blocks.BASALT)
+//			.solidBlock(SunstoneBlock::isSolid).dynamicBounds()
+			.luminance(SunstoneBlock::lightValue);
 
 }

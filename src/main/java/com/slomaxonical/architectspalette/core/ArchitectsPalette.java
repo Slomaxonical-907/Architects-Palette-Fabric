@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 public class ArchitectsPalette implements ModInitializer {
 
     public static final String MOD_ID = "architects_palette";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID.toUpperCase());
+    public static final Logger LOGGER = LogManager.getLogger("Architect's Palette");
 
     @Override
     public void onInitialize() {

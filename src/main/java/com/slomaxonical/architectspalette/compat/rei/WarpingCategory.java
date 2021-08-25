@@ -19,7 +19,7 @@ import java.util.List;
 
 
 public class WarpingCategory implements DisplayCategory<WarpingDisplay> {
-    private static final TranslatableText NAME = new TranslatableText("architects_palette.gui.portal_warping");
+    private static final TranslatableText NAME = new TranslatableText("architects_palette.rei.portal_warping");
 
     @Override
     public Renderer getIcon() {

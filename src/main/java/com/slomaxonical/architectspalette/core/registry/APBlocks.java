@@ -179,8 +179,8 @@ public class APBlocks {
     public static final Block POTTED_TWISTED_SAPLING = createPottedPlant(TWISTED_SAPLING);
 
     // Celestial Stones
-    public static final Block SUNSTONE  = new SunstoneBlock(FabricBlockSettings.copy(Blocks.BASALT).nonOpaque(), SunstoneBlock::sunstoneLight);
-    public static final Block MOONSTONE = new SunstoneBlock(FabricBlockSettings.copy(Blocks.BASALT).nonOpaque(), SunstoneBlock::moonstoneLight);
+    public static final Block SUNSTONE  = new SunstoneBlock(APBlockSettings.SUNSTONE, SunstoneBlock::sunstoneLight);
+    public static final Block MOONSTONE = new SunstoneBlock(APBlockSettings.SUNSTONE, SunstoneBlock::moonstoneLight);
 
     // Odd block variants
     public static final Block MOLTEN_NETHER_BRICKS = new Block(APBlockSettings.MOLTEN_BRICK);
@@ -221,7 +221,7 @@ public class APBlocks {
         APItemgroup.ITEMGROUP_LIST.add(stack);
         if(STRING_SET.contains(name)){
             INDEXS.add(APItemgroup.ITEMGROUP_LIST.indexOf(stack));
-            System.out.println("index is:" + APItemgroup.ITEMGROUP_LIST.indexOf(stack));
+            ArchitectsPalette.LOGGER.info("index of " + stack.getItem().toString() + " is: " + APItemgroup.ITEMGROUP_LIST.indexOf(stack));
         }
         return block;
     }
