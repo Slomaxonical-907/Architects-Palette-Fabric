@@ -1,6 +1,5 @@
 package com.slomaxonical.architectspalette.common.factories;
 
-import com.slomaxonical.architectspalette.core.registry.APItemgroup;
 import net.minecraft.entity.Entity;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
@@ -18,6 +17,6 @@ public class BasicTradeFactory implements TradeOffers.Factory {
     @Nullable
     @Override
     public TradeOffer create(Entity entity, Random random) {
-        return new TradeOffer(this.trade.toTag());
+        return new TradeOffer(this.trade.toNbt());
     }
 }

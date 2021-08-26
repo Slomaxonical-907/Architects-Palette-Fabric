@@ -28,25 +28,25 @@ public class APBlockSettings {
 	public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
 
 
-	public static FabricBlockSettings Meat(MaterialColor color) {
+	public static FabricBlockSettings Meat(MapColor color) {
 		return FabricBlockSettings.of(Material.GOURD, color).strength(1.0F).sounds(BlockSoundGroup.CORAL);
 	}
 
-	public static final FabricBlockSettings FLINT = FabricBlockSettings.of(Material.STONE, MaterialColor.GRAY).strength(3.0F, 16.0F).requiresTool();
+	public static final FabricBlockSettings FLINT = FabricBlockSettings.of(Material.STONE, MapColor.GRAY).strength(3.0F, 16.0F).requiresTool();
 	public static final FabricBlockSettings LIMESTONE = FabricBlockSettings.copyOf(Blocks.STONE);
-	public static final FabricBlockSettings SUNMETAL = FabricBlockSettings.of(Material.METAL, MaterialColor.BROWN).strength(2.0F, 8.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
+	public static final FabricBlockSettings SUNMETAL = FabricBlockSettings.of(Material.METAL, MapColor.BROWN).strength(2.0F, 8.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
 	 // Should be less slippery?
 	public static final FabricBlockSettings BUILDING_ICE = FabricBlockSettings.copyOf(Blocks.PACKED_ICE).slipperiness(0.8F);
 	 // As Prismarine
-	public static final FabricBlockSettings OLIVESTONE = FabricBlockSettings.of(Material.STONE, MaterialColor.GREEN_TERRACOTTA).strength(1.5F, 6.0F).requiresTool();
+	public static final FabricBlockSettings OLIVESTONE = FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_GREEN).strength(1.5F, 6.0F).requiresTool();
 	 // As Nether Bricks
-	public static final FabricBlockSettings ALGAL_BRICK = FabricBlockSettings.of(Material.STONE, MaterialColor.CYAN_TERRACOTTA).strength(2.0F, 6.0F).sounds(BlockSoundGroup.NETHER_BRICKS).requiresTool();
+	public static final FabricBlockSettings ALGAL_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_CYAN).strength(2.0F, 6.0F).sounds(BlockSoundGroup.NETHER_BRICKS).requiresTool();
 
-	public static final FabricBlockSettings ENTWINE = FabricBlockSettings.of(Material.STONE, MaterialColor.CYAN).strength(3.0F, 6.0F).sounds(APSounds.APSoundTypes.ENTWINE).requiresTool();
-	public static final FabricBlockSettings ENDER_PEARL = FabricBlockSettings.of(Material.STONE, MaterialColor.CYAN).strength(1.5F).sounds(APSounds.APSoundTypes.ENDER_PEARL);
-	public static final FabricBlockSettings PLATING = FabricBlockSettings.of(Material.METAL, MaterialColor.STONE).strength(4.0F, 10.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
+	public static final FabricBlockSettings ENTWINE = FabricBlockSettings.of(Material.STONE, MapColor.CYAN).strength(3.0F, 6.0F).sounds(APSounds.APSoundTypes.ENTWINE).requiresTool();
+	public static final FabricBlockSettings ENDER_PEARL = FabricBlockSettings.of(Material.STONE, MapColor.CYAN).strength(1.5F).sounds(APSounds.APSoundTypes.ENDER_PEARL);
+	public static final FabricBlockSettings PLATING = FabricBlockSettings.of(Material.METAL, MapColor.STONE_GRAY).strength(4.0F, 10.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
 
-	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MaterialColor.NETHER)
+	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)
 			.requiresTool()
 			.strength(2.0F, 6.0F)
 			.luminance((state) -> 3)
@@ -61,14 +61,14 @@ public class APBlockSettings {
 			.sounds(BlockSoundGroup.LANTERN)
 			.nonOpaque();
 
-	public static final FabricBlockSettings ACACIA_TOTEM = FabricBlockSettings.of(Material.WOOD, MaterialColor.ORANGE)
+	public static final FabricBlockSettings ACACIA_TOTEM = FabricBlockSettings.of(Material.WOOD, MapColor.ORANGE)
 			.strength(2.0F)
 			.sounds(BlockSoundGroup.WOOD);
 
 	// This makes a new property each time so that setting the door to not solid doesn't interfere.
 	// That might not be a thing but I don't care to come up with a way of checking.
 	public static AbstractBlock.Settings TwistedWood() {
-		return AbstractBlock.Settings.of(Material.WOOD, MaterialColor.PURPLE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD);
+		return AbstractBlock.Settings.of(Material.WOOD, MapColor.PURPLE).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD);
 	}
 	public static AbstractBlock.Settings TwistedWood(boolean redstoneComponent) {
 		AbstractBlock.Settings p = TwistedWood();
