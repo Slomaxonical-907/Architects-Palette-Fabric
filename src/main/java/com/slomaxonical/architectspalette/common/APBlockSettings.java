@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.common;
 
+import com.slomaxonical.architectspalette.common.blocks.SunstoneBlock;
 import com.slomaxonical.architectspalette.common.blocks.abyssaline.AbyssalineHelper;
 //import com.slomaxonical.architectspalette.common.blocks.abyssaline.ChiseledAbyssalineBlock;
 import com.slomaxonical.architectspalette.common.blocks.CageLanternBlock;
@@ -12,6 +13,8 @@ import net.minecraft.state.property.BooleanProperty;
 
 
 public class APBlockSettings {
+	public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
+
 	public static final FabricBlockSettings ABYSSALINE = FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
 			.strength(25.0F, 600.0F)
 			.emissiveLighting(AbyssalineHelper::needsPostProcessing)
@@ -25,7 +28,6 @@ public class APBlockSettings {
 			.allowsSpawning(AbyssalineHelper::allowsMobSpawning)
 			.luminance(ChiseledAbyssalineBlock.getLuminance());
 
-	public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
 
 
 	public static FabricBlockSettings Meat(MapColor color) {
@@ -77,15 +79,9 @@ public class APBlockSettings {
 		}
 		return p;
 	}
-// i think not needed:
-
-//	private static boolean setEmmisiveRendering(BlockState state, BlockView reader, BlockPos pos) {
-//		return state.get(ChiseledAbyssalineBlock.LIGHT) / 2 > 4;
-//	}
-//
-//	private static boolean needsPostProcessing(BlockState state, BlockView reader, BlockPos pos) {
-//		int light = state.get(ChiseledAbyssalineBlock.LIGHT) / 2;
-//		return light < 4;
-//	}
+	public static final FabricBlockSettings SUNSTONE = FabricBlockSettings.copyOf(Blocks.BASALT)
+//			.solidBlock(SunstoneBlock::isSolid).dynamicBounds()
+			.luminance(SunstoneBlock::lightValue);
 
 }
+

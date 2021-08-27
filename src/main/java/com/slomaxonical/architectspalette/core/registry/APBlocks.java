@@ -15,9 +15,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class APBlocks {
@@ -205,11 +203,14 @@ public class APBlocks {
 
 
     //Create Blocks
-        // Default ItemGroup is BuildingBlocks
-    public static int INDEX_ALGAL;
-    public static int INDEX_SUNMETAL;
-    public static int INDEX_WITHERED;
-    public static int INDEX_ENTWINE;
+    private static Set<String> STRING_SET = new HashSet<>() ;
+    static {
+        STRING_SET.add("algal_bricks");
+        STRING_SET.add("sunmetal_block");
+        STRING_SET.add("withered_bone_block");
+        STRING_SET.add("entwine_block");
+    }
+    public static List<Integer> INDEXS = new ArrayList<>();
 
     public static <B extends Block> B createBlock(String name, B anyBlock) {
         return createBlock(name, anyBlock, ItemGroup.BUILDING_BLOCKS);
@@ -222,25 +223,10 @@ public class APBlocks {
         Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID,name), blockItem);
 
         ItemStack stack = new ItemStack(block);
-        APItems.ITEMGROUP_LIST.add(stack);
-        switch (name){
-            case "algal_bricks":
-                INDEX_ALGAL = APItems.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_ALGAL+ " is algies");
-                break;
-            case "sunmetal_block":
-                INDEX_SUNMETAL = APItems.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_SUNMETAL+ " is sunmetal");
-                break;
-            case "withered_bone_block":
-                INDEX_WITHERED = APItems.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_WITHERED+ " is wither");
-                break;
-            case "entwine_block":
-                INDEX_ENTWINE = APItems.ITEMGROUP_LIST.indexOf(stack);
-                System.out.println(INDEX_ENTWINE + " is entwine");
-                break;
-            default:
+        APItemgroup.ITEMGROUP_LIST.add(stack);
+        if(STRING_SET.contains(name)){
+            INDEXS.add(APItemgroup.ITEMGROUP_LIST.indexOf(stack));
+            ArchitectsPalette.LOGGER.info("index of " + stack.getItem().toString() + " is: " + APItemgroup.ITEMGROUP_LIST.indexOf(stack));
         }
         return block;
     }

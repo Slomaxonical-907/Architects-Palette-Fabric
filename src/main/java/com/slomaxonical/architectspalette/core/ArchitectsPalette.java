@@ -18,7 +18,7 @@ public class ArchitectsPalette implements ModInitializer {
         APBlocks.registerBlocks();
         APItems.registerItems();
         APFuel.registerFuel();
-        APItems.registerItemgroup();
+        APItemgroup.registerItemgroup();
 
         APSounds.registerSounds();
         WarpingRecipe.registerRecipe();

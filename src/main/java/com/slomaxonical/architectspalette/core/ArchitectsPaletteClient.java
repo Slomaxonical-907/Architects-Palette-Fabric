@@ -1,11 +1,28 @@
 package com.slomaxonical.architectspalette.core;
 
-import com.slomaxonical.architectspalette.core.integration.APBlockData;
+import com.slomaxonical.architectspalette.core.registry.APBlocks;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.RenderLayer;
 
 public class ArchitectsPaletteClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        APBlockData.getCutoutLayer();
+        //Cutout
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+                APBlocks.ENTWINE_BARS,
+                APBlocks.SUNMETAL_BARS,
+
+                APBlocks.REDSTONE_CAGE_LANTERN,
+                APBlocks.GLOWSTONE_CAGE_LANTERN,
+                APBlocks.ALGAL_CAGE_LANTERN,
+
+                APBlocks.TWISTED_DOOR,
+                APBlocks.TWISTED_TRAPDOOR,
+                APBlocks.TWISTED_SAPLING,
+                APBlocks.POTTED_TWISTED_SAPLING,
+
+                APBlocks.ACACIA_TOTEM_WING
+        );
     }
 }
