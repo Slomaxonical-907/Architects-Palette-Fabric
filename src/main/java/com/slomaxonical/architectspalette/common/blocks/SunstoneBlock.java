@@ -58,9 +58,9 @@ public class SunstoneBlock extends Block {
     public BlockState getStateForNeighborUpdate(BlockState stateIn, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facingState.getBlock() instanceof SunstoneBlock) {
             Random rand = worldIn.getRandom();
-            if (rand.nextBoolean() && rand.nextBoolean()) {
+//            if (rand.nextBoolean() && rand.nextBoolean()) {
                 worldIn.getBlockTickScheduler().schedule(currentPos, this, 8);
-            }
+//            }
         }
         return super.getStateForNeighborUpdate(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
