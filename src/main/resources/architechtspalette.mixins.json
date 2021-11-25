@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.slomaxonical.architectspalette.core.mixin",
+  "package": "com.slomaxonical.architectspalette.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "ServerWorldMixin",

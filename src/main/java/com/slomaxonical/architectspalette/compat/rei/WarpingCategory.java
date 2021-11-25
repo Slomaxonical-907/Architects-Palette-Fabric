@@ -1,6 +1,6 @@
 package com.slomaxonical.architectspalette.compat.rei;
 
-import com.slomaxonical.architectspalette.core.registry.APBlocks;
+import com.slomaxonical.architectspalette.registry.APBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;

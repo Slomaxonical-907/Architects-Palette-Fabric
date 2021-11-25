@@ -1,6 +1,6 @@
 package com.slomaxonical.architectspalette.compat.rei;
 
-import com.slomaxonical.architectspalette.core.crafting.WarpingRecipe;
+import com.slomaxonical.architectspalette.crafting.WarpingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;

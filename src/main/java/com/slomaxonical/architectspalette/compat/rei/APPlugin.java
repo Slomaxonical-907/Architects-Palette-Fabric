@@ -1,7 +1,7 @@
 package com.slomaxonical.architectspalette.compat.rei;
 
-import com.slomaxonical.architectspalette.core.crafting.WarpingRecipe;
-import com.slomaxonical.architectspalette.core.registry.APBlocks;
+import com.slomaxonical.architectspalette.crafting.WarpingRecipe;
+import com.slomaxonical.architectspalette.registry.APBlocks;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
