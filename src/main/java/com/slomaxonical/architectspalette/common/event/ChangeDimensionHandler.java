@@ -53,10 +53,6 @@ public class ChangeDimensionHandler {
 
     public static ItemStack getTransformedItem(ItemStack itemIn, World world) {
         Optional<WarpingRecipe> recipe = getRecipe(itemIn, world);
-//        if (recipe.isPresent()) {
-//            return recipe.get().craft(transformationInv);
-//        }
-//        return null;
         return recipe.map(warpingRecipe -> warpingRecipe.craft(transformationInv)).orElse(null);
     }
 

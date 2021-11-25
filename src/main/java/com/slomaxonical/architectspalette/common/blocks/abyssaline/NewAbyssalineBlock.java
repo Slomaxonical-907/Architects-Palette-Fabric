@@ -46,7 +46,7 @@ public class NewAbyssalineBlock extends Block implements IAbyssalineChargeable {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        context.getWorld().getBlockTickScheduler().schedule(context.getBlockPos(), this, 1);
+        context.getWorld().createAndScheduleBlockTick(context.getBlockPos(), this, 1);
         return this.getDefaultState();
 //        return getStateWithNeighborCharge(this.getDefaultState(), context.getWorld(), context.getPos());
     }

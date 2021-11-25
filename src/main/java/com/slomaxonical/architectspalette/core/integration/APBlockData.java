@@ -8,7 +8,7 @@ import net.minecraft.item.AxeItem;
 import java.util.HashMap;
 
 public class APBlockData {
-    public static void getCutoutLayer(){
+    public static void  getCutoutLayer(){
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 APBlocks.ENTWINE_BARS,
                 APBlocks.SUNMETAL_BARS,

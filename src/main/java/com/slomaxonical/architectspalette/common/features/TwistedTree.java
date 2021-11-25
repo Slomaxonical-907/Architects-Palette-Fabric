@@ -4,13 +4,12 @@ import com.slomaxonical.architectspalette.core.registry.APBlocks;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.util.Lazy;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,10 +19,9 @@ public class TwistedTree extends SaplingGenerator {
 
     public static final Lazy<TreeFeatureConfig> TWISTED_TREE_CONFIG = new Lazy<>(() ->
             new TreeFeatureConfig.Builder(
-                    new SimpleBlockStateProvider(APBlocks.TWISTED_LOG.getDefaultState()),
+                    BlockStateProvider.of(APBlocks.TWISTED_LOG.getDefaultState()),
                     new ForkingTrunkPlacer(5, 2, 2),
-                    new SimpleBlockStateProvider(APBlocks.TWISTED_LEAVES.getDefaultState()),
-                    new SimpleBlockStateProvider(APBlocks.TWISTED_SAPLING.getDefaultState()),
+                    BlockStateProvider.of(APBlocks.TWISTED_LEAVES.getDefaultState()),
                     new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)),
                     new TwoLayersFeatureSize(1, 0, 2)
             )

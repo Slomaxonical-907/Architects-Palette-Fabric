@@ -72,7 +72,7 @@ public class CageLanternBlock extends Block implements Waterloggable {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (state.get(WATERLOGGED)) {
-            worldIn.getFluidTickScheduler().schedule(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+            worldIn.createAndScheduleFluidTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
         }
         if (state.get(FACING) == facing && !state.canPlaceAt(worldIn, currentPos)) {return Blocks.AIR.getDefaultState();}
         return state;
@@ -122,7 +122,7 @@ public class CageLanternBlock extends Block implements Waterloggable {
             if (lit != shouldBeLit) {
                 if (lit) {
                     worldIn.setBlockState(pos, state.cycle(LIT), 2);
-                    worldIn.getBlockTickScheduler().schedule(pos, this, 2);
+                    worldIn.createAndScheduleBlockTick(pos, this, 2);
                 } else {
                     // fuck if i know what this does, i copied it from the redstone lamp
                     worldIn.setBlockState(pos, state.cycle(LIT), 2);

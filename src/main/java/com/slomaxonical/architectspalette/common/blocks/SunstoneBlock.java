@@ -1,6 +1,5 @@
 package com.slomaxonical.architectspalette.common.blocks;
 
-import com.slomaxonical.architectspalette.common.blocks.abyssaline.AbyssalineBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
@@ -17,7 +16,6 @@ import net.minecraft.world.WorldAccess;
 import java.util.Random;
 import java.util.function.Function;
 
-@SuppressWarnings("deprecation")
 public class SunstoneBlock extends Block {
 
     public static final IntProperty LIGHT = IntProperty.of("light", 0, 2);
@@ -59,7 +57,7 @@ public class SunstoneBlock extends Block {
         if (facingState.getBlock() instanceof SunstoneBlock) {
             Random rand = worldIn.getRandom();
 //            if (rand.nextBoolean() && rand.nextBoolean()) {
-                worldIn.getBlockTickScheduler().schedule(currentPos, this, 8);
+                worldIn.createAndScheduleBlockTick(currentPos, this, 8);
 //            }
         }
         return super.getStateForNeighborUpdate(stateIn, facing, facingState, worldIn, currentPos, facingPos);

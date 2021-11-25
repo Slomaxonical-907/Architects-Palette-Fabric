@@ -8,6 +8,7 @@ import com.slomaxonical.architectspalette.core.ArchitectsPalette;
 import com.slomaxonical.architectspalette.core.registry.util.*;
 import com.slomaxonical.architectspalette.core.registry.util.extended.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.BlockSoundGroup;
@@ -233,6 +234,10 @@ public class APBlocks {
     private static Block createPottedPlant(Block plant) {
         String name = Registry.BLOCK.getId(plant).getPath();
         return new FlowerPotBlock(plant, FabricBlockSettings.copy(Blocks.POTTED_ACACIA_SAPLING).breakInstantly().nonOpaque());
+    }
+    public static void registerFuel(){
+        FuelRegistry.INSTANCE.add(APBlocks.CHARCOAL_BLOCK, 1600);
+
     }
     public static void registerBlocks(){
         createBlock("abyssaline",ABYSSALINE);

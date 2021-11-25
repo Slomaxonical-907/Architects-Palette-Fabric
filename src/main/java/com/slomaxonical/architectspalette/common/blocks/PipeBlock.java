@@ -56,7 +56,7 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
     public BlockState getStateForNeighborUpdate(BlockState state, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
         //also stole this from chains, still dunno if im supposed to
         if (state.get(WATERLOGGED)) {
-            worldIn.getFluidTickScheduler().schedule(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+            worldIn.createAndScheduleFluidTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
         }
 
         return state.with(PART, checkNearbyPipes(state, worldIn, currentPos));

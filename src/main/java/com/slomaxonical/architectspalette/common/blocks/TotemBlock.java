@@ -1,6 +1,5 @@
 package com.slomaxonical.architectspalette.common.blocks;
 
-//import com.slomaxonical.architectspalette.core.integration.APCriterion;
 import com.slomaxonical.architectspalette.core.registry.APBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,7 +10,6 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
