@@ -18,10 +18,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.slomaxonical.architectspalette.core.ArchitectsPalette"
+      "com.slomaxonical.architectspalette.ArchitectsPalette"
     ],
     "client": [
-      "com.slomaxonical.architectspalette.core.ArchitectsPaletteClient"
+      "com.slomaxonical.architectspalette.ArchitectsPaletteClient"
     ],
     "rei_plugins": [
       "com.slomaxonical.architectspalette.compat.rei.APPlugin"
