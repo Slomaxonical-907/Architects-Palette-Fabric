@@ -36,7 +36,7 @@ public class APTrades {
         TradeOfferHelper.registerVillagerOffers(MASON,1,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 1),
                 new ItemStack(APBlocks.LIMESTONE,16),5,3,0.05F))));
         TradeOfferHelper.registerVillagerOffers(MASON,1,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 1),
-                new ItemStack(APBlocks.OLIVESTONE_BRICK,16),5,3,0.05F))));
+                new ItemStack(APBlocks.OLIVESTONE_BRICKS,16),5,3,0.05F))));
     }
 
     public static void registerWanderingTrades(){

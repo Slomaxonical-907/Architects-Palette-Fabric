@@ -21,7 +21,6 @@ import java.util.*;
 
 
 public class APBlocks {
-
     // Abyssaline
     public static final NewAbyssalineBlock      ABYSSALINE                 = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
     public static final NewAbyssalineBlock      ABYSSALINE_BRICKS          = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
@@ -38,14 +37,14 @@ public class APBlocks {
     public static final Block MUSHY_LIMESTONE_BRICK = new Block(APBlockSettings.LIMESTONE);
 
     // Olivestone
-    public static final Block OLIVESTONE_BRICK = new Block(APBlockSettings.OLIVESTONE);
+    public static final Block OLIVESTONE_BRICKS = new Block(APBlockSettings.OLIVESTONE);
     public static final Block OLIVESTONE_TILE  = new Block(APBlockSettings.OLIVESTONE);
 
     public static final Block OLIVESTONE_PILLAR         = new PillarBlock(APBlockSettings.OLIVESTONE);
     public static final Block CRACKED_OLIVESTONE_BRICKS = new Block(APBlockSettings.OLIVESTONE);
     public static final Block CRACKED_OLIVESTONE_TILES  = new Block(APBlockSettings.OLIVESTONE);
     public static final Block CHISELED_OLIVESTONE       = new Block(APBlockSettings.OLIVESTONE);
-    public static final Block ILLUMINATED_OLIVESTONE    = new Block(FabricBlockSettings.copy(OLIVESTONE_BRICK).luminance((state) -> 15));
+    public static final Block ILLUMINATED_OLIVESTONE    = new Block(FabricBlockSettings.copy(OLIVESTONE_BRICKS).luminance((state) -> 15));
 
     // Algal Brick
     public static final Block ALGAL_BRICKS                  = new Block(APBlockSettings.ALGAL_BRICK);
@@ -259,7 +258,7 @@ public class APBlocks {
         new StoneBlockSet(createBlock("mushy_limestone_bricks",MUSHY_LIMESTONE_BRICK));
 
         // Olivestone
-        new StoneBlockSet(createBlock("olivestone_bricks",OLIVESTONE_BRICK));
+        new StoneBlockSet(createBlock("olivestone_bricks", OLIVESTONE_BRICKS));
         createBlock("cracked_olivestone_bricks",CRACKED_OLIVESTONE_BRICKS);
         new StoneBlockSet(createBlock("olivestone_tiles",OLIVESTONE_TILE));
         createBlock("cracked_olivestone_tiles",CRACKED_OLIVESTONE_TILES);

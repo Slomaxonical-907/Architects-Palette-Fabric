@@ -54,14 +54,12 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
-        //also stole this from chains, still dunno if im supposed to
         if (state.get(WATERLOGGED)) {
             worldIn.createAndScheduleFluidTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
         }
 
         return state.with(PART, checkNearbyPipes(state, worldIn, currentPos));
     }
-    // todo: see if corners are behaving right... no connection?
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
         //stole this from chains, dunno if im supposed to.
@@ -104,8 +102,6 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
         return checking.getBlock() instanceof PipeBlock && checking.get(AXIS) == base.get(AXIS);
     }
 
-    // referenced (copied) from Farmer's Delight by .vectorwing
-    // cuts out voxel regions from a cube
     private static VoxelShape cutout(VoxelShape... cutouts){
         VoxelShape shape = VoxelShapes.fullCube();
         for (VoxelShape cutout : cutouts) {
@@ -122,11 +118,11 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
         public String toString() { return this.asString(); }
 
         public String asString() {
-            switch(this) {
-                case TOP: return "top";
-                case BOTTOM: return "bottom";
-                default: return "middle";
-            }
+            return switch (this) {
+                case TOP -> "top";
+                case BOTTOM -> "bottom";
+                default -> "middle";
+            };
         }
     }
 }

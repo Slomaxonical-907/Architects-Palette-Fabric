@@ -29,7 +29,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:7.0.339"
-	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:7.0.339"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:7.0.339"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:7.0.339"
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.

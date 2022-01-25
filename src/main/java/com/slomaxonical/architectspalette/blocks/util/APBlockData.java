@@ -1,4 +1,4 @@
-package com.slomaxonical.architectspalette.integration;
+package com.slomaxonical.architectspalette.blocks.util;
 
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

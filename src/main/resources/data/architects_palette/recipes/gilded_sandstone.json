@@ -1,19 +1,17 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XY",
+        "YX"
+    ],
+    "key": {
+        "X": {
             "item": "minecraft:sandstone"
         },
-        {
-            "item": "minecraft:sandstone"
-        },
-        {
-            "item": "minecraft:gold_nugget"
-        },
-        {
+        "Y": {
             "item": "minecraft:gold_nugget"
         }
-    ],
+    },
     "result": {
         "count": 2,
         "item": "architects_palette:gilded_sandstone"
