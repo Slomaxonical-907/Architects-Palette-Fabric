@@ -55,10 +55,11 @@ public class SunstoneBlock extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState stateIn, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facingState.getBlock() instanceof SunstoneBlock) {
-            Random rand = worldIn.getRandom();
-//            if (rand.nextBoolean() && rand.nextBoolean()) {
-                worldIn.createAndScheduleBlockTick(currentPos, this, 8);
-//            }
+            Double chance = 0.35;//waiting for configs to get chance value
+            if (chance > 0) {
+                Random rand = worldIn.getRandom();
+                worldIn.createAndScheduleBlockTick(currentPos, this, (int) (2 + Math.floor(rand.nextDouble() * 6)));
+            }
         }
         return super.getStateForNeighborUpdate(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
@@ -76,8 +77,8 @@ public class SunstoneBlock extends Block {
         ServerWorld overworld = s.getWorld(World.OVERWORLD);
         if (overworld != null) {
             long time = (overworld.getTimeOfDay() + offset) % 24000;
-            if (time >= 13000 && time <= 23000) return 0;
-            if (time >= 3000 && time <= 9000) return 2;
+            if (time >= 12500 && time <= 23500) return 0;
+            if (time >= 3500 && time <= 8500) return 2;
             return 1;
         }
         return 0;
