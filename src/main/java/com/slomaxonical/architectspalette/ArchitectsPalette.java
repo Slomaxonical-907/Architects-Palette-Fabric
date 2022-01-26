@@ -1,8 +1,11 @@
 package com.slomaxonical.architectspalette;
 
+import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.crafting.WarpingRecipe;
 import com.slomaxonical.architectspalette.loot.LootTableModifications;
 import com.slomaxonical.architectspalette.registry.*;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +17,7 @@ public class ArchitectsPalette implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        AutoConfig.register(ApConfigs.class, GsonConfigSerializer::new);
         APBlocks.registerBlocks();
         APItems.registerItems();
         APItemgroup.registerItemgroup();
