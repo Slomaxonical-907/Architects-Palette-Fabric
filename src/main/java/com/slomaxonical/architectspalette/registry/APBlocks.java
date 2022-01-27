@@ -5,9 +5,11 @@ import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import com.slomaxonical.architectspalette.blocks.abyssaline.*;
 import com.slomaxonical.architectspalette.blocks.*;
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.ArchitectsPalette;
 import com.slomaxonical.architectspalette.blocks.extended.*;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
@@ -224,7 +226,7 @@ public class APBlocks {
         APItemgroup.ITEMGROUP_LIST.add(stack);
         if(STRING_SET.contains(name)){
             INDEXS.add(APItemgroup.ITEMGROUP_LIST.indexOf(stack));
-            ArchitectsPalette.LOGGER.info("index of " + stack.getItem().toString() + " is: " + APItemgroup.ITEMGROUP_LIST.indexOf(stack));
+//            ArchitectsPalette.LOGGER.info("index of " + stack.getItem().toString() + " is: " + APItemgroup.ITEMGROUP_LIST.indexOf(stack));
         }
         return block;
     }
