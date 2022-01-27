@@ -1,5 +1,8 @@
 package com.slomaxonical.architectspalette.registry;
 
+import com.slomaxonical.architectspalette.blocks.entrails.DrippyBlock;
+import com.slomaxonical.architectspalette.blocks.entrails.DrippySlabBlock;
+import com.slomaxonical.architectspalette.blocks.entrails.DrippyVerticalSlabBlock;
 import com.slomaxonical.architectspalette.blocks.flint.*;
 import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import com.slomaxonical.architectspalette.blocks.abyssaline.*;
@@ -33,6 +36,8 @@ public class APBlocks {
     public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE.sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance()));
     public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(APBlockSettings.CHISELED_ABYSSALINE);
 
+    public static final AbyssalineVerticalSlabBlock ABYSSALINE_BRICK_VERTICAL_SLAB = new AbyssalineVerticalSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final AbyssalineVerticalSlabBlock ABYSSALINE_TILE_VERTICAL_SLAB = new AbyssalineVerticalSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
     // Limestone
     public static final Block LIMESTONE             = new Block(APBlockSettings.LIMESTONE);
     public static final Block LIMESTONE_BRICK       = new Block(APBlockSettings.LIMESTONE);
@@ -68,6 +73,7 @@ public class APBlocks {
     // Entrails
     public static final Block ENTRAILS = new DrippyBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     public static final Block ENTRAILS_SLAB = new DrippySlabBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
+    public static final Block ENTRAILS_VERTICAL_SLAB = new DrippyVerticalSlabBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     public static final Block ENTRAILS_STAIRS = new APStairsBlock(ENTRAILS.getDefaultState(), APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     // Funny fish blocks
     public static final Block  SALMON_LOG   = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED));
@@ -252,7 +258,10 @@ public class APBlocks {
         createBlock("abyssaline_pillar",ABYSSALINE_PILLAR);
         createBlock("abyssaline_lamp",ABYSSALINE_LAMP_BLOCK);
         createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
-
+        if (AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs) {
+            createBlock("abyssaline_brick_vertical_slab", ABYSSALINE_BRICK_VERTICAL_SLAB);
+            createBlock("abyssaline_tile_vertical_slab", ABYSSALINE_TILE_VERTICAL_SLAB);
+        }
         // Limestone
 
         new StoneBlockSet(createBlock("limestone",LIMESTONE));
@@ -287,8 +296,9 @@ public class APBlocks {
 
         // Villager Trade blocks
         // Entrails
-        createBlock("entrails",ENTRAILS);
+        createBlock("entrails", ENTRAILS);
         createBlock("entrails_slab",ENTRAILS_SLAB);
+        createBlock("entrails_vertical_slab",ENTRAILS_VERTICAL_SLAB);
         createBlock("entrails_stairs",ENTRAILS_STAIRS);
         // Funny fish blocks
          createBlock("salmon_log",SALMON_LOG);

@@ -69,7 +69,7 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
         BlockState b = super.getPlacementState(context);
         return b.with(PART, checkNearbyPipes(b, context.getWorld(), context.getBlockPos())).with(WATERLOGGED, flag);
     }
-
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
@@ -115,8 +115,10 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
         MIDDLE,
         BOTTOM;
 
+        @Override
         public String toString() { return this.asString(); }
 
+        @Override
         public String asString() {
             return switch (this) {
                 case TOP -> "top";

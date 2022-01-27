@@ -60,11 +60,11 @@ public class CageLanternBlock extends Block implements Waterloggable {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(LIT, WATERLOGGED, FACING, INVERTED);
     }
-
+    @Override
     public BlockState rotate(BlockState state, BlockRotation rot) {
         return state.with(FACING, rot.rotate(state.get(FACING)));
     }
-
+    @Override
     public BlockState mirror(BlockState state, BlockMirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.get(FACING)));
     }
@@ -91,11 +91,11 @@ public class CageLanternBlock extends Block implements Waterloggable {
         boolean lit = getLitState(this.getDefaultState(), context.getWorld(), context.getBlockPos());
         return this.getDefaultState().with(FACING, context.getSide().getOpposite()).with(WATERLOGGED, flag).with(LIT, lit);
     }
-
+    @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
-
+    @Override
     public PistonBehavior getPistonBehavior(BlockState state) {
         return PistonBehavior.DESTROY;
     }
@@ -130,18 +130,18 @@ public class CageLanternBlock extends Block implements Waterloggable {
             }
         }
     }
-
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, ShapeContext context) {
         return SHAPES.get(state.get(FACING));
     }
-
+    @Override
     public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         boolean shouldBeLit = getLitState(state, worldIn, pos);
         if (shouldBeLit != state.get(LIT)) {
             worldIn.setBlockState(pos, state.with(LIT, shouldBeLit), 2);
         }
     }
-
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }

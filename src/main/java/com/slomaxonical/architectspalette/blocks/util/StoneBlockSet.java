@@ -1,7 +1,10 @@
 package com.slomaxonical.architectspalette.blocks.util;
 
+import com.slomaxonical.architectspalette.blocks.VerticalSlabBlock;
+import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.blocks.extended.APStairsBlock;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
@@ -12,6 +15,7 @@ import net.minecraft.util.registry.Registry;
 
 public class StoneBlockSet {
     public Block SLAB;
+    public Block VERTICAL_SLAB;
     public Block STAIRS;
     public Block WALL;
     public Block BLOCK;
@@ -48,6 +52,9 @@ public class StoneBlockSet {
 
     public StoneBlockSet addSlabs() {
         SLAB = APBlocks.createBlock(material_name + "_slab", new SlabBlock(properties()));
+        if (AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs){
+        VERTICAL_SLAB = APBlocks.createBlock(material_name + "_vertical_slab", new VerticalSlabBlock(properties()));
+        }
         return this;
     }
 

@@ -40,6 +40,7 @@ public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineCharg
         AbyssalineHelper.abyssalineNeighborUpdate(this, state, worldIn, pos, blockIn, fromPos);
     }
 
+    @Override
     public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         AbyssalineHelper.abyssalineTick(state, worldIn, pos);
     }

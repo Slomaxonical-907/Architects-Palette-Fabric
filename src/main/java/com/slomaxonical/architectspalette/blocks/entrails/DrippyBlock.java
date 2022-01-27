@@ -1,4 +1,4 @@
-package com.slomaxonical.architectspalette.blocks;
+package com.slomaxonical.architectspalette.blocks.entrails;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

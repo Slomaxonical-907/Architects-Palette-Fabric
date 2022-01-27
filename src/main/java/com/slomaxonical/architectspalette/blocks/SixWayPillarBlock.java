@@ -5,12 +5,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
 public class SixWayPillarBlock extends FacingBlock {
+    public static final DirectionProperty FACING = Properties.FACING;
     protected SixWayPillarBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getStateManager().getDefaultState().with(FACING, Direction.UP));
