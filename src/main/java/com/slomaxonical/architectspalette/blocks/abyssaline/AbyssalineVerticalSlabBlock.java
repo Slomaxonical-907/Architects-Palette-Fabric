@@ -18,7 +18,7 @@ import static com.slomaxonical.architectspalette.blocks.abyssaline.NewAbyssaline
 public class AbyssalineVerticalSlabBlock extends VerticalSlabBlock implements IAbyssalineChargeable {
     public AbyssalineVerticalSlabBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getStateManager().getDefaultState().with(TYPE, VerticalSlabType.NORTH).with(WATERLOGGED, false));
+        this.setDefaultState(this.getStateManager().getDefaultState().with(CHARGE_SOURCE, Direction.NORTH).with(CHARGED, false));
     }
 
     @Override

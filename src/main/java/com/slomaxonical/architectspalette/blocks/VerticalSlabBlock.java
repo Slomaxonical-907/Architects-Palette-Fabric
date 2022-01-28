@@ -27,6 +27,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class VerticalSlabBlock extends Block implements Waterloggable {
     public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.of("type", VerticalSlabType.class);
@@ -65,6 +66,7 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
         return state.get(TYPE).shape;
     }
     @Override
+    @Nullable
     public BlockState getPlacementState(ItemPlacementContext context) {
         BlockPos blockpos = context.getBlockPos();
         BlockState blockstate = context.getWorld().getBlockState(blockpos);
