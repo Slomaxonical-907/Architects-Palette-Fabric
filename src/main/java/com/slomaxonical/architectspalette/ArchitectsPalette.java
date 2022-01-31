@@ -7,6 +7,10 @@ import com.slomaxonical.architectspalette.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +24,11 @@ public class ArchitectsPalette implements ModInitializer {
     public void onInitialize() {
         AutoConfig.register(ApConfigs.class, GsonConfigSerializer::new);
         APBlocks.registerBlocks();
+        if(AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs) {
+            LOGGER.info("vertslabson");
+            FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
+                ResourceManagerHelper.registerBuiltinResourcePack(new Identifier("architects_palette", "vertslabs"), modContainer, ResourcePackActivationType.ALWAYS_ENABLED);
+            });}
         APItems.registerItems();
         APItemgroup.registerItemgroup();
         APBlocks.registerFuel();

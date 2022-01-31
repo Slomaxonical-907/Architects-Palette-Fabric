@@ -32,8 +32,6 @@ public class APSounds {
                 new Lazy<>(() -> BLOCK_ENTWINE_PLACE),
                 new Lazy<>(() -> BLOCK_ENTWINE_HIT),
                 new Lazy<>(() -> SoundEvents.BLOCK_GLASS_FALL)
-//                new Lazy<>(BLOCK_ENTWINE_PLACE),
-//                new Lazy<>(BLOCK_ENTWINE_HIT),
         );
 
         public static final BlockSoundGroup ENDER_PEARL = new BlockSoundGroup(

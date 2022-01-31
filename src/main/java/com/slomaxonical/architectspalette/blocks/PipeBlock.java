@@ -34,7 +34,7 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AXIS, PART, WATERLOGGED);
     }
-
+    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, ShapeContext context) {
         switch(state.get(AXIS)) {
             case X:

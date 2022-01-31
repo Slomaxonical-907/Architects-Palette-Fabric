@@ -32,7 +32,7 @@ public class APBlockSettings {
 	}
 
 	public static final FabricBlockSettings FLINT = FabricBlockSettings.of(Material.STONE, MapColor.GRAY).strength(3.0F, 16.0F).requiresTool();
-	public static final FabricBlockSettings LIMESTONE = FabricBlockSettings.copyOf(Blocks.STONE);
+	public static final FabricBlockSettings MYONITE = FabricBlockSettings.copyOf(Blocks.STONE);
 	public static final FabricBlockSettings SUNMETAL = FabricBlockSettings.of(Material.METAL, MapColor.BROWN).strength(2.0F, 8.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
 	 // Should be less slippery?
 	public static final FabricBlockSettings BUILDING_ICE = FabricBlockSettings.copyOf(Blocks.PACKED_ICE).slipperiness(0.8F);

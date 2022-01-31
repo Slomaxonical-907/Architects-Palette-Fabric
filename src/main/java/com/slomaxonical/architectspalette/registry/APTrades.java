@@ -10,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 
-import java.util.logging.Logger;
-
 import static net.minecraft.village.VillagerProfession.*;
 
 
@@ -40,7 +38,7 @@ public class APTrades {
 
             // Temporary survival recipes until properly implemented
             TradeOfferHelper.registerVillagerOffers(MASON, 1, factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 1),
-                    new ItemStack(APBlocks.LIMESTONE, 16), 5, 3, 0.05F))));
+                    new ItemStack(APBlocks.MYONITE, 16), 5, 3, 0.05F))));
             TradeOfferHelper.registerVillagerOffers(MASON, 1, factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 1),
                     new ItemStack(APBlocks.OLIVESTONE_BRICKS, 16), 5, 3, 0.05F))));
             }else{
