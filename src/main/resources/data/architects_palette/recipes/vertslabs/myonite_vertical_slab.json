@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "architects_palette:myonite_slab"
+    }
+  },
+  "result": {
+    "item": "architects_palette:myonite_vertical_slab",
+    "count": 3
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "architects_palette:config_enabled",
+      "config": "enableVerticalSlabs"
+    }
+  ]
+} 

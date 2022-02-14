@@ -24,11 +24,8 @@ public class ArchitectsPalette implements ModInitializer {
     public void onInitialize() {
         AutoConfig.register(ApConfigs.class, GsonConfigSerializer::new);
         APBlocks.registerBlocks();
-        if(AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs) {
-            LOGGER.info("vertslabson");
-            FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
-                ResourceManagerHelper.registerBuiltinResourcePack(new Identifier("architects_palette", "vertslabs"), modContainer, ResourcePackActivationType.ALWAYS_ENABLED);
-            });}
+        ConfigResourceCondition.init();
+
         APItems.registerItems();
         APItemgroup.registerItemgroup();
         APBlocks.registerFuel();

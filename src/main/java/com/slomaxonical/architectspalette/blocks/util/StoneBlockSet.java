@@ -52,9 +52,7 @@ public class StoneBlockSet {
 
     public StoneBlockSet addSlabs() {
         SLAB = APBlocks.createBlock(material_name + "_slab", new SlabBlock(properties()));
-        if (AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs){
         VERTICAL_SLAB = APBlocks.createBlock(material_name + "_vertical_slab", new VerticalSlabBlock(properties()));
-        }
         return this;
     }
 

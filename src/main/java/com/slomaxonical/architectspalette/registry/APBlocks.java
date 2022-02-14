@@ -269,12 +269,14 @@ public class APBlocks {
 
         BlockItem blockItem = new BlockItem(block, new Item.Settings().group(group));
         Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID,name), blockItem);
-
         ItemStack stack = new ItemStack(blockItem);
-        APItemgroup.ITEMGROUP_LIST.add(stack);
-        if(STRING_SET.contains(name)){
+        if (name.contains("vertical")) {
+             if (AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs) APItemgroup.ITEMGROUP_LIST.add(stack);
+        }else{
+            APItemgroup.ITEMGROUP_LIST.add(stack);
+        }
+        if(STRING_SET.contains(name)) {
             INDEXS.add(APItemgroup.ITEMGROUP_LIST.indexOf(stack));
-//            ArchitectsPalette.LOGGER.info("index of " + stack.getItem().toString() + " is: " + APItemgroup.ITEMGROUP_LIST.indexOf(stack));
         }
         return block;
     }
@@ -296,14 +298,12 @@ public class APBlocks {
         createBlock("abyssaline_bricks", ABYSSALINE_BRICKS);
         createBlock("abyssaline_tiles", ABYSSALINE_TILES);
         createBlock("abyssaline_brick_slab",ABYSSALINE_BRICK_SLAB);
+        createBlock("abyssaline_brick_vertical_slab", ABYSSALINE_BRICK_VERTICAL_SLAB);
         createBlock("abyssaline_tile_slab",ABYSSALINE_TILE_SLAB);
+        createBlock("abyssaline_tile_vertical_slab", ABYSSALINE_TILE_VERTICAL_SLAB);
         createBlock("abyssaline_pillar",ABYSSALINE_PILLAR);
         createBlock("abyssaline_lamp",ABYSSALINE_LAMP_BLOCK);
         createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
-        if (AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs) {
-            createBlock("abyssaline_brick_vertical_slab", ABYSSALINE_BRICK_VERTICAL_SLAB);
-            createBlock("abyssaline_tile_vertical_slab", ABYSSALINE_TILE_VERTICAL_SLAB);
-        }
         // Limestone
 
         new StoneBlockSet(createBlock("myonite", MYONITE));

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "architects_palette:gilded_sandstone_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "architects_palette:gilded_sandstone_slab",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "architects_palette:config_enabled",
+      "config": "enableVerticalSlabs"
+    }
+  ]
+} 

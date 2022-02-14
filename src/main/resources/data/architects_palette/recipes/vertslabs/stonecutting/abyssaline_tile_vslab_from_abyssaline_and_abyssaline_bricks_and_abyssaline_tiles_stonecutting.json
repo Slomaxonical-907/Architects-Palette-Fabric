@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": [
+        {
+            "item": "architects_palette:abyssaline"
+        },
+        {
+            "item": "architects_palette:abyssaline_bricks"
+        },
+        {
+            "item": "architects_palette:abyssaline_tiles"
+        }
+    ],
+    "result": "architects_palette:abyssaline_tile_vertical_slab",
+    "count": 2,
+    "fabric:load_conditions": [
+        {
+            "condition": "architects_palette:config_enabled",
+            "config": "enableVerticalSlabs"
+        }
+    ]
+}

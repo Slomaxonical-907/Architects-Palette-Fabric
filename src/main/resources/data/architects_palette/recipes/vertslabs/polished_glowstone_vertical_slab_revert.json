@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "architects_palette:polished_glowstone_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "architects_palette:polished_glowstone_slab",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "architects_palette:config_enabled",
+      "config": "enableVerticalSlabs"
+    }
+  ]
+} 

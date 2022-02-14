@@ -1,14 +1,18 @@
 package com.slomaxonical.architectspalette.blocks;
 
+import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
@@ -16,9 +20,13 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -29,6 +37,8 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class VerticalSlabBlock extends Block implements Waterloggable {
     public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.of("type", VerticalSlabType.class);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
@@ -36,6 +46,18 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
     public VerticalSlabBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getStateManager().getDefaultState().with(TYPE, VerticalSlabType.NORTH).with(WATERLOGGED, false));
+    }
+    @Override
+    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+        if(AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)
+            super.appendStacks(group, stacks);
+    }
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+
+            super.appendTooltip(stack, world, tooltip, options);
+        if(!AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)
+            tooltip.add(new TranslatableText("architects_palette.misc.vertical_config").formatted(Formatting.RED));
     }
     @Override
     public BlockState rotate(BlockState state, BlockRotation rot) {

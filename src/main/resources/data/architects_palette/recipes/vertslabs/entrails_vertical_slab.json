@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "vertical_slab",
+    "pattern": [
+        "#",
+        "#",
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "architects_palette:entrails_slab"
+        }
+    },
+    "result": {
+        "count": 3,
+        "item": "architects_palette:entrails_vertical_slab"
+    },
+  "fabric:load_conditions": [
+    {
+      "condition": "architects_palette:config_enabled",
+      "config": "enableVerticalSlabs"
+    }
+  ]
+}
