@@ -43,8 +43,8 @@ sourceSets.main.resources {
 	srcDirs += 'src/ap-assets/resources'
 }
 processResources {
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
 	inputs.property "version", project.version
-
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}

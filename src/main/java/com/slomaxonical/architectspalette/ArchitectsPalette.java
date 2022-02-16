@@ -18,7 +18,6 @@ public class ArchitectsPalette implements ModInitializer {
 
     public static final String MOD_ID = "architects_palette";
     public static final Logger LOGGER = LogManager.getLogger("Architect's Palette");
-//    ApConfigs configs = AutoConfig.getConfigHolder(ApConfigs.class).getConfig();
 
     @Override
     public void onInitialize() {

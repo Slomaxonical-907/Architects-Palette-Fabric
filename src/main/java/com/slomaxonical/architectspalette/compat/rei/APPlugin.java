@@ -10,9 +10,12 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.DefaultInformationDisplay;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.TranslatableText;
+
+import java.util.stream.Stream;
 
 public class APPlugin implements REIClientPlugin {
     public static final CategoryIdentifier<WarpingDisplay> WARPING = CategoryIdentifier.of("architects_palette", "portal_warping");
@@ -26,28 +29,22 @@ public class APPlugin implements REIClientPlugin {
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(WarpingRecipe.class, WarpingDisplay::new);
 
-        registry.add(addInfo(Items.HEART_OF_THE_SEA,"heart_info"));
-        registry.add(addInfo(APBlocks.FLINT_BLOCK.asItem(),"flint_blocks_info"));
-        registry.add(addInfo(APBlocks.FLINT_PILLAR.asItem(),"flint_blocks_info"));
-        registry.add(addInfo(APBlocks.FLINT_TILES.asItem(), "flint_blocks_info"));
-
-        registry.add(addInfo(APBlocks.SUNSTONE.asItem(),"sunstone_info"));
-        registry.add(addInfo(APBlocks.MOONSTONE.asItem(), "moonstone_info"));
-        registry.add(addInfo(APBlocks.GRINNING_ACACIA_TOTEM.asItem(),"acacia_totems_info"));
-
-        registry.add(addInfo(APBlocks.HEAVY_STONE_BRICKS.asItem(),"heavy_bricks_info"));
-        registry.add(addInfo(APBlocks.HEAVY_END_STONE_BRICKS.asItem(),"heavy_bricks_info"));
-        registry.add(addInfo(APBlocks.HEAVY_MOSSY_STONE_BRICKS.asItem(),"heavy_bricks_info"));
-
-        registry.add(addInfo(APBlocks.ALGAL_CAGE_LANTERN.asItem(),"cage_lantern_info"));
-        registry.add(addInfo(APBlocks.GLOWSTONE_CAGE_LANTERN.asItem(),"cage_lantern_info"));
-        registry.add(addInfo(APBlocks.REDSTONE_CAGE_LANTERN.asItem(),"cage_lantern_info"));
+        addInfo(registry,APBlocks.CHISELED_ABYSSALINE_BRICKS,"chiseled_chargeable");
+        Stream.of(APBlocks.ABYSSALINE, APBlocks.ABYSSALINE_BRICKS, APBlocks.ABYSSALINE_PILLAR, APBlocks.ABYSSALINE_BRICK_SLAB, APBlocks.ABYSSALINE_TILES, APBlocks.ABYSSALINE_TILE_SLAB, APBlocks.ABYSSALINE_LAMP_BLOCK, APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB, APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB).
+                forEach((i) -> addInfo(registry, i, "chargeable"));
+        Stream.of(APBlocks.PLACID_ACACIA_TOTEM, APBlocks.GRINNING_ACACIA_TOTEM, APBlocks.SHOCKED_ACACIA_TOTEM, APBlocks.BLANK_ACACIA_TOTEM)
+                .forEach((i) -> addInfo(registry, i, "totem_carving"));
+        Stream.of(APBlocks.FLINT_BLOCK, APBlocks.FLINT_PILLAR, APBlocks.FLINT_TILES).
+                forEach((i) -> addInfo(registry,i,"flint_damage"));
+        Stream.of(APBlocks.SUNSTONE, APBlocks.MOONSTONE).
+                forEach((i) -> addInfo(registry,i,"celestial_stones"));
+        Stream.of(APBlocks.ALGAL_CAGE_LANTERN, APBlocks.GLOWSTONE_CAGE_LANTERN, APBlocks.REDSTONE_CAGE_LANTERN).
+                forEach((i) -> addInfo(registry,i,"cage_lanterns"));
+        Stream.of(APBlocks.HEAVY_END_STONE_BRICKS,APBlocks.HEAVY_CRACKED_END_STONE_BRICKS, APBlocks.HEAVY_STONE_BRICKS, APBlocks.HEAVY_MOSSY_STONE_BRICKS, APBlocks.HEAVY_CRACKED_STONE_BRICKS, APBlocks.HEAVY_CALCITE_BRICKS, APBlocks.HEAVY_DRIPSTONE_BRICKS, APBlocks.HEAVY_TUFF_BRICKS).
+                forEach((i) -> addInfo(registry,i,"heavy_bricks"));
     }
 
-    private DefaultInformationDisplay addInfo(Item item, String key){
-        EntryStack<ItemStack> entryStack = EntryStacks.of(item);
-        DefaultInformationDisplay stackInfo = DefaultInformationDisplay.createFromEntry(entryStack,new TranslatableText(item.getTranslationKey()));
-        stackInfo.line(new TranslatableText("architects_palette.rei."+key));
-        return stackInfo;
+    private void addInfo(DisplayRegistry registry, ItemConvertible item, String infoKey){
+        registry.add(DefaultInformationDisplay.createFromEntry(EntryStacks.of(item),new TranslatableText(item.asItem().getTranslationKey())).line(new TranslatableText("architects_palette.info."+infoKey)));
     }
 }

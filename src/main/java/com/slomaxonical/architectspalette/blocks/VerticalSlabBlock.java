@@ -8,7 +8,6 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -114,10 +113,10 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
     }
     public boolean canReplace(BlockState state, ItemPlacementContext useContext) {
         ItemStack itemstack = useContext.getStack();
-        VerticalSlabType slabtype = state.get(TYPE);
-        return slabtype != VerticalSlabType.DOUBLE && itemstack.getItem() == this.asItem()  &&
-                (useContext.canReplaceExisting() && (useContext.getSide() == slabtype.direction && getDirectionForPlacement(useContext) == slabtype.direction)
-                        || (!useContext.canReplaceExisting() && useContext.getSide().getAxis() != slabtype.direction.getAxis()));
+        VerticalSlabType slabType = state.get(TYPE);
+        return slabType != VerticalSlabType.DOUBLE && itemstack.getItem() == this.asItem()  &&
+                (useContext.canReplaceExisting() && (useContext.getSide() == slabType.direction && getDirectionForPlacement(useContext) == slabType.direction)
+                        || (!useContext.canReplaceExisting() && useContext.getSide().getAxis() != slabType.direction.getAxis()));
     }
     @Override
     public FluidState getFluidState(BlockState state) {

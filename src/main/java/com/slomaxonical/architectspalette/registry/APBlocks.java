@@ -120,11 +120,16 @@ public class APBlocks {
     // Osseous Bricks
     public static final Block OSSEOUS_BRICK = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
     public static final Block OSSEOUS_PILLAR = new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
+    public static final Block OSSEOUS_SKULL = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
+    public static final Block LIT_OSSEOUS_SKULL = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK).luminance((state) -> 12));
     // Withered
      // Todo: Replace bone block recipe to one that uses withered bone meal if that gets in
     public static final Block WITHERED_BONE_BLOCK = new PillarBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK));
-    public static final Block      WITHERED_OSSEOUS_BRICK = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
+    public static final Block WITHERED_OSSEOUS_BRICK = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
     public static final Block WITHERED_OSSEOUS_PILLAR = new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
+    public static final Block WITHERED_OSSEOUS_SKULL = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
+    public static final Block LIT_WITHERED_OSSEOUS_SKULL = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK).luminance((state) -> 12));
+
     // Wither Lamp
     public static final Block WITHER_LAMP = new Block(FabricBlockSettings.copy(Blocks.SEA_LANTERN));
 
@@ -375,12 +380,16 @@ public class APBlocks {
 
         // Osseous Bricks
          new StoneBlockSet(createBlock("osseous_bricks",OSSEOUS_BRICK));
-         createBlock("osseous_pillar",OSSEOUS_PILLAR);
+        createBlock("osseous_pillar",OSSEOUS_PILLAR);
+        createBlock("osseous_skull",OSSEOUS_SKULL);
+        createBlock("lit_osseous_skull",LIT_OSSEOUS_SKULL);
         // Withered
         // Todo: Replace bone block recipe to one that uses withered bone meal if that gets in
          createBlock("withered_bone_block",WITHERED_BONE_BLOCK, ItemGroup.BUILDING_BLOCKS);
          new StoneBlockSet(createBlock("withered_osseous_bricks",WITHERED_OSSEOUS_BRICK));
-         createBlock("withered_osseous_pillar",WITHERED_OSSEOUS_PILLAR);
+        createBlock("withered_osseous_pillar",WITHERED_OSSEOUS_PILLAR);
+        createBlock("withered_osseous_skull",WITHERED_OSSEOUS_SKULL);
+        createBlock("lit_withered_osseous_skull",LIT_WITHERED_OSSEOUS_SKULL);
          createBlock("wither_lamp",  WITHER_LAMP);
 
         // Flint Blocks
