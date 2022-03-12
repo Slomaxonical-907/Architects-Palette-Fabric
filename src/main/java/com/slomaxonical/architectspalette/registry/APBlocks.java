@@ -260,8 +260,6 @@ public class APBlocks {
 
 
     //Create Blocks
-        // Default ItemGroup is BuildingBlocks
-
     private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block");
     public static List<Integer> INDEXS = new ArrayList<>();
 
