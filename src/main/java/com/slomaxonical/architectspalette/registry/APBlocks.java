@@ -26,6 +26,34 @@ import java.util.*;
 
 
 public class APBlocks {
+    //SETS:
+    public static List<Block> ORE_BRICKS;
+    public static List<Block> ORE_STAIRS = new ArrayList<>();
+    public static List<Block> ORE_SLABS = new ArrayList<>();
+    public static List<Block> ORE_WALLS = new ArrayList<>();
+    public static List<Block> ORE_VERT_SLABS = new ArrayList<>();
+    public static StoneBlockSet MYONITE_SET;
+    public static StoneBlockSet MYONITE_BRICK_SET;
+    public static StoneBlockSet MUSHY_MYONITE_BRICK_SET;
+    public static StoneBlockSet OLIVESTONE_BRICK_SET;
+    public static StoneBlockSet OLIVESTONE_TILES_SET;
+    public static StoneBlockSet ALGAL_BRICK_SET;
+    public static StoneBlockSet OVERGROWN_ALGAL_BRICK_SET;
+    public static StoneBlockSet SUNMETAL_SET;
+    public static StoneBlockSet PLATING_SET;
+    public static StoneBlockSet POLISHED_PACKED_ICE_SET;
+    public static StoneBlockSet GILDED_SANDSTONE_SET;
+    public static StoneBlockSet POLISHED_GLOWSTONE_SET;
+    public static StoneBlockSet OSSEOUS_BRICK_SET;
+    public static StoneBlockSet WITHERED_OSSEOUS_BRICK_SET;
+    public static StoneBlockSet FLINT_TILES_SET;
+    public static StoneBlockSet BASALT_TILES_SET;
+    public static StoneBlockSet DRIPSTONE_BRICK_SET;
+    public static StoneBlockSet CALCITE_BRICK_SET;
+    public static StoneBlockSet TUFF_BRICK_SET;
+    public static StoneBlockSet ENTWINE_SET;
+    public static StoneBlockSet WARPSTONE_SET;
+    public static StoneBlockSet TWISTED_PLANKS_SET;
     // Abyssaline
     public static final NewAbyssalineBlock      ABYSSALINE                 = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
     public static final NewAbyssalineBlock      ABYSSALINE_BRICKS          = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
@@ -77,9 +105,9 @@ public class APBlocks {
     public static final Block ENTRAILS_STAIRS = new APStairsBlock(ENTRAILS.getDefaultState(), APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     // Funny fish blocks
     public static final Block  SALMON_LOG   = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED));
-    public static final Block       COD_LOG = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW));
-    public static final Block SALMON_SCALES = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED));
-    public static final Block    COD_SCALES = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW));
+    public static final Block  COD_LOG = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW));
+    public static final Block  SALMON_SCALES = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED));
+    public static final Block  COD_SCALES = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW));
         // Plating & Piping
     public static final Block PLATING_BLOCK = new Block(APBlockSettings.PLATING);
     public static final Block PIPE = new PipeBlock(APBlockSettings.PLATING.nonOpaque());
@@ -90,16 +118,21 @@ public class APBlocks {
     public static final Block SCUTE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE, MapColor.LIME).strength(5.0F, 6.0F).sounds(BlockSoundGroup.BASALT));
 
     // Ore Bricks
-    private static List<StoneBlockSet> addOreBricks() {
+    private static List<Block> addOreBricks() {
         List<String> ores = Arrays.asList("coal", "lapis", "redstone", "iron", "gold", "emerald", "diamond");
-        List<StoneBlockSet> l = new LinkedList<>();
+        List<Block> l = new LinkedList<>();
         ores.forEach((ore) -> {
-                StoneBlockSet set = new StoneBlockSet(createBlock(ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS))));
-                createBlock("cracked_" + ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS)));
-                createBlock("chiseled_" + ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)));
-                l.add(set);
-            }
-        );
+            StoneBlockSet set = new StoneBlockSet(createBlock(ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS))));
+            Block cracked = createBlock("cracked_" + ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS)));
+            Block chiseled = createBlock("chiseled_" + ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)));
+            l.add(set.BLOCK);
+            ORE_STAIRS.add(set.STAIRS);
+            ORE_WALLS.add(set.WALL);
+            l.add(cracked);
+            l.add(chiseled);
+            ORE_SLABS.add(set.SLAB);
+            ORE_VERT_SLABS.add(set.VERTICAL_SLAB);
+        });
         return l;
     }
 
@@ -292,6 +325,7 @@ public class APBlocks {
         String name = Registry.BLOCK.getId(plant).getPath();
         return new FlowerPotBlock(plant, FabricBlockSettings.copy(Blocks.POTTED_ACACIA_SAPLING).breakInstantly().nonOpaque());
     }
+    //todo:move to seperate ting with flammability and stripping registries
     public static void registerFuel(){
         FuelRegistry.INSTANCE.add(APBlocks.CHARCOAL_BLOCK, 1600);
 
@@ -307,16 +341,16 @@ public class APBlocks {
         createBlock("abyssaline_pillar",ABYSSALINE_PILLAR);
         createBlock("abyssaline_lamp",ABYSSALINE_LAMP_BLOCK);
         createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
+        
         // Limestone
-
-        new StoneBlockSet(createBlock("myonite", MYONITE));
-        new StoneBlockSet(createBlock("myonite_bricks", MYONITE_BRICK));
-        new StoneBlockSet(createBlock("mushy_myonite_bricks", MUSHY_MYONITE_BRICK));
+        MYONITE_SET = new StoneBlockSet(createBlock("myonite", MYONITE));
+        MYONITE_BRICK_SET = new StoneBlockSet(createBlock("myonite_bricks", MYONITE_BRICK));
+        MUSHY_MYONITE_BRICK_SET = new StoneBlockSet(createBlock("mushy_myonite_bricks", MUSHY_MYONITE_BRICK));
 
         // Olivestone
-        new StoneBlockSet(createBlock("olivestone_bricks", OLIVESTONE_BRICKS));
+        OLIVESTONE_BRICK_SET = new StoneBlockSet(createBlock("olivestone_bricks", OLIVESTONE_BRICKS));
         createBlock("cracked_olivestone_bricks",CRACKED_OLIVESTONE_BRICKS);
-        new StoneBlockSet(createBlock("olivestone_tiles",OLIVESTONE_TILE));
+        OLIVESTONE_TILES_SET = new StoneBlockSet(createBlock("olivestone_tiles",OLIVESTONE_TILE));
         createBlock("cracked_olivestone_tiles",CRACKED_OLIVESTONE_TILES);
 
         createBlock("olivestone_pillar",OLIVESTONE_PILLAR);
@@ -324,14 +358,14 @@ public class APBlocks {
          createBlock("illuminated_olivestone",ILLUMINATED_OLIVESTONE);
 
         // Algal Brick
-         new StoneBlockSet(createBlock("algal_bricks",ALGAL_BRICKS));
+         ALGAL_BRICK_SET = new StoneBlockSet(createBlock("algal_bricks",ALGAL_BRICKS));
          createBlock("cracked_algal_bricks",CRACKED_ALGAL_BRICKS);
          createBlock("chiseled_algal_bricks",CHISELED_ALGAL_BRICKS);
-         new StoneBlockSet(createBlock("overgrown_algal_bricks",OVERGROWN_ALGAL_BRICK));
+         OVERGROWN_ALGAL_BRICK_SET = new StoneBlockSet(createBlock("overgrown_algal_bricks",OVERGROWN_ALGAL_BRICK));
          createBlock("algal_lamp",ALGAL_LAMP);
 
         // Sunmetal
-         new StoneBlockSet(createBlock("sunmetal_block",SUNMETAL, ItemGroup.BUILDING_BLOCKS), false).addSlabs().addStairs();
+         SUNMETAL_SET = new StoneBlockSet(createBlock("sunmetal_block",SUNMETAL, ItemGroup.BUILDING_BLOCKS), false).addSlabs().addStairs();
          createBlock("chiseled_sunmetal_block",CHISELED_SUNMETAL_BLOCK);
          createBlock("sunmetal_pillar",SUNMETAL_PILLAR);
          createBlock("sunmetal_bars",SUNMETAL_BARS);
@@ -351,7 +385,7 @@ public class APBlocks {
          createBlock("salmon_scales",SALMON_SCALES);
          createBlock("cod_scales",COD_SCALES);
         // Plating & Piping
-         new StoneBlockSet(createBlock("plating_block",PLATING_BLOCK));
+         PLATING_SET = new StoneBlockSet(createBlock("plating_block",PLATING_BLOCK));
          createBlock("pipe",PIPE);
         //Spools
          createBlock("spool",SPOOL);
@@ -360,39 +394,39 @@ public class APBlocks {
          createBlock("scute_block",  SCUTE_BLOCK);
 
         // Ore Bricks
-         List<StoneBlockSet> ORE_BRICKS = addOreBricks();
+         ORE_BRICKS = addOreBricks();
 
         // Polished Packed Ice
-         new StoneBlockSet(createBlock("polished_packed_ice",POLISHED_PACKED_ICE));
+         POLISHED_PACKED_ICE_SET = new StoneBlockSet(createBlock("polished_packed_ice",POLISHED_PACKED_ICE));
          createBlock("chiseled_packed_ice",CHISELED_PACKED_ICE  );
          createBlock("packed_ice_pillar",PACKED_ICE_PILLAR);
 
         // Gilded Sandstone
-         new StoneBlockSet(createBlock("gilded_sandstone",  GILDED_SANDSTONE ), false).addSlabs().addStairs();
+         GILDED_SANDSTONE_SET = new StoneBlockSet(createBlock("gilded_sandstone",  GILDED_SANDSTONE ), false).addSlabs().addStairs();
          createBlock("gilded_sandstone_pillar",GILDED_SANDSTONE_PILLAR);
          createBlock("chiseled_gilded_sandstone",CHISELED_GILDED_SANDSTONE);
 
         // Polished Glowstone
-         new StoneBlockSet(createBlock("polished_glowstone",POLISHED_GLOWSTONE), false).addSlabs();
+         POLISHED_GLOWSTONE_SET = new StoneBlockSet(createBlock("polished_glowstone",POLISHED_GLOWSTONE), false).addSlabs();
          createBlock("runic_glowstone",RUNIC_GLOWSTONE);
 
         // Osseous Bricks
-         new StoneBlockSet(createBlock("osseous_bricks",OSSEOUS_BRICK));
+        OSSEOUS_BRICK_SET = new StoneBlockSet(createBlock("osseous_bricks",OSSEOUS_BRICK));
         createBlock("osseous_pillar",OSSEOUS_PILLAR);
         createBlock("osseous_skull",OSSEOUS_SKULL);
         createBlock("lit_osseous_skull",LIT_OSSEOUS_SKULL);
         // Withered
         // Todo: Replace bone block recipe to one that uses withered bone meal if that gets in
          createBlock("withered_bone_block",WITHERED_BONE_BLOCK, ItemGroup.BUILDING_BLOCKS);
-         new StoneBlockSet(createBlock("withered_osseous_bricks",WITHERED_OSSEOUS_BRICK));
-        createBlock("withered_osseous_pillar",WITHERED_OSSEOUS_PILLAR);
-        createBlock("withered_osseous_skull",WITHERED_OSSEOUS_SKULL);
-        createBlock("lit_withered_osseous_skull",LIT_WITHERED_OSSEOUS_SKULL);
+         WITHERED_OSSEOUS_BRICK_SET = new StoneBlockSet(createBlock("withered_osseous_bricks",WITHERED_OSSEOUS_BRICK));
+         createBlock("withered_osseous_pillar",WITHERED_OSSEOUS_PILLAR);
+         createBlock("withered_osseous_skull",WITHERED_OSSEOUS_SKULL);
+         createBlock("lit_withered_osseous_skull",LIT_WITHERED_OSSEOUS_SKULL);
          createBlock("wither_lamp",  WITHER_LAMP);
 
         // Flint Blocks
          createBlock("flint_block",FLINT_BLOCK);
-         new StoneBlockSet(createBlock("flint_tiles",FLINT_TILES));
+         FLINT_TILES_SET = new StoneBlockSet(createBlock("flint_tiles",FLINT_TILES));
          createBlock("flint_pillar",FLINT_PILLAR);
 
         // Mossy Blackstone Variants
@@ -402,30 +436,30 @@ public class APBlocks {
          createBlock("twisting_blackstone_bricks",  TWISTING_BLACKSTONE_BRICKS);
 
         // Basalt Tiles
-         new StoneBlockSet(createBlock("basalt_tiles",BASALT_TILES));
+         BASALT_TILES_SET = new StoneBlockSet(createBlock("basalt_tiles",BASALT_TILES));
          createBlock("cracked_basalt_tiles",CRACKED_BASALT_TILES);
          createBlock("chiseled_basalt_tiles",CHISELED_BASALT_TILES);
 
         //Dripstone
-         new StoneBlockSet(createBlock("dripstone_bricks",DRIPSTONE_BRICKS));
+         DRIPSTONE_BRICK_SET = new StoneBlockSet(createBlock("dripstone_bricks",DRIPSTONE_BRICKS));
          createBlock("dripstone_pillar",DRIPSTONE_PILLAR);
          createBlock("chiseled_dripstone",CHISELED_DRIPSTONE);
          createBlock("heavy_dripstone_bricks",HEAVY_DRIPSTONE_BRICKS);
          createBlock("dripstone_lamp",DRIPSTONE_LAMP);
 
         //Calcite
-        new StoneBlockSet(createBlock("calcite_bricks",CALCITE_BRICKS));
-        createBlock("calcite_pillar",CALCITE_PILLAR);
-        createBlock("chiseled_calcite",CHISELED_CALCITE);
-        createBlock("heavy_calcite_bricks",HEAVY_CALCITE_BRICKS);
-        createBlock("calcite_lamp",CALCITE_LAMP);
+         CALCITE_BRICK_SET = new StoneBlockSet(createBlock("calcite_bricks",CALCITE_BRICKS));
+         createBlock("calcite_pillar",CALCITE_PILLAR);
+         createBlock("chiseled_calcite",CHISELED_CALCITE);
+         createBlock("heavy_calcite_bricks",HEAVY_CALCITE_BRICKS);
+         createBlock("calcite_lamp",CALCITE_LAMP);
 
         //Tuff
-        new StoneBlockSet(createBlock("tuff_bricks",TUFF_BRICKS));
-        createBlock("tuff_pillar",TUFF_PILLAR);
-        createBlock("chiseled_tuff",CHISELED_TUFF);
-        createBlock("heavy_tuff_bricks",HEAVY_TUFF_BRICKS);
-        createBlock("tuff_lamp",TUFF_LAMP);
+         TUFF_BRICK_SET = new StoneBlockSet(createBlock("tuff_bricks",TUFF_BRICKS));
+         createBlock("tuff_pillar",TUFF_PILLAR);
+         createBlock("chiseled_tuff",CHISELED_TUFF);
+         createBlock("heavy_tuff_bricks",HEAVY_TUFF_BRICKS);
+         createBlock("tuff_lamp",TUFF_LAMP);
 
         // Heavy Stone Bricks
          createBlock("heavy_stone_bricks",HEAVY_STONE_BRICKS);
@@ -433,7 +467,7 @@ public class APBlocks {
          createBlock("heavy_cracked_stone_bricks",HEAVY_CRACKED_STONE_BRICKS);
 
         // Entwine
-         new StoneBlockSet(createBlock("entwine_block",ENTWINE),false).addSlabs().addStairs();
+         ENTWINE_SET = new StoneBlockSet(createBlock("entwine_block",ENTWINE),false).addSlabs().addStairs();
          createBlock("entwine_pillar",ENTWINE_PILLAR);
          createBlock("chiseled_entwine",CHISELED_ENTWINE);
          createBlock("entwine_bars",ENTWINE_BARS);
@@ -450,10 +484,10 @@ public class APBlocks {
          createBlock("heavy_cracked_end_stone_bricks",HEAVY_CRACKED_END_STONE_BRICKS);
 
         // Warpstone
-         new StoneBlockSet(createBlock("warpstone",  WARPSTONE));
+         WARPSTONE_SET = new StoneBlockSet(createBlock("warpstone",  WARPSTONE));
 
         // Twisted Wood
-         new StoneBlockSet(createBlock("twisted_planks",TWISTED_PLANKS), false).addSlabs().addStairs();
+         TWISTED_PLANKS_SET = new StoneBlockSet(createBlock("twisted_planks",TWISTED_PLANKS), false).addSlabs().addStairs();
 
          createBlock("twisted_log", TWISTED_LOG);
          createBlock("twisted_wood", TWISTED_WOOD);
@@ -471,35 +505,35 @@ public class APBlocks {
          createBlockNoItem("potted_twisted_sapling" ,POTTED_TWISTED_SAPLING);
 
          //Boards
-        createBlock("oak_boards", OAK_BOARDS);
-        createBlock("birch_boards", BIRCH_BOARDS);
-        createBlock("spruce_boards", SPRUCE_BOARDS);
-        createBlock("jungle_boards", JUNGLE_BOARDS);
-        createBlock("dark_oak_boards", DARK_OAK_BOARDS);
-        createBlock("acacia_boards", ACACIA_BOARDS);
-        createBlock("crimson_boards", CRIMSON_BOARDS);
-        createBlock("warped_boards", WARPED_BOARDS);
-        createBlock("twisted_boards", TWISTED_BOARDS);
+         createBlock("oak_boards", OAK_BOARDS);
+         createBlock("birch_boards", BIRCH_BOARDS);
+         createBlock("spruce_boards", SPRUCE_BOARDS);
+         createBlock("jungle_boards", JUNGLE_BOARDS);
+         createBlock("dark_oak_boards", DARK_OAK_BOARDS);
+         createBlock("acacia_boards", ACACIA_BOARDS);
+         createBlock("crimson_boards", CRIMSON_BOARDS);
+         createBlock("warped_boards", WARPED_BOARDS);
+         createBlock("twisted_boards", TWISTED_BOARDS);
 
         //Railings
-        createBlock("oak_railing", OAK_RAILING, ItemGroup.DECORATIONS);
-        createBlock("birch_railing", BIRCH_RAILING, ItemGroup.DECORATIONS);
-        createBlock("spruce_railing", SPRUCE_RAILING, ItemGroup.DECORATIONS);
-        createBlock("jungle_railing", JUNGLE_RAILING, ItemGroup.DECORATIONS);
-        createBlock("dark_oak_railing", DARK_OAK_RAILING, ItemGroup.DECORATIONS);
-        createBlock("acacia_railing", ACACIA_RAILING, ItemGroup.DECORATIONS);
-        createBlock("crimson_railing", CRIMSON_RAILING, ItemGroup.DECORATIONS);
-        createBlock("warped_railing", WARPED_RAILING, ItemGroup.DECORATIONS);
-        createBlock("twisted_railing", TWISTED_RAILING, ItemGroup.DECORATIONS);
+         createBlock("oak_railing", OAK_RAILING, ItemGroup.DECORATIONS);
+         createBlock("birch_railing", BIRCH_RAILING, ItemGroup.DECORATIONS);
+         createBlock("spruce_railing", SPRUCE_RAILING, ItemGroup.DECORATIONS);
+         createBlock("jungle_railing", JUNGLE_RAILING, ItemGroup.DECORATIONS);
+         createBlock("dark_oak_railing", DARK_OAK_RAILING, ItemGroup.DECORATIONS);
+         createBlock("acacia_railing", ACACIA_RAILING, ItemGroup.DECORATIONS);
+         createBlock("crimson_railing", CRIMSON_RAILING, ItemGroup.DECORATIONS);
+         createBlock("warped_railing", WARPED_RAILING, ItemGroup.DECORATIONS);
+         createBlock("twisted_railing", TWISTED_RAILING, ItemGroup.DECORATIONS);
         // Celestial Stones
          createBlock("sunstone",SUNSTONE);
          createBlock("moonstone",MOONSTONE);
 
         // Odd block variants
-        createBlock("molten_nether_bricks",MOLTEN_NETHER_BRICKS);
-        createBlock("coarse_snow",COARSE_SNOW);
+         createBlock("molten_nether_bricks",MOLTEN_NETHER_BRICKS);
+         createBlock("coarse_snow",COARSE_SNOW);
         // Charcoal Block
-        createBlock("charcoal_block",CHARCOAL_BLOCK);
+         createBlock("charcoal_block",CHARCOAL_BLOCK);
 
         // Cage Lanterns
          createBlock("redstone_cage_lantern", REDSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
@@ -512,7 +546,6 @@ public class APBlocks {
          createBlock("placid_acacia_totem",  PLACID_ACACIA_TOTEM);
          createBlock("shocked_acacia_totem",SHOCKED_ACACIA_TOTEM);
          createBlock("blank_acacia_totem",BLANK_ACACIA_TOTEM);
-
     }
 
 }

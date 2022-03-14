@@ -25,6 +25,9 @@
     ],
     "rei_plugins": [
       "com.slomaxonical.architectspalette.compat.rei.APPlugin"
+    ],
+    "fabric-datagen": [
+      "com.slomaxonical.architectspalette.data.APDatagen"
     ]
   },
   "mixins": [
