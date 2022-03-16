@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:algal_brick_from_smelting_algal_blend"
+    ]
+  },
+  "criteria": {
+    "has_algal_blend": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "architects_palette:algal_blend"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:algal_brick_from_smelting_algal_blend"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_algal_blend",
+      "has_the_recipe"
+    ]
+  ]
+}

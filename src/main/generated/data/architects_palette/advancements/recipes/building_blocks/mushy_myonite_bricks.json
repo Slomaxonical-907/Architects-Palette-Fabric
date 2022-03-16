@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "architects_palette:mushy_myonite_bricks"
+    ]
+  },
+  "criteria": {
+    "has_mushroom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:mushrooms"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "architects_palette:mushy_myonite_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mushroom",
+      "has_the_recipe"
+    ]
+  ]
+}

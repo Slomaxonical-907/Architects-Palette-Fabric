@@ -68,7 +68,7 @@ public class APBlocks {
     public static final AbyssalineVerticalSlabBlock ABYSSALINE_TILE_VERTICAL_SLAB = new AbyssalineVerticalSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
     // Limestone
     public static final Block MYONITE = new Block(APBlockSettings.MYONITE);
-    public static final Block MYONITE_BRICK = new Block(APBlockSettings.MYONITE);
+    public static final Block MYONITE_BRICKS = new Block(APBlockSettings.MYONITE);
     public static final Block MUSHY_MYONITE_BRICK = new Block(APBlockSettings.MYONITE);
 
     // Olivestone
@@ -342,9 +342,9 @@ public class APBlocks {
         createBlock("abyssaline_lamp",ABYSSALINE_LAMP_BLOCK);
         createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
         
-        // Limestone
+        // Myonite (Previously Limestone)
         MYONITE_SET = new StoneBlockSet(createBlock("myonite", MYONITE));
-        MYONITE_BRICK_SET = new StoneBlockSet(createBlock("myonite_bricks", MYONITE_BRICK));
+        MYONITE_BRICK_SET = new StoneBlockSet(createBlock("myonite_bricks", MYONITE_BRICKS));
         MUSHY_MYONITE_BRICK_SET = new StoneBlockSet(createBlock("mushy_myonite_bricks", MUSHY_MYONITE_BRICK));
 
         // Olivestone

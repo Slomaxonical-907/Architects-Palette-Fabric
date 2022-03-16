@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "architects_palette:osseous_skull"
+    ]
+  },
+  "criteria": {
+    "has_osseous_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "architects_palette:osseous_brick_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "architects_palette:osseous_skull"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_osseous_brick_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

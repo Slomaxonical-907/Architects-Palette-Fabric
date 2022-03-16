@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "architects_palette:myonite"
+    }
+  },
+  "result": {
+    "item": "architects_palette:myonite_slab",
+    "count": 6
+  }
+}

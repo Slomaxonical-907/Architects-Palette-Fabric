@@ -53,8 +53,8 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 }
 sourceSets.main.resources {
+	srcDirs += 'src/main/generated'
 	srcDirs += 'src/ap-assets/resources'
-	srcDirs += ["src/main/generated"]
 }
 processResources {
 	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)

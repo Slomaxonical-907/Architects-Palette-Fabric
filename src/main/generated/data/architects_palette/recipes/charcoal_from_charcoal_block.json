@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "architects_palette:charcoal_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft:charcoal"
+  }
+}

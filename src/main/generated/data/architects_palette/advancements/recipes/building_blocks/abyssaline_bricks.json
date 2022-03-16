@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "architects_palette:abyssaline_bricks"
+    ]
+  },
+  "criteria": {
+    "has_abyssaline": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "architects_palette:abyssaline"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "architects_palette:abyssaline_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_abyssaline",
+      "has_the_recipe"
+    ]
+  ]
+}

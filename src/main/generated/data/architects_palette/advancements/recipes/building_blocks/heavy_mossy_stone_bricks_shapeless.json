@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:heavy_mossy_stone_bricks_shapeless"
+    ]
+  },
+  "criteria": {
+    "has_heavy_stone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "architects_palette:heavy_stone_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:heavy_mossy_stone_bricks_shapeless"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_heavy_stone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

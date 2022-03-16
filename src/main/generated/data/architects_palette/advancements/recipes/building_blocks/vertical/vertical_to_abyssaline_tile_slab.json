@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:vertical/vertical_to_abyssaline_tile_slab"
+    ]
+  },
+  "criteria": {
+    "has_abyssaline_tile_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "architects_palette:abyssaline_tile_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:vertical/vertical_to_abyssaline_tile_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_abyssaline_tile_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "architects_palette:config_enabled",
+      "config": "enableVerticalSlabs"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "architects_palette:chiseled_olivestone"
+    ]
+  },
+  "criteria": {
+    "has_olivstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "architects_palette:olivestone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "architects_palette:chiseled_olivestone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_olivstone",
+      "has_the_recipe"
+    ]
+  ]
+}

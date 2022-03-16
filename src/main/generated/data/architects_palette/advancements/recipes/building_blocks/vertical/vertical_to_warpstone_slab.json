@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:vertical/vertical_to_warpstone_slab"
+    ]
+  },
+  "criteria": {
+    "has_warpstone_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "architects_palette:warpstone_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:vertical/vertical_to_warpstone_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_warpstone_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "architects_palette:config_enabled",
+      "config": "enableVerticalSlabs"
+    }
+  ]
+}

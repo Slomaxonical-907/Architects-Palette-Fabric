@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#$#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dripstone_block"
+    },
+    "$": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "architects_palette:dripstone_lamp",
+    "count": 2
+  }
+}

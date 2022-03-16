@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "architects_palette:chiseled_packed_ice"
+    ]
+  },
+  "criteria": {
+    "has_polished_packed_ice_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "architects_palette:polished_packed_ice_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "architects_palette:chiseled_packed_ice"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_packed_ice_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "architects_palette:abyssaline_tiles"
+    }
+  },
+  "result": {
+    "item": "architects_palette:abyssaline_bricks",
+    "count": 4
+  }
+}
