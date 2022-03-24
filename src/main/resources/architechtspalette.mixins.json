@@ -4,8 +4,7 @@
   "package": "com.slomaxonical.architectspalette.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ServerWorldMixin",
-    "StrippedBlocksMixin"
+    "ServerWorldMixin"
   ],
   "client": [
   ],

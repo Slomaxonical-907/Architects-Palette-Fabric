@@ -8,6 +8,7 @@ import com.slomaxonical.architectspalette.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +26,9 @@ public class ArchitectsPalette implements ModInitializer {
         APItems.registerItems();
         APItemgroup.registerItemgroup();
         APBlocks.registerFuel();
+
+        StrippableBlockRegistry.register(APBlocks.TWISTED_LOG, APBlocks.STRIPPED_TWISTED_LOG);
+        StrippableBlockRegistry.register(APBlocks.TWISTED_WOOD, APBlocks.STRIPPED_TWISTED_WOOD);
 
         APSounds.registerSounds();
         WarpingRecipe.registerRecipe();
