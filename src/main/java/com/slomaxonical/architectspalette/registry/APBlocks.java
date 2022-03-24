@@ -1,5 +1,7 @@
 package com.slomaxonical.architectspalette.registry;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import com.slomaxonical.architectspalette.blocks.entrails.DrippyBlock;
 import com.slomaxonical.architectspalette.blocks.entrails.DrippySlabBlock;
 import com.slomaxonical.architectspalette.blocks.entrails.DrippyVerticalSlabBlock;
@@ -27,11 +29,10 @@ import java.util.*;
 
 public class APBlocks {
     //SETS:
-    public static List<Block> ORE_BRICKS;
-    public static List<Block> ORE_STAIRS = new ArrayList<>();
-    public static List<Block> ORE_SLABS = new ArrayList<>();
-    public static List<Block> ORE_WALLS = new ArrayList<>();
-    public static List<Block> ORE_VERT_SLABS = new ArrayList<>();
+    public static List<StoneBlockSet> ORE_SETS = new ArrayList<>();
+    public static Map<Block,Block> CHISELED_ORES = new HashMap<>();
+    public static Map<Block,Block> CRACKED_ORES = new HashMap<>();
+
     public static StoneBlockSet MYONITE_SET;
     public static StoneBlockSet MYONITE_BRICK_SET;
     public static StoneBlockSet MUSHY_MYONITE_BRICK_SET;
@@ -108,32 +109,27 @@ public class APBlocks {
     public static final Block  COD_LOG = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW));
     public static final Block  SALMON_SCALES = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED));
     public static final Block  COD_SCALES = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW));
-        // Plating & Piping
+    // Plating & Piping
     public static final Block PLATING_BLOCK = new Block(APBlockSettings.PLATING);
     public static final Block PIPE = new PipeBlock(APBlockSettings.PLATING.nonOpaque());
-        //Spools
+    //Spools
     public static final Block SPOOL = new PillarBlock(FabricBlockSettings.copy(Blocks.WHITE_WOOL));
 
     // Scute Block
     public static final Block SCUTE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE, MapColor.LIME).strength(5.0F, 6.0F).sounds(BlockSoundGroup.BASALT));
 
     // Ore Bricks
-    private static List<Block> addOreBricks() {
-        List<String> ores = Arrays.asList("coal", "lapis", "redstone", "iron", "gold", "emerald", "diamond");
-        List<Block> l = new LinkedList<>();
-        ores.forEach((ore) -> {
-            StoneBlockSet set = new StoneBlockSet(createBlock(ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS))));
-            Block cracked = createBlock("cracked_" + ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS)));
-            Block chiseled = createBlock("chiseled_" + ore + "_ore_bricks",  new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)));
-            l.add(set.BLOCK);
-            ORE_STAIRS.add(set.STAIRS);
-            ORE_WALLS.add(set.WALL);
-            l.add(cracked);
-            l.add(chiseled);
-            ORE_SLABS.add(set.SLAB);
-            ORE_VERT_SLABS.add(set.VERTICAL_SLAB);
-        });
-        return l;
+    private static void addOreBricks() {
+        List<String> ores = List.of("coal", "lapis", "redstone", "iron", "gold", "emerald", "diamond");
+
+        for (String ore : ores) {
+            StoneBlockSet set = new StoneBlockSet(createBlock(ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS))));
+            Block chiseled = createBlock("chiseled_" + ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)));
+            Block cracked = createBlock("cracked_" + ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS)));
+            ORE_SETS.add(set);
+            CHISELED_ORES.put(set.BLOCK,chiseled);
+            CRACKED_ORES.put(set.BLOCK,cracked);
+        }
     }
 
     // Polished Packed Ice
@@ -394,7 +390,7 @@ public class APBlocks {
          createBlock("scute_block",  SCUTE_BLOCK);
 
         // Ore Bricks
-         ORE_BRICKS = addOreBricks();
+         addOreBricks();
 
         // Polished Packed Ice
          POLISHED_PACKED_ICE_SET = new StoneBlockSet(createBlock("polished_packed_ice",POLISHED_PACKED_ICE));

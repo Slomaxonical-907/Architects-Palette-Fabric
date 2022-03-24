@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.data.provider;
 
+import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -210,9 +211,13 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WITHERED_OSSEOUS_SKULL,
                 APBlocks.WITHER_LAMP)
             .forEach(this::addDrop);
-        for (Block brick : APBlocks.ORE_BRICKS) {this.addDrop(brick);}
-        for (Block stair : APBlocks.ORE_STAIRS) {this.addDrop(stair);}
-        for (Block wall : APBlocks.ORE_WALLS) {this.addDrop(wall);}
+        for (StoneBlockSet set : APBlocks.ORE_SETS) {
+            this.addDrop(set.BLOCK);
+            this.addDrop(set.STAIRS);
+            this.addDrop(set.WALL);
+        }
+        for (Block chiseled : APBlocks.CHISELED_ORES.values()) this.addDrop(chiseled);
+        for (Block cracked : APBlocks.CRACKED_ORES.values()) this.addDrop(cracked);
 
         Stream.of(
                 APBlocks.ABYSSALINE_BRICK_SLAB,
@@ -264,9 +269,9 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WITHERED_OSSEOUS_BRICK_SET.SLAB,
                 APBlocks.WITHERED_OSSEOUS_BRICK_SET.VERTICAL_SLAB)
             .forEach((i) -> this.addDrop(i, BlockLootTableGenerator::slabDrops));
-        for (int i=0 ;  i < (APBlocks.ORE_SLABS.size())-1; i++) {
-            this.addDrop(APBlocks.ORE_SLABS.get(i), BlockLootTableGenerator::slabDrops);
-            this.addDrop(APBlocks.ORE_VERT_SLABS.get(i), BlockLootTableGenerator::slabDrops);
+        for (StoneBlockSet set : APBlocks.ORE_SETS){
+                this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
+                this.addDrop(set.VERTICAL_SLAB, BlockLootTableGenerator::slabDrops);
         }
 
         Stream.of(

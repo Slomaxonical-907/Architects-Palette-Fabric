@@ -5,9 +5,7 @@ build/
 out/
 classes/
 
-# eclipse
 
-*.launch
 
 # idea
 
@@ -16,19 +14,8 @@ classes/
 *.ipr
 *.iws
 
-# vscode
-
-.settings/
-.vscode/
-bin/
-.classpath
-.project
-
-# macos
-
-*.DS_Store
-
 # fabric
 
 run/
 /remappedSrc/
+src/main/generated

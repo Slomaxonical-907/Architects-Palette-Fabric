@@ -1,6 +1,7 @@
 package com.slomaxonical.architectspalette.data.provider;
 
 import com.slomaxonical.architectspalette.ArchitectsPalette;
+import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -214,23 +215,20 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.WITHERED_OSSEOUS_SKULL)
                 .add(APBlocks.WITHER_LAMP);
 
-        for(Block brick : APBlocks.ORE_BRICKS){
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(brick);
+        for (StoneBlockSet set: APBlocks.ORE_SETS) {
+            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.BLOCK);
+            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.STAIRS);
+            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.SLAB);
+            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.VERTICAL_SLAB);
+            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.WALL);
 
+            this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.STAIRS);
+            this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.SLAB);
+            this.getOrCreateTagBuilder(BlockTags.WALLS).add(set.WALL);
         }
-        for (Block stair : APBlocks.ORE_STAIRS){
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(stair);
-            this.getOrCreateTagBuilder(BlockTags.STAIRS).add(stair);
-        }
-        for(Block wall : APBlocks.ORE_WALLS){
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(wall);
-            this.getOrCreateTagBuilder(BlockTags.WALLS).add(wall);
-        }
-        for(Block slab : APBlocks.ORE_SLABS){
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(slab);
-            this.getOrCreateTagBuilder(BlockTags.SLABS).add(slab);
-        }
-        for(Block vertslab : APBlocks.ORE_VERT_SLABS){this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(vertslab);}
+        for (Block b: APBlocks.CHISELED_ORES.values()) this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b);
+        for (Block b: APBlocks.CRACKED_ORES.values()) this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b);
+
 
         this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .add(APBlocks.ACACIA_BOARDS)
