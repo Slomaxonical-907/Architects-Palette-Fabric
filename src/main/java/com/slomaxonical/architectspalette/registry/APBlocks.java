@@ -1,7 +1,5 @@
 package com.slomaxonical.architectspalette.registry;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import com.slomaxonical.architectspalette.blocks.entrails.DrippyBlock;
 import com.slomaxonical.architectspalette.blocks.entrails.DrippySlabBlock;
 import com.slomaxonical.architectspalette.blocks.entrails.DrippyVerticalSlabBlock;
@@ -290,7 +288,7 @@ public class APBlocks {
     //Radioactive Crystals
     public static final Block HELIODOR_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
     public static final Block EKANITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
-    public static final Block MOZANITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
+    public static final Block MONAZITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
 
     //Create Blocks
     private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block");
@@ -548,7 +546,7 @@ public class APBlocks {
          createBlock("blank_acacia_totem",BLANK_ACACIA_TOTEM);
         createBlock("heliodor_rod", HELIODOR_ROD);
         createBlock("ekanite_rod", EKANITE_ROD);
-        createBlock("mozanite_rod", MOZANITE_ROD);
+        createBlock("monazite_rod", MONAZITE_ROD);
     }
 
 }

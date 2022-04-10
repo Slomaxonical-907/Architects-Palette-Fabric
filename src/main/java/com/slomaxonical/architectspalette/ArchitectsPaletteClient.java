@@ -27,7 +27,7 @@ public class ArchitectsPaletteClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
                 APBlocks.HELIODOR_ROD,
                 APBlocks.EKANITE_ROD,
-                APBlocks.MOZANITE_ROD
+                APBlocks.MONAZITE_ROD
         );
     }
 }

@@ -218,7 +218,10 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.WALL)
                 .add(APBlocks.WITHERED_OSSEOUS_PILLAR)
                 .add(APBlocks.WITHERED_OSSEOUS_SKULL)
-                .add(APBlocks.WITHER_LAMP);
+                .add(APBlocks.WITHER_LAMP)
+                .add(APBlocks.HELIODOR_ROD)
+                .add(APBlocks.EKANITE_ROD)
+                .add(APBlocks.MONAZITE_ROD);
 
         for (StoneBlockSet set: APBlocks.ORE_SETS) {
             this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.BLOCK);

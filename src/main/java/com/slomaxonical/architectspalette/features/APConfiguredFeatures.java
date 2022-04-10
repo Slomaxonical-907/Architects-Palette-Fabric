@@ -34,20 +34,20 @@ public class APConfiguredFeatures {
             BiomePlacementModifier.of()
     );
 
-    private static final CrystalClusterConfig HANGING_MOZANITE_CLUSTER_CONFIG = new CrystalClusterConfig(0, 7, APBlocks.MOZANITE_ROD.getDefaultState(),true, Blocks.BASALT.getDefaultState());
-    public static final RegistryEntry<ConfiguredFeature<CrystalClusterConfig, ?>> HANGING_MOZANITE_CLUSTER= ConfiguredFeatures.register("hanging_mozanite_cluster", APFeatures.CRYSTAL_CLUSTER, HANGING_MOZANITE_CLUSTER_CONFIG);
-    public static final RegistryEntry<PlacedFeature> HANGING_MOZANITE_CLUSTER_PLACED = PlacedFeatures.register("hanging_mozanite_cluster",
-            HANGING_MOZANITE_CLUSTER,
+    private static final CrystalClusterConfig HANGING_MONAZITE_CLUSTER_CONFIG = new CrystalClusterConfig(0, 7, APBlocks.MONAZITE_ROD.getDefaultState(),true, Blocks.BASALT.getDefaultState());
+    public static final RegistryEntry<ConfiguredFeature<CrystalClusterConfig, ?>> HANGING_MONAZITE_CLUSTER= ConfiguredFeatures.register("hanging_monazite_cluster", APFeatures.CRYSTAL_CLUSTER, HANGING_MONAZITE_CLUSTER_CONFIG);
+    public static final RegistryEntry<PlacedFeature> HANGING_MONAZITE_CLUSTER_PLACED = PlacedFeatures.register("hanging_monazite_cluster",
+            HANGING_MONAZITE_CLUSTER,
             CountPlacementModifier.of(4),
             SquarePlacementModifier.of(),
             PlacedFeatures.BOTTOM_TO_TOP_RANGE,
             BiomePlacementModifier.of()
     );
 
-    private static final CrystalClusterConfig GROUNDED_MOZANITE_CLUSTER_CONFIG = new CrystalClusterConfig(0, 6, APBlocks.MOZANITE_ROD.getDefaultState(),false, Blocks.BASALT.getDefaultState());
-    public static final RegistryEntry<ConfiguredFeature<CrystalClusterConfig, ?>> GROUNDED_MOZANITE_CLUSTER= ConfiguredFeatures.register("grounded_mozanite_cluster", APFeatures.CRYSTAL_CLUSTER, GROUNDED_MOZANITE_CLUSTER_CONFIG);
-    public static final RegistryEntry<PlacedFeature> GROUNDED_MOZANITE_CLUSTER_PLACED = PlacedFeatures.register("mozanite_cluster",
-            GROUNDED_MOZANITE_CLUSTER,
+    private static final CrystalClusterConfig GROUNDED_MONAZITE_CLUSTER_CONFIG = new CrystalClusterConfig(0, 6, APBlocks.MONAZITE_ROD.getDefaultState(),false, Blocks.BASALT.getDefaultState());
+    public static final RegistryEntry<ConfiguredFeature<CrystalClusterConfig, ?>> GROUNDED_MONAZITE_CLUSTER= ConfiguredFeatures.register("grounded_monazite_cluster", APFeatures.CRYSTAL_CLUSTER, GROUNDED_MONAZITE_CLUSTER_CONFIG);
+    public static final RegistryEntry<PlacedFeature> GROUNDED_MONAZITE_CLUSTER_PLACED = PlacedFeatures.register("monazite_cluster",
+            GROUNDED_MONAZITE_CLUSTER,
             CountPlacementModifier.of(4),
             SquarePlacementModifier.of(),
             PlacedFeatures.BOTTOM_TO_TOP_RANGE,
@@ -61,8 +61,8 @@ public class APConfiguredFeatures {
 //        register("heliodor_cluster", HELIODOR_CLUSTER.value(), HELIODOR_CLUSTER_PLACED.value());
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.BASALT_DELTAS), GenerationStep.Feature.UNDERGROUND_DECORATION,HELIODOR_CLUSTER_PLACED.getKey().orElseThrow());
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.WARPED_FOREST), GenerationStep.Feature.UNDERGROUND_DECORATION,EKANITE_CLUSTER_PLACED.getKey().orElseThrow());
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.NETHER_WASTES), GenerationStep.Feature.UNDERGROUND_DECORATION,HANGING_MOZANITE_CLUSTER_PLACED.getKey().orElseThrow());
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.CRIMSON_FOREST), GenerationStep.Feature.UNDERGROUND_DECORATION,GROUNDED_MOZANITE_CLUSTER_PLACED.getKey().orElseThrow());
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.NETHER_WASTES), GenerationStep.Feature.UNDERGROUND_DECORATION,HANGING_MONAZITE_CLUSTER_PLACED.getKey().orElseThrow());
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.CRIMSON_FOREST), GenerationStep.Feature.UNDERGROUND_DECORATION,GROUNDED_MONAZITE_CLUSTER_PLACED.getKey().orElseThrow());
     }
 
 //    private static void register(String name, ConfiguredFeature<?, ?> configuredFeature, PlacedFeature placedFeature) {

@@ -209,7 +209,10 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WITHERED_OSSEOUS_BRICK_SET.WALL,
                 APBlocks.WITHERED_OSSEOUS_PILLAR,
                 APBlocks.WITHERED_OSSEOUS_SKULL,
-                APBlocks.WITHER_LAMP)
+                APBlocks.WITHER_LAMP,
+                APBlocks.HELIODOR_ROD,
+                APBlocks.EKANITE_ROD,
+                APBlocks.MONAZITE_ROD)
             .forEach(this::addDrop);
         for (StoneBlockSet set : APBlocks.ORE_SETS) {
             this.addDrop(set.BLOCK);
