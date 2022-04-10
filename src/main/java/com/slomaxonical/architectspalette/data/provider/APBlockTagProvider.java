@@ -19,6 +19,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     public static final TagKey<Block> TWISTED_LOGS = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "twisted_logs"));
     public static final TagKey<Block> CAGE_LANTERNS = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "cage_lanterns"));
+    public static final TagKey<Block> CRYSTAL_REPLACEABLE = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "crystal_formation_replaceable"));
+
 
     private FabricTagBuilder<Block> getOrCreateTagBuilder(Identifier id) {
         TagKey<Block> tag = TagKey.of(Registry.BLOCK_KEY, id);
@@ -27,6 +29,9 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void generateTags() {
+        this.getOrCreateTagBuilder(CRYSTAL_REPLACEABLE)
+                .add(Blocks.NETHER_WART_BLOCK)
+                .add(Blocks.WARPED_WART_BLOCK);
 
         this.getOrCreateTagBuilder(TWISTED_LOGS)
                 .add(APBlocks.TWISTED_LOG)

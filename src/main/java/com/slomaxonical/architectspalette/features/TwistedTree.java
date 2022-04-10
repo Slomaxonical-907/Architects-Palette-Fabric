@@ -9,8 +9,8 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.TreeFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
@@ -21,15 +21,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class TwistedTree extends SaplingGenerator {
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> TWISTED_TREE = ConfiguredFeatures.register("twisted", Feature.TREE, twisted().build());
+    public static final ConfiguredFeature<TreeFeatureConfig, ?> TWISTED_TREE = new ConfiguredFeature<>(Feature.TREE,TWISTED_TREE_CONFIG().build());
 
-    @Nullable
     @Override
     protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random randomIn, boolean largeHive) {
-        return TWISTED_TREE;
+        return BuiltinRegistries.CONFIGURED_FEATURE.getEntry(BuiltinRegistries.CONFIGURED_FEATURE.getKey(TWISTED_TREE).orElseThrow()).orElseThrow();
     }
 
-    public static TreeFeatureConfig.Builder twisted() {
+    public static TreeFeatureConfig.Builder TWISTED_TREE_CONFIG() {
         return new TreeFeatureConfig.Builder(BlockStateProvider.of(APBlocks.TWISTED_LOG),
                 new ForkingTrunkPlacer(5, 2, 2),
                 BlockStateProvider.of(APBlocks.TWISTED_LEAVES),
@@ -39,7 +38,6 @@ public class TwistedTree extends SaplingGenerator {
     }
 
     public static void registerTreeFeature() {
-        ConfiguredFeature<?, ?> TWISTED = new ConfiguredFeature<>(Feature.TREE, twisted().build());
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(ArchitectsPalette.MOD_ID, "twisted"), TWISTED);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(ArchitectsPalette.MOD_ID, "twisted"), TWISTED_TREE);
     }
 }

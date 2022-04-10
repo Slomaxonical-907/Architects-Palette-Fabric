@@ -137,9 +137,9 @@ public class APRecipeProvider extends FabricRecipeProvider {
 
         //endStone
         offerChiseledBlockRecipe(exporter,CHISELED_END_STONE_BRICKS, Items.END_STONE_BRICK_SLAB);
-        ShapelessRecipeJsonBuilder.create(CHORAL_END_STONE_BRICKS).input(Ingredient.ofItems(Items.END_STONE_BRICKS,Items.CHORUS_FRUIT)).criterion(hasItem(Items.END_STONE_BRICKS),conditionsFromItem(Items.END_STONE_BRICKS));
+        ShapelessRecipeJsonBuilder.create(CHORAL_END_STONE_BRICKS).input(Ingredient.ofItems(Items.END_STONE_BRICKS,Items.CHORUS_FRUIT)).criterion(hasItem(Items.END_STONE_BRICKS),conditionsFromItem(Items.END_STONE_BRICKS)).offerTo(exporter);
         //Myonite
-        ShapedRecipeJsonBuilder.create(MYONITE, 8).input('#',Items.STONE).input('$', APItemTagProvider.MUSHROOMS).pattern("###").pattern("#$#").pattern("###").criterion("has_mushroom",conditionsFromTag(APItemTagProvider.MUSHROOMS)).offerTo(exporter);
+            ShapedRecipeJsonBuilder.create(MYONITE, 8).input('#',Items.STONE).input('$', APItemTagProvider.MUSHROOMS).pattern("###").pattern("#$#").pattern("###").criterion("has_mushroom",conditionsFromTag(APItemTagProvider.MUSHROOMS)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter, MYONITE_BRICKS, MYONITE);
         ShapedRecipeJsonBuilder.create(MUSHY_MYONITE_BRICK, 2).input('#',MYONITE_BRICKS).input('$', APItemTagProvider.MUSHROOMS).pattern("#$").pattern("$#").criterion("has_mushroom",conditionsFromTag(APItemTagProvider.MUSHROOMS)).offerTo(exporter);
         //heavy

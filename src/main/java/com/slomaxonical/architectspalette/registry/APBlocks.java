@@ -287,6 +287,10 @@ public class APBlocks {
     public static final Block SHOCKED_ACACIA_TOTEM = new TotemBlock(APBlockSettings.ACACIA_TOTEM, ACACIA_TOTEM_WING, TotemBlock.TotemFace.SHOCKED);
     public static final Block BLANK_ACACIA_TOTEM = new TotemBlock(APBlockSettings.ACACIA_TOTEM, ACACIA_TOTEM_WING, TotemBlock.TotemFace.BLANK);
 
+    //Radioactive Crystals
+    public static final Block HELIODOR_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
+    public static final Block EKANITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
+    public static final Block MOZANITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
 
     //Create Blocks
     private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block");
@@ -542,6 +546,9 @@ public class APBlocks {
          createBlock("placid_acacia_totem",  PLACID_ACACIA_TOTEM);
          createBlock("shocked_acacia_totem",SHOCKED_ACACIA_TOTEM);
          createBlock("blank_acacia_totem",BLANK_ACACIA_TOTEM);
+        createBlock("heliodor_rod", HELIODOR_ROD);
+        createBlock("ekanite_rod", EKANITE_ROD);
+        createBlock("mozanite_rod", MOZANITE_ROD);
     }
 
 }

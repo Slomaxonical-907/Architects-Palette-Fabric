@@ -2,6 +2,8 @@ package com.slomaxonical.architectspalette;
 
 import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.crafting.WarpingRecipe;
+import com.slomaxonical.architectspalette.features.APConfiguredFeatures;
+import com.slomaxonical.architectspalette.features.APFeatures;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.loot.LootTableModifications;
 import com.slomaxonical.architectspalette.registry.*;
@@ -36,6 +38,8 @@ public class ArchitectsPalette implements ModInitializer {
         APTrades.registerWanderingTrades();
 
         TwistedTree.registerTreeFeature();
+        APFeatures.register();
+        APConfiguredFeatures.registerBiomeModifications();
         LootTableModifications.registerWitheredBones();
     }
 }

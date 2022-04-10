@@ -19,13 +19,14 @@ public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
     public APItemTagProvider(FabricDataGenerator dataGenerator, @Nullable BlockTagProvider blockTagProvider) {super(dataGenerator, blockTagProvider);
     }
     //APTags
-    public static final TagKey<Item> TWISTED_LOGS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "twisted_logs")); //i think this once can be removed
+    public static final TagKey<Item> TWISTED_LOGS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "twisted_logs"));
     public static final TagKey<Item> OLIVESTONE = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "olivestone"));
     public static final TagKey<Item> OLIVESTONE_SLABS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "olivestone_slabs"));
     //common tags
     public static final TagKey<Item> WITHERED_BONES = TagKey.of(Registry.ITEM_KEY,new Identifier("c", "withered_bones"));
     public static final TagKey<Item> MUSHROOMS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "mushrooms"));
 
+    /*
     //not used
     private FabricTagBuilder<Item> getOrCreateTagBuilder(Identifier id) {
         TagKey<Item> tag = TagKey.of(Registry.ITEM_KEY, id);
@@ -37,6 +38,7 @@ public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
         TagKey<Item> itemTag = TagKey.of(Registry.ITEM_KEY, id);
         this.copy(blockTag, itemTag);
     }
+    */
     @Override
     protected void generateTags() {
         this.copy(APBlockTagProvider.TWISTED_LOGS, TWISTED_LOGS);

@@ -24,5 +24,10 @@ public class ArchitectsPaletteClient implements ClientModInitializer {
 
                 APBlocks.ACACIA_TOTEM_WING
         );
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+                APBlocks.HELIODOR_ROD,
+                APBlocks.EKANITE_ROD,
+                APBlocks.MOZANITE_ROD
+        );
     }
 }

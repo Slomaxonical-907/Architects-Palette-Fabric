@@ -45,6 +45,7 @@ public class APBlockSettings {
 	public static final FabricBlockSettings ENDER_PEARL = FabricBlockSettings.of(Material.STONE, MapColor.CYAN).strength(1.5F).sounds(APSounds.APSoundTypes.ENDER_PEARL);
 	public static final FabricBlockSettings PLATING = FabricBlockSettings.of(Material.METAL, MapColor.STONE_GRAY).strength(4.0F, 10.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
 
+	public static final FabricBlockSettings NETHER_CRYSTAL = FabricBlockSettings.copyOf(Blocks.GLASS).luminance(l -> 12).requiresTool().strength(1.2f);
 	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)
 			.requiresTool()
 			.strength(2.0F, 6.0F)
