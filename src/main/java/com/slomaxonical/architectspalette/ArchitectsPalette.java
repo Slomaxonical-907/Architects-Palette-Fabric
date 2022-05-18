@@ -37,7 +37,6 @@ public class ArchitectsPalette implements ModInitializer {
         APTrades.registerVillagerTrades();
         APTrades.registerWanderingTrades();
 
-        TwistedTree.registerTreeFeature();
         APFeatures.register();
         APConfiguredFeatures.registerBiomeModifications();
         LootTableModifications.registerWitheredBones();

@@ -160,6 +160,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.PLATING_SET.STAIRS,
                 APBlocks.PLATING_SET.WALL,
                 APBlocks.POLISHED_GLOWSTONE_SET.BLOCK,
+                APBlocks.POLISHED_GLOWSTONE_SET.WALL,
                 APBlocks.REDSTONE_CAGE_LANTERN,
                 APBlocks.ROTTEN_FLESH_BLOCK,
                 APBlocks.RUNIC_GLOWSTONE,
@@ -212,7 +213,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WITHER_LAMP,
                 APBlocks.HELIODOR_ROD,
                 APBlocks.EKANITE_ROD,
-                APBlocks.MONAZITE_ROD)
+                APBlocks.MONAZITE_ROD,
+                APBlocks.UNOBTANIUM_BLOCK)
             .forEach(this::addDrop);
         for (StoneBlockSet set : APBlocks.ORE_SETS) {
             this.addDrop(set.BLOCK);

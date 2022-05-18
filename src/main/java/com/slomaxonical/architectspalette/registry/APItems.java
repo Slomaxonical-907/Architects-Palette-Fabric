@@ -18,6 +18,7 @@ public class APItems {
     public static final Item WITHERED_BONE = createItem("withered_bone", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(2));
     public static final Item ENTWINE_ROD = createItem("entwine_rod", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(3));
 
+    public static final Item UNOBTANIUM = createItem("unobtanium", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(4));
 
     public static <I extends Item> I createItem(String name, I item, int index ) {
         I registeredItem = Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID, name), item);

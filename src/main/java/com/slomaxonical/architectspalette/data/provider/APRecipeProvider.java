@@ -2,6 +2,7 @@ package com.slomaxonical.architectspalette.data.provider;
 
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.crafting.WarpingRecipeJsonBuilder;
+import com.slomaxonical.architectspalette.registry.APItems;
 import com.slomaxonical.architectspalette.registry.ConfigResourceCondition;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -43,6 +44,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerWarpingRecipe(exporter, ItemTags.LEAVES, TWISTED_LEAVES.asItem(), NETHER);
         offerWarpingRecipe(exporter, SUNSTONE.asItem(), MOONSTONE.asItem(), NETHER);
         offerWarpingRecipe(exporter, ROTTEN_FLESH_BLOCK.asItem(), ENTRAILS.asItem(), NETHER);
+        offerWarpingRecipe(exporter, Items.NETHERITE_INGOT, UNOBTANIUM, NETHER);
     //Setts
         offerSetRecipes(exporter,verticaExport, MYONITE_SET, List.of(MYONITE));
         offerSetRecipes(exporter,verticaExport, MYONITE_BRICK_SET,List.of(MYONITE,MYONITE_BRICKS));
@@ -58,9 +60,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter,verticaExport, PLATING_SET,List.of(PLATING_BLOCK));
         offerSetRecipes(exporter,verticaExport, POLISHED_PACKED_ICE_SET, PACKED_ICE_PILLAR, CHISELED_PACKED_ICE,List.of(POLISHED_PACKED_ICE,Items.PACKED_ICE));
         offerSetRecipes(exporter,verticaExport, GILDED_SANDSTONE_SET, false, GILDED_SANDSTONE_PILLAR, CHISELED_GILDED_SANDSTONE,List.of(GILDED_SANDSTONE));
-        offerSlabsRecipes(exporter,verticaExport, POLISHED_GLOWSTONE_SET.SLAB, POLISHED_GLOWSTONE_SET.VERTICAL_SLAB, POLISHED_GLOWSTONE_SET.BLOCK);
-
-        offerPillarRecipe(exporter, RUNIC_GLOWSTONE, POLISHED_GLOWSTONE_SET.SLAB);
+        offerSetRecipes(exporter, verticaExport, POLISHED_GLOWSTONE_SET,RUNIC_GLOWSTONE,null,List.of(POLISHED_GLOWSTONE));
 
         offerSetRecipes(exporter,verticaExport, OSSEOUS_BRICK_SET, OSSEOUS_PILLAR, OSSEOUS_SKULL, List.of(OSSEOUS_BRICK,Items.BONE_BLOCK));
         offerSetRecipes(exporter,verticaExport, WITHERED_OSSEOUS_BRICK_SET, WITHERED_OSSEOUS_PILLAR, WITHERED_OSSEOUS_SKULL,List.of(WITHERED_BONE,WITHERED_OSSEOUS_BRICK));
@@ -159,7 +159,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerStairsRecipe(exporter,ENTRAILS_STAIRS,ENTRAILS);
         offerPolishedStoneRecipe(exporter,ENTWINE,ENTWINE_ROD);
         offerBarsRecipe(exporter,ENTWINE_BARS,ENTWINE_ROD);
-        ShapedRecipeJsonBuilder.create(ENTWINE_ROD, 2).input('#',Items.ENDER_PEARL).input('$', Items.IRON_NUGGET).pattern("#$#").criterion(hasItem(Items.ENDER_PEARL),conditionsFromItem(Items.ENDER_PEARL)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(ENTWINE_ROD, 4).input('#',Items.ENDER_PEARL).input('$', Items.IRON_NUGGET).pattern("#$#").criterion(hasItem(Items.ENDER_PEARL),conditionsFromItem(Items.ENDER_PEARL)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter,FLINT_BLOCK,Items.FLINT);
         ShapedRecipeJsonBuilder.create(GRINNING_ACACIA_TOTEM, 2).input('#',Items.ACACIA_LOG).input('$', Items.STICK).pattern("$#$").pattern(" # ").criterion(hasItem(Items.ACACIA_LOG),conditionsFromItem(Items.ACACIA_LOG)).offerTo(exporter);
         offerMiniXRecipe(exporter,MOLTEN_NETHER_BRICKS,Items.MAGMA_BLOCK,Items.NETHER_BRICKS,4);
@@ -241,8 +241,8 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerStonecuttingRecipe(exporter,1,OLIVESTONE_PILLAR,List.of(OLIVESTONE_BRICKS,OLIVESTONE_TILE));
         offerStonecuttingRecipe(exporter,OSSEOUS_BRICK,Items.BONE_BLOCK);
         offerStonecuttingRecipe(exporter,POLISHED_GLOWSTONE,Items.GLOWSTONE);
-        offerStonecuttingRecipe(exporter,2,POLISHED_GLOWSTONE_SET.SLAB,List.of(POLISHED_GLOWSTONE,Items.GLOWSTONE));
-        offerStonecuttingRecipe(exporter,1,RUNIC_GLOWSTONE,List.of(POLISHED_GLOWSTONE,Items.GLOWSTONE));
+//        offerStonecuttingRecipe(exporter,2,POLISHED_GLOWSTONE_SET.SLAB,List.of(POLISHED_GLOWSTONE,Items.GLOWSTONE));
+//        offerStonecuttingRecipe(exporter,1,RUNIC_GLOWSTONE,List.of(POLISHED_GLOWSTONE,Items.GLOWSTONE));
         offerStonecuttingRecipe(exporter,POLISHED_PACKED_ICE,Items.PACKED_ICE);
         offerStonecuttingRecipe(exporter,WITHERED_OSSEOUS_BRICK,WITHERED_BONE_BLOCK);
 
@@ -252,6 +252,8 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerStonecuttingRecipe(exporter,HEAVY_END_STONE_BRICKS,Items.END_STONE);
         offerStonecuttingRecipe(exporter,HEAVY_STONE_BRICKS,Items.STONE);
 
+        offerCondensingRecipe(exporter,UNOBTANIUM_BLOCK,UNOBTANIUM,1);
+        offerShapelessRecipe(exporter,UNOBTANIUM,UNOBTANIUM_BLOCK,null,5);
         offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(0), Items.COAL);
         offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(1), Items.LAPIS_LAZULI);
         offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(2), Items.REDSTONE);
@@ -323,18 +325,25 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter, vertExporter, blockSet, true, pillar, chiseled, forCutting);
     }
     public static void offerSetRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, StoneBlockSet blockSet, boolean wall, @Nullable Block pillar, @Nullable Block chiseled, List<ItemConvertible>  cuttingInputs){
-        offerStairsRecipe(exporter,blockSet.STAIRS, blockSet.BLOCK);
         offerSlabsRecipes(exporter,vertExporter,blockSet.SLAB, blockSet.VERTICAL_SLAB, blockSet.BLOCK);
-        if (wall) offerWallRecipe(exporter, blockSet.WALL, blockSet.BLOCK);
-        if (pillar != null) offerPillarRecipe(exporter, pillar, blockSet.BLOCK);
-        if (chiseled != null) offerChiseledBlockRecipe(exporter, chiseled, blockSet.SLAB);
-        //stoncutting
-        offerStonecuttingRecipe(exporter,1,blockSet.STAIRS,cuttingInputs);
         offerStonecuttingRecipe(exporter,2,blockSet.SLAB,cuttingInputs);
         offerStonecuttingRecipe(vertExporter,2,blockSet.VERTICAL_SLAB,cuttingInputs,"vertical/");
-        if (wall) offerStonecuttingRecipe(exporter,1,blockSet.WALL,cuttingInputs);
-        if (pillar != null) offerStonecuttingRecipe(exporter,1,pillar,cuttingInputs);
-        if (chiseled != null) offerStonecuttingRecipe(exporter,1,chiseled,cuttingInputs);
+        if(blockSet.STAIRS!=null){
+            offerStairsRecipe(exporter,blockSet.STAIRS, blockSet.BLOCK);
+            offerStonecuttingRecipe(exporter,1,blockSet.STAIRS,cuttingInputs);
+        }
+        if (wall){
+            offerWallRecipe(exporter, blockSet.WALL, blockSet.BLOCK);
+            offerStonecuttingRecipe(exporter,1,blockSet.WALL,cuttingInputs);
+        }
+        if (pillar != null){
+            offerPillarRecipe(exporter, pillar, blockSet.BLOCK);
+            offerStonecuttingRecipe(exporter,1,pillar,cuttingInputs);
+        }
+        if (chiseled != null){
+            offerChiseledBlockRecipe(exporter, chiseled, blockSet.SLAB);
+            offerStonecuttingRecipe(exporter,1,chiseled,cuttingInputs);
+        }
     }
     public static void offerSlabsRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, ItemConvertible slab, ItemConvertible vertical, ItemConvertible input){
         offerSlabRecipe( exporter, slab, input);

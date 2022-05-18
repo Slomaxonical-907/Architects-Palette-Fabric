@@ -21,11 +21,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class TwistedTree extends SaplingGenerator {
-    public static final ConfiguredFeature<TreeFeatureConfig, ?> TWISTED_TREE = new ConfiguredFeature<>(Feature.TREE,TWISTED_TREE_CONFIG().build());
 
     @Override
     protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random randomIn, boolean largeHive) {
-        return BuiltinRegistries.CONFIGURED_FEATURE.getEntry(BuiltinRegistries.CONFIGURED_FEATURE.getKey(TWISTED_TREE).orElseThrow()).orElseThrow();
+        return BuiltinRegistries.CONFIGURED_FEATURE.getEntry(BuiltinRegistries.CONFIGURED_FEATURE.getKey(APFeatures.TWISTED_TREE).orElseThrow()).orElseThrow();
     }
 
     public static TreeFeatureConfig.Builder TWISTED_TREE_CONFIG() {
@@ -35,9 +34,5 @@ public class TwistedTree extends SaplingGenerator {
                 new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)),
                 new TwoLayersFeatureSize(1, 0, 2))
                 .ignoreVines();
-    }
-
-    public static void registerTreeFeature() {
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(ArchitectsPalette.MOD_ID, "twisted"), TWISTED_TREE);
     }
 }

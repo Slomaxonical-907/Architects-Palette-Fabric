@@ -230,7 +230,7 @@ public class APBlocks {
     public static final Block          TWISTED_WOOD = new PillarBlock(APBlockSettings.TwistedWood());
     public static final Block  STRIPPED_TWISTED_LOG = new PillarBlock(APBlockSettings.TwistedWood());
     public static final Block STRIPPED_TWISTED_WOOD = new PillarBlock(APBlockSettings.TwistedWood());
-    public static final Block        TWISTED_LEAVES = new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES));
+    public static final Block        TWISTED_LEAVES = new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).mapColor(MapColor.PURPLE));
     public static final Block         TWISTED_FENCE = new FenceBlock(APBlockSettings.TwistedWood());
     public static final Block    TWISTED_FENCE_GATE = new FenceGateBlock(APBlockSettings.TwistedWood());
     public static final Block          TWISTED_DOOR = new APDoorBlock(APBlockSettings.TwistedWood().nonOpaque());
@@ -289,9 +289,11 @@ public class APBlocks {
     public static final Block HELIODOR_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
     public static final Block EKANITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
     public static final Block MONAZITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
+    //misc
+    public static final Block UNOBTANIUM_BLOCK = new Block(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK));
 
     //Create Blocks
-    private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block");
+    private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block");
     public static List<Integer> INDEXS = new ArrayList<>();
 
     public static <B extends Block> B createBlock(String name, B anyBlock) {
@@ -405,7 +407,7 @@ public class APBlocks {
          createBlock("chiseled_gilded_sandstone",CHISELED_GILDED_SANDSTONE);
 
         // Polished Glowstone
-         POLISHED_GLOWSTONE_SET = new StoneBlockSet(createBlock("polished_glowstone",POLISHED_GLOWSTONE), false).addSlabs();
+         POLISHED_GLOWSTONE_SET = new StoneBlockSet(createBlock("polished_glowstone",POLISHED_GLOWSTONE), false).addSlabs().addWalls();
          createBlock("runic_glowstone",RUNIC_GLOWSTONE);
 
         // Osseous Bricks
@@ -544,9 +546,13 @@ public class APBlocks {
          createBlock("placid_acacia_totem",  PLACID_ACACIA_TOTEM);
          createBlock("shocked_acacia_totem",SHOCKED_ACACIA_TOTEM);
          createBlock("blank_acacia_totem",BLANK_ACACIA_TOTEM);
+         //radioactive
         createBlock("heliodor_rod", HELIODOR_ROD);
         createBlock("ekanite_rod", EKANITE_ROD);
         createBlock("monazite_rod", MONAZITE_ROD);
+        //misc
+        createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
+
     }
 
 }

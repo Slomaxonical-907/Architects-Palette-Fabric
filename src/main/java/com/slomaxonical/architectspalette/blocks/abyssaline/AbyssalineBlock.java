@@ -16,7 +16,7 @@ public class AbyssalineBlock extends Block {
 
 	public AbyssalineBlock(Settings properties) {
 		super(properties);
-		this.setDefaultState(this.stateManager.getDefaultState().with(AbyssalineBlock.CHARGED, false));
+		this.setDefaultState(this.getDefaultState().with(AbyssalineBlock.CHARGED, false));
 	}
 	
 //	@Override

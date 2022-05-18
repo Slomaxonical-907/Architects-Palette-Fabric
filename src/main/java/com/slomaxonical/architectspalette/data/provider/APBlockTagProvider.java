@@ -177,6 +177,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.PLATING_SET.WALL)
                 .add(APBlocks.POLISHED_GLOWSTONE_SET.BLOCK)
                 .add(APBlocks.POLISHED_GLOWSTONE_SET.SLAB)
+                .add(APBlocks.POLISHED_GLOWSTONE_SET.WALL)
                 .add(APBlocks.POLISHED_GLOWSTONE_SET.VERTICAL_SLAB)
                 .add(APBlocks.POLISHED_PACKED_ICE_SET.BLOCK)
                 .add(APBlocks.POLISHED_PACKED_ICE_SET.STAIRS)
@@ -221,7 +222,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.WITHER_LAMP)
                 .add(APBlocks.HELIODOR_ROD)
                 .add(APBlocks.EKANITE_ROD)
-                .add(APBlocks.MONAZITE_ROD);
+                .add(APBlocks.MONAZITE_ROD)
+                .add(APBlocks.UNOBTANIUM_BLOCK);
 
         for (StoneBlockSet set: APBlocks.ORE_SETS) {
             this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.BLOCK);
@@ -417,7 +419,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.PLATING_SET.STAIRS)
                 .add(APBlocks.PLATING_SET.SLAB)
                 .add(APBlocks.PLATING_SET.VERTICAL_SLAB)
-                .add(APBlocks.PLATING_SET.WALL);
+                .add(APBlocks.PLATING_SET.WALL)
+                .add(APBlocks.UNOBTANIUM_BLOCK);
 
         this.getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(APBlocks.ENTWINE)
