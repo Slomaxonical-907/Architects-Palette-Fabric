@@ -10,7 +10,11 @@ import com.slomaxonical.architectspalette.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,10 +22,12 @@ public class ArchitectsPalette implements ModInitializer {
 
     public static final String MOD_ID = "architects_palette";
     public static final Logger LOGGER = LogManager.getLogger("Architect's Palette");
-
+    public static final DefaultParticleType GREEN_FLAME = FabricParticleTypes.simple();
     @Override
     public void onInitialize() {
         AutoConfig.register(ApConfigs.class, GsonConfigSerializer::new);
+        Registry.register(Registry.PARTICLE_TYPE, new Identifier(MOD_ID, "green_flame"), GREEN_FLAME);
+
         APBlocks.registerBlocks();
         ConfigResourceCondition.init();
 

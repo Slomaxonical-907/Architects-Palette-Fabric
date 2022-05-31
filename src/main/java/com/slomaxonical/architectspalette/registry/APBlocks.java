@@ -273,8 +273,8 @@ public class APBlocks {
 
     public static final Block NETHER_BRASS_CHAIN = new ChainBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.CHAIN));
     public static final Block NETHER_BRASS_LANTERN = new LanternBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.LANTERN).luminance((a)->13));
-    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, ParticleTypes.FLAME);
-    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), ParticleTypes.FLAME);
+    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, ArchitectsPalette.GREEN_FLAME);
+    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), ArchitectsPalette.GREEN_FLAME);
 
     //Create Blocks
     private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block","nether_brass_pillar");
