@@ -44,29 +44,31 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
     }
     @Override
     protected void generateBlockLootTables() {
-//        getBSW(
-//                APBlocks.ALGAL_BRICKS,
-//                APBlocks.BASALT_TILES,
-//                APBlocks.CALCITE_BRICKS,
-//                APBlocks.DRIPSTONE_BRICKS,
-//                APBlocks.ENTWINE,
-//                APBlocks.FLINT_TILES,
-//                APBlocks.GILDED_SANDSTONE,
-//                APBlocks.MYONITE,
-//                APBlocks.MYONITE_BRICKS,
-//                APBlocks.MUSHY_MYONITE_BRICK,
-//                APBlocks.OLIVESTONE_BRICKS,
-//                APBlocks.OLIVESTONE_TILE,
-//                APBlocks.OSSEOUS_BRICK,
-//                APBlocks.OVERGROWN_ALGAL_BRICK,
-//                APBlocks.PLATING_BLOCK,
-//                APBlocks.POLISHED_GLOWSTONE,
-//                APBlocks.SUNMETAL,
-//                APBlocks.TUFF_BRICKS,
-//                APBlocks.TWISTED_PLANKS,
-//                APBlocks.WARPSTONE,
-//                APBlocks.WITHERED_OSSEOUS_BRICK
-//        ).forEach(this::addDrop);
+        for (StoneBlockSet set : StoneBlockSet.BlockSets){
+            if (set.BLOCK != APBlocks.POLISHED_PACKED_ICE){
+                this.addDrop(set.BLOCK);
+                if (set.STAIRS!=null) this.addDrop(set.STAIRS);
+                if (set.WALL!=null) this.addDrop(set.WALL);
+                if (set.SLAB!=null) {
+                    this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
+                    this.addDrop(set.VERTICAL_SLAB, BlockLootTableGenerator::slabDrops);
+                }
+            }else{
+                this.addDropWithSilkTouch(set.BLOCK);
+                this.addDropWithSilkTouch(set.STAIRS);
+                this.addDropWithSilkTouch(set.WALL);
+                this.dropSlabWithSilkTouch(set.SLAB);
+                this.dropSlabWithSilkTouch(set.VERTICAL_SLAB);
+            }
+        }
+        for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
+            this.addDrop(set.BLOCK);
+            this.addDrop(set.STAIRS);
+            this.addDrop(set.WALL);
+            this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
+        }
+        for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
+
         Stream.of(
                 APBlocks.ABYSSALINE,
                 APBlocks.ABYSSALINE_BRICKS,
@@ -182,15 +184,12 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.HELIODOR_ROD,
                 APBlocks.EKANITE_ROD,
                 APBlocks.MONAZITE_ROD,
-                APBlocks.UNOBTANIUM_BLOCK)
+                APBlocks.UNOBTANIUM_BLOCK,
+                APBlocks.NETHER_BRASS_PILLAR,
+                APBlocks.NETHER_BRASS_CHAIN,
+                APBlocks.NETHER_BRASS_LANTERN,
+                APBlocks.NETHER_BRASS_TORCH)
                 .forEach(this::addDrop);
-        for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
-            this.addDrop(set.BLOCK);
-            this.addDrop(set.STAIRS);
-            this.addDrop(set.WALL);
-            this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
-        }
-        for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
 
         Stream.of(
                 APBlocks.ABYSSALINE_BRICK_SLAB,
@@ -201,24 +200,6 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.ENTRAILS_VERTICAL_SLAB
                 )
             .forEach((i) -> this.addDrop(i, BlockLootTableGenerator::slabDrops));
-
-        for (StoneBlockSet set : StoneBlockSet.BlockSets){
-            if (set.BLOCK != APBlocks.POLISHED_PACKED_ICE){
-                 this.addDrop(set.BLOCK);
-                if (set.STAIRS!=null) this.addDrop(set.STAIRS);
-                if (set.WALL!=null) this.addDrop(set.WALL);
-                if (set.SLAB!=null) {
-                    this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
-                    this.addDrop(set.VERTICAL_SLAB, BlockLootTableGenerator::slabDrops);
-                }
-            }else{
-                this.addDropWithSilkTouch(set.BLOCK);
-                this.addDropWithSilkTouch(set.STAIRS);
-                this.addDropWithSilkTouch(set.WALL);
-                this.dropSlabWithSilkTouch(set.SLAB);
-                this.dropSlabWithSilkTouch(set.VERTICAL_SLAB);
-            }
-        }
 
         Stream.of(
             APBlocks.CHISELED_PACKED_ICE,

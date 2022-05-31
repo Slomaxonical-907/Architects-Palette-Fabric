@@ -3,10 +3,12 @@ package com.slomaxonical.architectspalette.data.provider;
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.crafting.WarpingRecipeJsonBuilder;
 import com.slomaxonical.architectspalette.registry.APBlocks;
+import com.slomaxonical.architectspalette.registry.APItems;
 import com.slomaxonical.architectspalette.registry.ConfigResourceCondition;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.RecipeProvider;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
@@ -23,6 +25,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static com.slomaxonical.architectspalette.registry.APBlocks.*;
+import static com.slomaxonical.architectspalette.registry.APBlocks.NETHER_BRASS;
 import static com.slomaxonical.architectspalette.registry.APItems.*;
 
 public class APRecipeProvider extends FabricRecipeProvider {
@@ -51,8 +54,12 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter,verticaExport, MUSHY_MYONITE_BRICK, List.of(MUSHY_MYONITE_BRICK));
         offerSetRecipes(exporter,verticaExport, OLIVESTONE_BRICKS, List.of(OLIVESTONE_BRICKS));
         offerSetRecipes(exporter,verticaExport, OLIVESTONE_TILE, List.of(OLIVESTONE_TILE));
-
         ShapedRecipeJsonBuilder.create(CHISELED_OLIVESTONE).input('#', APItemTagProvider.OLIVESTONE).pattern("#").pattern("#").criterion("has_olivstone",conditionsFromTag(APItemTagProvider.OLIVESTONE)).offerTo(exporter);
+
+
+        offerSetRecipes(exporter, verticaExport, CUT_NETHER_BRASS,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
+        offerSetRecipes(exporter, verticaExport, NETHER_BRASS,NETHER_BRASS_PILLAR,null,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
+        offerSetRecipes(exporter, verticaExport, SMOOTH_NETHER_BRASS,List.of(SMOOTH_NETHER_BRASS));
 
         offerSetRecipes(exporter,verticaExport, ALGAL_BRICKS, null, CHISELED_ALGAL_BRICKS, List.of(ALGAL_BRICKS));
         offerSetRecipes(exporter,verticaExport, OVERGROWN_ALGAL_BRICK,List.of(OVERGROWN_ALGAL_BRICK));
@@ -183,7 +190,16 @@ public class APRecipeProvider extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(WITHERED_BONE_BLOCK, 3).input('#', WITHERED_BONE).pattern("###").pattern("###").pattern("###").group("boards").criterion(hasItem(WITHERED_BONE), conditionsFromItem(WITHERED_BONE)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter,WITHERED_OSSEOUS_BRICK,WITHERED_BONE_BLOCK);
         offerSmelting(exporter,List.of(WITHERED_BONE), Items.BLACK_DYE,0.3f,200,null);
-
+        //NetherBrass
+        ShapedRecipeJsonBuilder.create(BRASS_BLEND, 4).input('#', Items.SOUL_SAND).input('C',Items.COPPER_INGOT).input('I',Items.IRON_NUGGET).pattern("#C").pattern("I#").criterion(hasItem(Items.SOUL_SAND), conditionsFromItem(Items.SOUL_SAND)).offerTo(exporter);
+        offerCutCopperRecipe(exporter,CUT_NETHER_BRASS,NETHER_BRASS);
+        offerCutCopperRecipe(exporter,NETHER_BRASS,BRASS_INGOT);
+        ShapedRecipeJsonBuilder.create(NETHER_BRASS_LANTERN).input('#', APItems.NETHER_BRASS_TORCH).input('X', NETHER_BRASS_NUGGET).pattern("XXX").pattern("X#X").pattern("XXX").criterion("has_brass_torch", RecipeProvider.conditionsFromItem(APBlocks.NETHER_BRASS_TORCH)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(NETHER_BRASS_CHAIN).input('i', BRASS_INGOT).input('n', NETHER_BRASS_NUGGET).pattern("n").pattern("i").pattern("n").criterion("has_brass_ingot", RecipeProvider.conditionsFromItem(BRASS_INGOT)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(APBlocks.NETHER_BRASS_TORCH).input('n', NETHER_BRASS_NUGGET).input('s', Items.STICK).pattern("n").pattern("s").criterion("has_brass_nugget", RecipeProvider.conditionsFromItem(NETHER_BRASS_NUGGET)).offerTo(exporter);
+        offerReversibleCompactingRecipes(exporter,NETHER_BRASS_NUGGET,BRASS_INGOT,"brass_nuggets_to_ingot",null,"brass_ingot_to_nuggets",null);
+        offerSmelting(exporter, List.of(BRASS_BLEND),BRASS_INGOT,0.1f, 200, null);
+        offerSmelting(exporter, List.of(NETHER_BRASS),SMOOTH_NETHER_BRASS,0.1f, 200, null);
         //olive
         offerFramedRecipe(exporter,OLIVESTONE_BRICKS, Items.GREEN_DYE,Items.STONE,8);
         ShapedRecipeJsonBuilder.create(ILLUMINATED_OLIVESTONE, 2).input('#', APItemTagProvider.OLIVESTONE).input('$',Items.GLOWSTONE_DUST).pattern("#$").pattern("$#").criterion("has_olivestone", conditionsFromTag(APItemTagProvider.OLIVESTONE)).offerTo(exporter);

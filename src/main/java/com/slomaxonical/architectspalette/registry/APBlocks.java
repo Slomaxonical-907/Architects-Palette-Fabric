@@ -11,12 +11,12 @@ import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.ArchitectsPalette;
-import com.slomaxonical.architectspalette.blocks.extended.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -66,7 +66,7 @@ public class APBlocks {
     public static final Block SUNMETAL                = new Block(APBlockSettings.SUNMETAL);
     public static final Block CHISELED_SUNMETAL_BLOCK = new Block(APBlockSettings.SUNMETAL);
     public static final Block SUNMETAL_PILLAR         = new PillarBlock(APBlockSettings.SUNMETAL);
-    public static final Block SUNMETAL_BARS           = new APPaneBlock(APBlockSettings.SUNMETAL.nonOpaque());
+    public static final Block SUNMETAL_BARS           = new PaneBlock(APBlockSettings.SUNMETAL.nonOpaque());
 
     // Rotten Flesh Block
     public static final Block ROTTEN_FLESH_BLOCK = new Block(APBlockSettings.Meat(MapColor.ORANGE));
@@ -76,7 +76,7 @@ public class APBlocks {
     public static final Block ENTRAILS = new DrippyBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     public static final Block ENTRAILS_SLAB = new DrippySlabBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     public static final Block ENTRAILS_VERTICAL_SLAB = new DrippyVerticalSlabBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
-    public static final Block ENTRAILS_STAIRS = new APStairsBlock(ENTRAILS.getDefaultState(), APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
+    public static final Block ENTRAILS_STAIRS = new StairsBlock(ENTRAILS.getDefaultState(), APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     // Funny fish blocks
     public static final Block  SALMON_LOG   = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_RED));
     public static final Block  COD_LOG = new PillarBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_YELLOW));
@@ -179,7 +179,7 @@ public class APBlocks {
     public static final Block ENTWINE = new Block(APBlockSettings.ENTWINE);
     public static final Block ENTWINE_PILLAR = new PillarBlock(APBlockSettings.ENTWINE);
     public static final Block CHISELED_ENTWINE = new Block(APBlockSettings.ENTWINE);
-    public static final Block ENTWINE_BARS = new APPaneBlock(FabricBlockSettings.copy(ENTWINE).nonOpaque());
+    public static final Block ENTWINE_BARS = new PaneBlock(FabricBlockSettings.copy(ENTWINE).nonOpaque());
     // Ender Pearl Block
     public static final Block ENDER_PEARL_BLOCK = new Block(APBlockSettings.ENDER_PEARL);
 
@@ -206,13 +206,13 @@ public class APBlocks {
     public static final Block        TWISTED_LEAVES = new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).mapColor(MapColor.PURPLE));
     public static final Block         TWISTED_FENCE = new FenceBlock(APBlockSettings.TwistedWood());
     public static final Block    TWISTED_FENCE_GATE = new FenceGateBlock(APBlockSettings.TwistedWood());
-    public static final Block          TWISTED_DOOR = new APDoorBlock(APBlockSettings.TwistedWood().nonOpaque());
-    public static final Block      TWISTED_TRAPDOOR = new APTrapdoorBlock(APBlockSettings.TwistedWood().nonOpaque());
-    public static final Block        TWISTED_BUTTON = new APWoodenButtonBlock(APBlockSettings.TwistedWood(true));
-    public static final Block TWISTED_PRESSURE_PLATE = new APPressurePlateBlock((PressurePlateBlock.ActivationRule.EVERYTHING), APBlockSettings.TwistedWood(true));
+    public static final Block          TWISTED_DOOR = new DoorBlock(APBlockSettings.TwistedWood().nonOpaque());
+    public static final Block      TWISTED_TRAPDOOR = new TrapdoorBlock(APBlockSettings.TwistedWood().nonOpaque());
+    public static final Block        TWISTED_BUTTON = new WoodenButtonBlock(APBlockSettings.TwistedWood(true));
+    public static final Block TWISTED_PRESSURE_PLATE = new PressurePlateBlock((PressurePlateBlock.ActivationRule.EVERYTHING), APBlockSettings.TwistedWood(true));
 
 
-    public static final Block        TWISTED_SAPLING = new APSaplingBlock(new TwistedTree(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
+    public static final Block        TWISTED_SAPLING = new SaplingBlock(new TwistedTree(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
     public static final Block POTTED_TWISTED_SAPLING = createPottedPlant(TWISTED_SAPLING);
 
     //Boards
@@ -262,11 +262,22 @@ public class APBlocks {
     public static final Block HELIODOR_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
     public static final Block EKANITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
     public static final Block MONAZITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
-    //misc
+    //unobtanium
     public static final Block UNOBTANIUM_BLOCK = new Block(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK));
+    // Nether Brass
+    public static final Block NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
+    public static final Block CUT_NETHER_BRASS =new Block(APBlockSettings.NETHER_BRASS);
+    public static final Block SMOOTH_NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
+    public static final Block NETHER_BRASS_PILLAR = new PillarBlock(APBlockSettings.NETHER_BRASS);
+    public static final Block NETHER_BRASS_FIRE = new GreenFireBlock(APBlockSettings.GREEN_FIRE);
+
+    public static final Block NETHER_BRASS_CHAIN = new ChainBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.CHAIN));
+    public static final Block NETHER_BRASS_LANTERN = new LanternBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.LANTERN).luminance((a)->13));
+    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, ParticleTypes.FLAME);
+    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), ParticleTypes.FLAME);
 
     //Create Blocks
-    private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block");
+    private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block","nether_brass_pillar");
     public static List<Integer> INDEXS = new ArrayList<>();
 
     public static <B extends Block> B createBlock(String name, B anyBlock) {
@@ -523,8 +534,18 @@ public class APBlocks {
         createBlock("heliodor_rod", HELIODOR_ROD);
         createBlock("ekanite_rod", EKANITE_ROD);
         createBlock("monazite_rod", MONAZITE_ROD);
-        //misc
+        //unobtanim
         createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
+        //netherBrass
+        new StoneBlockSet(createBlock("nether_brass_block", NETHER_BRASS));
+        new StoneBlockSet(createBlock("cut_nether_brass", CUT_NETHER_BRASS));
+        createBlock("nether_brass_pillar", NETHER_BRASS_PILLAR);
+        new StoneBlockSet(createBlock("smooth_nether_brass", SMOOTH_NETHER_BRASS), false).addSlabs().addStairs();
+        createBlockNoItem("nether_brass_fire", NETHER_BRASS_FIRE);
+        createBlock("nether_brass_chain", NETHER_BRASS_CHAIN);
+        createBlock("nether_brass_lantern", NETHER_BRASS_LANTERN);
+        createBlockNoItem("nether_brass_torch", NETHER_BRASS_TORCH);
+        createBlockNoItem("nether_brass_wall_torch",NETHER_BRASS_WALL_TORCH);
 
     }
 

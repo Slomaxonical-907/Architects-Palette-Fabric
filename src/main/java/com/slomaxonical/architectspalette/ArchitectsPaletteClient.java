@@ -22,7 +22,13 @@ public class ArchitectsPaletteClient implements ClientModInitializer {
                 APBlocks.TWISTED_SAPLING,
                 APBlocks.POTTED_TWISTED_SAPLING,
 
-                APBlocks.ACACIA_TOTEM_WING
+                APBlocks.ACACIA_TOTEM_WING,
+
+                APBlocks.NETHER_BRASS_FIRE,
+                APBlocks.NETHER_BRASS_TORCH,
+                APBlocks.NETHER_BRASS_WALL_TORCH,
+                APBlocks.NETHER_BRASS_CHAIN,
+                APBlocks.NETHER_BRASS_LANTERN
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
                 APBlocks.HELIODOR_ROD,

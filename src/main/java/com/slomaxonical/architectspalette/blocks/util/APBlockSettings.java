@@ -46,6 +46,23 @@ public class APBlockSettings {
 	public static final FabricBlockSettings PLATING = FabricBlockSettings.of(Material.METAL, MapColor.STONE_GRAY).strength(4.0F, 10.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
 
 	public static final FabricBlockSettings NETHER_CRYSTAL = FabricBlockSettings.copyOf(Blocks.GLASS).luminance(l -> 12).requiresTool().strength(1.2f);
+
+	public static final FabricBlockSettings NETHER_BRASS = FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool();
+
+
+	public static final FabricBlockSettings GREEN_FIRE = FabricBlockSettings.of(Material.FIRE, MapColor.LIME)
+			.noCollision()
+			.breakInstantly()
+			.luminance((p_50884_) -> 13)
+			.sounds(BlockSoundGroup.WOOL)
+			.dropsNothing();
+
+	public static final FabricBlockSettings BRASS_TORCH = FabricBlockSettings.of(Material.DECORATION)
+			.noCollision()
+			.breakInstantly()
+			.lightLevel((p_50884_) -> 13)
+			.sounds(BlockSoundGroup.WOOD);
+
 	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)
 			.requiresTool()
 			.strength(2.0F, 6.0F)

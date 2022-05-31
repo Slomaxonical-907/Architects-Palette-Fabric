@@ -2,10 +2,10 @@ package com.slomaxonical.architectspalette.blocks.util;
 
 import com.slomaxonical.architectspalette.blocks.VerticalSlabBlock;
 import com.slomaxonical.architectspalette.registry.APBlocks;
-import com.slomaxonical.architectspalette.blocks.extended.APStairsBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
@@ -67,7 +67,7 @@ public class StoneBlockSet {
     }
 
     public StoneBlockSet addStairs() {
-        STAIRS = APBlocks.createBlock(material_name + "_stairs", new APStairsBlock(BLOCK.getDefaultState(), properties()));
+        STAIRS = APBlocks.createBlock(material_name + "_stairs", new StairsBlock(BLOCK.getDefaultState(), properties()));
         return this;
     }
 
