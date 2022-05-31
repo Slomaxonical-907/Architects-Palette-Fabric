@@ -12,6 +12,9 @@ import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     public APBlockTagProvider(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
@@ -26,7 +29,26 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         TagKey<Block> tag = TagKey.of(Registry.BLOCK_KEY, id);
         return this.getOrCreateTagBuilder(tag);
     }
-
+    private void addSets(TagKey<Block> tag, Block... baseBlocks) {
+        addSets(tag,true,true,true,true,baseBlocks);
+    }
+    private void addSets(TagKey<Block> tag,boolean tryBlock,boolean tryStairs,boolean trySlabs,boolean tryWall, Block... baseBlocks){
+        ArrayList<StoneBlockSet> sets = new ArrayList<>();
+        for (Block base: baseBlocks) {
+            StoneBlockSet.BlockSets.forEach(set->{
+                if (set.get().equals(base)) sets.add(set);
+            });
+        }
+        for (StoneBlockSet set:sets) {
+            if (tryBlock) this.getOrCreateTagBuilder(tag).add(set.BLOCK);
+            if(set.STAIRS!=null && tryStairs) this.getOrCreateTagBuilder(tag).add(set.STAIRS);
+            if(set.SLAB!=null && trySlabs){
+                this.getOrCreateTagBuilder(tag).add(set.SLAB);
+                this.getOrCreateTagBuilder(tag).add(set.VERTICAL_SLAB);
+            }
+            if(set.WALL!=null && tryWall) this.getOrCreateTagBuilder(tag).add(set.WALL);
+        }
+    }
     @Override
     protected void generateTags() {
         this.getOrCreateTagBuilder(CRYSTAL_REPLACEABLE)
@@ -43,7 +65,6 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.ALGAL_CAGE_LANTERN)
                 .add(APBlocks.GLOWSTONE_CAGE_LANTERN)
                 .add(APBlocks.REDSTONE_CAGE_LANTERN);
-
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(APBlocks.ABYSSALINE)
                 .add(APBlocks.ABYSSALINE_BRICKS)
@@ -54,23 +75,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.ABYSSALINE_TILES)
                 .add(APBlocks.ABYSSALINE_TILE_SLAB)
                 .add(APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB)
-                .add(APBlocks.ALGAL_BRICK_SET.BLOCK)
-                .add(APBlocks.ALGAL_BRICK_SET.STAIRS)
-                .add(APBlocks.ALGAL_BRICK_SET.SLAB)
-                .add(APBlocks.ALGAL_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.ALGAL_BRICK_SET.WALL)
                 .add(APBlocks.ALGAL_CAGE_LANTERN)
                 .add(APBlocks.ALGAL_LAMP)
-                .add(APBlocks.BASALT_TILES_SET.BLOCK)
-                .add(APBlocks.BASALT_TILES_SET.STAIRS)
-                .add(APBlocks.BASALT_TILES_SET.SLAB)
-                .add(APBlocks.BASALT_TILES_SET.VERTICAL_SLAB)
-                .add(APBlocks.BASALT_TILES_SET.WALL)
-                .add(APBlocks.CALCITE_BRICK_SET.BLOCK)
-                .add(APBlocks.CALCITE_BRICK_SET.STAIRS)
-                .add(APBlocks.CALCITE_BRICK_SET.SLAB)
-                .add(APBlocks.CALCITE_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.CALCITE_BRICK_SET.WALL)
                 .add(APBlocks.CALCITE_LAMP)
                 .add(APBlocks.CALCITE_PILLAR)
                 .add(APBlocks.CHISELED_ABYSSALINE_BRICKS)
@@ -91,31 +97,13 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.CRACKED_END_STONE_BRICKS)
                 .add(APBlocks.CRACKED_OLIVESTONE_BRICKS)
                 .add(APBlocks.CRACKED_OLIVESTONE_TILES)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.BLOCK)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.STAIRS)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.SLAB)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.WALL)
                 .add(APBlocks.DRIPSTONE_LAMP)
                 .add(APBlocks.DRIPSTONE_PILLAR)
                 .add(APBlocks.ENTWINE_BARS)
                 .add(APBlocks.ENTWINE_PILLAR)
-                .add(APBlocks.ENTWINE_SET.BLOCK)
-                .add(APBlocks.ENTWINE_SET.STAIRS)
-                .add(APBlocks.ENTWINE_SET.SLAB)
-                .add(APBlocks.ENTWINE_SET.VERTICAL_SLAB)
                 .add(APBlocks.FLINT_BLOCK)
                 .add(APBlocks.FLINT_PILLAR)
-                .add(APBlocks.FLINT_TILES_SET.BLOCK)
-                .add(APBlocks.FLINT_TILES_SET.STAIRS)
-                .add(APBlocks.FLINT_TILES_SET.SLAB)
-                .add(APBlocks.FLINT_TILES_SET.VERTICAL_SLAB)
-                .add(APBlocks.FLINT_TILES_SET.WALL)
                 .add(APBlocks.GILDED_SANDSTONE_PILLAR)
-                .add(APBlocks.GILDED_SANDSTONE_SET.BLOCK)
-                .add(APBlocks.GILDED_SANDSTONE_SET.STAIRS)
-                .add(APBlocks.GILDED_SANDSTONE_SET.SLAB)
-                .add(APBlocks.GILDED_SANDSTONE_SET.VERTICAL_SLAB)
                 .add(APBlocks.GLOWSTONE_CAGE_LANTERN)
                 .add(APBlocks.HEAVY_CALCITE_BRICKS)
                 .add(APBlocks.HEAVY_CRACKED_END_STONE_BRICKS)
@@ -130,93 +118,25 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.LIT_WITHERED_OSSEOUS_SKULL)
                 .add(APBlocks.MOLTEN_NETHER_BRICKS)
                 .add(APBlocks.MOONSTONE)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.BLOCK)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.STAIRS)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.SLAB)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.WALL)
-                .add(APBlocks.MYONITE_BRICK_SET.BLOCK)
-                .add(APBlocks.MYONITE_BRICK_SET.STAIRS)
-                .add(APBlocks.MYONITE_BRICK_SET.SLAB)
-                .add(APBlocks.MYONITE_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.MYONITE_BRICK_SET.WALL)
-                .add(APBlocks.MYONITE_SET.BLOCK)
-                .add(APBlocks.MYONITE_SET.STAIRS)
-                .add(APBlocks.MYONITE_SET.SLAB)
-                .add(APBlocks.MYONITE_SET.VERTICAL_SLAB)
-                .add(APBlocks.MYONITE_SET.WALL)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.BLOCK)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.STAIRS)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.SLAB)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.WALL)
                 .add(APBlocks.OLIVESTONE_PILLAR)
-                .add(APBlocks.OLIVESTONE_TILES_SET.BLOCK)
-                .add(APBlocks.OLIVESTONE_TILES_SET.STAIRS)
-                .add(APBlocks.OLIVESTONE_TILES_SET.SLAB)
-                .add(APBlocks.OLIVESTONE_TILES_SET.VERTICAL_SLAB)
-                .add(APBlocks.OLIVESTONE_TILES_SET.WALL)
-                .add(APBlocks.OSSEOUS_BRICK_SET.BLOCK)
-                .add(APBlocks.OSSEOUS_BRICK_SET.STAIRS)
-                .add(APBlocks.OSSEOUS_BRICK_SET.SLAB)
-                .add(APBlocks.OSSEOUS_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.OSSEOUS_BRICK_SET.WALL)
                 .add(APBlocks.OSSEOUS_PILLAR)
                 .add(APBlocks.OSSEOUS_SKULL)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.BLOCK)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.STAIRS)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.SLAB)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.WALL)
                 .add(APBlocks.PACKED_ICE_PILLAR)
                 .add(APBlocks.PIPE)
-                .add(APBlocks.PLATING_SET.BLOCK)
-                .add(APBlocks.PLATING_SET.STAIRS)
-                .add(APBlocks.PLATING_SET.SLAB)
-                .add(APBlocks.PLATING_SET.VERTICAL_SLAB)
-                .add(APBlocks.PLATING_SET.WALL)
-                .add(APBlocks.POLISHED_GLOWSTONE_SET.BLOCK)
-                .add(APBlocks.POLISHED_GLOWSTONE_SET.SLAB)
-                .add(APBlocks.POLISHED_GLOWSTONE_SET.WALL)
-                .add(APBlocks.POLISHED_GLOWSTONE_SET.VERTICAL_SLAB)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.BLOCK)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.STAIRS)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.SLAB)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.VERTICAL_SLAB)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.WALL)
                 .add(APBlocks.POTTED_TWISTED_SAPLING)
                 .add(APBlocks.REDSTONE_CAGE_LANTERN)
                 .add(APBlocks.RUNIC_GLOWSTONE)
                 .add(APBlocks.SCUTE_BLOCK)
                 .add(APBlocks.SUNMETAL_BARS)
                 .add(APBlocks.SUNMETAL_PILLAR)
-                .add(APBlocks.SUNMETAL_SET.BLOCK)
-                .add(APBlocks.SUNMETAL_SET.STAIRS)
-                .add(APBlocks.SUNMETAL_SET.SLAB)
-                .add(APBlocks.SUNMETAL_SET.VERTICAL_SLAB)
                 .add(APBlocks.SUNSTONE)
-                .add(APBlocks.TUFF_BRICK_SET.BLOCK)
-                .add(APBlocks.TUFF_BRICK_SET.STAIRS)
-                .add(APBlocks.TUFF_BRICK_SET.SLAB)
-                .add(APBlocks.TUFF_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.TUFF_BRICK_SET.WALL)
                 .add(APBlocks.TUFF_LAMP)
                 .add(APBlocks.TUFF_PILLAR)
                 .add(APBlocks.TWISTING_BLACKSTONE)
                 .add(APBlocks.TWISTING_BLACKSTONE_BRICKS)
-                .add(APBlocks.WARPSTONE_SET.BLOCK)
-                .add(APBlocks.WARPSTONE_SET.STAIRS)
-                .add(APBlocks.WARPSTONE_SET.SLAB)
-                .add(APBlocks.WARPSTONE_SET.VERTICAL_SLAB)
-                .add(APBlocks.WARPSTONE_SET.WALL)
                 .add(APBlocks.WEEPING_BLACKSTONE)
                 .add(APBlocks.WEEPING_BLACKSTONE_BRICKS)
                 .add(APBlocks.WITHERED_BONE_BLOCK)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.BLOCK)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.STAIRS)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.SLAB)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.WALL)
                 .add(APBlocks.WITHERED_OSSEOUS_PILLAR)
                 .add(APBlocks.WITHERED_OSSEOUS_SKULL)
                 .add(APBlocks.WITHER_LAMP)
@@ -224,20 +144,32 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.EKANITE_ROD)
                 .add(APBlocks.MONAZITE_ROD)
                 .add(APBlocks.UNOBTANIUM_BLOCK);
+        addSets(BlockTags.PICKAXE_MINEABLE,
+                APBlocks.ALGAL_BRICKS,
+                APBlocks.BASALT_TILES,
+                APBlocks.CALCITE_BRICKS,
+                APBlocks.DRIPSTONE_BRICKS,
+                APBlocks.ENTWINE,
+                APBlocks.FLINT_TILES,
+                APBlocks.GILDED_SANDSTONE,
+                APBlocks.MYONITE,
+                APBlocks.MYONITE_BRICKS,
+                APBlocks.MUSHY_MYONITE_BRICK,
+                APBlocks.OLIVESTONE_BRICKS,
+                APBlocks.OLIVESTONE_TILE,
+                APBlocks.OSSEOUS_BRICK,
+                APBlocks.OVERGROWN_ALGAL_BRICK,
+                APBlocks.PLATING_BLOCK,
+                APBlocks.POLISHED_GLOWSTONE,
+                APBlocks.POLISHED_PACKED_ICE,
+                APBlocks.SUNMETAL,
+                APBlocks.TUFF_BRICKS,
+                APBlocks.WARPSTONE,
+                APBlocks.WITHERED_OSSEOUS_BRICK
+        );
 
-        for (StoneBlockSet set: APBlocks.ORE_SETS) {
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.BLOCK);
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.STAIRS);
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.SLAB);
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.VERTICAL_SLAB);
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.WALL);
-
-            this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.STAIRS);
-            this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.SLAB);
-            this.getOrCreateTagBuilder(BlockTags.WALLS).add(set.WALL);
-        }
-        for (Block b: APBlocks.CHISELED_ORES.values()) this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b);
-        for (Block b: APBlocks.CRACKED_ORES.values()) this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b);
+        for (List<Block> l: APBlocks.chiseledNcrackedOres.values()) l.forEach((b)->this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b));
+//        for (Block b: APBlocks.CRACKED_ORES.values()) this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b);
 
 
         this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
@@ -279,16 +211,13 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.TWISTED_FENCE)
                 .add(APBlocks.TWISTED_FENCE_GATE)
                 .add(APBlocks.TWISTED_LOG)
-                .add(APBlocks.TWISTED_PLANKS_SET.BLOCK)
-                .add(APBlocks.TWISTED_PLANKS_SET.STAIRS)
-                .add(APBlocks.TWISTED_PLANKS_SET.SLAB)
-                .add(APBlocks.TWISTED_PLANKS_SET.VERTICAL_SLAB)
                 .add(APBlocks.TWISTED_PRESSURE_PLATE)
                 .add(APBlocks.TWISTED_RAILING)
                 .add(APBlocks.TWISTED_TRAPDOOR)
                 .add(APBlocks.TWISTED_WOOD)
                 .add(APBlocks.WARPED_BOARDS)
                 .add(APBlocks.WARPED_RAILING);
+        addSets(BlockTags.AXE_MINEABLE,APBlocks.TWISTED_PLANKS);
 
         this.getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(APBlocks.COARSE_SNOW);
@@ -297,8 +226,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.ENDER_PEARL_BLOCK)
                 .add(APBlocks.TWISTED_LEAVES);
 
+        addSets(BlockTags.DRAGON_IMMUNE,APBlocks.ENTWINE);
         this.getOrCreateTagBuilder(BlockTags.DRAGON_IMMUNE)
-                .add(APBlocks.ENTWINE)
                 .add(APBlocks.ENTWINE_PILLAR)
                 .add(APBlocks.ENTWINE_BARS)
                 .add(APBlocks.CHISELED_ENTWINE)
@@ -309,14 +238,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.CRACKED_END_STONE_BRICKS)
                 .add(Blocks.END_STONE_BRICKS);
 
-        this.getOrCreateTagBuilder(BlockTags.MUSHROOM_GROW_BLOCK)
-                .add(APBlocks.MYONITE)
-                .add(APBlocks.MYONITE_BRICK_SET.BLOCK)
-                .add(APBlocks.MYONITE_BRICK_SET.SLAB)
-                .add(APBlocks.MYONITE_BRICK_SET.VERTICAL_SLAB)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.BLOCK)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.SLAB)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.VERTICAL_SLAB);
+        addSets(BlockTags.MUSHROOM_GROW_BLOCK,true,false,true,false,APBlocks.MYONITE,APBlocks.MYONITE_BRICKS,APBlocks.MUSHY_MYONITE_BRICK);
 
         this.getOrCreateTagBuilder(BlockTags.PLANKS).add(APBlocks.TWISTED_PLANKS);
         this.getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(APBlocks.TWISTED_FENCE_GATE);
@@ -329,77 +251,26 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         this.getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(APBlocks.TWISTED_TRAPDOOR);
         this.getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(APBlocks.TWISTED_FENCE);
         this.getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(APBlocks.TWISTED_PRESSURE_PLATE);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(APBlocks.TWISTED_PLANKS_SET.SLAB);
-        this.getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(APBlocks.TWISTED_PLANKS_SET.STAIRS);
+        addSets(BlockTags.WOODEN_STAIRS,false,true,false,false,APBlocks.TWISTED_PLANKS);
+        addSets(BlockTags.WOODEN_STAIRS,false,false,true,false,APBlocks.TWISTED_PLANKS);
         this.getOrCreateTagBuilder(BlockTags.WALL_POST_OVERRIDE).addTag(CAGE_LANTERNS);//this tag see
-
+        //SLABS
         this.getOrCreateTagBuilder(BlockTags.SLABS)
-                .add(APBlocks.MYONITE_SET.SLAB)
-                .add(APBlocks.MYONITE_BRICK_SET.SLAB)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.SLAB)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.SLAB)
-                .add(APBlocks.OLIVESTONE_TILES_SET.SLAB)
-                .add(APBlocks.ALGAL_BRICK_SET.SLAB)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.SLAB)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.SLAB)
-                .add(APBlocks.SUNMETAL_SET.SLAB)
-                .add(APBlocks.OSSEOUS_BRICK_SET.SLAB)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.SLAB)
-                .add(APBlocks.FLINT_TILES_SET.SLAB)
-                .add(APBlocks.ENTWINE_SET.SLAB)
-                .add(APBlocks.POLISHED_GLOWSTONE_SET.SLAB)
-                .add(APBlocks.GILDED_SANDSTONE_SET.SLAB)
-                .add(APBlocks.PLATING_SET.SLAB)
-                .add(APBlocks.WARPSTONE_SET.SLAB)
-                .add(APBlocks.BASALT_TILES_SET.SLAB)
-                .add(APBlocks.TUFF_BRICK_SET.SLAB)
-                .add(APBlocks.CALCITE_BRICK_SET.SLAB)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.SLAB)
                 .add(APBlocks.ABYSSALINE_BRICK_SLAB)
                 .add(APBlocks.ABYSSALINE_TILE_SLAB)
                 .add(APBlocks.ENTRAILS_SLAB);
-
-        this.getOrCreateTagBuilder(BlockTags.STAIRS)
-                .add(APBlocks.MYONITE_SET.STAIRS)
-                .add(APBlocks.MYONITE_BRICK_SET.STAIRS)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.STAIRS)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.STAIRS)
-                .add(APBlocks.OLIVESTONE_TILES_SET.STAIRS)
-                .add(APBlocks.ALGAL_BRICK_SET.STAIRS)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.STAIRS)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.STAIRS)
-                .add(APBlocks.SUNMETAL_SET.STAIRS)
-                .add(APBlocks.OSSEOUS_BRICK_SET.STAIRS)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.STAIRS)
-                .add(APBlocks.FLINT_TILES_SET.STAIRS)
-                .add(APBlocks.ENTWINE_SET.STAIRS)
-                .add(APBlocks.GILDED_SANDSTONE_SET.STAIRS)
-                .add(APBlocks.PLATING_SET.STAIRS)
-                .add(APBlocks.WARPSTONE_SET.STAIRS)
-                .add(APBlocks.BASALT_TILES_SET.STAIRS)
-                .add(APBlocks.TUFF_BRICK_SET.STAIRS)
-                .add(APBlocks.CALCITE_BRICK_SET.STAIRS)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.STAIRS)
-                .add(APBlocks.ENTRAILS_STAIRS);
-
-        this.getOrCreateTagBuilder(BlockTags.WALLS)
-                .add(APBlocks.MYONITE_SET.WALL)
-                .add(APBlocks.MYONITE_BRICK_SET.WALL)
-                .add(APBlocks.MUSHY_MYONITE_BRICK_SET.WALL)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.WALL)
-                .add(APBlocks.OLIVESTONE_TILES_SET.WALL)
-                .add(APBlocks.ALGAL_BRICK_SET.WALL)
-                .add(APBlocks.OVERGROWN_ALGAL_BRICK_SET.WALL)
-                .add(APBlocks.POLISHED_PACKED_ICE_SET.WALL)
-                .add(APBlocks.OSSEOUS_BRICK_SET.WALL)
-                .add(APBlocks.WITHERED_OSSEOUS_BRICK_SET.WALL)
-                .add(APBlocks.FLINT_TILES_SET.WALL)
-                .add(APBlocks.PLATING_SET.WALL)
-                .add(APBlocks.WARPSTONE_SET.WALL)
-                .add(APBlocks.BASALT_TILES_SET.WALL)
-                .add(APBlocks.TUFF_BRICK_SET.WALL)
-                .add(APBlocks.CALCITE_BRICK_SET.WALL)
-                .add(APBlocks.DRIPSTONE_BRICK_SET.WALL);
+        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
+            if (set.SLAB !=null) this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.SLAB);
+        }
+        //STAIRS
+        this.getOrCreateTagBuilder(BlockTags.STAIRS).add(APBlocks.ENTRAILS_STAIRS);
+        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
+            if (set.STAIRS !=null) this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.STAIRS);
+        }
+        //WALLS
+        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
+            if (set.WALL !=null) this.getOrCreateTagBuilder(BlockTags.WALLS).add(set.WALL);
+        }
 
         this.getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(APBlocks.ABYSSALINE)
@@ -413,33 +284,17 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB)
                 .add(APBlocks.CHISELED_ABYSSALINE_BRICKS);
 
+        addSets(BlockTags.NEEDS_IRON_TOOL,APBlocks.PLATING_BLOCK);
         this.getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(APBlocks.PIPE)
-                .add(APBlocks.PLATING_SET.BLOCK)
-                .add(APBlocks.PLATING_SET.STAIRS)
-                .add(APBlocks.PLATING_SET.SLAB)
-                .add(APBlocks.PLATING_SET.VERTICAL_SLAB)
-                .add(APBlocks.PLATING_SET.WALL)
                 .add(APBlocks.UNOBTANIUM_BLOCK);
 
+        addSets(BlockTags.NEEDS_STONE_TOOL, APBlocks.ENTWINE,APBlocks.FLINT_BLOCK,APBlocks.FLINT_TILES,APBlocks.SUNMETAL);
         this.getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
-                .add(APBlocks.ENTWINE)
-                .add(APBlocks.ENTWINE_SET.STAIRS)
-                .add(APBlocks.ENTWINE_SET.SLAB)
-                .add(APBlocks.ENTWINE_SET.VERTICAL_SLAB)
                 .add(APBlocks.ENTWINE_PILLAR)
                 .add(APBlocks.ENTWINE_BARS)
                 .add(APBlocks.CHISELED_ENTWINE)
-                .add(APBlocks.FLINT_BLOCK)
                 .add(APBlocks.FLINT_PILLAR)
-                .add(APBlocks.FLINT_TILES_SET.BLOCK)
-                .add(APBlocks.FLINT_TILES_SET.SLAB)
-                .add(APBlocks.FLINT_TILES_SET.VERTICAL_SLAB)
-                .add(APBlocks.FLINT_TILES_SET.STAIRS)
-                .add(APBlocks.FLINT_TILES_SET.WALL)
-                .add(APBlocks.SUNMETAL_SET.BLOCK)
-                .add(APBlocks.SUNMETAL_SET.SLAB)
-                .add(APBlocks.SUNMETAL_SET.VERTICAL_SLAB)
                 .add(APBlocks.SUNMETAL_PILLAR)
                 .add(APBlocks.CHISELED_SUNMETAL_BLOCK)
                 .add(APBlocks.SUNMETAL_BARS);

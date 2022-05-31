@@ -20,7 +20,10 @@ import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.tag.TagKey;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
@@ -41,6 +44,29 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
     }
     @Override
     protected void generateBlockLootTables() {
+//        getBSW(
+//                APBlocks.ALGAL_BRICKS,
+//                APBlocks.BASALT_TILES,
+//                APBlocks.CALCITE_BRICKS,
+//                APBlocks.DRIPSTONE_BRICKS,
+//                APBlocks.ENTWINE,
+//                APBlocks.FLINT_TILES,
+//                APBlocks.GILDED_SANDSTONE,
+//                APBlocks.MYONITE,
+//                APBlocks.MYONITE_BRICKS,
+//                APBlocks.MUSHY_MYONITE_BRICK,
+//                APBlocks.OLIVESTONE_BRICKS,
+//                APBlocks.OLIVESTONE_TILE,
+//                APBlocks.OSSEOUS_BRICK,
+//                APBlocks.OVERGROWN_ALGAL_BRICK,
+//                APBlocks.PLATING_BLOCK,
+//                APBlocks.POLISHED_GLOWSTONE,
+//                APBlocks.SUNMETAL,
+//                APBlocks.TUFF_BRICKS,
+//                APBlocks.TWISTED_PLANKS,
+//                APBlocks.WARPSTONE,
+//                APBlocks.WITHERED_OSSEOUS_BRICK
+//        ).forEach(this::addDrop);
         Stream.of(
                 APBlocks.ABYSSALINE,
                 APBlocks.ABYSSALINE_BRICKS,
@@ -50,20 +76,11 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.ACACIA_BOARDS,
                 APBlocks.ACACIA_RAILING,
                 APBlocks.ACACIA_TOTEM_WING,
-                APBlocks.ALGAL_BRICK_SET.BLOCK,
-                APBlocks.ALGAL_BRICK_SET.STAIRS,
-                APBlocks.ALGAL_BRICK_SET.WALL,
                 APBlocks.ALGAL_CAGE_LANTERN,
                 APBlocks.ALGAL_LAMP,
-                APBlocks.BASALT_TILES_SET.BLOCK,
-                APBlocks.BASALT_TILES_SET.STAIRS,
-                APBlocks.BASALT_TILES_SET.WALL,
                 APBlocks.BIRCH_BOARDS,
                 APBlocks.BIRCH_RAILING,
                 APBlocks.BLANK_ACACIA_TOTEM,
-                APBlocks.CALCITE_BRICK_SET.BLOCK,
-                APBlocks.CALCITE_BRICK_SET.STAIRS,
-                APBlocks.CALCITE_BRICK_SET.WALL,
                 APBlocks.CALCITE_LAMP,
                 APBlocks.CALCITE_PILLAR,
                 APBlocks.CHARCOAL_BLOCK,
@@ -91,9 +108,6 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.CRIMSON_RAILING,
                 APBlocks.DARK_OAK_BOARDS,
                 APBlocks.DARK_OAK_RAILING,
-                APBlocks.DRIPSTONE_BRICK_SET.BLOCK,
-                APBlocks.DRIPSTONE_BRICK_SET.STAIRS,
-                APBlocks.DRIPSTONE_BRICK_SET.WALL,
                 APBlocks.DRIPSTONE_LAMP,
                 APBlocks.DRIPSTONE_PILLAR,
                 APBlocks.ENDER_PEARL_BLOCK,
@@ -101,16 +115,9 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.ENTRAILS_STAIRS,
                 APBlocks.ENTWINE_BARS,
                 APBlocks.ENTWINE_PILLAR,
-                APBlocks.ENTWINE_SET.BLOCK,
-                APBlocks.ENTWINE_SET.STAIRS,
                 APBlocks.FLINT_BLOCK,
                 APBlocks.FLINT_PILLAR,
-                APBlocks.FLINT_TILES_SET.BLOCK,
-                APBlocks.FLINT_TILES_SET.STAIRS,
-                APBlocks.FLINT_TILES_SET.WALL,
                 APBlocks.GILDED_SANDSTONE_PILLAR,
-                APBlocks.GILDED_SANDSTONE_SET.BLOCK,
-                APBlocks.GILDED_SANDSTONE_SET.STAIRS,
                 APBlocks.GLOWSTONE_CAGE_LANTERN,
                 APBlocks.GRINNING_ACACIA_TOTEM,
                 APBlocks.HEAVY_CALCITE_BRICKS,
@@ -128,39 +135,13 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.LIT_WITHERED_OSSEOUS_SKULL,
                 APBlocks.MOLTEN_NETHER_BRICKS,
                 APBlocks.MOONSTONE,
-                APBlocks.MUSHY_MYONITE_BRICK_SET.BLOCK,
-                APBlocks.MUSHY_MYONITE_BRICK_SET.STAIRS,
-                APBlocks.MUSHY_MYONITE_BRICK_SET.WALL,
-                APBlocks.MYONITE_BRICK_SET.BLOCK,
-                APBlocks.MYONITE_BRICK_SET.STAIRS,
-                APBlocks.MYONITE_BRICK_SET.WALL,
-                APBlocks.MYONITE_SET.BLOCK,
-                APBlocks.MYONITE_SET.STAIRS,
-                APBlocks.MYONITE_SET.WALL,
                 APBlocks.OAK_BOARDS,
                 APBlocks.OAK_RAILING,
-                APBlocks.OLIVESTONE_BRICK_SET.BLOCK,
-                APBlocks.OLIVESTONE_BRICK_SET.STAIRS,
-                APBlocks.OLIVESTONE_BRICK_SET.WALL,
                 APBlocks.OLIVESTONE_PILLAR,
-                APBlocks.OLIVESTONE_TILES_SET.BLOCK,
-                APBlocks.OLIVESTONE_TILES_SET.STAIRS,
-                APBlocks.OLIVESTONE_TILES_SET.WALL,
-                APBlocks.OSSEOUS_BRICK_SET.BLOCK,
-                APBlocks.OSSEOUS_BRICK_SET.STAIRS,
-                APBlocks.OSSEOUS_BRICK_SET.WALL,
                 APBlocks.OSSEOUS_PILLAR,
                 APBlocks.OSSEOUS_SKULL,
-                APBlocks.OVERGROWN_ALGAL_BRICK_SET.BLOCK,
-                APBlocks.OVERGROWN_ALGAL_BRICK_SET.STAIRS,
-                APBlocks.OVERGROWN_ALGAL_BRICK_SET.WALL,
                 APBlocks.PIPE,
                 APBlocks.PLACID_ACACIA_TOTEM,
-                APBlocks.PLATING_SET.BLOCK,
-                APBlocks.PLATING_SET.STAIRS,
-                APBlocks.PLATING_SET.WALL,
-                APBlocks.POLISHED_GLOWSTONE_SET.BLOCK,
-                APBlocks.POLISHED_GLOWSTONE_SET.WALL,
                 APBlocks.REDSTONE_CAGE_LANTERN,
                 APBlocks.ROTTEN_FLESH_BLOCK,
                 APBlocks.RUNIC_GLOWSTONE,
@@ -175,12 +156,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.STRIPPED_TWISTED_WOOD,
                 APBlocks.SUNMETAL_BARS,
                 APBlocks.SUNMETAL_PILLAR,
-                APBlocks.SUNMETAL_SET.BLOCK,
-                APBlocks.SUNMETAL_SET.STAIRS,
                 APBlocks.SUNSTONE,
-                APBlocks.TUFF_BRICK_SET.BLOCK,
-                APBlocks.TUFF_BRICK_SET.STAIRS,
-                APBlocks.TUFF_BRICK_SET.WALL,
                 APBlocks.TUFF_LAMP,
                 APBlocks.TUFF_PILLAR,
                 APBlocks.TWISTED_BOARDS,
@@ -188,8 +164,6 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.TWISTED_FENCE,
                 APBlocks.TWISTED_FENCE_GATE,
                 APBlocks.TWISTED_LOG,
-                APBlocks.TWISTED_PLANKS_SET.BLOCK,
-                APBlocks.TWISTED_PLANKS_SET.STAIRS,
                 APBlocks.TWISTED_PRESSURE_PLATE,
                 APBlocks.TWISTED_RAILING,
                 APBlocks.TWISTED_SAPLING,
@@ -199,15 +173,9 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.TWISTING_BLACKSTONE_BRICKS,
                 APBlocks.WARPED_BOARDS,
                 APBlocks.WARPED_RAILING,
-                APBlocks.WARPSTONE_SET.BLOCK,
-                APBlocks.WARPSTONE_SET.STAIRS,
-                APBlocks.WARPSTONE_SET.WALL,
                 APBlocks.WEEPING_BLACKSTONE,
                 APBlocks.WEEPING_BLACKSTONE_BRICKS,
                 APBlocks.WITHERED_BONE_BLOCK,
-                APBlocks.WITHERED_OSSEOUS_BRICK_SET.BLOCK,
-                APBlocks.WITHERED_OSSEOUS_BRICK_SET.STAIRS,
-                APBlocks.WITHERED_OSSEOUS_BRICK_SET.WALL,
                 APBlocks.WITHERED_OSSEOUS_PILLAR,
                 APBlocks.WITHERED_OSSEOUS_SKULL,
                 APBlocks.WITHER_LAMP,
@@ -215,81 +183,49 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.EKANITE_ROD,
                 APBlocks.MONAZITE_ROD,
                 APBlocks.UNOBTANIUM_BLOCK)
-            .forEach(this::addDrop);
-        for (StoneBlockSet set : APBlocks.ORE_SETS) {
+                .forEach(this::addDrop);
+        for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
             this.addDrop(set.BLOCK);
             this.addDrop(set.STAIRS);
             this.addDrop(set.WALL);
+            this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
         }
-        for (Block chiseled : APBlocks.CHISELED_ORES.values()) this.addDrop(chiseled);
-        for (Block cracked : APBlocks.CRACKED_ORES.values()) this.addDrop(cracked);
+        for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
 
         Stream.of(
                 APBlocks.ABYSSALINE_BRICK_SLAB,
                 APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB,
                 APBlocks.ABYSSALINE_TILE_SLAB,
                 APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB,
-                APBlocks.ALGAL_BRICK_SET.SLAB,
-                APBlocks.ALGAL_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.BASALT_TILES_SET.SLAB,
-                APBlocks.BASALT_TILES_SET.VERTICAL_SLAB,
-                APBlocks.CALCITE_BRICK_SET.SLAB,
-                APBlocks.CALCITE_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.DRIPSTONE_BRICK_SET.SLAB,
-                APBlocks.DRIPSTONE_BRICK_SET.VERTICAL_SLAB,
                 APBlocks.ENTRAILS_SLAB,
-                APBlocks.ENTRAILS_VERTICAL_SLAB,
-                APBlocks.ENTWINE_SET.SLAB,
-                APBlocks.ENTWINE_SET.VERTICAL_SLAB,
-                APBlocks.FLINT_TILES_SET.SLAB,
-                APBlocks.FLINT_TILES_SET.VERTICAL_SLAB,
-                APBlocks.GILDED_SANDSTONE_SET.SLAB,
-                APBlocks.GILDED_SANDSTONE_SET.VERTICAL_SLAB,
-                APBlocks.MUSHY_MYONITE_BRICK_SET.SLAB,
-                APBlocks.MUSHY_MYONITE_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.MYONITE_BRICK_SET.SLAB,
-                APBlocks.MYONITE_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.MYONITE_SET.SLAB,
-                APBlocks.MYONITE_SET.VERTICAL_SLAB,
-                APBlocks.OLIVESTONE_BRICK_SET.SLAB,
-                APBlocks.OLIVESTONE_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.OLIVESTONE_TILES_SET.SLAB,
-                APBlocks.OLIVESTONE_TILES_SET.VERTICAL_SLAB,
-                APBlocks.OSSEOUS_BRICK_SET.SLAB,
-                APBlocks.OSSEOUS_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.OVERGROWN_ALGAL_BRICK_SET.SLAB,
-                APBlocks.OVERGROWN_ALGAL_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.PLATING_SET.SLAB,
-                APBlocks.PLATING_SET.VERTICAL_SLAB,
-                APBlocks.POLISHED_GLOWSTONE_SET.SLAB,
-                APBlocks.POLISHED_GLOWSTONE_SET.VERTICAL_SLAB,
-                APBlocks.SUNMETAL_SET.SLAB,
-                APBlocks.SUNMETAL_SET.VERTICAL_SLAB,
-                APBlocks.TUFF_BRICK_SET.SLAB,
-                APBlocks.TUFF_BRICK_SET.VERTICAL_SLAB,
-                APBlocks.TWISTED_PLANKS_SET.SLAB,
-                APBlocks.TWISTED_PLANKS_SET.VERTICAL_SLAB,
-                APBlocks.WARPSTONE_SET.SLAB,
-                APBlocks.WARPSTONE_SET.VERTICAL_SLAB,
-                APBlocks.WITHERED_OSSEOUS_BRICK_SET.SLAB,
-                APBlocks.WITHERED_OSSEOUS_BRICK_SET.VERTICAL_SLAB)
+                APBlocks.ENTRAILS_VERTICAL_SLAB
+                )
             .forEach((i) -> this.addDrop(i, BlockLootTableGenerator::slabDrops));
-        for (StoneBlockSet set : APBlocks.ORE_SETS){
-                this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
-                this.addDrop(set.VERTICAL_SLAB, BlockLootTableGenerator::slabDrops);
+
+        for (StoneBlockSet set : StoneBlockSet.BlockSets){
+            if (set.BLOCK != APBlocks.POLISHED_PACKED_ICE){
+                 this.addDrop(set.BLOCK);
+                if (set.STAIRS!=null) this.addDrop(set.STAIRS);
+                if (set.WALL!=null) this.addDrop(set.WALL);
+                if (set.SLAB!=null) {
+                    this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
+                    this.addDrop(set.VERTICAL_SLAB, BlockLootTableGenerator::slabDrops);
+                }
+            }else{
+                this.addDropWithSilkTouch(set.BLOCK);
+                this.addDropWithSilkTouch(set.STAIRS);
+                this.addDropWithSilkTouch(set.WALL);
+                this.dropSlabWithSilkTouch(set.SLAB);
+                this.dropSlabWithSilkTouch(set.VERTICAL_SLAB);
+            }
         }
 
         Stream.of(
-                APBlocks.POLISHED_PACKED_ICE_SET.BLOCK,
-                APBlocks.POLISHED_PACKED_ICE_SET.STAIRS,
-                APBlocks.POLISHED_PACKED_ICE_SET.WALL,
-                APBlocks.CHISELED_PACKED_ICE,
-                APBlocks.PACKED_ICE_PILLAR)
-            .forEach(this::addDropWithSilkTouch);
+            APBlocks.CHISELED_PACKED_ICE,
+            APBlocks.PACKED_ICE_PILLAR)
+        .forEach(this::addDropWithSilkTouch);
 
         this.addDrop(APBlocks.TWISTED_DOOR, BlockLootTableGenerator::addDoorDrop);
-        this.dropSlabWithSilkTouch(APBlocks.POLISHED_PACKED_ICE_SET.SLAB);
-        this.dropSlabWithSilkTouch(APBlocks.POLISHED_PACKED_ICE_SET.VERTICAL_SLAB);
         this.addDrop(APBlocks.TWISTED_LEAVES, (blockx) -> BlockLootTableGenerator.leavesDrop(blockx, APBlocks.TWISTED_SAPLING, 0.05f, 0.0625f, 0.083333336f, 0.1f));
         this.addPottedPlantDrop(APBlocks.POTTED_TWISTED_SAPLING);
 

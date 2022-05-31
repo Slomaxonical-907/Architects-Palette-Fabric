@@ -1,10 +1,8 @@
 package com.slomaxonical.architectspalette.blocks.util;
 
 import com.slomaxonical.architectspalette.blocks.VerticalSlabBlock;
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.blocks.extended.APStairsBlock;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SlabBlock;
@@ -12,8 +10,14 @@ import net.minecraft.block.WallBlock;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class StoneBlockSet {
+    public static ArrayList<StoneBlockSet> BlockSets = new ArrayList<>();
+    //SETS:
+    public static List<StoneBlockSet> oreBrickSets = new ArrayList<>();
     public Block SLAB;
     public Block VERTICAL_SLAB;
     public Block STAIRS;
@@ -30,6 +34,12 @@ public class StoneBlockSet {
         this.material_name = getMaterialFromBlock(Registry.BLOCK.getId(base_block).getPath());
         if (auto_fill) {
             this.addAll();
+        }
+        if (this.material_name.contains("ore_brick")) {
+            oreBrickSets.add(this);
+
+        } else {
+            BlockSets.add(this);
         }
     }
 

@@ -2,18 +2,18 @@ package com.slomaxonical.architectspalette.data.provider;
 
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.crafting.WarpingRecipeJsonBuilder;
-import com.slomaxonical.architectspalette.registry.APItems;
+import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.ConfigResourceCondition;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.server.RecipeProvider;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -46,39 +46,39 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerWarpingRecipe(exporter, ROTTEN_FLESH_BLOCK.asItem(), ENTRAILS.asItem(), NETHER);
         offerWarpingRecipe(exporter, Items.NETHERITE_INGOT, UNOBTANIUM, NETHER);
     //Setts
-        offerSetRecipes(exporter,verticaExport, MYONITE_SET, List.of(MYONITE));
-        offerSetRecipes(exporter,verticaExport, MYONITE_BRICK_SET,List.of(MYONITE,MYONITE_BRICKS));
-        offerSetRecipes(exporter,verticaExport, MUSHY_MYONITE_BRICK_SET,List.of(MUSHY_MYONITE_BRICK));
-        offerSetRecipes(exporter,verticaExport, OLIVESTONE_BRICK_SET,List.of(OLIVESTONE_BRICKS));
-        offerSetRecipes(exporter,verticaExport, OLIVESTONE_TILES_SET, List.of(OLIVESTONE_TILE));
+        offerSetRecipes(exporter,verticaExport, MYONITE, List.of(MYONITE));
+        offerSetRecipes(exporter,verticaExport, MYONITE_BRICKS, List.of(MYONITE,MYONITE_BRICKS));
+        offerSetRecipes(exporter,verticaExport, MUSHY_MYONITE_BRICK, List.of(MUSHY_MYONITE_BRICK));
+        offerSetRecipes(exporter,verticaExport, OLIVESTONE_BRICKS, List.of(OLIVESTONE_BRICKS));
+        offerSetRecipes(exporter,verticaExport, OLIVESTONE_TILE, List.of(OLIVESTONE_TILE));
 
         ShapedRecipeJsonBuilder.create(CHISELED_OLIVESTONE).input('#', APItemTagProvider.OLIVESTONE).pattern("#").pattern("#").criterion("has_olivstone",conditionsFromTag(APItemTagProvider.OLIVESTONE)).offerTo(exporter);
 
-        offerSetRecipes(exporter,verticaExport, ALGAL_BRICK_SET, null, CHISELED_ALGAL_BRICKS, List.of(ALGAL_BRICKS));
-        offerSetRecipes(exporter,verticaExport, OVERGROWN_ALGAL_BRICK_SET,List.of(OVERGROWN_ALGAL_BRICK));
-        offerSetRecipes(exporter,verticaExport, SUNMETAL_SET, false, SUNMETAL_PILLAR, CHISELED_SUNMETAL_BLOCK, List.of(SUNMETAL));
-        offerSetRecipes(exporter,verticaExport, PLATING_SET,List.of(PLATING_BLOCK));
-        offerSetRecipes(exporter,verticaExport, POLISHED_PACKED_ICE_SET, PACKED_ICE_PILLAR, CHISELED_PACKED_ICE,List.of(POLISHED_PACKED_ICE,Items.PACKED_ICE));
-        offerSetRecipes(exporter,verticaExport, GILDED_SANDSTONE_SET, false, GILDED_SANDSTONE_PILLAR, CHISELED_GILDED_SANDSTONE,List.of(GILDED_SANDSTONE));
-        offerSetRecipes(exporter, verticaExport, POLISHED_GLOWSTONE_SET,RUNIC_GLOWSTONE,null,List.of(POLISHED_GLOWSTONE));
+        offerSetRecipes(exporter,verticaExport, ALGAL_BRICKS, null, CHISELED_ALGAL_BRICKS, List.of(ALGAL_BRICKS));
+        offerSetRecipes(exporter,verticaExport, OVERGROWN_ALGAL_BRICK,List.of(OVERGROWN_ALGAL_BRICK));
+        offerSetRecipes(exporter,verticaExport, SUNMETAL, SUNMETAL_PILLAR, CHISELED_SUNMETAL_BLOCK, List.of(SUNMETAL));
+        offerSetRecipes(exporter,verticaExport, PLATING_BLOCK,List.of(PLATING_BLOCK));
+        offerSetRecipes(exporter,verticaExport, POLISHED_PACKED_ICE, PACKED_ICE_PILLAR, CHISELED_PACKED_ICE,List.of(POLISHED_PACKED_ICE,Items.PACKED_ICE));
+        offerSetRecipes(exporter,verticaExport, GILDED_SANDSTONE, GILDED_SANDSTONE_PILLAR, CHISELED_GILDED_SANDSTONE,List.of(GILDED_SANDSTONE));
+        offerSetRecipes(exporter, verticaExport, POLISHED_GLOWSTONE,RUNIC_GLOWSTONE,null,List.of(POLISHED_GLOWSTONE));
 
-        offerSetRecipes(exporter,verticaExport, OSSEOUS_BRICK_SET, OSSEOUS_PILLAR, OSSEOUS_SKULL, List.of(OSSEOUS_BRICK,Items.BONE_BLOCK));
-        offerSetRecipes(exporter,verticaExport, WITHERED_OSSEOUS_BRICK_SET, WITHERED_OSSEOUS_PILLAR, WITHERED_OSSEOUS_SKULL,List.of(WITHERED_BONE,WITHERED_OSSEOUS_BRICK));
-        offerSetRecipes(exporter,verticaExport, FLINT_TILES_SET,List.of(FLINT_TILES));
+        offerSetRecipes(exporter,verticaExport, OSSEOUS_BRICK, OSSEOUS_PILLAR, OSSEOUS_SKULL, List.of(OSSEOUS_BRICK,Items.BONE_BLOCK));
+        offerSetRecipes(exporter,verticaExport, WITHERED_OSSEOUS_BRICK, WITHERED_OSSEOUS_PILLAR, WITHERED_OSSEOUS_SKULL,List.of(WITHERED_BONE,WITHERED_OSSEOUS_BRICK));
+        offerSetRecipes(exporter,verticaExport, FLINT_TILES,List.of(FLINT_TILES));
 
         offerPillarRecipe(exporter, FLINT_PILLAR, FLINT_BLOCK);
 
-        offerSetRecipes(exporter,verticaExport, BASALT_TILES_SET,null, CHISELED_BASALT_TILES,List.of(BASALT_TILES,Items.POLISHED_BASALT,Items.BASALT));
-        offerSetRecipes(exporter,verticaExport, DRIPSTONE_BRICK_SET, DRIPSTONE_PILLAR, CHISELED_DRIPSTONE,List.of(DRIPSTONE_BRICKS,Items.DRIPSTONE_BLOCK));
+        offerSetRecipes(exporter,verticaExport, BASALT_TILES,null, CHISELED_BASALT_TILES,List.of(BASALT_TILES,Items.POLISHED_BASALT,Items.BASALT));
+        offerSetRecipes(exporter,verticaExport, DRIPSTONE_BRICKS, DRIPSTONE_PILLAR, CHISELED_DRIPSTONE,List.of(DRIPSTONE_BRICKS,Items.DRIPSTONE_BLOCK));
         offerPolishedStoneRecipe(exporter, DRIPSTONE_BRICKS, Items.DRIPSTONE_BLOCK);
 
-        offerSetRecipes(exporter,verticaExport, CALCITE_BRICK_SET, CALCITE_PILLAR, CHISELED_CALCITE,List.of(CALCITE_BRICKS,Items.CALCITE));
-        offerSetRecipes(exporter,verticaExport, TUFF_BRICK_SET, TUFF_PILLAR, CHISELED_TUFF,List.of(TUFF_BRICKS,Items.TUFF));
-        offerSetRecipes(exporter,verticaExport, ENTWINE_SET, false, ENTWINE_PILLAR, CHISELED_ENTWINE,List.of(ENTWINE));
-        offerSetRecipes(exporter,verticaExport, WARPSTONE_SET,List.of(WARPSTONE));
+        offerSetRecipes(exporter,verticaExport, CALCITE_BRICKS, CALCITE_PILLAR, CHISELED_CALCITE,List.of(CALCITE_BRICKS,Items.CALCITE));
+        offerSetRecipes(exporter,verticaExport, TUFF_BRICKS, TUFF_PILLAR, CHISELED_TUFF,List.of(TUFF_BRICKS,Items.TUFF));
+        offerSetRecipes(exporter,verticaExport, ENTWINE, ENTWINE_PILLAR, CHISELED_ENTWINE,List.of(ENTWINE));
+        offerSetRecipes(exporter,verticaExport, WARPSTONE,List.of(WARPSTONE));
 
-        offerStairsRecipe(exporter,TWISTED_PLANKS_SET.STAIRS, TWISTED_PLANKS_SET.BLOCK);
-        offerSlabsRecipes(exporter,verticaExport, TWISTED_PLANKS_SET.SLAB, TWISTED_PLANKS_SET.VERTICAL_SLAB, TWISTED_PLANKS_SET.BLOCK);
+        offerStairsRecipe(exporter,getTwistedSet().STAIRS, TWISTED_PLANKS);
+        offerSlabsRecipes(exporter,verticaExport, getTwistedSet().SLAB, getTwistedSet().VERTICAL_SLAB, TWISTED_PLANKS);
 
         //Abyssaline
         ShapedRecipeJsonBuilder.create(ABYSSALINE).input('#', Items.PRISMARINE_SHARD).input('$', Items.OBSIDIAN).pattern("$#$").pattern("# #").pattern("$#$").criterion("has_obsidian",conditionsFromItem(Items.OBSIDIAN)).offerTo(exporter);
@@ -254,19 +254,13 @@ public class APRecipeProvider extends FabricRecipeProvider {
 
         offerCondensingRecipe(exporter,UNOBTANIUM_BLOCK,UNOBTANIUM,1);
         offerShapelessRecipe(exporter,UNOBTANIUM,UNOBTANIUM_BLOCK,null,5);
-        offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(0), Items.COAL);
-        offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(1), Items.LAPIS_LAZULI);
-        offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(2), Items.REDSTONE);
-        offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(3), Items.IRON_INGOT);
-        offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(4), Items.GOLD_INGOT);
-        offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(5), Items.EMERALD);
-        offerOreBricksRecipes(exporter, verticaExport,ORE_SETS.get(6), Items.DIAMOND);
-
-    }
-    public static void offerOreBricksRecipes(Consumer<RecipeJsonProvider> exporter,Consumer<RecipeJsonProvider> vertExporter,StoneBlockSet set, ItemConvertible base){
-        offerFramedRecipe(exporter,set.BLOCK,base,Items.STONE_BRICKS,8);
-        offerSetRecipes(exporter,vertExporter,set,true, null,CHISELED_ORES.get(set.BLOCK),List.of(set.BLOCK));
-        offerCrackingRecipe(exporter,CRACKED_ORES.get(set.BLOCK),set.BLOCK);
+        offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(0), Items.COAL);
+        offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(1), Items.LAPIS_LAZULI);
+        offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(2), Items.REDSTONE);
+        offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(3), Items.IRON_INGOT);
+        offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(4), Items.GOLD_INGOT);
+        offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(5), Items.EMERALD);
+        offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(6), Items.DIAMOND);
 
     }
     public static void offerWarpingRecipe(Consumer<RecipeJsonProvider> exporter, Item input, Item output, Identifier dimension) {
@@ -317,14 +311,25 @@ public class APRecipeProvider extends FabricRecipeProvider {
     public static void offerBarsRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input){
         ShapedRecipeJsonBuilder.create(output, 16).input('#', input).pattern("###").pattern("###").criterion(hasItem(input), RecipeProvider.conditionsFromItem(input)).offerTo(exporter);
     }
+    public static void offerOreBricksRecipes(Consumer<RecipeJsonProvider> exporter,Consumer<RecipeJsonProvider> vertExporter,StoneBlockSet set, ItemConvertible base){
+        offerFramedRecipe(exporter,set.BLOCK,base,Items.STONE_BRICKS,8);
+        offerSetRecipes(exporter,vertExporter,set.get(), null, chiseledNcrackedOres.get(set.BLOCK).get(0),List.of(set.BLOCK));
+        offerCrackingRecipe(exporter, chiseledNcrackedOres.get(set.BLOCK).get(1),set.BLOCK);
 
-    public static void offerSetRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, StoneBlockSet blockSet, List<ItemConvertible> forCutting){
-        offerSetRecipes(exporter, vertExporter, blockSet, null, null, forCutting);
     }
-    public static void offerSetRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, StoneBlockSet blockSet, @Nullable Block pillar, @Nullable Block chiseled, List<ItemConvertible>  forCutting){
-        offerSetRecipes(exporter, vertExporter, blockSet, true, pillar, chiseled, forCutting);
+    public static void offerSetRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, Block baseBlock, List<ItemConvertible> forCutting){
+        offerSetRecipes(exporter, vertExporter, baseBlock, null, null, forCutting);
     }
-    public static void offerSetRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, StoneBlockSet blockSet, boolean wall, @Nullable Block pillar, @Nullable Block chiseled, List<ItemConvertible>  cuttingInputs){
+    public static void offerSetRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, Block baseBlock, @Nullable Block pillar, @Nullable Block chiseled, List<ItemConvertible>  cuttingInputs){
+        StoneBlockSet blockSet = null;
+        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
+            if (set.get().equals(baseBlock)) blockSet=set;
+        }
+        for (StoneBlockSet set: StoneBlockSet.oreBrickSets) {
+            if (set.get().equals(baseBlock)) blockSet=set;
+        }
+        if (blockSet==null) throw new RuntimeException ("no blockset found");
+
         offerSlabsRecipes(exporter,vertExporter,blockSet.SLAB, blockSet.VERTICAL_SLAB, blockSet.BLOCK);
         offerStonecuttingRecipe(exporter,2,blockSet.SLAB,cuttingInputs);
         offerStonecuttingRecipe(vertExporter,2,blockSet.VERTICAL_SLAB,cuttingInputs,"vertical/");
@@ -332,7 +337,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
             offerStairsRecipe(exporter,blockSet.STAIRS, blockSet.BLOCK);
             offerStonecuttingRecipe(exporter,1,blockSet.STAIRS,cuttingInputs);
         }
-        if (wall){
+        if (blockSet.WALL!=null){
             offerWallRecipe(exporter, blockSet.WALL, blockSet.BLOCK);
             offerStonecuttingRecipe(exporter,1,blockSet.WALL,cuttingInputs);
         }
@@ -352,5 +357,13 @@ public class APRecipeProvider extends FabricRecipeProvider {
     public static void offerVerticalSlabRecipes(Consumer<RecipeJsonProvider> vertExporter, ItemConvertible output, ItemConvertible input){
         ShapedRecipeJsonBuilder.create(output,3).input('#', input).pattern("#").pattern("#").pattern("#").criterion("has_slab",conditionsFromItem(input)).offerTo(vertExporter,"vertical/"+output.asItem().toString());
         createTransmutationRecipe(input, Ingredient.ofItems(output)).criterion(hasItem(input),conditionsFromItem(input)). offerTo(vertExporter,"vertical/vertical_to_"+input.asItem().toString());
+    }
+    //mehGodDammit
+    private static StoneBlockSet getTwistedSet(){
+        StoneBlockSet blockSet = null;
+        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
+            if (set.get().equals(TWISTED_PLANKS)) blockSet=set;
+        }
+        return blockSet;
     }
 }

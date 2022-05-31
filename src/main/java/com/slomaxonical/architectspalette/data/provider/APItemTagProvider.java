@@ -66,8 +66,8 @@ public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(APBlocks.OLIVESTONE_TILE.asItem());
 
         this.getOrCreateTagBuilder(OLIVESTONE_SLABS)
-                .add(APBlocks.OLIVESTONE_BRICK_SET.SLAB.asItem())
-                .add(APBlocks.OLIVESTONE_TILES_SET.SLAB.asItem());
+                .add(Registry.BLOCK.get(new Identifier("architects_palette:olivestone_brick_slab")).asItem())
+                .add(Registry.BLOCK.get(new Identifier("architects_palette:olivestone_tile_slab")).asItem());
 
         this.getOrCreateTagBuilder(WITHERED_BONES).add(APItems.WITHERED_BONE);
     }
