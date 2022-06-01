@@ -9,6 +9,7 @@ import com.slomaxonical.architectspalette.loot.LootTableModifications;
 import com.slomaxonical.architectspalette.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
@@ -25,7 +26,7 @@ public class ArchitectsPalette implements ModInitializer {
     public static final DefaultParticleType GREEN_FLAME = FabricParticleTypes.simple();
     @Override
     public void onInitialize() {
-        AutoConfig.register(ApConfigs.class, GsonConfigSerializer::new);
+        AutoConfig.register(ApConfigs.class, JanksonConfigSerializer::new);
         Registry.register(Registry.PARTICLE_TYPE, new Identifier(MOD_ID, "green_flame"), GREEN_FLAME);
 
         APBlocks.registerBlocks();
