@@ -1,4 +1,4 @@
-package com.slomaxonical.architectspalette.data.provider;
+package com.slomaxonical.architectspalette.datagen.provider;
 
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.registry.APBlocks;
@@ -20,9 +20,7 @@ import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.tag.TagKey;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 

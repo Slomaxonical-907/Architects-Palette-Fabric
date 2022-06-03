@@ -1,8 +1,8 @@
-package com.slomaxonical.architectspalette.data.provider;
+package com.slomaxonical.architectspalette.datagen.provider;
 
-import com.slomaxonical.architectspalette.ArchitectsPalette;
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.registry.APBlocks;
+import com.slomaxonical.architectspalette.registry.APTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Block;
@@ -19,12 +19,6 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     public APBlockTagProvider(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
     }
-
-    public static final TagKey<Block> TWISTED_LOGS = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "twisted_logs"));
-    public static final TagKey<Block> CAGE_LANTERNS = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "cage_lanterns"));
-    public static final TagKey<Block> CRYSTAL_REPLACEABLE = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "crystal_formation_replaceable"));
-    public static final TagKey<Block> GREEN_FIRE_SUPPORTING = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "green_fire_supporting"));
-
 
     private FabricTagBuilder<Block> getOrCreateTagBuilder(Identifier id) {
         TagKey<Block> tag = TagKey.of(Registry.BLOCK_KEY, id);
@@ -52,20 +46,20 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     }
     @Override
     protected void generateTags() {
-        addSets(GREEN_FIRE_SUPPORTING,APBlocks.NETHER_BRASS,APBlocks.CUT_NETHER_BRASS,APBlocks.SMOOTH_NETHER_BRASS);
-        this.getOrCreateTagBuilder(GREEN_FIRE_SUPPORTING)
+        addSets(APTags.GREEN_FIRE_SUPPORTING,APBlocks.NETHER_BRASS,APBlocks.CUT_NETHER_BRASS,APBlocks.SMOOTH_NETHER_BRASS);
+        this.getOrCreateTagBuilder(APTags.GREEN_FIRE_SUPPORTING)
                 .add(APBlocks.NETHER_BRASS_PILLAR);
-        this.getOrCreateTagBuilder(CRYSTAL_REPLACEABLE)
+        this.getOrCreateTagBuilder(APTags.CRYSTAL_REPLACEABLE)
                 .add(Blocks.NETHER_WART_BLOCK)
                 .add(Blocks.WARPED_WART_BLOCK);
 
-        this.getOrCreateTagBuilder(TWISTED_LOGS)
+        this.getOrCreateTagBuilder(APTags.TWISTED_LOGS)
                 .add(APBlocks.TWISTED_LOG)
                 .add(APBlocks.STRIPPED_TWISTED_LOG)
                 .add(APBlocks.TWISTED_WOOD)
                 .add(APBlocks.STRIPPED_TWISTED_WOOD);
 
-        this.getOrCreateTagBuilder(CAGE_LANTERNS)
+        this.getOrCreateTagBuilder(APTags.CAGE_LANTERNS)
                 .add(APBlocks.ALGAL_CAGE_LANTERN)
                 .add(APBlocks.GLOWSTONE_CAGE_LANTERN)
                 .add(APBlocks.REDSTONE_CAGE_LANTERN);
@@ -258,7 +252,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         this.getOrCreateTagBuilder(BlockTags.FLOWER_POTS).add(APBlocks.POTTED_TWISTED_SAPLING);
         this.getOrCreateTagBuilder(BlockTags.LEAVES).add(APBlocks.TWISTED_LEAVES);
         this.getOrCreateTagBuilder(BlockTags.SAPLINGS).add(APBlocks.TWISTED_SAPLING);
-        this.getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(TWISTED_LOGS); //this tag see
+        this.getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(APTags.TWISTED_LOGS); //this tag see
         this.getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS).add(APBlocks.TWISTED_BUTTON);
         this.getOrCreateTagBuilder(BlockTags.WOODEN_DOORS).add(APBlocks.TWISTED_DOOR);
         this.getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(APBlocks.TWISTED_TRAPDOOR);
@@ -266,7 +260,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         this.getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(APBlocks.TWISTED_PRESSURE_PLATE);
         addSets(BlockTags.WOODEN_STAIRS,false,true,false,false,APBlocks.TWISTED_PLANKS);
         addSets(BlockTags.WOODEN_STAIRS,false,false,true,false,APBlocks.TWISTED_PLANKS);
-        this.getOrCreateTagBuilder(BlockTags.WALL_POST_OVERRIDE).addTag(CAGE_LANTERNS);//this tag see
+        this.getOrCreateTagBuilder(BlockTags.WALL_POST_OVERRIDE).addTag(APTags.CAGE_LANTERNS);//this tag see
         //SLABS
         this.getOrCreateTagBuilder(BlockTags.SLABS)
                 .add(APBlocks.ABYSSALINE_BRICK_SLAB)

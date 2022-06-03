@@ -27,7 +27,7 @@
       "com.slomaxonical.architectspalette.compat.rei.APPlugin"
     ],
     "fabric-datagen": [
-      "com.slomaxonical.architectspalette.data.APDatagen"
+      "com.slomaxonical.architectspalette.datagen.APDatagen"
     ]
   },
   "mixins": [

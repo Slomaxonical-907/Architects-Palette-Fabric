@@ -1,7 +1,7 @@
 package com.slomaxonical.architectspalette.features;
 
 import com.mojang.serialization.Codec;
-import com.slomaxonical.architectspalette.data.provider.APBlockTagProvider;
+import com.slomaxonical.architectspalette.registry.APTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -10,7 +10,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.ReplaceBlobsFeature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.List;
@@ -163,6 +162,6 @@ public class CrystalClusterFeature extends Feature<CrystalClusterConfig> {
     }
 
     private static boolean canReplace(BlockState state) {
-        return state.isAir() || state.getMaterial().isReplaceable() || state.isIn(APBlockTagProvider.CRYSTAL_REPLACEABLE);
+        return state.isAir() || state.getMaterial().isReplaceable() || state.isIn(APTags.CRYSTAL_REPLACEABLE);
     }
 }

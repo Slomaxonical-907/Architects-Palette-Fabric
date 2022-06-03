@@ -1,6 +1,6 @@
 package com.slomaxonical.architectspalette.blocks;
 
-import com.slomaxonical.architectspalette.data.provider.APBlockTagProvider;
+import com.slomaxonical.architectspalette.registry.APTags;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.block.BlockState;
@@ -40,7 +40,7 @@ public class GreenFireBlock extends AbstractFireBlock {
 
     public static boolean canHeGreen(BlockView world,BlockPos pos) {
         BlockState state = world.getBlockState(pos);
-        return state.isIn(APBlockTagProvider.GREEN_FIRE_SUPPORTING) && state.isSideSolidFullSquare(world,pos,Direction.UP);
+        return state.isIn(APTags.GREEN_FIRE_SUPPORTING) && state.isSideSolidFullSquare(world,pos,Direction.UP);
     }
 
     @Override
