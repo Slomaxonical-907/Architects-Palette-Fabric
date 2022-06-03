@@ -10,9 +10,9 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-import java.util.Random;
 import java.util.function.ToIntFunction;
 
 public class NewAbyssalineBlock extends Block implements IAbyssalineChargeable {

@@ -10,9 +10,7 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import java.util.List;
 
 
 public class WarpingCategory implements DisplayCategory<WarpingDisplay> {
-    private static final TranslatableText NAME = new TranslatableText("architects_palette.info.warping_recipe_title");
+    private static final Text NAME = Text.translatable("architects_palette.info.warping_recipe_title");
 
     @Override
     public Renderer getIcon() {
@@ -47,8 +45,8 @@ public class WarpingCategory implements DisplayCategory<WarpingDisplay> {
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 45, bounds.y + 27)).entries(getInput(recipeDisplay,0)).markInput());
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 30, bounds.y + 27)).entries(getOutput(recipeDisplay, 0)).markOutput());
         //will do this later
-        TranslatableText dimensionName = new TranslatableText("architects_palette.info.warping_toss_description","the Nether");
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX()-2,bounds.getY()+5),new LiteralText("toss")).tooltipLine(dimensionName.getString()).centered());
+        Text dimensionName = Text.translatable("architects_palette.info.warping_toss_description", "the Nether");
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX()-2,bounds.getY()+5),Text.literal("toss")).tooltip(Text.of(dimensionName.getString())).centered());
 
         return widgets;
     }

@@ -10,11 +10,11 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.ReplaceBlobsFeature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.util.math.random.Random;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CrystalClusterFeature extends Feature<CrystalClusterConfig> {
     public CrystalClusterFeature(Codec<CrystalClusterConfig> configCodec) {
@@ -46,7 +46,7 @@ public class CrystalClusterFeature extends Feature<CrystalClusterConfig> {
 
         Vec3f placePos = new Vec3f(context.getOrigin().getX(), context.getOrigin().getY(), context.getOrigin().getZ());
 
-        List<BlockPos> posList = new java.util.ArrayList<>(List.of());
+        List<BlockPos> posList = new ArrayList<>(List.of());
         //4-7 shelves
         int shelves = iRandomRange(random,4,7);
         for (int i = 0; i < shelves; i++) {

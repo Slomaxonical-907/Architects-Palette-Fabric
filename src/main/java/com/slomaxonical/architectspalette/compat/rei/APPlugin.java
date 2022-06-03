@@ -12,12 +12,10 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.DefaultInformationDisplay;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class APPlugin implements REIClientPlugin {
     public static final CategoryIdentifier<WarpingDisplay> WARPING = CategoryIdentifier.of("architects_palette", "portal_warping");
@@ -82,7 +80,7 @@ public class APPlugin implements REIClientPlugin {
     }
 
     private void addInfo(DisplayRegistry registry, ItemConvertible item, String infoKey){
-        registry.add(DefaultInformationDisplay.createFromEntry(EntryStacks.of(item),new TranslatableText(item.asItem().getTranslationKey())).line(new TranslatableText("architects_palette.info."+infoKey)));
+        registry.add(DefaultInformationDisplay.createFromEntry(EntryStacks.of(item),Text.translatable(item.asItem().getTranslationKey())).line(Text.translatable("architects_palette.info."+infoKey)));
     }
     private void addBulkInfo(DisplayRegistry registry, String infoKey, ItemConvertible... items){
         //my little brain coudnt find a better solution to this mess
@@ -90,6 +88,6 @@ public class APPlugin implements REIClientPlugin {
         for (ItemConvertible item:items) {
             stacks.add(EntryStacks.of(item));
         }
-        registry.add(DefaultInformationDisplay.createFromEntries(EntryIngredient.builder().addAll(stacks).build(),new TranslatableText(items[0].asItem().getTranslationKey())).line(new TranslatableText("architects_palette.info."+infoKey)));
+        registry.add(DefaultInformationDisplay.createFromEntries(EntryIngredient.builder().addAll(stacks).build(),Text.translatable(items[0].asItem().getTranslationKey())).line(Text.translatable("architects_palette.info."+infoKey)));
     }
 }

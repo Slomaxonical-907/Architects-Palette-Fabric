@@ -220,7 +220,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerCondensingRecipe(exporter,STRIPPED_TWISTED_WOOD,STRIPPED_TWISTED_LOG,3);
         offerShapelessRecipe(exporter,TWISTED_BUTTON,TWISTED_PLANKS,null,1);
         offerShapelessRecipe(exporter,TWISTED_PLANKS,TWISTED_LOG,null,4);
-        createPressurePlateRecipe(exporter,TWISTED_PRESSURE_PLATE,TWISTED_PLANKS);
+        offerPressurePlateRecipe(exporter,TWISTED_PRESSURE_PLATE,TWISTED_PLANKS);
         createDoorRecipe(TWISTED_DOOR, Ingredient.ofItems(TWISTED_PLANKS)).criterion(hasItem(TWISTED_PLANKS),conditionsFromItem(TWISTED_PLANKS)).offerTo(exporter);
         createTrapdoorRecipe(TWISTED_TRAPDOOR,Ingredient.ofItems(TWISTED_PLANKS)).criterion(hasItem(TWISTED_PLANKS),conditionsFromItem(TWISTED_PLANKS)).offerTo(exporter);
         //cracked

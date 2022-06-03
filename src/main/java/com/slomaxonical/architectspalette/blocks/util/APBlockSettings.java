@@ -50,17 +50,17 @@ public class APBlockSettings {
 	public static final FabricBlockSettings NETHER_BRASS = FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool();
 
 
-	public static final FabricBlockSettings GREEN_FIRE = FabricBlockSettings.of(Material.FIRE, MapColor.LIME)
+	public static final AbstractBlock.Settings GREEN_FIRE = FabricBlockSettings.of(Material.FIRE, MapColor.LIME)
 			.noCollision()
 			.breakInstantly()
-			.luminance((p_50884_) -> 13)
+			.luminance((lumen) -> 13)
 			.sounds(BlockSoundGroup.WOOL)
 			.dropsNothing();
 
 	public static final FabricBlockSettings BRASS_TORCH = FabricBlockSettings.of(Material.DECORATION)
 			.noCollision()
 			.breakInstantly()
-			.lightLevel((p_50884_) -> 13)
+			.luminance((lumen) -> 13)
 			.sounds(BlockSoundGroup.WOOD);
 
 	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)

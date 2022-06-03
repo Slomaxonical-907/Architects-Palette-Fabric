@@ -1,11 +1,11 @@
 package com.slomaxonical.architectspalette.factories;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
 
 public class BasicTradeFactory implements TradeOffers.Factory {
     private final TradeOffer trade;
@@ -13,10 +13,9 @@ public class BasicTradeFactory implements TradeOffers.Factory {
     public BasicTradeFactory(TradeOffer trade) {
         this.trade = trade;
     }
-
     @Nullable
     @Override
-    public TradeOffer create(Entity entity, Random random) {
+    public TradeOffer create(Entity entity, Random random)  {
         return new TradeOffer(this.trade.toNbt());
     }
 }
