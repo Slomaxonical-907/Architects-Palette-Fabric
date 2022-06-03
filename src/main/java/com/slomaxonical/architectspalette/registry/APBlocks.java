@@ -542,8 +542,8 @@ public class APBlocks {
         createBlock("nether_brass_pillar", NETHER_BRASS_PILLAR);
         new StoneBlockSet(createBlock("smooth_nether_brass", SMOOTH_NETHER_BRASS), false).addSlabs().addStairs();
         createBlockNoItem("nether_brass_fire", NETHER_BRASS_FIRE);
-        createBlock("nether_brass_chain", NETHER_BRASS_CHAIN);
-        createBlock("nether_brass_lantern", NETHER_BRASS_LANTERN);
+        createBlock("nether_brass_chain", NETHER_BRASS_CHAIN,ItemGroup.DECORATIONS);
+        createBlock("nether_brass_lantern", NETHER_BRASS_LANTERN,ItemGroup.DECORATIONS);
         createBlockNoItem("nether_brass_torch", NETHER_BRASS_TORCH);
         createBlockNoItem("nether_brass_wall_torch",NETHER_BRASS_WALL_TORCH);
 
