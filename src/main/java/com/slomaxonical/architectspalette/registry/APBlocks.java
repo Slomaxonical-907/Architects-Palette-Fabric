@@ -62,6 +62,18 @@ public class APBlocks {
     public static final Block OVERGROWN_ALGAL_BRICK         =new Block(APBlockSettings.ALGAL_BRICK);
     public static final Block ALGAL_LAMP                    =new Block(FabricBlockSettings.copy(Blocks.SEA_LANTERN));
 
+    // Nether Brass
+    public static final Block NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
+    public static final Block CUT_NETHER_BRASS =new Block(APBlockSettings.NETHER_BRASS);
+    public static final Block SMOOTH_NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
+    public static final Block NETHER_BRASS_PILLAR = new PillarBlock(APBlockSettings.NETHER_BRASS);
+    public static final Block NETHER_BRASS_FIRE = new GreenFireBlock(APBlockSettings.GREEN_FIRE);
+
+    public static final Block NETHER_BRASS_CHAIN = new ChainBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.CHAIN));
+    public static final Block NETHER_BRASS_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool().luminance((a)->13));
+    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, ArchitectsPalette.GREEN_FLAME);
+    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), ArchitectsPalette.GREEN_FLAME);
+
     // Sunmetal
     public static final Block SUNMETAL                = new Block(APBlockSettings.SUNMETAL);
     public static final Block CHISELED_SUNMETAL_BLOCK = new Block(APBlockSettings.SUNMETAL);
@@ -264,20 +276,9 @@ public class APBlocks {
     public static final Block MONAZITE_ROD = new GlassLikePillarBlock(APBlockSettings.NETHER_CRYSTAL);
     //unobtanium
     public static final Block UNOBTANIUM_BLOCK = new Block(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK));
-    // Nether Brass
-    public static final Block NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
-    public static final Block CUT_NETHER_BRASS =new Block(APBlockSettings.NETHER_BRASS);
-    public static final Block SMOOTH_NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
-    public static final Block NETHER_BRASS_PILLAR = new PillarBlock(APBlockSettings.NETHER_BRASS);
-    public static final Block NETHER_BRASS_FIRE = new GreenFireBlock(APBlockSettings.GREEN_FIRE);
-
-    public static final Block NETHER_BRASS_CHAIN = new ChainBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.CHAIN));
-    public static final Block NETHER_BRASS_LANTERN = new LanternBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.LANTERN).luminance((a)->13));
-    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, ArchitectsPalette.GREEN_FLAME);
-    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), ArchitectsPalette.GREEN_FLAME);
 
     //Create Blocks
-    private static final Set<String> STRING_SET = Set.of("algal_bricks","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block","nether_brass_block","nether_brass_lantern");
+    private static final Set<String> STRING_SET = Set.of("algal_bricks","nether_brass_block","nether_brass_lantern","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block");
     public static List<Integer> INDEXS = new ArrayList<>();
 
     public static <B extends Block> B createBlock(String name, B anyBlock) {
@@ -347,6 +348,17 @@ public class APBlocks {
          createBlock("chiseled_algal_bricks",CHISELED_ALGAL_BRICKS);
          new StoneBlockSet(createBlock("overgrown_algal_bricks",OVERGROWN_ALGAL_BRICK));
          createBlock("algal_lamp",ALGAL_LAMP);
+
+        //NetherBrass
+        new StoneBlockSet(createBlock("nether_brass_block", NETHER_BRASS));
+        new StoneBlockSet(createBlock("cut_nether_brass", CUT_NETHER_BRASS));
+        createBlock("nether_brass_pillar", NETHER_BRASS_PILLAR);
+        new StoneBlockSet(createBlock("smooth_nether_brass", SMOOTH_NETHER_BRASS), false).addSlabs().addStairs();
+        createBlockNoItem("nether_brass_fire", NETHER_BRASS_FIRE);
+        createBlock("nether_brass_chain", NETHER_BRASS_CHAIN,ItemGroup.DECORATIONS);
+        createBlock("nether_brass_lantern", NETHER_BRASS_LANTERN,ItemGroup.DECORATIONS);
+        createBlockNoItem("nether_brass_torch", NETHER_BRASS_TORCH);
+        createBlockNoItem("nether_brass_wall_torch",NETHER_BRASS_WALL_TORCH);
 
         // Sunmetal
          new StoneBlockSet(createBlock("sunmetal_block",SUNMETAL, ItemGroup.BUILDING_BLOCKS), false).addSlabs().addStairs();
@@ -536,16 +548,6 @@ public class APBlocks {
         createBlock("monazite_rod", MONAZITE_ROD);
         //unobtanim
         createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
-        //netherBrass
-        new StoneBlockSet(createBlock("nether_brass_block", NETHER_BRASS));
-        new StoneBlockSet(createBlock("cut_nether_brass", CUT_NETHER_BRASS));
-        createBlock("nether_brass_pillar", NETHER_BRASS_PILLAR);
-        new StoneBlockSet(createBlock("smooth_nether_brass", SMOOTH_NETHER_BRASS), false).addSlabs().addStairs();
-        createBlockNoItem("nether_brass_fire", NETHER_BRASS_FIRE);
-        createBlock("nether_brass_chain", NETHER_BRASS_CHAIN,ItemGroup.DECORATIONS);
-        createBlock("nether_brass_lantern", NETHER_BRASS_LANTERN,ItemGroup.DECORATIONS);
-        createBlockNoItem("nether_brass_torch", NETHER_BRASS_TORCH);
-        createBlockNoItem("nether_brass_wall_torch",NETHER_BRASS_WALL_TORCH);
 
     }
 

@@ -124,7 +124,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         //sunmetal
         offerShapelessRecipe(exporter,2,SUNMETAL_BLEND,Items.SOUL_SAND,Items.GOLD_NUGGET);
         offerSmelting(exporter, List.of(SUNMETAL_BLEND),SUNMETAL_BRICK,0.3f, 200, null);
-        offerCondensingRecipe(exporter,SUNMETAL, ALGAL_BRICK,1);
+        offerCondensingRecipe(exporter,SUNMETAL, SUNMETAL_BRICK,1);
         offerBarsRecipe(exporter,SUNMETAL_BARS,SUNMETAL_BRICK);
         //basalt
         offerPolishedStoneRecipe(exporter, BASALT_TILES, Items.POLISHED_BASALT);
