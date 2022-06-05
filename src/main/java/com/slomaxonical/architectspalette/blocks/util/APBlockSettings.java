@@ -47,7 +47,10 @@ public class APBlockSettings {
 
 	public static final FabricBlockSettings NETHER_CRYSTAL = FabricBlockSettings.copyOf(Blocks.GLASS).luminance(l -> 12).requiresTool().strength(1.2f);
 
-	public static final FabricBlockSettings NETHER_BRASS = FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool();
+	public static final FabricBlockSettings NETHER_BRASS = FabricBlockSettings.of(Material.METAL, MapColor.YELLOW)
+			.strength(4.0F, 10.0F)
+			.sounds(BlockSoundGroup.COPPER)
+			.requiresTool();
 
 
 	public static final AbstractBlock.Settings GREEN_FIRE = FabricBlockSettings.of(Material.FIRE, MapColor.LIME)

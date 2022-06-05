@@ -38,7 +38,7 @@ public class CrystalClusterFeature extends Feature<CrystalClusterConfig> {
 
         //Set horizontal angle used to skew the shelves of crystals
         Vec3f shelfAngle = Vec3f.NEGATIVE_X.copy();
-        shelfAngle.rotate(Vec3f.POSITIVE_Y. getDegreesQuaternion(random.nextFloat(360)));
+        shelfAngle.rotate(Vec3f.POSITIVE_Y. getDegreesQuaternion(random.nextFloat() * 360));
 
         //Set horizontal angle that determines the spaces between shelves
         Vec3f formationAngle = shelfAngle.copy();
@@ -155,7 +155,7 @@ public class CrystalClusterFeature extends Feature<CrystalClusterConfig> {
     }
 
     private static float fRandomRange(Random random, float min, float max) {
-        return min + (random.nextFloat((max - min)));
+        return min + (random.nextFloat() * (max - min));
     }
 
     private static boolean canReplaceAt(StructureWorldAccess level, BlockPos pos) {
