@@ -26,6 +26,9 @@
     "rei_plugins": [
       "com.slomaxonical.architectspalette.compat.rei.APPlugin"
     ],
+    "emi": [
+      "com.slomaxonical.architectspalette.compat.emi.APEmiPlugin"
+    ],
     "fabric-datagen": [
       "com.slomaxonical.architectspalette.datagen.APDatagen"
     ]

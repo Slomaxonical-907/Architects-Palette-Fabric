@@ -39,13 +39,13 @@ public class WarpingCategory implements DisplayCategory<WarpingDisplay> {
     @Override
     public List<Widget> setupDisplay(WarpingDisplay recipeDisplay, Rectangle bounds) {
         Point origin = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 27);
-        int textureSize = 35;
+        int textureSize = 32;
         List<Widget> widgets = new ArrayList<>();
 
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(new Identifier("architects_palette", "textures/gui/nether_portal.png"), bounds.getCenterX()+1-textureSize/2, bounds.getCenterY()-14,0,0,textureSize,textureSize,textureSize,textureSize));
-        widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 45, bounds.y + 27)).entries(getInput(recipeDisplay,0)).markInput());
-        widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 30, bounds.y + 27)).entries(getOutput(recipeDisplay, 0)).markOutput());
+        widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 45, bounds.y + 26)).entries(getInput(recipeDisplay,0)).markInput());
+        widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 30, bounds.y + 26)).entries(getOutput(recipeDisplay, 0)).markOutput());
         //will do this later
         TranslatableText dimensionName = new TranslatableText("architects_palette.info.warping_toss_description","the Nether");
         widgets.add(Widgets.createLabel(new Point(bounds.getCenterX()-2,bounds.getY()+5),new LiteralText("toss")).tooltipLine(dimensionName.getString()).centered());
