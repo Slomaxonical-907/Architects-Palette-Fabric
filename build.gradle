@@ -49,9 +49,10 @@ dependencies {
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
 
-	// Both EMI and REI end up enabled at the same time in dev, sorry!
-	// In practice you can keep one hidden and it doesn't cause issues.
+	// If you use Eclipse, EMI and REI may both end up enabled at the same time in dev. Sorry!
+	// In practice you can keep one hidden and it won't cause any issues.
 	modCompileOnly "dev.emi:emi:${project.emi_version}"
+	//modRuntimeOnly "dev.emi:emi:${project.emi_version}"
 
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
