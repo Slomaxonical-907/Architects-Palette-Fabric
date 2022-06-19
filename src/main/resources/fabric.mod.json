@@ -23,7 +23,7 @@
     "client": [
       "com.slomaxonical.architectspalette.ArchitectsPaletteClient"
     ],
-    "rei_plugins": [
+    "rei_client": [
       "com.slomaxonical.architectspalette.compat.rei.APPlugin"
     ],
     "emi": [
