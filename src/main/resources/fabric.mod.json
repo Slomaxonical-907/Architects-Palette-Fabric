@@ -23,7 +23,7 @@
     "client": [
       "com.slomaxonical.architectspalette.ArchitectsPaletteClient"
     ],
-    "rei_plugins": [
+    "rei_client": [
       "com.slomaxonical.architectspalette.compat.rei.APPlugin"
     ],
     "fabric-datagen": [
@@ -36,7 +36,7 @@
 
   "depends": {
     "fabricloader": ">=0.14.0",
-    "fabric": ">=0.50.0",
+    "fabric": ">=0.54.0",
     "minecraft": "1.19.x",
     "java": ">=17",
     "cloth-config": ">=7.0.00"
