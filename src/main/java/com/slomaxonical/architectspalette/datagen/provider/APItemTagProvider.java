@@ -1,16 +1,13 @@
-package com.slomaxonical.architectspalette.data.provider;
+package com.slomaxonical.architectspalette.datagen.provider;
 
-import com.slomaxonical.architectspalette.ArchitectsPalette;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.APItems;
+import com.slomaxonical.architectspalette.registry.APTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
@@ -18,14 +15,6 @@ import org.jetbrains.annotations.Nullable;
 public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
     public APItemTagProvider(FabricDataGenerator dataGenerator, @Nullable BlockTagProvider blockTagProvider) {super(dataGenerator, blockTagProvider);
     }
-    //APTags
-    public static final TagKey<Item> TWISTED_LOGS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "twisted_logs"));
-    public static final TagKey<Item> OLIVESTONE = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "olivestone"));
-    public static final TagKey<Item> OLIVESTONE_SLABS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "olivestone_slabs"));
-    //common tags
-    public static final TagKey<Item> WITHERED_BONES = TagKey.of(Registry.ITEM_KEY,new Identifier("c", "withered_bones"));
-    public static final TagKey<Item> MUSHROOMS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "mushrooms"));
-
     /*
     //not used
     private FabricTagBuilder<Item> getOrCreateTagBuilder(Identifier id) {
@@ -41,8 +30,8 @@ public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
     */
     @Override
     protected void generateTags() {
-        this.copy(APBlockTagProvider.TWISTED_LOGS, TWISTED_LOGS);
-        this.getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).addTag(TWISTED_LOGS);
+        this.copy(APTags.TWISTED_LOGS, APTags.ITEM_TWISTED_LOGS);
+        this.getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).addTag(APTags.ITEM_TWISTED_LOGS);
         this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
         this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
         this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
@@ -57,19 +46,19 @@ public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
         this.copy(BlockTags.WOODEN_STAIRS,ItemTags.WOODEN_STAIRS);
         this.copy(BlockTags.WOODEN_TRAPDOORS,ItemTags.WOODEN_TRAPDOORS);
 
-        this.getOrCreateTagBuilder(MUSHROOMS)
+        this.getOrCreateTagBuilder(APTags.MUSHROOMS)
                 .add(Items.RED_MUSHROOM)
                 .add(Items.BROWN_MUSHROOM);
 
-        this.getOrCreateTagBuilder(OLIVESTONE)
+        this.getOrCreateTagBuilder(APTags.OLIVESTONE)
                 .add(APBlocks.OLIVESTONE_BRICKS.asItem())
                 .add(APBlocks.OLIVESTONE_TILE.asItem());
 
-        this.getOrCreateTagBuilder(OLIVESTONE_SLABS)
+        this.getOrCreateTagBuilder(APTags.OLIVESTONE_SLABS)
                 .add(Registry.BLOCK.get(new Identifier("architects_palette:olivestone_brick_slab")).asItem())
                 .add(Registry.BLOCK.get(new Identifier("architects_palette:olivestone_tile_slab")).asItem());
 
-        this.getOrCreateTagBuilder(WITHERED_BONES).add(APItems.WITHERED_BONE);
+        this.getOrCreateTagBuilder(APTags.WITHERED_BONES).add(APItems.WITHERED_BONE);
     }
 
 }

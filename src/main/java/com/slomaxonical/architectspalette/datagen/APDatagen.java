@@ -1,9 +1,9 @@
-package com.slomaxonical.architectspalette.data;
+package com.slomaxonical.architectspalette.datagen;
 
-import com.slomaxonical.architectspalette.data.provider.APBlockLootTableProvider;
-import com.slomaxonical.architectspalette.data.provider.APBlockTagProvider;
-import com.slomaxonical.architectspalette.data.provider.APItemTagProvider;
-import com.slomaxonical.architectspalette.data.provider.APRecipeProvider;
+import com.slomaxonical.architectspalette.datagen.provider.APBlockLootTableProvider;
+import com.slomaxonical.architectspalette.datagen.provider.APBlockTagProvider;
+import com.slomaxonical.architectspalette.datagen.provider.APItemTagProvider;
+import com.slomaxonical.architectspalette.datagen.provider.APRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
