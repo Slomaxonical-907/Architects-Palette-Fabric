@@ -126,6 +126,8 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSmelting(exporter, List.of(SUNMETAL_BLEND),SUNMETAL_BRICK,0.3f, 200, null);
         offerCondensingRecipe(exporter,SUNMETAL, SUNMETAL_BRICK,1);
         offerBarsRecipe(exporter,SUNMETAL_BARS,SUNMETAL_BRICK);
+        //Gilded Sandstone
+        offerMiniXRecipe(exporter,GILDED_SANDSTONE, Items.SANDSTONE,Items.GOLD_NUGGET,2);
         //basalt
         offerPolishedStoneRecipe(exporter, BASALT_TILES, Items.POLISHED_BASALT);
         offerShapelessRecipe(exporter, Items.BONE_MEAL, WITHERED_BONE,null,3);
@@ -198,7 +200,9 @@ public class APRecipeProvider extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(APBlocks.NETHER_BRASS_TORCH).input('n', NETHER_BRASS_NUGGET).input('s', Items.STICK).pattern("n").pattern("s").criterion("has_brass_nugget", RecipeProvider.conditionsFromItem(NETHER_BRASS_NUGGET)).offerTo(exporter);
         offerReversibleCompactingRecipes(exporter,NETHER_BRASS_NUGGET,BRASS_INGOT,"brass_nuggets_to_ingot",null,"brass_ingot_to_nuggets",null);
         offerSmelting(exporter, List.of(BRASS_BLEND),BRASS_INGOT,0.1f, 200, null);
+        offerBlasting(exporter,List.of(BRASS_BLEND),BRASS_INGOT,0.1f,100,null);
         offerSmelting(exporter, List.of(NETHER_BRASS),SMOOTH_NETHER_BRASS,0.1f, 200, null);
+        offerBlasting(exporter, List.of(NETHER_BRASS),SMOOTH_NETHER_BRASS,0.1f, 100, null);
         //olive
         offerFramedRecipe(exporter,OLIVESTONE_BRICKS, Items.GREEN_DYE,Items.STONE,8);
         ShapedRecipeJsonBuilder.create(ILLUMINATED_OLIVESTONE, 2).input('#', APTags.OLIVESTONE).input('$',Items.GLOWSTONE_DUST).pattern("#$").pattern("$#").criterion("has_olivestone", conditionsFromTag(APTags.OLIVESTONE)).offerTo(exporter);
