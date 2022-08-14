@@ -71,8 +71,10 @@ public class APBlocks {
 
     public static final Block NETHER_BRASS_CHAIN = new ChainBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.CHAIN));
     public static final Block NETHER_BRASS_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool().luminance((a)->13));
-    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, ArchitectsPalette.GREEN_FLAME);
-    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), ArchitectsPalette.GREEN_FLAME);
+    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, APParticles.GREEN_FLAME);
+    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), APParticles.GREEN_FLAME);
+    //Wardstone
+    public static final Block WARDSTONE = new Block(APBlockSettings.NETHER_BRASS);
 
     // Sunmetal
     public static final Block SUNMETAL                = new Block(APBlockSettings.SUNMETAL);
@@ -546,6 +548,8 @@ public class APBlocks {
         createBlock("heliodor_rod", HELIODOR_ROD);
         createBlock("ekanite_rod", EKANITE_ROD);
         createBlock("monazite_rod", MONAZITE_ROD);
+        //Wardstone
+        createBlock("wardstone",WARDSTONE);
         //unobtanim
         createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
 
