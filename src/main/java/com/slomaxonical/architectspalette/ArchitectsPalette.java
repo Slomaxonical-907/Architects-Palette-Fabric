@@ -7,6 +7,7 @@ import com.slomaxonical.architectspalette.features.APFeatures;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.loot.LootTableModifications;
 import com.slomaxonical.architectspalette.registry.*;
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
@@ -34,10 +35,8 @@ public class ArchitectsPalette implements ModInitializer {
 
         APItems.registerItems();
         APItemgroup.registerItemgroup();
-        APBlocks.registerFuel();
-
-        StrippableBlockRegistry.register(APBlocks.TWISTED_LOG, APBlocks.STRIPPED_TWISTED_LOG);
-        StrippableBlockRegistry.register(APBlocks.TWISTED_WOOD, APBlocks.STRIPPED_TWISTED_WOOD);
+        RegistryUtil.registerFuel();
+        RegistryUtil.registerStrippables();
 
         APSounds.registerSounds();
         WarpingRecipe.registerRecipe();

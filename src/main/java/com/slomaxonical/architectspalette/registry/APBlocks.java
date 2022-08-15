@@ -8,38 +8,34 @@ import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import com.slomaxonical.architectspalette.blocks.abyssaline.*;
 import com.slomaxonical.architectspalette.blocks.*;
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.ArchitectsPalette;
-import me.shedaniel.autoconfig.AutoConfig;
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+
+import static com.slomaxonical.architectspalette.blocks.util.StoneBlockSet.SetGroup.*;
 
 
 public class APBlocks {
     public static Map<Block,List<Block>> chiseledNcrackedOres = new HashMap<>();
 
     // Abyssaline
-    public static final NewAbyssalineBlock      ABYSSALINE                 = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
-    public static final NewAbyssalineBlock      ABYSSALINE_BRICKS          = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
-    public static final NewAbyssalineBlock      ABYSSALINE_TILES           = new NewAbyssalineBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
-    public static final AbyssalineSlabBlock     ABYSSALINE_BRICK_SLAB      = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
-    public static final AbyssalineSlabBlock     ABYSSALINE_TILE_SLAB       = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
-    public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
-    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE.sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance()));
+    public static final AbyssalineBlock ABYSSALINE                 = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineBlock ABYSSALINE_BRICKS          = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineBlock ABYSSALINE_TILES           = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineSlabBlock     ABYSSALINE_BRICK_SLAB      = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineSlabBlock     ABYSSALINE_TILE_SLAB       = new AbyssalineSlabBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE);
     public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(APBlockSettings.CHISELED_ABYSSALINE);
 
-    public static final AbyssalineVerticalSlabBlock ABYSSALINE_BRICK_VERTICAL_SLAB = new AbyssalineVerticalSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
-    public static final AbyssalineVerticalSlabBlock ABYSSALINE_TILE_VERTICAL_SLAB = new AbyssalineVerticalSlabBlock(APBlockSettings.ABYSSALINE.luminance(NewAbyssalineBlock.getLuminance()));
+    public static final AbyssalineVerticalSlabBlock ABYSSALINE_BRICK_VERTICAL_SLAB = new AbyssalineVerticalSlabBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineVerticalSlabBlock ABYSSALINE_TILE_VERTICAL_SLAB = new AbyssalineVerticalSlabBlock(APBlockSettings.ABYSSALINE);
     // Limestone
     public static final Block MYONITE = new Block(APBlockSettings.MYONITE);
     public static final Block MYONITE_BRICKS = new Block(APBlockSettings.MYONITE);
@@ -108,10 +104,10 @@ public class APBlocks {
         List<String> ores = List.of("coal", "lapis", "redstone", "iron", "gold", "emerald", "diamond");
 
         for (String ore : ores) {
-            StoneBlockSet set = new StoneBlockSet(createBlock(ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS))));
-            Block chiseled = createBlock("chiseled_" + ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)));
-            Block cracked = createBlock("cracked_" + ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS)));
-            chiseledNcrackedOres.put(set.BLOCK,List.of(chiseled,cracked));
+            StoneBlockSet set = new StoneBlockSet(RegistryUtil.createBlock(ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS))));
+            Block chiseled = RegistryUtil.createBlock("chiseled_" + ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)));
+            Block cracked = RegistryUtil.createBlock("cracked_" + ore + "_ore_bricks", new Block(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS)));
+            chiseledNcrackedOres.put(set.getBase(),List.of(chiseled,cracked));
         }
     }
 
@@ -225,7 +221,7 @@ public class APBlocks {
 
 
     public static final Block        TWISTED_SAPLING = new SaplingBlock(new TwistedTree(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
-    public static final Block POTTED_TWISTED_SAPLING = createPottedPlant(TWISTED_SAPLING);
+    public static final Block POTTED_TWISTED_SAPLING = RegistryUtil.createPottedPlant(TWISTED_SAPLING);
 
     //Boards
     public static final Block OAK_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS));
@@ -277,277 +273,242 @@ public class APBlocks {
     //unobtanium
     public static final Block UNOBTANIUM_BLOCK = new Block(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK));
 
-    //Create Blocks
-    private static final Set<String> STRING_SET = Set.of("algal_bricks","nether_brass_block","nether_brass_lantern","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block");
-    public static List<Integer> INDEXS = new ArrayList<>();
 
-    public static <B extends Block> B createBlock(String name, B anyBlock) {
-        return createBlock(name, anyBlock, ItemGroup.BUILDING_BLOCKS);
-    }
-
-    public static <B extends Block> B createBlock(String name, B anyBlock, @Nullable ItemGroup group) {
-        B block = Registry.register(Registry.BLOCK, new Identifier(ArchitectsPalette.MOD_ID, name), anyBlock);
-
-        BlockItem blockItem = new BlockItem(block, new Item.Settings().group(group));
-        Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID,name), blockItem);
-        ItemStack stack = new ItemStack(blockItem);
-        if (name.contains("vertical")) {
-             if (AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs) APItemgroup.ITEMGROUP_LIST.add(stack);
-        }else{
-            APItemgroup.ITEMGROUP_LIST.add(stack);
-        }
-        if(STRING_SET.contains(name)) {
-            INDEXS.add(APItemgroup.ITEMGROUP_LIST.indexOf(stack));
-        }
-        return block;
-    }
-
-
-    public static <B extends Block> B createBlockNoItem(String name, B anyBlock) {
-        return Registry.register(Registry.BLOCK, new Identifier(ArchitectsPalette.MOD_ID, name), anyBlock);
-    }
-    private static Block createPottedPlant(Block plant) {
-        String name = Registry.BLOCK.getId(plant).getPath();
-        return new FlowerPotBlock(plant, FabricBlockSettings.copy(Blocks.POTTED_ACACIA_SAPLING).breakInstantly().nonOpaque());
-    }
     //todo:move to seperate ting with flammability and stripping registries
-    public static void registerFuel(){
-        FuelRegistry.INSTANCE.add(APBlocks.CHARCOAL_BLOCK, 1600);
 
-    }
     public static void registerBlocks(){
-        createBlock("abyssaline",ABYSSALINE);
-        createBlock("abyssaline_bricks", ABYSSALINE_BRICKS);
-        createBlock("abyssaline_tiles", ABYSSALINE_TILES);
-        createBlock("abyssaline_brick_slab",ABYSSALINE_BRICK_SLAB);
-        createBlock("abyssaline_brick_vertical_slab", ABYSSALINE_BRICK_VERTICAL_SLAB);
-        createBlock("abyssaline_tile_slab",ABYSSALINE_TILE_SLAB);
-        createBlock("abyssaline_tile_vertical_slab", ABYSSALINE_TILE_VERTICAL_SLAB);
-        createBlock("abyssaline_pillar",ABYSSALINE_PILLAR);
-        createBlock("abyssaline_lamp",ABYSSALINE_LAMP_BLOCK);
-        createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
+        RegistryUtil.createBlock("abyssaline",ABYSSALINE);
+        RegistryUtil.createBlock("abyssaline_bricks", ABYSSALINE_BRICKS);
+        RegistryUtil.createBlock("abyssaline_tiles", ABYSSALINE_TILES);
+        RegistryUtil.createBlock("abyssaline_brick_slab",ABYSSALINE_BRICK_SLAB);
+        RegistryUtil.createBlock("abyssaline_brick_vertical_slab", ABYSSALINE_BRICK_VERTICAL_SLAB);
+        RegistryUtil.createBlock("abyssaline_tile_slab",ABYSSALINE_TILE_SLAB);
+        RegistryUtil.createBlock("abyssaline_tile_vertical_slab", ABYSSALINE_TILE_VERTICAL_SLAB);
+        RegistryUtil.createBlock("abyssaline_pillar",ABYSSALINE_PILLAR);
+        RegistryUtil.createBlock("abyssaline_lamp",ABYSSALINE_LAMP_BLOCK);
+        RegistryUtil.createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
         
         // Myonite (Previously Limestone)
-         new StoneBlockSet(createBlock("myonite", MYONITE));
-         new StoneBlockSet(createBlock("myonite_bricks", MYONITE_BRICKS));
-        new StoneBlockSet(createBlock("mushy_myonite_bricks", MUSHY_MYONITE_BRICK));
+         new StoneBlockSet(RegistryUtil.createBlock("myonite", MYONITE));
+         new StoneBlockSet(RegistryUtil.createBlock("myonite_bricks", MYONITE_BRICKS));
+        new StoneBlockSet(RegistryUtil.createBlock("mushy_myonite_bricks", MUSHY_MYONITE_BRICK));
 
         // Olivestone
-        new StoneBlockSet(createBlock("olivestone_bricks", OLIVESTONE_BRICKS));
-        createBlock("cracked_olivestone_bricks",CRACKED_OLIVESTONE_BRICKS);
-        new StoneBlockSet(createBlock("olivestone_tiles",OLIVESTONE_TILE));
-        createBlock("cracked_olivestone_tiles",CRACKED_OLIVESTONE_TILES);
+        new StoneBlockSet(RegistryUtil.createBlock("olivestone_bricks", OLIVESTONE_BRICKS));
+        RegistryUtil.createBlock("cracked_olivestone_bricks",CRACKED_OLIVESTONE_BRICKS);
+        new StoneBlockSet(RegistryUtil.createBlock("olivestone_tiles",OLIVESTONE_TILE));
+        RegistryUtil.createBlock("cracked_olivestone_tiles",CRACKED_OLIVESTONE_TILES);
 
-        createBlock("olivestone_pillar",OLIVESTONE_PILLAR);
-        createBlock("chiseled_olivestone",CHISELED_OLIVESTONE);
-         createBlock("illuminated_olivestone",ILLUMINATED_OLIVESTONE);
+        RegistryUtil.createBlock("olivestone_pillar",OLIVESTONE_PILLAR);
+        RegistryUtil.createBlock("chiseled_olivestone",CHISELED_OLIVESTONE);
+         RegistryUtil.createBlock("illuminated_olivestone",ILLUMINATED_OLIVESTONE);
 
         // Algal Brick
-         new StoneBlockSet(createBlock("algal_bricks",ALGAL_BRICKS));
-         createBlock("cracked_algal_bricks",CRACKED_ALGAL_BRICKS);
-         createBlock("chiseled_algal_bricks",CHISELED_ALGAL_BRICKS);
-         new StoneBlockSet(createBlock("overgrown_algal_bricks",OVERGROWN_ALGAL_BRICK));
-         createBlock("algal_lamp",ALGAL_LAMP);
+         new StoneBlockSet(RegistryUtil.createBlock("algal_bricks",ALGAL_BRICKS));
+         RegistryUtil.createBlock("cracked_algal_bricks",CRACKED_ALGAL_BRICKS);
+         RegistryUtil.createBlock("chiseled_algal_bricks",CHISELED_ALGAL_BRICKS);
+         new StoneBlockSet(RegistryUtil.createBlock("overgrown_algal_bricks",OVERGROWN_ALGAL_BRICK));
+         RegistryUtil.createBlock("algal_lamp",ALGAL_LAMP);
 
         //NetherBrass
-        new StoneBlockSet(createBlock("nether_brass_block", NETHER_BRASS));
-        new StoneBlockSet(createBlock("cut_nether_brass", CUT_NETHER_BRASS));
-        createBlock("nether_brass_pillar", NETHER_BRASS_PILLAR);
-        new StoneBlockSet(createBlock("smooth_nether_brass", SMOOTH_NETHER_BRASS), false).addSlabs().addStairs();
-        createBlockNoItem("nether_brass_fire", NETHER_BRASS_FIRE);
-        createBlock("nether_brass_chain", NETHER_BRASS_CHAIN,ItemGroup.DECORATIONS);
-        createBlock("nether_brass_lantern", NETHER_BRASS_LANTERN,ItemGroup.DECORATIONS);
-        createBlockNoItem("nether_brass_torch", NETHER_BRASS_TORCH);
-        createBlockNoItem("nether_brass_wall_torch",NETHER_BRASS_WALL_TORCH);
+        new StoneBlockSet(RegistryUtil.createBlock("nether_brass_block", NETHER_BRASS));
+        new StoneBlockSet(RegistryUtil.createBlock("cut_nether_brass", CUT_NETHER_BRASS));
+        RegistryUtil.createBlock("nether_brass_pillar", NETHER_BRASS_PILLAR);
+        new StoneBlockSet(RegistryUtil.createBlock("smooth_nether_brass", SMOOTH_NETHER_BRASS), NO_WALLS);
+        RegistryUtil.createBlockNoItem("nether_brass_fire", NETHER_BRASS_FIRE);
+        RegistryUtil.createBlock("nether_brass_chain", NETHER_BRASS_CHAIN,ItemGroup.DECORATIONS);
+        RegistryUtil.createBlock("nether_brass_lantern", NETHER_BRASS_LANTERN,ItemGroup.DECORATIONS);
+        RegistryUtil.createBlockNoItem("nether_brass_torch", NETHER_BRASS_TORCH);
+        RegistryUtil.createBlockNoItem("nether_brass_wall_torch",NETHER_BRASS_WALL_TORCH);
 
         // Sunmetal
-         new StoneBlockSet(createBlock("sunmetal_block",SUNMETAL, ItemGroup.BUILDING_BLOCKS), false).addSlabs().addStairs();
-         createBlock("chiseled_sunmetal_block",CHISELED_SUNMETAL_BLOCK);
-         createBlock("sunmetal_pillar",SUNMETAL_PILLAR);
-         createBlock("sunmetal_bars",SUNMETAL_BARS);
+         new StoneBlockSet(RegistryUtil.createBlock("sunmetal_block",SUNMETAL, ItemGroup.BUILDING_BLOCKS), NO_WALLS);
+         RegistryUtil.createBlock("chiseled_sunmetal_block",CHISELED_SUNMETAL_BLOCK);
+         RegistryUtil.createBlock("sunmetal_pillar",SUNMETAL_PILLAR);
+         RegistryUtil.createBlock("sunmetal_bars",SUNMETAL_BARS);
 
         // Rotten Flesh Block
-         createBlock("rotten_flesh_block",ROTTEN_FLESH_BLOCK);
+         RegistryUtil.createBlock("rotten_flesh_block",ROTTEN_FLESH_BLOCK);
 
         // Villager Trade blocks
         // Entrails
-        createBlock("entrails", ENTRAILS);
-        createBlock("entrails_slab",ENTRAILS_SLAB);
-        createBlock("entrails_vertical_slab",ENTRAILS_VERTICAL_SLAB);
-        createBlock("entrails_stairs",ENTRAILS_STAIRS);
+        RegistryUtil.createBlock("entrails", ENTRAILS);
+        RegistryUtil.createBlock("entrails_slab",ENTRAILS_SLAB);
+        RegistryUtil.createBlock("entrails_vertical_slab",ENTRAILS_VERTICAL_SLAB);
+        RegistryUtil.createBlock("entrails_stairs",ENTRAILS_STAIRS);
         // Funny fish blocks
-         createBlock("salmon_log",SALMON_LOG);
-         createBlock("cod_log",COD_LOG);
-         createBlock("salmon_scales",SALMON_SCALES);
-         createBlock("cod_scales",COD_SCALES);
+         RegistryUtil.createBlock("salmon_log",SALMON_LOG);
+         RegistryUtil.createBlock("cod_log",COD_LOG);
+         RegistryUtil.createBlock("salmon_scales",SALMON_SCALES);
+         RegistryUtil.createBlock("cod_scales",COD_SCALES);
         // Plating & Piping
-         new StoneBlockSet(createBlock("plating_block",PLATING_BLOCK));
-         createBlock("pipe",PIPE);
+         new StoneBlockSet(RegistryUtil.createBlock("plating_block",PLATING_BLOCK));
+         RegistryUtil.createBlock("pipe",PIPE);
         //Spools
-         createBlock("spool",SPOOL);
+         RegistryUtil.createBlock("spool",SPOOL);
 
         // Scute Block
-         createBlock("scute_block",  SCUTE_BLOCK);
+         RegistryUtil.createBlock("scute_block",  SCUTE_BLOCK);
 
         // Ore Bricks
          addOreBricks();
 
         // Polished Packed Ice
-         new StoneBlockSet(createBlock("polished_packed_ice",POLISHED_PACKED_ICE));
-         createBlock("chiseled_packed_ice",CHISELED_PACKED_ICE  );
-         createBlock("packed_ice_pillar",PACKED_ICE_PILLAR);
+         new StoneBlockSet(RegistryUtil.createBlock("polished_packed_ice",POLISHED_PACKED_ICE));
+         RegistryUtil.createBlock("chiseled_packed_ice",CHISELED_PACKED_ICE  );
+         RegistryUtil.createBlock("packed_ice_pillar",PACKED_ICE_PILLAR);
 
         // Gilded Sandstone
-         new StoneBlockSet(createBlock("gilded_sandstone",  GILDED_SANDSTONE ), false).addSlabs().addStairs();
-         createBlock("gilded_sandstone_pillar",GILDED_SANDSTONE_PILLAR);
-         createBlock("chiseled_gilded_sandstone",CHISELED_GILDED_SANDSTONE);
+         new StoneBlockSet(RegistryUtil.createBlock("gilded_sandstone",  GILDED_SANDSTONE ), NO_WALLS);
+         RegistryUtil.createBlock("gilded_sandstone_pillar",GILDED_SANDSTONE_PILLAR);
+         RegistryUtil.createBlock("chiseled_gilded_sandstone",CHISELED_GILDED_SANDSTONE);
 
         // Polished Glowstone
-         new StoneBlockSet(createBlock("polished_glowstone",POLISHED_GLOWSTONE), false).addSlabs().addWalls();
-         createBlock("runic_glowstone",RUNIC_GLOWSTONE);
+         new StoneBlockSet(RegistryUtil.createBlock("polished_glowstone",POLISHED_GLOWSTONE), NO_STAIRS);
+         RegistryUtil.createBlock("runic_glowstone",RUNIC_GLOWSTONE);
 
         // Osseous Bricks
-        new StoneBlockSet(createBlock("osseous_bricks",OSSEOUS_BRICK));
-        createBlock("osseous_pillar",OSSEOUS_PILLAR);
-        createBlock("osseous_skull",OSSEOUS_SKULL);
-        createBlock("lit_osseous_skull",LIT_OSSEOUS_SKULL);
+        new StoneBlockSet(RegistryUtil.createBlock("osseous_bricks",OSSEOUS_BRICK));
+        RegistryUtil.createBlock("osseous_pillar",OSSEOUS_PILLAR);
+        RegistryUtil.createBlock("osseous_skull",OSSEOUS_SKULL);
+        RegistryUtil.createBlock("lit_osseous_skull",LIT_OSSEOUS_SKULL);
         // Withered
         // Todo: Replace bone block recipe to one that uses withered bone meal if that gets in
-         createBlock("withered_bone_block",WITHERED_BONE_BLOCK, ItemGroup.BUILDING_BLOCKS);
-         new StoneBlockSet(createBlock("withered_osseous_bricks",WITHERED_OSSEOUS_BRICK));
-         createBlock("withered_osseous_pillar",WITHERED_OSSEOUS_PILLAR);
-         createBlock("withered_osseous_skull",WITHERED_OSSEOUS_SKULL);
-         createBlock("lit_withered_osseous_skull",LIT_WITHERED_OSSEOUS_SKULL);
-         createBlock("wither_lamp",  WITHER_LAMP);
+         RegistryUtil.createBlock("withered_bone_block",WITHERED_BONE_BLOCK, ItemGroup.BUILDING_BLOCKS);
+         new StoneBlockSet(RegistryUtil.createBlock("withered_osseous_bricks",WITHERED_OSSEOUS_BRICK));
+         RegistryUtil.createBlock("withered_osseous_pillar",WITHERED_OSSEOUS_PILLAR);
+         RegistryUtil.createBlock("withered_osseous_skull",WITHERED_OSSEOUS_SKULL);
+         RegistryUtil.createBlock("lit_withered_osseous_skull",LIT_WITHERED_OSSEOUS_SKULL);
+         RegistryUtil.createBlock("wither_lamp",  WITHER_LAMP);
 
         // Flint Blocks
-         createBlock("flint_block",FLINT_BLOCK);
-         new StoneBlockSet(createBlock("flint_tiles",FLINT_TILES));
-         createBlock("flint_pillar",FLINT_PILLAR);
+         RegistryUtil.createBlock("flint_block",FLINT_BLOCK);
+         new StoneBlockSet(RegistryUtil.createBlock("flint_tiles",FLINT_TILES));
+         RegistryUtil.createBlock("flint_pillar",FLINT_PILLAR);
 
         // Mossy Blackstone Variants
-         createBlock("weeping_blackstone",  WEEPING_BLACKSTONE);
-         createBlock("twisting_blackstone", TWISTING_BLACKSTONE);
-         createBlock("weeping_blackstone_bricks",  WEEPING_BLACKSTONE_BRICKS);
-         createBlock("twisting_blackstone_bricks",  TWISTING_BLACKSTONE_BRICKS);
+         RegistryUtil.createBlock("weeping_blackstone",  WEEPING_BLACKSTONE);
+         RegistryUtil.createBlock("twisting_blackstone", TWISTING_BLACKSTONE);
+         RegistryUtil.createBlock("weeping_blackstone_bricks",  WEEPING_BLACKSTONE_BRICKS);
+         RegistryUtil.createBlock("twisting_blackstone_bricks",  TWISTING_BLACKSTONE_BRICKS);
 
         // Basalt Tiles
-         new StoneBlockSet(createBlock("basalt_tiles",BASALT_TILES));
-         createBlock("cracked_basalt_tiles",CRACKED_BASALT_TILES);
-         createBlock("chiseled_basalt_tiles",CHISELED_BASALT_TILES);
+         new StoneBlockSet(RegistryUtil.createBlock("basalt_tiles",BASALT_TILES));
+         RegistryUtil.createBlock("cracked_basalt_tiles",CRACKED_BASALT_TILES);
+         RegistryUtil.createBlock("chiseled_basalt_tiles",CHISELED_BASALT_TILES);
 
         //Dripstone
-         new StoneBlockSet(createBlock("dripstone_bricks",DRIPSTONE_BRICKS));
-         createBlock("dripstone_pillar",DRIPSTONE_PILLAR);
-         createBlock("chiseled_dripstone",CHISELED_DRIPSTONE);
-         createBlock("heavy_dripstone_bricks",HEAVY_DRIPSTONE_BRICKS);
-         createBlock("dripstone_lamp",DRIPSTONE_LAMP);
+         new StoneBlockSet(RegistryUtil.createBlock("dripstone_bricks",DRIPSTONE_BRICKS));
+         RegistryUtil.createBlock("dripstone_pillar",DRIPSTONE_PILLAR);
+         RegistryUtil.createBlock("chiseled_dripstone",CHISELED_DRIPSTONE);
+         RegistryUtil.createBlock("heavy_dripstone_bricks",HEAVY_DRIPSTONE_BRICKS);
+         RegistryUtil.createBlock("dripstone_lamp",DRIPSTONE_LAMP);
 
         //Calcite
-         new StoneBlockSet(createBlock("calcite_bricks",CALCITE_BRICKS));
-         createBlock("calcite_pillar",CALCITE_PILLAR);
-         createBlock("chiseled_calcite",CHISELED_CALCITE);
-         createBlock("heavy_calcite_bricks",HEAVY_CALCITE_BRICKS);
-         createBlock("calcite_lamp",CALCITE_LAMP);
+         new StoneBlockSet(RegistryUtil.createBlock("calcite_bricks",CALCITE_BRICKS));
+         RegistryUtil.createBlock("calcite_pillar",CALCITE_PILLAR);
+         RegistryUtil.createBlock("chiseled_calcite",CHISELED_CALCITE);
+         RegistryUtil.createBlock("heavy_calcite_bricks",HEAVY_CALCITE_BRICKS);
+         RegistryUtil.createBlock("calcite_lamp",CALCITE_LAMP);
 
         //Tuff
-         new StoneBlockSet(createBlock("tuff_bricks",TUFF_BRICKS));
-         createBlock("tuff_pillar",TUFF_PILLAR);
-         createBlock("chiseled_tuff",CHISELED_TUFF);
-         createBlock("heavy_tuff_bricks",HEAVY_TUFF_BRICKS);
-         createBlock("tuff_lamp",TUFF_LAMP);
+         new StoneBlockSet(RegistryUtil.createBlock("tuff_bricks",TUFF_BRICKS));
+         RegistryUtil.createBlock("tuff_pillar",TUFF_PILLAR);
+         RegistryUtil.createBlock("chiseled_tuff",CHISELED_TUFF);
+         RegistryUtil.createBlock("heavy_tuff_bricks",HEAVY_TUFF_BRICKS);
+         RegistryUtil.createBlock("tuff_lamp",TUFF_LAMP);
 
         // Heavy Stone Bricks
-         createBlock("heavy_stone_bricks",HEAVY_STONE_BRICKS);
-         createBlock("heavy_mossy_stone_bricks",HEAVY_MOSSY_STONE_BRICKS);
-         createBlock("heavy_cracked_stone_bricks",HEAVY_CRACKED_STONE_BRICKS);
+         RegistryUtil.createBlock("heavy_stone_bricks",HEAVY_STONE_BRICKS);
+         RegistryUtil.createBlock("heavy_mossy_stone_bricks",HEAVY_MOSSY_STONE_BRICKS);
+         RegistryUtil.createBlock("heavy_cracked_stone_bricks",HEAVY_CRACKED_STONE_BRICKS);
 
         // Entwine
-         new StoneBlockSet(createBlock("entwine_block",ENTWINE),false).addSlabs().addStairs();
-         createBlock("entwine_pillar",ENTWINE_PILLAR);
-         createBlock("chiseled_entwine",CHISELED_ENTWINE);
-         createBlock("entwine_bars",ENTWINE_BARS);
+         new StoneBlockSet(RegistryUtil.createBlock("entwine_block",ENTWINE),NO_WALLS);
+         RegistryUtil.createBlock("entwine_pillar",ENTWINE_PILLAR);
+         RegistryUtil.createBlock("chiseled_entwine",CHISELED_ENTWINE);
+         RegistryUtil.createBlock("entwine_bars",ENTWINE_BARS);
         // Ender Pearl Block
-         createBlock("ender_pearl_block",ENDER_PEARL_BLOCK);
+         RegistryUtil.createBlock("ender_pearl_block",ENDER_PEARL_BLOCK);
 
         // End Stone Variants
-         createBlock("choral_end_stone_bricks",CHORAL_END_STONE_BRICKS);
-         createBlock("cracked_end_stone_bricks",CRACKED_END_STONE_BRICKS);
-         createBlock("chiseled_end_stone_bricks",CHISELED_END_STONE_BRICKS);
+         RegistryUtil.createBlock("choral_end_stone_bricks",CHORAL_END_STONE_BRICKS);
+         RegistryUtil.createBlock("cracked_end_stone_bricks",CRACKED_END_STONE_BRICKS);
+         RegistryUtil.createBlock("chiseled_end_stone_bricks",CHISELED_END_STONE_BRICKS);
 
         // Heavy End Stone Bricks
-         createBlock("heavy_end_stone_bricks",  HEAVY_END_STONE_BRICKS);
-         createBlock("heavy_cracked_end_stone_bricks",HEAVY_CRACKED_END_STONE_BRICKS);
+         RegistryUtil.createBlock("heavy_end_stone_bricks",  HEAVY_END_STONE_BRICKS);
+         RegistryUtil.createBlock("heavy_cracked_end_stone_bricks",HEAVY_CRACKED_END_STONE_BRICKS);
 
         // Warpstone
-         new StoneBlockSet(createBlock("warpstone",  WARPSTONE));
+         new StoneBlockSet(RegistryUtil.createBlock("warpstone",  WARPSTONE));
 
         // Twisted Wood
-         new StoneBlockSet(createBlock("twisted_planks",TWISTED_PLANKS), false).addSlabs().addStairs();
+         new StoneBlockSet(RegistryUtil.createBlock("twisted_planks",TWISTED_PLANKS), NO_WALLS);
 
-         createBlock("twisted_log", TWISTED_LOG);
-         createBlock("twisted_wood", TWISTED_WOOD);
-         createBlock("stripped_twisted_log", STRIPPED_TWISTED_LOG);
-         createBlock("stripped_twisted_wood", STRIPPED_TWISTED_WOOD);
-         createBlock("twisted_leaves", TWISTED_LEAVES);
-         createBlock("twisted_fence", TWISTED_FENCE, ItemGroup.DECORATIONS);
-         createBlock("twisted_fence_gate", TWISTED_FENCE_GATE, ItemGroup.REDSTONE);
-         createBlock("twisted_door", TWISTED_DOOR, ItemGroup.REDSTONE);
-         createBlock("twisted_trapdoor", TWISTED_TRAPDOOR, ItemGroup.REDSTONE);
-         createBlock("twisted_button", TWISTED_BUTTON, ItemGroup.REDSTONE);
-         createBlock("twisted_pressure_plate", TWISTED_PRESSURE_PLATE, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("twisted_log", TWISTED_LOG);
+         RegistryUtil.createBlock("twisted_wood", TWISTED_WOOD);
+         RegistryUtil.createBlock("stripped_twisted_log", STRIPPED_TWISTED_LOG);
+         RegistryUtil.createBlock("stripped_twisted_wood", STRIPPED_TWISTED_WOOD);
+         RegistryUtil.createBlock("twisted_leaves", TWISTED_LEAVES);
+         RegistryUtil.createBlock("twisted_fence", TWISTED_FENCE, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("twisted_fence_gate", TWISTED_FENCE_GATE, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("twisted_door", TWISTED_DOOR, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("twisted_trapdoor", TWISTED_TRAPDOOR, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("twisted_button", TWISTED_BUTTON, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("twisted_pressure_plate", TWISTED_PRESSURE_PLATE, ItemGroup.REDSTONE);
 
-         createBlock("twisted_sapling",TWISTED_SAPLING, ItemGroup.DECORATIONS);
-         createBlockNoItem("potted_twisted_sapling" ,POTTED_TWISTED_SAPLING);
+         RegistryUtil.createBlock("twisted_sapling",TWISTED_SAPLING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlockNoItem("potted_twisted_sapling" ,POTTED_TWISTED_SAPLING);
 
          //Boards
-         createBlock("oak_boards", OAK_BOARDS);
-         createBlock("birch_boards", BIRCH_BOARDS);
-         createBlock("spruce_boards", SPRUCE_BOARDS);
-         createBlock("jungle_boards", JUNGLE_BOARDS);
-         createBlock("dark_oak_boards", DARK_OAK_BOARDS);
-         createBlock("acacia_boards", ACACIA_BOARDS);
-         createBlock("crimson_boards", CRIMSON_BOARDS);
-         createBlock("warped_boards", WARPED_BOARDS);
-         createBlock("twisted_boards", TWISTED_BOARDS);
+         RegistryUtil.createBlock("oak_boards", OAK_BOARDS);
+         RegistryUtil.createBlock("birch_boards", BIRCH_BOARDS);
+         RegistryUtil.createBlock("spruce_boards", SPRUCE_BOARDS);
+         RegistryUtil.createBlock("jungle_boards", JUNGLE_BOARDS);
+         RegistryUtil.createBlock("dark_oak_boards", DARK_OAK_BOARDS);
+         RegistryUtil.createBlock("acacia_boards", ACACIA_BOARDS);
+         RegistryUtil.createBlock("crimson_boards", CRIMSON_BOARDS);
+         RegistryUtil.createBlock("warped_boards", WARPED_BOARDS);
+         RegistryUtil.createBlock("twisted_boards", TWISTED_BOARDS);
 
         //Railings
-         createBlock("oak_railing", OAK_RAILING, ItemGroup.DECORATIONS);
-         createBlock("birch_railing", BIRCH_RAILING, ItemGroup.DECORATIONS);
-         createBlock("spruce_railing", SPRUCE_RAILING, ItemGroup.DECORATIONS);
-         createBlock("jungle_railing", JUNGLE_RAILING, ItemGroup.DECORATIONS);
-         createBlock("dark_oak_railing", DARK_OAK_RAILING, ItemGroup.DECORATIONS);
-         createBlock("acacia_railing", ACACIA_RAILING, ItemGroup.DECORATIONS);
-         createBlock("crimson_railing", CRIMSON_RAILING, ItemGroup.DECORATIONS);
-         createBlock("warped_railing", WARPED_RAILING, ItemGroup.DECORATIONS);
-         createBlock("twisted_railing", TWISTED_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("oak_railing", OAK_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("birch_railing", BIRCH_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("spruce_railing", SPRUCE_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("jungle_railing", JUNGLE_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("dark_oak_railing", DARK_OAK_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("acacia_railing", ACACIA_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("crimson_railing", CRIMSON_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("warped_railing", WARPED_RAILING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("twisted_railing", TWISTED_RAILING, ItemGroup.DECORATIONS);
         // Celestial Stones
-         createBlock("sunstone",SUNSTONE);
-         createBlock("moonstone",MOONSTONE);
+         RegistryUtil.createBlock("sunstone",SUNSTONE);
+         RegistryUtil.createBlock("moonstone",MOONSTONE);
 
         // Odd block variants
-         createBlock("molten_nether_bricks",MOLTEN_NETHER_BRICKS);
-         createBlock("coarse_snow",COARSE_SNOW);
+         RegistryUtil.createBlock("molten_nether_bricks",MOLTEN_NETHER_BRICKS);
+         RegistryUtil.createBlock("coarse_snow",COARSE_SNOW);
         // Charcoal Block
-         createBlock("charcoal_block",CHARCOAL_BLOCK);
+         RegistryUtil.createBlock("charcoal_block",CHARCOAL_BLOCK);
 
         // Cage Lanterns
-         createBlock("redstone_cage_lantern", REDSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
-         createBlock("glowstone_cage_lantern", GLOWSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
-         createBlock("algal_cage_lantern", ALGAL_CAGE_LANTERN, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("redstone_cage_lantern", REDSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("glowstone_cage_lantern", GLOWSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
+         RegistryUtil.createBlock("algal_cage_lantern", ALGAL_CAGE_LANTERN, ItemGroup.REDSTONE);
 
         // Acacia Totems
-         createBlock("acacia_totem_wing",ACACIA_TOTEM_WING, ItemGroup.DECORATIONS);
-         createBlock("grinning_acacia_totem",GRINNING_ACACIA_TOTEM);
-         createBlock("placid_acacia_totem",  PLACID_ACACIA_TOTEM);
-         createBlock("shocked_acacia_totem",SHOCKED_ACACIA_TOTEM);
-         createBlock("blank_acacia_totem",BLANK_ACACIA_TOTEM);
+         RegistryUtil.createBlock("acacia_totem_wing",ACACIA_TOTEM_WING, ItemGroup.DECORATIONS);
+         RegistryUtil.createBlock("grinning_acacia_totem",GRINNING_ACACIA_TOTEM);
+         RegistryUtil.createBlock("placid_acacia_totem",  PLACID_ACACIA_TOTEM);
+         RegistryUtil.createBlock("shocked_acacia_totem",SHOCKED_ACACIA_TOTEM);
+         RegistryUtil.createBlock("blank_acacia_totem",BLANK_ACACIA_TOTEM);
          //radioactive
-        createBlock("heliodor_rod", HELIODOR_ROD);
-        createBlock("ekanite_rod", EKANITE_ROD);
-        createBlock("monazite_rod", MONAZITE_ROD);
+        RegistryUtil.createBlock("heliodor_rod", HELIODOR_ROD);
+        RegistryUtil.createBlock("ekanite_rod", EKANITE_ROD);
+        RegistryUtil.createBlock("monazite_rod", MONAZITE_ROD);
         //unobtanim
-        createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
+        RegistryUtil.createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
 
 
     }

@@ -24,6 +24,8 @@ import net.minecraft.predicate.item.ItemPredicate;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static com.slomaxonical.architectspalette.blocks.util.StoneBlockSet.SetComponent.*;
+
 public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
     public APBlockLootTableProvider(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
@@ -36,34 +38,34 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 .rolls(ConstantLootNumberProvider.create(1.0f))
                 .with(applyExplosionDecay(drop, ItemEntry.builder(drop)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))
-                                .conditionally(BlockStatePropertyLootCondition.builder((Block) drop)
+                                .conditionally(BlockStatePropertyLootCondition.builder(drop)
                                         .properties(StatePredicate.Builder.create()
                                                 .exactMatch(SlabBlock.TYPE, SlabType.DOUBLE))))))));
     }
     @Override
     protected void generateBlockLootTables() {
         for (StoneBlockSet set : StoneBlockSet.BlockSets){
-            if (set.BLOCK != APBlocks.POLISHED_PACKED_ICE){
-                this.addDrop(set.BLOCK);
-                if (set.STAIRS!=null) this.addDrop(set.STAIRS);
-                if (set.WALL!=null) this.addDrop(set.WALL);
-                if (set.SLAB!=null) {
-                    this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
-                    this.addDrop(set.VERTICAL_SLAB, BlockLootTableGenerator::slabDrops);
+            if (set.getBase() != APBlocks.POLISHED_PACKED_ICE){
+                this.addDrop(set.getBase());
+                if (set.getPart(STAIRS)!=null) this.addDrop(set.getPart(STAIRS));
+                if (set.getPart(WALL)!=null) this.addDrop(set.getPart(WALL));
+                if (set.getPart(SLAB)!=null) {
+                    this.addDrop(set.getPart(SLAB), BlockLootTableGenerator::slabDrops);
+                    this.addDrop(set.getPart(VERTICAL_SLAB), BlockLootTableGenerator::slabDrops);
                 }
             }else{
-                this.addDropWithSilkTouch(set.BLOCK);
-                this.addDropWithSilkTouch(set.STAIRS);
-                this.addDropWithSilkTouch(set.WALL);
-                this.dropSlabWithSilkTouch(set.SLAB);
-                this.dropSlabWithSilkTouch(set.VERTICAL_SLAB);
+                this.addDropWithSilkTouch(set.getBase());
+                this.addDropWithSilkTouch(set.getPart(STAIRS));
+                this.addDropWithSilkTouch(set.getPart(WALL));
+                this.dropSlabWithSilkTouch(set.getPart(SLAB));
+                this.dropSlabWithSilkTouch(set.getPart(VERTICAL_SLAB));
             }
         }
         for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
-            this.addDrop(set.BLOCK);
-            this.addDrop(set.STAIRS);
-            this.addDrop(set.WALL);
-            this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
+            this.addDrop(set.getBase());
+            this.addDrop(set.getPart(STAIRS));
+            this.addDrop(set.getPart(WALL));
+            this.addDrop(set.getPart(SLAB), BlockLootTableGenerator::slabDrops);
         }
         for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
 

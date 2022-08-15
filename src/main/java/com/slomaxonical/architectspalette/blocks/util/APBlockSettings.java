@@ -1,8 +1,10 @@
 package com.slomaxonical.architectspalette.blocks.util;
 
 import com.slomaxonical.architectspalette.blocks.SunstoneBlock;
+import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock;
 import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineHelper;
 import com.slomaxonical.architectspalette.blocks.CageLanternBlock;
+import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineLampBlock;
 import com.slomaxonical.architectspalette.blocks.abyssaline.ChiseledAbyssalineBlock;
 import com.slomaxonical.architectspalette.registry.APSounds;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -18,13 +20,13 @@ public class APBlockSettings {
 			.strength(25.0F, 600.0F)
 			.emissiveLighting(AbyssalineHelper::needsPostProcessing)
 			.postProcess(AbyssalineHelper::needsPostProcessing)
-			.allowsSpawning(AbyssalineHelper::allowsMobSpawning);
-
-	public static final FabricBlockSettings CHISELED_ABYSSALINE = FabricBlockSettings.copyOf(Blocks.OBSIDIAN)
-			.strength(25.0F, 600.0F)
-			.emissiveLighting(AbyssalineHelper::needsPostProcessing)
-			.postProcess(AbyssalineHelper::needsPostProcessing)
 			.allowsSpawning(AbyssalineHelper::allowsMobSpawning)
+			.luminance(AbyssalineBlock.getLuminance());
+
+	public static final FabricBlockSettings ABYSSALINE_LAMP = FabricBlockSettings.copyOf(ABYSSALINE)
+			.sounds(BlockSoundGroup.GLASS)
+			.luminance(AbyssalineLampBlock.getLuminance());
+	public static final FabricBlockSettings CHISELED_ABYSSALINE = FabricBlockSettings.copyOf(ABYSSALINE)
 			.luminance(ChiseledAbyssalineBlock.getLuminance());
 
 	public static FabricBlockSettings Meat(MapColor color) {

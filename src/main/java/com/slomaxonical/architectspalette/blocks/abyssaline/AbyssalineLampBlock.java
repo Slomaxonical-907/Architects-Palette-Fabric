@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import java.util.function.ToIntFunction;
 
 import static com.slomaxonical.architectspalette.blocks.util.APBlockSettings.CHARGED;
-import static com.slomaxonical.architectspalette.blocks.abyssaline.NewAbyssalineBlock.CHARGE_SOURCE;
+import static com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock.CHARGE_SOURCE;
 
 public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineChargeable {
 

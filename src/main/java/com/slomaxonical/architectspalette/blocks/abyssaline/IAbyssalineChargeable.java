@@ -10,7 +10,7 @@ public interface IAbyssalineChargeable {
         return stateIn.get(APBlockSettings.CHARGED);
     }
     default Direction getSourceDirection(BlockState stateIn) {
-        return stateIn.get(NewAbyssalineBlock.CHARGE_SOURCE);
+        return stateIn.get(AbyssalineBlock.CHARGE_SOURCE);
     }
     //stateIn is the block accepting or outputting charge, faceIn is the side that the block asking is on
     default boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
@@ -27,7 +27,7 @@ public interface IAbyssalineChargeable {
     }
     //faceOut is the place that power is coming from, so it should point to that.
     default BlockState getStateWithChargeDirection(BlockState stateIn, Direction faceOut) {
-        return stateIn.with(NewAbyssalineBlock.CHARGE_SOURCE, faceOut);
+        return stateIn.with(AbyssalineBlock.CHARGE_SOURCE, faceOut);
     }
     //if true, block's power will supersede the other's accept charge check, if possible
     default boolean pushesPower(BlockState stateIn) {

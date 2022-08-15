@@ -11,8 +11,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-import static com.slomaxonical.architectspalette.blocks.abyssaline.NewAbyssalineBlock.CHARGE_SOURCE;
-import static com.slomaxonical.architectspalette.blocks.abyssaline.NewAbyssalineBlock.CHARGED;
+import static com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock.CHARGE_SOURCE;
+import static com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock.CHARGED;
 
 public class AbyssalineVerticalSlabBlock extends VerticalSlabBlock implements IAbyssalineChargeable {
     public AbyssalineVerticalSlabBlock(Settings settings) {
