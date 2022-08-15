@@ -55,6 +55,8 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter,verticaExport, OLIVESTONE_TILE, List.of(OLIVESTONE_TILE));
         ShapedRecipeJsonBuilder.create(CHISELED_OLIVESTONE).input('#', APTags.OLIVESTONE).pattern("#").pattern("#").criterion("has_olivstone",conditionsFromTag(APTags.OLIVESTONE)).offerTo(exporter);
 
+        offerSetRecipes(exporter,verticaExport,WARDSTONE,WARDSTONE_PILLAR,CHISELED_WARDSTONE,List.of(WARDSTONE));
+        offerSetRecipes(exporter,verticaExport,WARDSTONE_BRICKS,List.of(WARDSTONE_BRICKS));
 
         offerSetRecipes(exporter, verticaExport, CUT_NETHER_BRASS,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
         offerSetRecipes(exporter, verticaExport, NETHER_BRASS,NETHER_BRASS_PILLAR,null,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
@@ -135,6 +137,8 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerPolishedStoneRecipe(exporter, CALCITE_BRICKS, Items.CALCITE);
         //lamps and cage lanterns
         ShapedRecipeJsonBuilder.create(ALGAL_LAMP).input('#', Items.GLOWSTONE_DUST).input('A',ALGAL_BRICK).pattern("A#A").pattern("###").pattern("A#A").criterion("has_algal_brick", RecipeProvider.conditionsFromItem(ALGAL_BRICK)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(WITHER_LAMP).input('#', Items.GLOWSTONE_DUST).input('B',WITHERED_BONE).pattern("B#B").pattern("#B#").pattern("B#B").criterion(hasItem(Items.GLOWSTONE_DUST), conditionsFromItem(Items.GLOWSTONE_DUST)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(WARDSTONE_LAMP).input('#', WARDSTONE_BRICK).pattern("###").pattern("# #").pattern("###").criterion(hasItem(WARDSTONE_BRICK), conditionsFromItem(WARDSTONE_BRICK)).offerTo(exporter);
         offerLampRecipe(exporter,DRIPSTONE_LAMP, Items.DRIPSTONE_BLOCK, Items.AMETHYST_SHARD);
         offerLampRecipe(exporter,CALCITE_LAMP, Items.CALCITE, Items.GLOW_INK_SAC);
         offerLampRecipe(exporter,TUFF_LAMP, Items.TUFF, Items.GLOW_LICHEN);
@@ -157,17 +161,23 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerHeavyRecipe(exporter,HEAVY_END_STONE_BRICKS,Items.END_STONE);
         offerHeavyRecipe(exporter,HEAVY_STONE_BRICKS,Items.STONE);
         offerShapelessRecipe(exporter,1,HEAVY_MOSSY_STONE_BRICKS,HEAVY_STONE_BRICKS,Items.VINE);
+        //Wardstone
+        offerMiniXRecipe(exporter,WARDSTONE_BLEND,Items.LAPIS_LAZULI,Items.NETHER_WART,4);
+        offerSmelting(exporter, List.of(WARDSTONE_BLEND),WARDSTONE_BRICK,0.1f, 200, null);
+        offerPolishedStoneRecipe(exporter,WARDSTONE,WARDSTONE_BRICK);
+        offerPolishedStoneRecipe(exporter,WARDSTONE_BRICKS,WARDSTONE);
+        //Entwine
+        offerPolishedStoneRecipe(exporter,ENTWINE,ENTWINE_ROD);
+        offerBarsRecipe(exporter,ENTWINE_BARS,ENTWINE_ROD);
+        ShapedRecipeJsonBuilder.create(ENTWINE_ROD, 4).input('#',Items.ENDER_PEARL).input('$', Items.IRON_NUGGET).pattern("#$#").criterion(hasItem(Items.ENDER_PEARL),conditionsFromItem(Items.ENDER_PEARL)).offerTo(exporter);
+        offerCondensingRecipe(exporter, ENDER_PEARL_BLOCK, Items.ENDER_PEARL,1);
+        offerShapelessRecipe(exporter,Items.ENDER_PEARL,ENDER_PEARL_BLOCK,null,4);
         //meow
         offerPolishedStoneRecipe(exporter, CHARCOAL_BLOCK, Items.CHARCOAL);
         offerSingleOutputShapelessRecipe(exporter, Items.CHARCOAL, CHARCOAL_BLOCK,null);
         offerMiniXRecipe(exporter,COARSE_SNOW, Items.SNOW_BLOCK,Items.GRAVEL,4);
-        offerCondensingRecipe(exporter, ENDER_PEARL_BLOCK, Items.ENDER_PEARL,1);
-        offerShapelessRecipe(exporter,Items.ENDER_PEARL,ENDER_PEARL_BLOCK,null,4);
         offerSlabsRecipes(exporter,verticaExport,ENTRAILS_SLAB,ENTRAILS_VERTICAL_SLAB,ENTRAILS);
         offerStairsRecipe(exporter,ENTRAILS_STAIRS,ENTRAILS);
-        offerPolishedStoneRecipe(exporter,ENTWINE,ENTWINE_ROD);
-        offerBarsRecipe(exporter,ENTWINE_BARS,ENTWINE_ROD);
-        ShapedRecipeJsonBuilder.create(ENTWINE_ROD, 4).input('#',Items.ENDER_PEARL).input('$', Items.IRON_NUGGET).pattern("#$#").criterion(hasItem(Items.ENDER_PEARL),conditionsFromItem(Items.ENDER_PEARL)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter,FLINT_BLOCK,Items.FLINT);
         ShapedRecipeJsonBuilder.create(GRINNING_ACACIA_TOTEM, 2).input('#',Items.ACACIA_LOG).input('$', Items.STICK).pattern("$#$").pattern(" # ").criterion(hasItem(Items.ACACIA_LOG),conditionsFromItem(Items.ACACIA_LOG)).offerTo(exporter);
         offerMiniXRecipe(exporter,MOLTEN_NETHER_BRICKS,Items.MAGMA_BLOCK,Items.NETHER_BRICKS,4);
@@ -186,7 +196,6 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerShapelessRecipe(exporter,1,WEEPING_BLACKSTONE, Items.BLACKSTONE, Items.WEEPING_VINES);
         offerShapelessRecipe(exporter,1,WEEPING_BLACKSTONE_BRICKS, Items.POLISHED_BLACKSTONE_BRICKS, Items.WEEPING_VINES);
         //withered
-        ShapedRecipeJsonBuilder.create(WITHER_LAMP).input('#', Items.GLOWSTONE_DUST).input('B',WITHERED_BONE).pattern("B#B").pattern("#B#").pattern("B#B").criterion(hasItem(Items.GLOWSTONE_DUST), conditionsFromItem(Items.GLOWSTONE_DUST)).offerTo(exporter);
         offerShapelessRecipe(exporter,WITHERED_BONE,WITHERED_BONE_BLOCK,null,3);
         ShapedRecipeJsonBuilder.create(WITHERED_BONE_BLOCK, 3).input('#', WITHERED_BONE).pattern("###").pattern("###").pattern("###").group("boards").criterion(hasItem(WITHERED_BONE), conditionsFromItem(WITHERED_BONE)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter,WITHERED_OSSEOUS_BRICK,WITHERED_BONE_BLOCK);

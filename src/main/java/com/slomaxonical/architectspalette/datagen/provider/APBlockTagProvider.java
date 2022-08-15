@@ -107,7 +107,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.NETHER_BRASS,
                 APBlocks.CUT_NETHER_BRASS,
                 APBlocks.SMOOTH_NETHER_BRASS,
-                APBlocks.WARDSTONE
+                APBlocks.WARDSTONE,
+                APBlocks.WARDSTONE_BRICKS
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(APBlocks.ABYSSALINE)
@@ -330,7 +331,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.FLINT_BLOCK,
                 APBlocks.FLINT_TILES,
                 APBlocks.SUNMETAL,
-                APBlocks.WARDSTONE
+                APBlocks.WARDSTONE,
+                APBlocks.WARDSTONE_BRICKS
         );
         this.getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(APBlocks.ENTWINE_PILLAR)

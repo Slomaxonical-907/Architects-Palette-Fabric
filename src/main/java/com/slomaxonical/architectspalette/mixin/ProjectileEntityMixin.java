@@ -37,12 +37,12 @@ public abstract class ProjectileEntityMixin extends Entity {
             //Get normal
             Vec3d normal = Vec3d.of(hitResult.getSide().getVector());
             //Funny checks to make stairs act as slopes
-            if (state.getBlock() instanceof StairsBlock) {
-                Vec3d stairsVector = doStairsMath(hitResult.getSide(), state);
-                if (stairsVector != null) {
-                    normal = normal.add(stairsVector).normalize();
-                }
-            }
+//            if (state.getBlock() instanceof StairsBlock) {
+//                Vec3d stairsVector = doStairsMath(hitResult.getSide(), state);
+//                if (stairsVector != null) {
+//                    normal = normal.add(stairsVector).normalize();
+//                }
+//            }
             //Get velocity
             Vec3d motion = this.getVelocity();
             if (motion.length()>0.2){

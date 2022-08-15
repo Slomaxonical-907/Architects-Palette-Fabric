@@ -187,11 +187,11 @@ public class APBlocks {
     public static final Block HEAVY_MOSSY_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.MOSSY_STONE_BRICKS));
     public static final Block HEAVY_CRACKED_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS));
     //wardstone
-    public static final Block WARDSTONE = new Block(APBlockSettings.WARDSTONE); //Todo: add tags and recipes...data.
+    public static final Block WARDSTONE = new Block(APBlockSettings.WARDSTONE);
     public static final Block CHISELED_WARDSTONE = new Block(APBlockSettings.WARDSTONE);
     public static final Block WARDSTONE_BRICKS = new Block(APBlockSettings.WARDSTONE);
-    public static final Block WARDSTONE_PILLAR = new Block(APBlockSettings.WARDSTONE);
-    public static final Block WARDSTONE_LAMP = new Block(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_PILLAR = new PillarBlock(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_LAMP = new Block(FabricBlockSettings.copy(WARDSTONE).luminance((state)->14));
     // Entwine
     public static final Block ENTWINE = new Block(APBlockSettings.ENTWINE);
     public static final Block ENTWINE_PILLAR = new PillarBlock(APBlockSettings.ENTWINE);
@@ -283,7 +283,7 @@ public class APBlocks {
     public static final Block UNOBTANIUM_BLOCK = new Block(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK));
 
     //Create Blocks
-    private static final Set<String> STRING_SET = Set.of("algal_bricks","nether_brass_block","nether_brass_lantern","sunmetal_block","withered_bone_block","entwine_block","unobtanium_block");
+    private static final Set<String> STRING_SET = Set.of("algal_bricks","nether_brass_block","nether_brass_lantern","sunmetal_block","withered_bone_block","wardstone","entwine_block","unobtanium_block");
     public static List<Integer> INDEXS = new ArrayList<>();
 
     public static <B extends Block> B createBlock(String name, B anyBlock) {

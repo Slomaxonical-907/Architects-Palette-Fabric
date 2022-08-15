@@ -6,7 +6,8 @@
   "mixins": [
     "BaseFireBlockMixin",
     "ProjectileEntityMixin",
-    "ServerWorldMixin"
+    "ServerWorldMixin",
+    "ThrownEntityMixin"
   ],
   "client": [
   ],

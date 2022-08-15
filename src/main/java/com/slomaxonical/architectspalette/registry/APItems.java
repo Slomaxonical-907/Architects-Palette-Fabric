@@ -22,14 +22,16 @@ public class APItems {
     public static final Item SUNMETAL_BRICK = createItem("sunmetal_brick", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(3));
 
     public static final Item WITHERED_BONE = createItem("withered_bone", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(4));
-    public static final Item ENTWINE_ROD = createItem("entwine_rod", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(5));
+    public static final Item WARDSTONE_BLEND = createItem("wardstone_blend",new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(5));
+    public static final Item WARDSTONE_BRICK = createItem("wardstone_brick",new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(5));
+    public static final Item ENTWINE_ROD = createItem("entwine_rod", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(6));
 
-    public static final Item UNOBTANIUM = createItem("unobtanium", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(6));
+    public static final Item UNOBTANIUM = createItem("unobtanium", new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.INDEXS.get(7));
     public static <I extends Item> I createItem(String name, I item, int index ) {
         I registeredItem = Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID, name), item);
         //add to itemgroup
         APItemgroup.ITEMGROUP_LIST.add(index + ITEM_REGISTERING_LAG, new ItemStack(item));
-        ITEM_REGISTERING_LAG++;
+        ITEM_REGISTERING_LAG++;//Todo:Improve this shitty ting... shoudnt need index
 
         return registeredItem;
     }
