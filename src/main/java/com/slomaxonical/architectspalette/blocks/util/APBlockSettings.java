@@ -65,6 +65,10 @@ public class APBlockSettings {
 			.breakInstantly()
 			.luminance((lumen) -> 13)
 			.sounds(BlockSoundGroup.WOOD);
+	public static final FabricBlockSettings WARDSTONE = FabricBlockSettings.of(Material.STONE, MapColor.BLUE)
+			.requiresTool()
+			.strength(2F, 6)
+			.sounds(BlockSoundGroup.NETHER_BRICKS);
 
 	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)
 			.requiresTool()

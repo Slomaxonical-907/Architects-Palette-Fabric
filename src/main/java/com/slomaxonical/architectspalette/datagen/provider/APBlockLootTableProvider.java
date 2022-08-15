@@ -36,7 +36,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 .rolls(ConstantLootNumberProvider.create(1.0f))
                 .with(applyExplosionDecay(drop, ItemEntry.builder(drop)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))
-                                .conditionally(BlockStatePropertyLootCondition.builder((Block) drop)
+                                .conditionally(BlockStatePropertyLootCondition.builder(drop)
                                         .properties(StatePredicate.Builder.create()
                                                 .exactMatch(SlabBlock.TYPE, SlabType.DOUBLE))))))));
     }
@@ -186,7 +186,10 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.NETHER_BRASS_PILLAR,
                 APBlocks.NETHER_BRASS_CHAIN,
                 APBlocks.NETHER_BRASS_LANTERN,
-                APBlocks.NETHER_BRASS_TORCH)
+                APBlocks.NETHER_BRASS_TORCH,
+                APBlocks.CHISELED_WARDSTONE,
+                APBlocks.WARDSTONE_PILLAR,
+                APBlocks.WARDSTONE_LAMP)
                 .forEach(this::addDrop);
 
         Stream.of(

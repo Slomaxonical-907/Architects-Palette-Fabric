@@ -73,8 +73,6 @@ public class APBlocks {
     public static final Block NETHER_BRASS_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool().luminance((a)->13));
     public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, APParticles.GREEN_FLAME);
     public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), APParticles.GREEN_FLAME);
-    //Wardstone
-    public static final Block WARDSTONE = new Block(APBlockSettings.NETHER_BRASS);
 
     // Sunmetal
     public static final Block SUNMETAL                = new Block(APBlockSettings.SUNMETAL);
@@ -188,7 +186,12 @@ public class APBlocks {
     public static final Block HEAVY_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.STONE_BRICKS));
     public static final Block HEAVY_MOSSY_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.MOSSY_STONE_BRICKS));
     public static final Block HEAVY_CRACKED_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS));
-
+    //wardstone
+    public static final Block WARDSTONE = new Block(APBlockSettings.WARDSTONE); //Todo: add tags and recipes...data.
+    public static final Block CHISELED_WARDSTONE = new Block(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_BRICKS = new Block(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_PILLAR = new Block(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_LAMP = new Block(APBlockSettings.WARDSTONE);
     // Entwine
     public static final Block ENTWINE = new Block(APBlockSettings.ENTWINE);
     public static final Block ENTWINE_PILLAR = new PillarBlock(APBlockSettings.ENTWINE);
@@ -464,6 +467,13 @@ public class APBlocks {
          createBlock("heavy_mossy_stone_bricks",HEAVY_MOSSY_STONE_BRICKS);
          createBlock("heavy_cracked_stone_bricks",HEAVY_CRACKED_STONE_BRICKS);
 
+         //Wardstone
+        new StoneBlockSet(createBlock("wardstone",WARDSTONE));
+        createBlock("chiseled_wardstone",CHISELED_WARDSTONE);
+        new StoneBlockSet(createBlock("wardstone_bricks",WARDSTONE_BRICKS));
+        createBlock("wardstone_pillar",WARDSTONE_PILLAR);
+        createBlock("wardstone_lamp",WARDSTONE_LAMP);
+
         // Entwine
          new StoneBlockSet(createBlock("entwine_block",ENTWINE),false).addSlabs().addStairs();
          createBlock("entwine_pillar",ENTWINE_PILLAR);
@@ -548,8 +558,6 @@ public class APBlocks {
         createBlock("heliodor_rod", HELIODOR_ROD);
         createBlock("ekanite_rod", EKANITE_ROD);
         createBlock("monazite_rod", MONAZITE_ROD);
-        //Wardstone
-        createBlock("wardstone",WARDSTONE);
         //unobtanim
         createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
 
