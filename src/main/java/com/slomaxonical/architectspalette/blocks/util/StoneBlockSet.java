@@ -24,11 +24,6 @@ public class StoneBlockSet {
     public static ArrayList<StoneBlockSet> BlockSets = new ArrayList<>();
     //SETS:
     public static List<StoneBlockSet> oreBrickSets = new ArrayList<>();
-//    public List SLAB;
-//    public Block VERTICAL_SLAB;
-//    public Block STAIRS;
-//    public Block WALL;
-//    public Block BLOCK;
     private final String material_name;
     public List<Block> parts;
     public StoneBlockSet(Block base_block) {
@@ -75,7 +70,7 @@ public class StoneBlockSet {
     }
 
 
-    private Stream<Block> blockStream() {
+    private Stream<? extends Block> blockStream() {
         //Puts all blocks in a Stream, filters out null entries, then gets the blocks from their registry object
         return parts.stream().filter(Objects::nonNull);//.map(RegistryObject::get);
     }
@@ -115,7 +110,7 @@ public class StoneBlockSet {
     public Block getPart(SetComponent part) {
         return parts.get(part.ordinal());
     }
-    private void setPart(SetComponent part, Block block) {
+    private <B extends Block> void setPart(SetComponent part, B block) {
         parts.add(part.ordinal(), block);
     }
     private void createPart(SetComponent part) {
@@ -131,12 +126,12 @@ public class StoneBlockSet {
         }
         return RegistryUtil.createBlock(material_name+part.suffix, getBlockForPart(part, properties(), getPart(BLOCK)), part.tab);
     }
-    static Block getBlockForPart(SetComponent part, FabricBlockSettings properties, Block base) {
+    public static Block getBlockForPart(SetComponent part, FabricBlockSettings settings, Block base) {
         return switch (part) {
-            case WALL -> new WallBlock(properties);
-            case SLAB -> new SlabBlock(properties);
-            case VERTICAL_SLAB -> new VerticalSlabBlock(properties);
-            case STAIRS -> new StairsBlock(base.getDefaultState(), properties);
+            case WALL -> new WallBlock(settings);
+            case SLAB -> new SlabBlock(settings);
+            case VERTICAL_SLAB -> new VerticalSlabBlock(settings);
+            case STAIRS -> new StairsBlock(base.getDefaultState(), settings);
             case BLOCK -> throw new IllegalStateException("Should not call createPart on BLOCK. Use setPart instead.");
         };
     }

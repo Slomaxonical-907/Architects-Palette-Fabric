@@ -1,6 +1,9 @@
 package com.slomaxonical.architectspalette.blocks.abyssaline;
 
 import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
+import com.slomaxonical.architectspalette.blocks.util.IBlockSetBase;
+import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
@@ -15,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.function.ToIntFunction;
 
-public class AbyssalineBlock extends Block implements IAbyssalineChargeable {
+public class AbyssalineBlock extends Block implements IAbyssalineChargeable, IBlockSetBase {
     public static final BooleanProperty CHARGED = APBlockSettings.CHARGED;
 
     public static final DirectionProperty CHARGE_SOURCE = DirectionProperty.of("charge_source",
@@ -24,6 +27,14 @@ public class AbyssalineBlock extends Block implements IAbyssalineChargeable {
     public AbyssalineBlock(Settings properties) {
         super(properties);
         this.setDefaultState(this.getStateManager().getDefaultState().with(CHARGED, false).with(CHARGE_SOURCE, Direction.NORTH));
+    }
+    //IBlockSetBase method
+    public Block getBlockForPart(StoneBlockSet.SetComponent part, FabricBlockSettings settings, Block base) {
+        return switch (part) {
+            case SLAB -> new AbyssalineSlabBlock(settings);
+            case VERTICAL_SLAB -> new AbyssalineVerticalSlabBlock(settings);
+            default -> IBlockSetBase.super.getBlockForPart(part, settings, base);
+        };
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

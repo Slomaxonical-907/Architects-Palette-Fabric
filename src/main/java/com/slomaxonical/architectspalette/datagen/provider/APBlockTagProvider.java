@@ -15,6 +15,8 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.slomaxonical.architectspalette.blocks.util.StoneBlockSet.SetComponent.*;
+
 public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     public APBlockTagProvider(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
@@ -31,28 +33,28 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         ArrayList<StoneBlockSet> sets = new ArrayList<>();
         for (Block base: baseBlocks) {
             StoneBlockSet.BlockSets.forEach(set->{
-                if (set.get().equals(base)) sets.add(set);
+                if (set.getBase().equals(base)) sets.add(set);
             });
         }
         for (StoneBlockSet set:sets) {
-            if (tryBlock) this.getOrCreateTagBuilder(tag).add(set.BLOCK);
-            if(set.STAIRS!=null && tryStairs) this.getOrCreateTagBuilder(tag).add(set.STAIRS);
-            if(set.SLAB!=null && trySlabs){
-                this.getOrCreateTagBuilder(tag).add(set.SLAB);
-                this.getOrCreateTagBuilder(tag).add(set.VERTICAL_SLAB);
+            if (tryBlock) this.getOrCreateTagBuilder(tag).add(set.getBase());
+            if(set.getPart(STAIRS)!=null && tryStairs) this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
+            if(set.getPart(STAIRS)!=null && trySlabs){
+                this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
+                this.getOrCreateTagBuilder(tag).add(set.getPart(VERTICAL_SLAB));
             }
-            if(set.WALL!=null && tryWall) this.getOrCreateTagBuilder(tag).add(set.WALL);
+            if(set.getPart(WALL)!=null && tryWall) this.getOrCreateTagBuilder(tag).add(set.getPart(WALL));
         }
     }
     private void addOreBricks(TagKey<Block> tag,boolean addBlock,boolean addStairs,boolean addSlabs,boolean addWall){
         for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
-            if (addBlock) this.getOrCreateTagBuilder(tag).add(set.BLOCK);
-            if(addStairs) this.getOrCreateTagBuilder(tag).add(set.STAIRS);
+            if (addBlock) this.getOrCreateTagBuilder(tag).add(set.getBase());
+            if(addStairs) this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
             if(addSlabs){
-                this.getOrCreateTagBuilder(tag).add(set.SLAB);
-                this.getOrCreateTagBuilder(tag).add(set.VERTICAL_SLAB);
+                this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
+                this.getOrCreateTagBuilder(tag).add(set.getPart(VERTICAL_SLAB));
             }
-            if(addWall) this.getOrCreateTagBuilder(tag).add(set.WALL);
+            if(addWall) this.getOrCreateTagBuilder(tag).add(set.getPart(WALL));
         }
     }
     @Override
@@ -77,6 +79,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         //add Pickaxe sets here
         addSets(BlockTags.PICKAXE_MINEABLE,
+                APBlocks.ABYSSALINE_BRICKS,
+                APBlocks.ABYSSALINE_TILES,
                 APBlocks.ALGAL_BRICKS,
                 APBlocks.BASALT_TILES,
                 APBlocks.CALCITE_BRICKS,
@@ -104,14 +108,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(APBlocks.ABYSSALINE)
-                .add(APBlocks.ABYSSALINE_BRICKS)
-                .add(APBlocks.ABYSSALINE_BRICK_SLAB)
-                .add(APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB)
                 .add(APBlocks.ABYSSALINE_LAMP_BLOCK)
                 .add(APBlocks.ABYSSALINE_PILLAR)
-                .add(APBlocks.ABYSSALINE_TILES)
-                .add(APBlocks.ABYSSALINE_TILE_SLAB)
-                .add(APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB)
                 .add(APBlocks.ALGAL_CAGE_LANTERN)
                 .add(APBlocks.ALGAL_LAMP)
                 .add(APBlocks.CALCITE_LAMP)
@@ -187,6 +185,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         addOreBricks(BlockTags.PICKAXE_MINEABLE,true,true,true,true);
         for (List<Block> l: APBlocks.chiseledNcrackedOres.values()) l.forEach((b)->this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b));
 
+        addSets(BlockTags.AXE_MINEABLE,APBlocks.ENTRAILS);
         this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .add(APBlocks.ACACIA_BOARDS)
                 .add(APBlocks.ACACIA_RAILING)
@@ -201,10 +200,6 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.CRIMSON_RAILING)
                 .add(APBlocks.DARK_OAK_BOARDS)
                 .add(APBlocks.DARK_OAK_RAILING)
-                .add(APBlocks.ENTRAILS)
-                .add(APBlocks.ENTRAILS_SLAB)
-                .add(APBlocks.ENTRAILS_STAIRS)
-                .add(APBlocks.ENTRAILS_VERTICAL_SLAB)
                 .add(APBlocks.GRINNING_ACACIA_TOTEM)
                 .add(APBlocks.JUNGLE_BOARDS)
                 .add(APBlocks.JUNGLE_RAILING)
@@ -271,37 +266,32 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         addSets(BlockTags.WOODEN_SLABS,false,false,true,false,APBlocks.TWISTED_PLANKS);
         this.getOrCreateTagBuilder(BlockTags.WALL_POST_OVERRIDE).addTag(APTags.CAGE_LANTERNS);//this tag see
         //SLABS
-        this.getOrCreateTagBuilder(BlockTags.SLABS)
-                .add(APBlocks.ABYSSALINE_BRICK_SLAB)
-                .add(APBlocks.ABYSSALINE_TILE_SLAB)
-                .add(APBlocks.ENTRAILS_SLAB);
+//        this.getOrCreateTagBuilder(BlockTags.SLABS)
+//                .add(APBlocks.ABYSSALINE_BRICK_SLAB)
+//                .add(APBlocks.ABYSSALINE_TILE_SLAB)
+//                .add(APBlocks.ENTRAILS_SLAB);
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
-            if (set.SLAB !=null) this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.SLAB);
+            if (set.getPart(STAIRS) !=null) this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.getPart(STAIRS));
         }
         addOreBricks(BlockTags.SLABS,false,false,true,false);
         //STAIRS
-        this.getOrCreateTagBuilder(BlockTags.STAIRS).add(APBlocks.ENTRAILS_STAIRS);
+//        this.getOrCreateTagBuilder(BlockTags.STAIRS).add(APBlocks.ENTRAILS_STAIRS);
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
-            if (set.STAIRS !=null) this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.STAIRS);
+            if (set.getPart(STAIRS) !=null) this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.getPart(STAIRS));
         }
         addOreBricks(BlockTags.STAIRS,false,true,false,false);
         //WALLS
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
-            if (set.WALL !=null) this.getOrCreateTagBuilder(BlockTags.WALLS).add(set.WALL);
+            if (set.getPart(WALL) !=null) this.getOrCreateTagBuilder(BlockTags.WALLS).add(set.getPart(WALL));
         }
         addOreBricks(BlockTags.WALLS,false,false,false,true);
 
         //NEEDS_TIER_TOOL
+        addSets(BlockTags.NEEDS_DIAMOND_TOOL,APBlocks.ABYSSALINE_BRICKS,APBlocks.ABYSSALINE_TILES);
         this.getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(APBlocks.ABYSSALINE)
-                .add(APBlocks.ABYSSALINE_BRICKS)
-                .add(APBlocks.ABYSSALINE_BRICK_SLAB)
-                .add(APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB)
                 .add(APBlocks.ABYSSALINE_LAMP_BLOCK)
                 .add(APBlocks.ABYSSALINE_PILLAR)
-                .add(APBlocks.ABYSSALINE_TILES)
-                .add(APBlocks.ABYSSALINE_TILE_SLAB)
-                .add(APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB)
                 .add(APBlocks.CHISELED_ABYSSALINE_BRICKS);
 
         addSets(BlockTags.NEEDS_IRON_TOOL,APBlocks.PLATING_BLOCK,APBlocks.NETHER_BRASS,APBlocks.CUT_NETHER_BRASS,APBlocks.SMOOTH_NETHER_BRASS);

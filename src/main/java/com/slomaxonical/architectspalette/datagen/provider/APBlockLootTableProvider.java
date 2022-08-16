@@ -71,10 +71,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
 
         Stream.of(
                 APBlocks.ABYSSALINE,
-                APBlocks.ABYSSALINE_BRICKS,
                 APBlocks.ABYSSALINE_LAMP_BLOCK,
                 APBlocks.ABYSSALINE_PILLAR,
-                APBlocks.ABYSSALINE_TILES,
                 APBlocks.ACACIA_BOARDS,
                 APBlocks.ACACIA_RAILING,
                 APBlocks.ACACIA_TOTEM_WING,
@@ -113,8 +111,6 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.DRIPSTONE_LAMP,
                 APBlocks.DRIPSTONE_PILLAR,
                 APBlocks.ENDER_PEARL_BLOCK,
-                APBlocks.ENTRAILS,
-                APBlocks.ENTRAILS_STAIRS,
                 APBlocks.ENTWINE_BARS,
                 APBlocks.ENTWINE_PILLAR,
                 APBlocks.FLINT_BLOCK,
@@ -191,15 +187,15 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.NETHER_BRASS_TORCH)
                 .forEach(this::addDrop);
 
-        Stream.of(
-                APBlocks.ABYSSALINE_BRICK_SLAB,
-                APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB,
-                APBlocks.ABYSSALINE_TILE_SLAB,
-                APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB,
-                APBlocks.ENTRAILS_SLAB,
-                APBlocks.ENTRAILS_VERTICAL_SLAB
-                )
-            .forEach((i) -> this.addDrop(i, BlockLootTableGenerator::slabDrops));
+//        Stream.of(
+//                APBlocks.ABYSSALINE_BRICK_SLAB,
+//                APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB,
+//                APBlocks.ABYSSALINE_TILE_SLAB,
+//                APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB,
+//                APBlocks.ENTRAILS_SLAB,
+//                APBlocks.ENTRAILS_VERTICAL_SLAB
+//                )
+//            .forEach((i) -> this.addDrop(i, BlockLootTableGenerator::slabDrops));
 
         Stream.of(
             APBlocks.CHISELED_PACKED_ICE,
