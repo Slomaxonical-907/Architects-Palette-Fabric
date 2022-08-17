@@ -138,10 +138,10 @@ public class APRecipeProvider extends FabricRecipeProvider {
         //lamps and cage lanterns
         ShapedRecipeJsonBuilder.create(ALGAL_LAMP).input('#', Items.GLOWSTONE_DUST).input('A',ALGAL_BRICK).pattern("A#A").pattern("###").pattern("A#A").criterion("has_algal_brick", RecipeProvider.conditionsFromItem(ALGAL_BRICK)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(WITHER_LAMP).input('#', Items.GLOWSTONE_DUST).input('B',WITHERED_BONE).pattern("B#B").pattern("#B#").pattern("B#B").criterion(hasItem(Items.GLOWSTONE_DUST), conditionsFromItem(Items.GLOWSTONE_DUST)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(WARDSTONE_LAMP).input('#', WARDSTONE_BRICK).pattern("###").pattern("# #").pattern("###").criterion(hasItem(WARDSTONE_BRICK), conditionsFromItem(WARDSTONE_BRICK)).offerTo(exporter);
         offerLampRecipe(exporter,DRIPSTONE_LAMP, Items.DRIPSTONE_BLOCK, Items.AMETHYST_SHARD);
         offerLampRecipe(exporter,CALCITE_LAMP, Items.CALCITE, Items.GLOW_INK_SAC);
         offerLampRecipe(exporter,TUFF_LAMP, Items.TUFF, Items.GLOW_LICHEN);
+        offerEmptyFrameRecipe(exporter,WARDSTONE_LAMP,WARDSTONE_BRICK,1);
 
         ShapedRecipeJsonBuilder.create(ALGAL_CAGE_LANTERN).input('#', ALGAL_BRICK).input('p', Items.GLASS_PANE).input('d', Items.GLOWSTONE_DUST).pattern(" p ").pattern("#d#").criterion(hasItem(ALGAL_BRICK), conditionsFromItem(ALGAL_BRICK)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(REDSTONE_CAGE_LANTERN).input('#', Items.IRON_NUGGET).input('p', Items.GLASS_PANE).input('d', Items.GLOWSTONE_DUST).pattern(" p ").pattern("#d#").criterion(hasItem(Items.REDSTONE), conditionsFromItem(Items.REDSTONE)).offerTo(exporter);
