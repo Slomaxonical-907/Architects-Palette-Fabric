@@ -1,8 +1,8 @@
 package com.slomaxonical.architectspalette.blocks.abyssaline;
 
 import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
-import com.slomaxonical.architectspalette.blocks.util.IBlockSetBase;
-import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import com.slomaxonical.architectspalette.registry.util.IBlockSetBase;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

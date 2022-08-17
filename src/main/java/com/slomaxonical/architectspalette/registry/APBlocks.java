@@ -5,7 +5,7 @@ import com.slomaxonical.architectspalette.blocks.flint.*;
 import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import com.slomaxonical.architectspalette.blocks.abyssaline.*;
 import com.slomaxonical.architectspalette.blocks.*;
-import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -15,7 +15,7 @@ import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.*;
 
-import static com.slomaxonical.architectspalette.blocks.util.StoneBlockSet.SetGroup.*;
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetGroup.*;
 import static com.slomaxonical.architectspalette.registry.util.RegistryUtil.createBlock;
 
 

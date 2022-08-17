@@ -1,12 +1,8 @@
-package com.slomaxonical.architectspalette.blocks.util;
+package com.slomaxonical.architectspalette.registry.util;
 
 import com.slomaxonical.architectspalette.blocks.VerticalSlabBlock;
-import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.block.WallBlock;
+import net.minecraft.block.*;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
 
@@ -15,9 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.slomaxonical.architectspalette.blocks.util.StoneBlockSet.SetComponent.*;
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
 
 
 public class StoneBlockSet {
@@ -61,6 +58,14 @@ public class StoneBlockSet {
                 .replace("_block", "")
                 .replace("tiles", "tile");
     }
+    // Go all the way. Stone Bricks -> Stone. Meant for pillars and such
+    private static String getMaterialAggressive(String block) {
+        return getMaterialFromBlock(block)
+                .replace("_brick", "")
+                .replace("_tile", "")
+                .replace("chiseled_", "")
+                .replace("cut_", "");
+    }
 
     private FabricBlockSettings properties() {
         return FabricBlockSettings.copyOf(this.getBase());
@@ -79,20 +84,36 @@ public class StoneBlockSet {
         SLAB("_slab", ItemGroup.BUILDING_BLOCKS),
         VERTICAL_SLAB("_vertical_slab", ItemGroup.BUILDING_BLOCKS),
         STAIRS("_stairs", ItemGroup.BUILDING_BLOCKS),
-        WALL("_wall", ItemGroup.DECORATIONS);
+        WALL("_wall", ItemGroup.DECORATIONS),
+        FENCE("_fence", ItemGroup.DECORATIONS),
+        PILLAR(SetComponent::pillarName, ItemGroup.BUILDING_BLOCKS);
 
-        public final String suffix;
         public final ItemGroup tab;
+        public final Function<String, String> nameGenerator;
         SetComponent(String suffix,ItemGroup tab) {
-            this.suffix = suffix;
+            this((material) -> addSuffix(material, suffix), tab);
+        }
+        SetComponent(Function<String, String> nameGen, ItemGroup tab) {
+            this.nameGenerator = nameGen;
             this.tab = tab;
+        }
+        public String getName(String material) {
+            return nameGenerator.apply(material);
+        }
+
+        private static String addSuffix(String material, String suffix) {
+            return material + suffix;
+        }
+        private static String pillarName(String material) {
+            return getMaterialAggressive(material) + "_pillar";
         }
     }
     public enum SetGroup {
         SLABS(SLAB, VERTICAL_SLAB),
         NO_WALLS(SLAB, VERTICAL_SLAB, STAIRS),
         NO_STAIRS(SLAB, VERTICAL_SLAB, WALL),
-        TYPICAL(SLAB, VERTICAL_SLAB, STAIRS, WALL);
+        TYPICAL(SLAB, VERTICAL_SLAB, STAIRS, WALL),
+        ADD_PILLAR(SLAB, VERTICAL_SLAB, STAIRS, WALL,PILLAR); //I will wait for jsburg to actiate this
 
 
         public final SetComponent[] components;
@@ -122,9 +143,9 @@ public class StoneBlockSet {
     private Block makePart(SetComponent part) {
         Block block = getPart(BLOCK);
         if (block instanceof IBlockSetBase base) {
-            return RegistryUtil.createBlock(material_name + part.suffix, base.getBlockForPart(part, properties(), getPart(BLOCK)), part.tab);
+            return RegistryUtil.createBlock(part.getName(material_name), base.getBlockForPart(part, properties(), getPart(BLOCK)), part.tab);
         }
-        return RegistryUtil.createBlock(material_name+part.suffix, getBlockForPart(part, properties(), getPart(BLOCK)), part.tab);
+        return RegistryUtil.createBlock(part.getName(material_name), getBlockForPart(part, properties(), getPart(BLOCK)), part.tab);
     }
     public static Block getBlockForPart(SetComponent part, FabricBlockSettings settings, Block base) {
         return switch (part) {
@@ -132,6 +153,8 @@ public class StoneBlockSet {
             case SLAB -> new SlabBlock(settings);
             case VERTICAL_SLAB -> new VerticalSlabBlock(settings);
             case STAIRS -> new StairsBlock(base.getDefaultState(), settings);
+            case FENCE -> new FenceBlock(settings);
+            case PILLAR -> new PillarBlock(settings);
             case BLOCK -> throw new IllegalStateException("Should not call createPart on BLOCK. Use setPart instead.");
         };
     }

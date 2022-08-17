@@ -1,6 +1,6 @@
 package com.slomaxonical.architectspalette.datagen.provider;
 
-import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.crafting.WarpingRecipeJsonBuilder;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.APItems;
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static com.slomaxonical.architectspalette.blocks.util.StoneBlockSet.SetComponent.*;
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
 import static com.slomaxonical.architectspalette.registry.APBlocks.*;
 import static com.slomaxonical.architectspalette.registry.APBlocks.NETHER_BRASS;
 import static com.slomaxonical.architectspalette.registry.APItems.*;

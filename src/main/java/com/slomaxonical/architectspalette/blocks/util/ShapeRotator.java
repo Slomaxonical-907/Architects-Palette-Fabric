@@ -29,4 +29,11 @@ public class ShapeRotator {
         }
         return buffer[0];
     }
+
+    public static VoxelShape flipShapeVertical(VoxelShape shape) {
+        VoxelShape[] newShape = {VoxelShapes.empty()};
+        shape.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> newShape[0] = VoxelShapes.union(newShape[0], VoxelShapes.cuboid(minX, 1 - maxY, minZ, maxX, 1 - minY, maxZ)));
+
+        return newShape[0];
+    }
 }

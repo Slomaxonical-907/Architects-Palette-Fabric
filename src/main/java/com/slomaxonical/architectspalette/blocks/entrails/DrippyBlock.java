@@ -1,7 +1,7 @@
 package com.slomaxonical.architectspalette.blocks.entrails;
 
-import com.slomaxonical.architectspalette.blocks.util.IBlockSetBase;
-import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import com.slomaxonical.architectspalette.registry.util.IBlockSetBase;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;

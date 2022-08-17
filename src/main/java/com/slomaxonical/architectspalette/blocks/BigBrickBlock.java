@@ -40,11 +40,7 @@ public class BigBrickBlock extends Block {
         Direction face = context.getSide();
         BlockPos targetPos = context.getBlockPos().offset(face.getOpposite());
         BlockState targetState = context.getWorld().getBlockState(targetPos);
-        boolean pairing = false;
-
-        if (context.getPlayer() != null && !context.getPlayer().isSneaking() && BrickMatches(this, targetState) && !targetState.get(PAIRED)) {
-            pairing = true;
-        }
+        boolean pairing = context.getPlayer() != null && !context.getPlayer().isSneaking() && BrickMatches(this, targetState) && !targetState.get(PAIRED);
 
         return this.getDefaultState().with(FACING, context.getSide().getOpposite()).with(PAIRED, pairing);
     }
@@ -66,8 +62,7 @@ public class BigBrickBlock extends Block {
     }
 
     private boolean BrickMatches(BigBrickBlock thisBlock, BlockState suspect) {
-        if (suspect.getBlock() instanceof BigBrickBlock) {
-            BigBrickBlock b = (BigBrickBlock)suspect.getBlock();
+        if (suspect.getBlock() instanceof BigBrickBlock b) {
             return b.TYPE == thisBlock.TYPE;
         }
         return false;

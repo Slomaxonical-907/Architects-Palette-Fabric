@@ -1,6 +1,6 @@
 package com.slomaxonical.architectspalette.datagen.provider;
 
-import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.APTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -15,7 +15,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.slomaxonical.architectspalette.blocks.util.StoneBlockSet.SetComponent.*;
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
 
 public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     public APBlockTagProvider(FabricDataGenerator dataGenerator) {

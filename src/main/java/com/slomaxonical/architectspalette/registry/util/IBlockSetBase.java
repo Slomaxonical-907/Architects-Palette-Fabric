@@ -1,4 +1,4 @@
-package com.slomaxonical.architectspalette.blocks.util;
+package com.slomaxonical.architectspalette.registry.util;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
