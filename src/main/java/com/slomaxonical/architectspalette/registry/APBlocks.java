@@ -51,10 +51,15 @@ public class APBlocks {
     public static final Block CHISELED_ALGAL_BRICKS         = new Block(APBlockSettings.ALGAL_BRICK);
     public static final Block OVERGROWN_ALGAL_BRICK         =new Block(APBlockSettings.ALGAL_BRICK);
     public static final Block ALGAL_LAMP                    =new Block(FabricBlockSettings.copy(Blocks.SEA_LANTERN));
-
+    public static final Block ONYX = new Block(APBlockSettings.ONYX);
+    public static final Block ONYX_BRICKS = new Block(APBlockSettings.ONYX);
+    public static final Block ONYX_PILLAR = new PillarBlock(APBlockSettings.ONYX);
+    public static final Block ESOTERRACK = new Block(APBlockSettings.ESOTERRACK);
+    public static final Block ESOTERRACK_BRICKS = new Block(APBlockSettings.ESOTERRACK);
+    public static final Block ESOTERRACK_PILLAR = new PillarBlock(APBlockSettings.ESOTERRACK);
     // Nether Brass
     public static final Block NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
-    public static final Block CUT_NETHER_BRASS =new Block(APBlockSettings.NETHER_BRASS);
+    public static final Block CUT_NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
     public static final Block SMOOTH_NETHER_BRASS = new Block(APBlockSettings.NETHER_BRASS);
     public static final Block NETHER_BRASS_PILLAR = new PillarBlock(APBlockSettings.NETHER_BRASS);
     public static final Block NETHER_BRASS_FIRE = new GreenFireBlock(APBlockSettings.GREEN_FIRE);
@@ -299,6 +304,15 @@ public class APBlocks {
          createBlock("chiseled_algal_bricks",CHISELED_ALGAL_BRICKS);
          new StoneBlockSet(createBlock("overgrown_algal_bricks",OVERGROWN_ALGAL_BRICK));
          createBlock("algal_lamp",ALGAL_LAMP);
+
+         //Onyx
+        new StoneBlockSet(createBlock("onyx",ONYX));
+        new StoneBlockSet(createBlock("onyx_bricks",ONYX_BRICKS));
+        createBlock("onyx_pillar",ONYX_PILLAR);
+        //Esoterrack
+        new StoneBlockSet(createBlock("esoterrack",ESOTERRACK));
+        new StoneBlockSet(createBlock("esoterrack_bricks",ESOTERRACK_BRICKS));
+        createBlock("esoterrack_pillar",ESOTERRACK_PILLAR);
 
         //NetherBrass
         new StoneBlockSet(createBlock("nether_brass_block", NETHER_BRASS));

@@ -58,8 +58,10 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter,verticaExport, OLIVESTONE_TILE, List.of(OLIVESTONE_TILE));
         ShapedRecipeJsonBuilder.create(CHISELED_OLIVESTONE).input('#', APTags.OLIVESTONE).pattern("#").pattern("#").criterion("has_olivstone",conditionsFromTag(APTags.OLIVESTONE)).offerTo(exporter);
 
-        offerSetRecipes(exporter,verticaExport,WARDSTONE,WARDSTONE_PILLAR,CHISELED_WARDSTONE,List.of(WARDSTONE));
-        offerSetRecipes(exporter,verticaExport,WARDSTONE_BRICKS,List.of(WARDSTONE_BRICKS));
+        offerSetRecipes(exporter,verticaExport,ONYX,ONYX_PILLAR,null,List.of(ONYX));
+        offerSetRecipes(exporter,verticaExport,ONYX_BRICKS,List.of(ONYX_BRICKS,ONYX));
+        offerSetRecipes(exporter,verticaExport,ESOTERRACK,ESOTERRACK_PILLAR,null,List.of(ESOTERRACK));
+        offerSetRecipes(exporter,verticaExport,ESOTERRACK_BRICKS,List.of(ESOTERRACK_BRICKS,ESOTERRACK));
 
         offerSetRecipes(exporter, verticaExport, CUT_NETHER_BRASS,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
         offerSetRecipes(exporter, verticaExport, NETHER_BRASS,NETHER_BRASS_PILLAR,null,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
@@ -85,6 +87,10 @@ public class APRecipeProvider extends FabricRecipeProvider {
 
         offerSetRecipes(exporter,verticaExport, CALCITE_BRICKS, CALCITE_PILLAR, CHISELED_CALCITE,List.of(CALCITE_BRICKS,Items.CALCITE));
         offerSetRecipes(exporter,verticaExport, TUFF_BRICKS, TUFF_PILLAR, CHISELED_TUFF,List.of(TUFF_BRICKS,Items.TUFF));
+
+        offerSetRecipes(exporter,verticaExport,WARDSTONE,WARDSTONE_PILLAR,CHISELED_WARDSTONE,List.of(WARDSTONE));
+        offerSetRecipes(exporter,verticaExport,WARDSTONE_BRICKS,List.of(WARDSTONE_BRICKS,WARDSTONE));
+
         offerSetRecipes(exporter,verticaExport, ENTWINE, ENTWINE_PILLAR, CHISELED_ENTWINE,List.of(ENTWINE));
         offerSetRecipes(exporter,verticaExport, WARPSTONE,List.of(WARPSTONE));
 
@@ -174,6 +180,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerCondensingRecipe(exporter, ENDER_PEARL_BLOCK, Items.ENDER_PEARL,1);
         offerShapelessRecipe(exporter,Items.ENDER_PEARL,ENDER_PEARL_BLOCK,null,4);
         //meow
+        offerShapelessRecipe(exporter,2,ACACIA_TOTEM_WING,Items.STICK,Items.ACACIA_LEAVES);
         offerPolishedStoneRecipe(exporter, CHARCOAL_BLOCK, Items.CHARCOAL);
         offerSingleOutputShapelessRecipe(exporter, Items.CHARCOAL, CHARCOAL_BLOCK,null);
         offerMiniXRecipe(exporter,COARSE_SNOW, Items.SNOW_BLOCK,Items.GRAVEL,4);
@@ -204,6 +211,10 @@ public class APRecipeProvider extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(WITHERED_BONE_BLOCK, 3).input('#', WITHERED_BONE).pattern("###").pattern("###").pattern("###").group("boards").criterion(hasItem(WITHERED_BONE), conditionsFromItem(WITHERED_BONE)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter,WITHERED_OSSEOUS_BRICK,WITHERED_BONE_BLOCK);
         offerSmelting(exporter,List.of(WITHERED_BONE), Items.BLACK_DYE,0.3f,200,null);
+        //Onyx
+        offerPolishedStoneRecipe(exporter,ONYX_BRICKS,ONYX);
+        //Esoterrack
+        offerPolishedStoneRecipe(exporter,ESOTERRACK_BRICKS,ESOTERRACK);
         //NetherBrass
         offerShapelessRecipe(exporter,4,BRASS_BLEND,Items.SOUL_SAND,Items.COPPER_INGOT,Items.SOUL_SAND,Items.IRON_NUGGET);
         offerCutCopperRecipe(exporter,CUT_NETHER_BRASS,NETHER_BRASS);

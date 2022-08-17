@@ -112,7 +112,9 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.CUT_NETHER_BRASS,
                 APBlocks.SMOOTH_NETHER_BRASS,
                 APBlocks.WARDSTONE,
-                APBlocks.WARDSTONE_BRICKS
+                APBlocks.WARDSTONE_BRICKS,
+                APBlocks.ONYX,
+                APBlocks.ESOTERRACK
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(APBlocks.ABYSSALINE)
@@ -191,7 +193,9 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.NETHER_BRASS_CHAIN)
                 .add(APBlocks.NETHER_BRASS_LANTERN)
                 .add(APBlocks.WARDSTONE_PILLAR)
-                .add(APBlocks.WARDSTONE_LAMP);
+                .add(APBlocks.WARDSTONE_LAMP)
+                .add(APBlocks.ONYX_PILLAR)
+                .add(APBlocks.ESOTERRACK_PILLAR);
         addOreBricks(BlockTags.PICKAXE_MINEABLE,true,true,true,true);
         for (List<Block> l: APBlocks.chiseledNcrackedOres.values()) l.forEach((b)->this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b));
 

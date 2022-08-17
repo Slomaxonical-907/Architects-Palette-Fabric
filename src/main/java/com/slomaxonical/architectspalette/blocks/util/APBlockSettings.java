@@ -46,7 +46,24 @@ public class APBlockSettings {
 	public static final FabricBlockSettings ENTWINE = FabricBlockSettings.of(Material.STONE, MapColor.CYAN).strength(3.0F, 6.0F).sounds(APSounds.APSoundTypes.ENTWINE).requiresTool();
 	public static final FabricBlockSettings ENDER_PEARL = FabricBlockSettings.of(Material.STONE, MapColor.CYAN).strength(1.5F).sounds(APSounds.APSoundTypes.ENDER_PEARL);
 	public static final FabricBlockSettings PLATING = FabricBlockSettings.of(Material.METAL, MapColor.STONE_GRAY).strength(4.0F, 10.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
+	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)
+			.requiresTool()
+			.strength(2.0F, 6.0F)
+			.luminance((state) -> 3)
+			.postProcess((a, b, c) -> true)
+			.emissiveLighting((a, b, c) -> true);
 
+	public static final FabricBlockSettings CAGE_LANTERN = FabricBlockSettings.of(Material.METAL)
+			.requiresTool()
+			.emissiveLighting((state, reader, pos) -> state.get(CageLanternBlock.LIT))
+			.postProcess((state, reader, pos) -> state.get(CageLanternBlock.LIT))
+			.strength(3.5f)
+			.sounds(BlockSoundGroup.LANTERN)
+			.nonOpaque();
+
+	public static final FabricBlockSettings ACACIA_TOTEM = FabricBlockSettings.of(Material.WOOD, MapColor.ORANGE)
+			.strength(2.0F)
+			.sounds(BlockSoundGroup.WOOD);
 	public static final FabricBlockSettings NETHER_CRYSTAL = FabricBlockSettings.copyOf(Blocks.GLASS).luminance(l -> 12).requiresTool().strength(1.2f);
 
 	public static final FabricBlockSettings NETHER_BRASS = FabricBlockSettings.of(Material.METAL, MapColor.YELLOW)
@@ -71,25 +88,15 @@ public class APBlockSettings {
 			.requiresTool()
 			.strength(2F, 6)
 			.sounds(BlockSoundGroup.NETHER_BRICKS);
-
-	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)
+	public static final FabricBlockSettings ESOTERRACK = FabricBlockSettings.of(Material.STONE,MapColor.RAW_IRON_PINK)
 			.requiresTool()
-			.strength(2.0F, 6.0F)
-			.luminance((state) -> 3)
-			.postProcess((a, b, c) -> true)
-			.emissiveLighting((a, b, c) -> true);
-
-	public static final FabricBlockSettings CAGE_LANTERN = FabricBlockSettings.of(Material.METAL)
+			.strength(0.4f)
+			.sounds(BlockSoundGroup.NETHERRACK);
+	public static final FabricBlockSettings ONYX = FabricBlockSettings.of(Material.STONE,MapColor.BLACK)
 			.requiresTool()
-			.emissiveLighting((state, reader, pos) -> state.get(CageLanternBlock.LIT))
-			.postProcess((state, reader, pos) -> state.get(CageLanternBlock.LIT))
-			.strength(3.5f)
-			.sounds(BlockSoundGroup.LANTERN)
-			.nonOpaque();
+			.strength(1.5f,6)
+			.sounds(BlockSoundGroup.BASALT);
 
-	public static final FabricBlockSettings ACACIA_TOTEM = FabricBlockSettings.of(Material.WOOD, MapColor.ORANGE)
-			.strength(2.0F)
-			.sounds(BlockSoundGroup.WOOD);
 
 	// This makes a new property each time so that setting the door to not solid doesn't interfere.
 	public static FabricBlockSettings TwistedWood() {

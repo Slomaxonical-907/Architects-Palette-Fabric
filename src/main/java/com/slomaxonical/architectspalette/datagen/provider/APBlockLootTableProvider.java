@@ -70,7 +70,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
         for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
 
         Stream.of(
-                APBlocks.ABYSSALINE,
+//                APBlocks.ABYSSALINE,
                 APBlocks.ABYSSALINE_LAMP_BLOCK,
                 APBlocks.ABYSSALINE_PILLAR,
                 APBlocks.ACACIA_BOARDS,
@@ -176,7 +176,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WITHERED_BONE_BLOCK,
                 APBlocks.WITHERED_OSSEOUS_PILLAR,
                 APBlocks.WITHERED_OSSEOUS_SKULL,
-                APBlocks.WITHER_LAMP,
+                APBlocks.WITHER_LAMP,//just realized i fked alphabetical order
+
                 APBlocks.HELIODOR_ROD,
                 APBlocks.EKANITE_ROD,
                 APBlocks.MONAZITE_ROD,
@@ -187,7 +188,9 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.NETHER_BRASS_TORCH,
                 APBlocks.CHISELED_WARDSTONE,
                 APBlocks.WARDSTONE_PILLAR,
-                APBlocks.WARDSTONE_LAMP)
+                APBlocks.WARDSTONE_LAMP,
+                APBlocks.ONYX_PILLAR,
+                APBlocks.ESOTERRACK_PILLAR)
                 .forEach(this::addDrop);
 
 //        Stream.of(
