@@ -29,6 +29,7 @@ import static com.slomaxonical.architectspalette.registry.APBlocks.NETHER_BRASS;
 import static com.slomaxonical.architectspalette.registry.APItems.*;
 
 public class APRecipeProvider extends FabricRecipeProvider {
+//todo: Pillars and Fences can now be automated with the new Blockset, do that
 
     private final Identifier NETHER = new Identifier("the_nether");
 
@@ -72,6 +73,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter,verticaExport, OVERGROWN_ALGAL_BRICK,List.of(OVERGROWN_ALGAL_BRICK));
         offerSetRecipes(exporter,verticaExport, SUNMETAL, SUNMETAL_PILLAR, CHISELED_SUNMETAL_BLOCK, List.of(SUNMETAL));
         offerSetRecipes(exporter,verticaExport, PLATING_BLOCK,List.of(PLATING_BLOCK));
+        offerSetRecipes(exporter,verticaExport,ANCIENT_PLATING,List.of(ANCIENT_PLATING));
         offerSetRecipes(exporter,verticaExport, POLISHED_PACKED_ICE, PACKED_ICE_PILLAR, CHISELED_PACKED_ICE,List.of(POLISHED_PACKED_ICE,Items.PACKED_ICE));
         offerSetRecipes(exporter,verticaExport, GILDED_SANDSTONE, GILDED_SANDSTONE_PILLAR, CHISELED_GILDED_SANDSTONE,List.of(GILDED_SANDSTONE));
         offerSetRecipes(exporter, verticaExport, POLISHED_GLOWSTONE,RUNIC_GLOWSTONE,null,List.of(POLISHED_GLOWSTONE));
@@ -94,10 +96,10 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter,verticaExport, ENTWINE, ENTWINE_PILLAR, CHISELED_ENTWINE,List.of(ENTWINE));
         offerSetRecipes(exporter,verticaExport, WARPSTONE,List.of(WARPSTONE));
 
-        offerStairsRecipe(exporter,getTwistedSet().getPart(STAIRS), TWISTED_PLANKS);
-        offerSlabsRecipes(exporter,verticaExport, getTwistedSet().getPart(SLAB), getTwistedSet().getPart(VERTICAL_SLAB), TWISTED_PLANKS);
+        offerStairsRecipe(exporter,getSet(TWISTED_PLANKS).getPart(STAIRS), TWISTED_PLANKS);
+        offerSlabsRecipes(exporter,verticaExport, getSet(TWISTED_PLANKS).getPart(SLAB), getSet(TWISTED_PLANKS).getPart(VERTICAL_SLAB), TWISTED_PLANKS);
         createFenceRecipe(TWISTED_FENCE,Ingredient.ofItems(TWISTED_PLANKS)).criterion(hasItem(TWISTED_PLANKS), conditionsFromItem(TWISTED_PLANKS)).offerTo(exporter);
-        createFenceGateRecipe(TWISTED_FENCE,Ingredient.ofItems(TWISTED_PLANKS)).criterion(hasItem(TWISTED_PLANKS), conditionsFromItem(TWISTED_PLANKS)).offerTo(exporter);
+        createFenceGateRecipe(TWISTED_FENCE_GATE,Ingredient.ofItems(TWISTED_PLANKS)).criterion(hasItem(TWISTED_PLANKS), conditionsFromItem(TWISTED_PLANKS)).offerTo(exporter);
 
         //Abyssaline
         ShapedRecipeJsonBuilder.create(ABYSSALINE).input('#', Items.PRISMARINE_SHARD).input('$', Items.OBSIDIAN).pattern("$#$").pattern("# #").pattern("$#$").criterion("has_obsidian",conditionsFromItem(Items.OBSIDIAN)).offerTo(exporter);
@@ -184,16 +186,14 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerPolishedStoneRecipe(exporter, CHARCOAL_BLOCK, Items.CHARCOAL);
         offerSingleOutputShapelessRecipe(exporter, Items.CHARCOAL, CHARCOAL_BLOCK,null);
         offerMiniXRecipe(exporter,COARSE_SNOW, Items.SNOW_BLOCK,Items.GRAVEL,4);
-        offerCondensingRecipe(exporter, ENDER_PEARL_BLOCK, Items.ENDER_PEARL,1);
-        offerShapelessRecipe(exporter,Items.ENDER_PEARL,ENDER_PEARL_BLOCK,null,4);
-        offerPolishedStoneRecipe(exporter,ENTWINE,ENTWINE_ROD);
-        offerBarsRecipe(exporter,ENTWINE_BARS,ENTWINE_ROD);
-        ShapedRecipeJsonBuilder.create(ENTWINE_ROD, 4).input('#',Items.ENDER_PEARL).input('$', Items.IRON_NUGGET).pattern("#$#").criterion(hasItem(Items.ENDER_PEARL),conditionsFromItem(Items.ENDER_PEARL)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter,FLINT_BLOCK,Items.FLINT);
         ShapedRecipeJsonBuilder.create(GRINNING_ACACIA_TOTEM, 2).input('#',Items.ACACIA_LOG).input('$', Items.STICK).pattern("$#$").pattern(" # ").criterion(hasItem(Items.ACACIA_LOG),conditionsFromItem(Items.ACACIA_LOG)).offerTo(exporter);
         offerMiniXRecipe(exporter,MOLTEN_NETHER_BRICKS,Items.MAGMA_BLOCK,Items.NETHER_BRICKS,4);
         offerPolishedStoneRecipe(exporter,PIPE,PLATING_BLOCK);
         ShapedRecipeJsonBuilder.create(PLATING_BLOCK).input('#', Items.IRON_NUGGET).input('I',Items.IRON_INGOT).pattern(" # ").pattern("#I#").pattern(" # ").criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(ANCIENT_PLATING).input('I', BRASS_INGOT).input('N',NETHER_BRASS_NUGGET).input('S',Items.NETHERITE_SCRAP).pattern("INI").pattern("NSN").pattern("INI").criterion(hasItem(Items.NETHERITE_SCRAP), RecipeProvider.conditionsFromItem(Items.NETHERITE_SCRAP)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(getSet(ANCIENT_PLATING).getPart(FENCE),6).input('I', BRASS_INGOT).input('#',ANCIENT_PLATING).pattern("#I#").pattern("#I#").criterion(hasItem(ANCIENT_PLATING), RecipeProvider.conditionsFromItem(ANCIENT_PLATING)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(HAZARD_SIGN,4).input('I', Items.IRON_INGOT).input('#',Items.IRON_NUGGET).pattern(" I ").pattern("#I#").criterion(hasItem(Items.IRON_INGOT), RecipeProvider.conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter,POLISHED_GLOWSTONE,Items.GLOWSTONE);
         offerPolishedStoneRecipe(exporter,POLISHED_PACKED_ICE,Items.PACKED_ICE);
         offerReversibleCompactingRecipes(exporter,Items.ROTTEN_FLESH,ROTTEN_FLESH_BLOCK);
@@ -404,11 +404,10 @@ public class APRecipeProvider extends FabricRecipeProvider {
         createTransmutationRecipe(input, Ingredient.ofItems(output)).criterion(hasItem(input),conditionsFromItem(input)). offerTo(vertExporter,"vertical/vertical_to_"+input.asItem().toString());
     }
     //mehGodDammit
-    private static StoneBlockSet getTwistedSet(){
-        StoneBlockSet blockSet = null;
+    private static StoneBlockSet getSet(Block block){
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
-            if (set.getBase().equals(TWISTED_PLANKS)) blockSet=set;
+            if (set.getBase().equals(block)) return set;
         }
-        return blockSet;
+        return null;
     }
 }

@@ -53,6 +53,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                     this.addDrop(set.getPart(SLAB), BlockLootTableGenerator::slabDrops);
                     this.addDrop(set.getPart(VERTICAL_SLAB), BlockLootTableGenerator::slabDrops);
                 }
+                if (set.getPart(FENCE)!=null) this.addDrop(set.getPart(FENCE));
             }else{
                 this.addDropWithSilkTouch(set.getBase());
                 this.addDropWithSilkTouch(set.getPart(STAIRS));
@@ -190,7 +191,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WARDSTONE_PILLAR,
                 APBlocks.WARDSTONE_LAMP,
                 APBlocks.ONYX_PILLAR,
-                APBlocks.ESOTERRACK_PILLAR)
+                APBlocks.ESOTERRACK_PILLAR,
+                APBlocks.HAZARD_SIGN)
                 .forEach(this::addDrop);
 
 //        Stream.of(

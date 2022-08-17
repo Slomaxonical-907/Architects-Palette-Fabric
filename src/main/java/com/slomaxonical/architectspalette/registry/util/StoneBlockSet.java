@@ -26,12 +26,9 @@ public class StoneBlockSet {
     public StoneBlockSet(Block base_block) {
         this(base_block, SetGroup.TYPICAL);
     }
-
     public StoneBlockSet(Block base_block, SetGroup group) {
         this(base_block, group.components);
     }
-
-
     public StoneBlockSet(Block base_block, SetComponent... parts){
         this.parts = new ArrayList<>();
         //Piece of crap array list doesn't let me preallocate indices ((if it can, you should let me know))
@@ -41,13 +38,15 @@ public class StoneBlockSet {
         setPart(BLOCK, base_block);
         Arrays.stream(parts).forEachOrdered(this::createPart);
 
-
         if (this.material_name.contains("ore_brick")) {
             oreBrickSets.add(this);
 
         } else {
             BlockSets.add(this);
         }
+    }
+    public StoneBlockSet(Block base_block, SetGroup group, SetComponent... additionalParts) {
+        this(base_block, concatArray(group.components, additionalParts));
     }
 
     // Stone Bricks Slab -> Stone Brick Slab. Oak Planks Stairs -> Oak Stairs
@@ -59,6 +58,7 @@ public class StoneBlockSet {
                 .replace("tiles", "tile");
     }
     // Go all the way. Stone Bricks -> Stone. Meant for pillars and such
+    // Written with the assumption that nobody will ever want a pillar and a brick pillar.
     private static String getMaterialAggressive(String block) {
         return getMaterialFromBlock(block)
                 .replace("_brick", "")
@@ -157,6 +157,11 @@ public class StoneBlockSet {
             case PILLAR -> new PillarBlock(settings);
             case BLOCK -> throw new IllegalStateException("Should not call createPart on BLOCK. Use setPart instead.");
         };
+    }
+    private static <T> T[] concatArray(T[] array1, T[] array2) {
+        T[] result = Arrays.copyOf(array1, array1.length + array2.length);
+        System.arraycopy(array2, 0, result, array1.length, array2.length);
+        return result;
     }
 }
 

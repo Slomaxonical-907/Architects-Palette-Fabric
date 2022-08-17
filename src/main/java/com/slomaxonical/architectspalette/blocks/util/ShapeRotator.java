@@ -19,6 +19,8 @@ public class ShapeRotator {
 //    }
 
     public static VoxelShape rotateShapeHorizontal(VoxelShape shape, Direction from, Direction to) {
+        if (from == to) return shape;
+
         VoxelShape[] buffer = new VoxelShape[]{shape, VoxelShapes.empty()};
 
         int times = (to.getHorizontal() - from.getHorizontal() + 4) % 4;

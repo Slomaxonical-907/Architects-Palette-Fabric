@@ -29,7 +29,7 @@ public class APBlockSettings {
 	public static final FabricBlockSettings CHISELED_ABYSSALINE = FabricBlockSettings.copyOf(ABYSSALINE)
 			.luminance(ChiseledAbyssalineBlock.getLuminance());
 
-	public static FabricBlockSettings Meat(MapColor color) {
+    public static FabricBlockSettings Meat(MapColor color) {
 		return FabricBlockSettings.of(Material.GOURD, color).strength(1.0F).sounds(BlockSoundGroup.CORAL);
 	}
 
@@ -46,6 +46,11 @@ public class APBlockSettings {
 	public static final FabricBlockSettings ENTWINE = FabricBlockSettings.of(Material.STONE, MapColor.CYAN).strength(3.0F, 6.0F).sounds(APSounds.APSoundTypes.ENTWINE).requiresTool();
 	public static final FabricBlockSettings ENDER_PEARL = FabricBlockSettings.of(Material.STONE, MapColor.CYAN).strength(1.5F).sounds(APSounds.APSoundTypes.ENDER_PEARL);
 	public static final FabricBlockSettings PLATING = FabricBlockSettings.of(Material.METAL, MapColor.STONE_GRAY).strength(4.0F, 10.0F).sounds(BlockSoundGroup.NETHERITE).requiresTool();
+	public static AbstractBlock.Settings ANCIENT_PLATING = FabricBlockSettings.of(Material.METAL,MapColor.DIRT_BROWN)
+			.requiresTool()
+			.strength(4.0f,12.0f)
+			.sounds(BlockSoundGroup.NETHERITE);
+
 	public static final FabricBlockSettings MOLTEN_BRICK = FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED)
 			.requiresTool()
 			.strength(2.0F, 6.0F)

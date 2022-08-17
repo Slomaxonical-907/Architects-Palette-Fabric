@@ -15,6 +15,7 @@ import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.*;
 
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
 import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetGroup.*;
 import static com.slomaxonical.architectspalette.registry.util.RegistryUtil.createBlock;
 
@@ -89,6 +90,7 @@ public class APBlocks {
     // Plating & Piping
     public static final Block PLATING_BLOCK = new Block(APBlockSettings.PLATING);
     public static final Block PIPE = new PipeBlock(APBlockSettings.PLATING.nonOpaque());
+    public static final Block ANCIENT_PLATING = new Block(APBlockSettings.ANCIENT_PLATING);
     //Spools
     public static final Block SPOOL = new PillarBlock(FabricBlockSettings.copy(Blocks.WHITE_WOOL));
 
@@ -223,7 +225,7 @@ public class APBlocks {
 
     public static final Block        TWISTED_SAPLING = new SaplingBlock(new TwistedTree(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
     public static final Block POTTED_TWISTED_SAPLING = RegistryUtil.createPottedPlant(TWISTED_SAPLING);
-
+    public static final Block HAZARD_SIGN = new SmallPanelBlock(APBlockSettings.PLATING);
     //Boards
     public static final Block OAK_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS));
     public static final Block BIRCH_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.BIRCH_PLANKS));
@@ -345,6 +347,7 @@ public class APBlocks {
         // Plating & Piping
          new StoneBlockSet(createBlock("plating_block",PLATING_BLOCK));
          createBlock("pipe",PIPE);
+         new StoneBlockSet(createBlock("ancient_plating",ANCIENT_PLATING),TYPICAL, FENCE);
         //Spools
          createBlock("spool",SPOOL);
 
@@ -469,17 +472,7 @@ public class APBlocks {
          createBlock("twisted_sapling",TWISTED_SAPLING, ItemGroup.DECORATIONS);
          RegistryUtil.createBlockNoItem("potted_twisted_sapling" ,POTTED_TWISTED_SAPLING);
 
-         //Boards
-         createBlock("oak_boards", OAK_BOARDS);
-         createBlock("birch_boards", BIRCH_BOARDS);
-         createBlock("spruce_boards", SPRUCE_BOARDS);
-         createBlock("jungle_boards", JUNGLE_BOARDS);
-         createBlock("dark_oak_boards", DARK_OAK_BOARDS);
-         createBlock("acacia_boards", ACACIA_BOARDS);
-         createBlock("crimson_boards", CRIMSON_BOARDS);
-         createBlock("warped_boards", WARPED_BOARDS);
-         createBlock("twisted_boards", TWISTED_BOARDS);
-
+         createBlock("hazard_sign",HAZARD_SIGN);
         //Railings
          createBlock("oak_railing", OAK_RAILING, ItemGroup.DECORATIONS);
          createBlock("birch_railing", BIRCH_RAILING, ItemGroup.DECORATIONS);
@@ -490,6 +483,23 @@ public class APBlocks {
          createBlock("crimson_railing", CRIMSON_RAILING, ItemGroup.DECORATIONS);
          createBlock("warped_railing", WARPED_RAILING, ItemGroup.DECORATIONS);
          createBlock("twisted_railing", TWISTED_RAILING, ItemGroup.DECORATIONS);
+
+        //Boards
+        createBlock("oak_boards", OAK_BOARDS);
+        createBlock("birch_boards", BIRCH_BOARDS);
+        createBlock("spruce_boards", SPRUCE_BOARDS);
+        createBlock("jungle_boards", JUNGLE_BOARDS);
+        createBlock("dark_oak_boards", DARK_OAK_BOARDS);
+        createBlock("acacia_boards", ACACIA_BOARDS);
+        createBlock("crimson_boards", CRIMSON_BOARDS);
+        createBlock("warped_boards", WARPED_BOARDS);
+        createBlock("twisted_boards", TWISTED_BOARDS);
+
+        // Cage Lanterns
+        createBlock("redstone_cage_lantern", REDSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
+        createBlock("glowstone_cage_lantern", GLOWSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
+        createBlock("algal_cage_lantern", ALGAL_CAGE_LANTERN, ItemGroup.REDSTONE);
+
         // Celestial Stones
          createBlock("sunstone",SUNSTONE);
          createBlock("moonstone",MOONSTONE);
@@ -497,13 +507,12 @@ public class APBlocks {
         // Odd block variants
          createBlock("molten_nether_bricks",MOLTEN_NETHER_BRICKS);
          createBlock("coarse_snow",COARSE_SNOW);
-        // Charcoal Block
          createBlock("charcoal_block",CHARCOAL_BLOCK);
 
-        // Cage Lanterns
-         createBlock("redstone_cage_lantern", REDSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
-         createBlock("glowstone_cage_lantern", GLOWSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
-         createBlock("algal_cage_lantern", ALGAL_CAGE_LANTERN, ItemGroup.REDSTONE);
+         //radioactive
+        createBlock("heliodor_rod", HELIODOR_ROD);
+        createBlock("ekanite_rod", EKANITE_ROD);
+        createBlock("monazite_rod", MONAZITE_ROD);
 
         // Acacia Totems
          createBlock("acacia_totem_wing",ACACIA_TOTEM_WING, ItemGroup.DECORATIONS);
@@ -511,10 +520,7 @@ public class APBlocks {
          createBlock("placid_acacia_totem",  PLACID_ACACIA_TOTEM);
          createBlock("shocked_acacia_totem",SHOCKED_ACACIA_TOTEM);
          createBlock("blank_acacia_totem",BLANK_ACACIA_TOTEM);
-         //radioactive
-        createBlock("heliodor_rod", HELIODOR_ROD);
-        createBlock("ekanite_rod", EKANITE_ROD);
-        createBlock("monazite_rod", MONAZITE_ROD);
+
         //unobtanim
         createBlock("unobtanium_block", UNOBTANIUM_BLOCK);
 

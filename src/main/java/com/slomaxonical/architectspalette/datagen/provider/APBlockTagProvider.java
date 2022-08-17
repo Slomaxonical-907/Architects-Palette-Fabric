@@ -39,8 +39,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         for (StoneBlockSet set:sets) {
             if (tryBlock) this.getOrCreateTagBuilder(tag).add(set.getBase());
             if(set.getPart(STAIRS)!=null && tryStairs) this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
-            if(set.getPart(STAIRS)!=null && trySlabs){
-                this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
+            if(set.getPart(SLAB)!=null && trySlabs){
+                this.getOrCreateTagBuilder(tag).add(set.getPart(SLAB));
                 this.getOrCreateTagBuilder(tag).add(set.getPart(VERTICAL_SLAB));
             }
             if(set.getPart(WALL)!=null && tryWall) this.getOrCreateTagBuilder(tag).add(set.getPart(WALL));
@@ -51,7 +51,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
             if (addBlock) this.getOrCreateTagBuilder(tag).add(set.getBase());
             if(addStairs) this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
             if(addSlabs){
-                this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
+                this.getOrCreateTagBuilder(tag).add(set.getPart(SLAB));
                 this.getOrCreateTagBuilder(tag).add(set.getPart(VERTICAL_SLAB));
             }
             if(addWall) this.getOrCreateTagBuilder(tag).add(set.getPart(WALL));
@@ -114,7 +114,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.WARDSTONE,
                 APBlocks.WARDSTONE_BRICKS,
                 APBlocks.ONYX,
-                APBlocks.ESOTERRACK
+                APBlocks.ESOTERRACK,
+                APBlocks.ANCIENT_PLATING
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(APBlocks.ABYSSALINE)
@@ -195,7 +196,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.WARDSTONE_PILLAR)
                 .add(APBlocks.WARDSTONE_LAMP)
                 .add(APBlocks.ONYX_PILLAR)
-                .add(APBlocks.ESOTERRACK_PILLAR);
+                .add(APBlocks.ESOTERRACK_PILLAR)
+                .add(APBlocks.HAZARD_SIGN);
         addOreBricks(BlockTags.PICKAXE_MINEABLE,true,true,true,true);
         for (List<Block> l: APBlocks.chiseledNcrackedOres.values()) l.forEach((b)->this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b));
 
@@ -266,6 +268,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         this.getOrCreateTagBuilder(BlockTags.FIRE).add(APBlocks.NETHER_BRASS_FIRE);//this tag see
         this.getOrCreateTagBuilder(BlockTags.PLANKS).add(APBlocks.TWISTED_PLANKS);
+        this.getOrCreateTagBuilder(BlockTags.FENCES).add(APBlocks.ANCIENT_PLATING);
         this.getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(APBlocks.TWISTED_FENCE_GATE);
         this.getOrCreateTagBuilder(BlockTags.FLOWER_POTS).add(APBlocks.POTTED_TWISTED_SAPLING);
         this.getOrCreateTagBuilder(BlockTags.LEAVES).add(APBlocks.TWISTED_LEAVES);
@@ -282,7 +285,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         //SLABS
 
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
-            if (set.getPart(STAIRS) !=null) this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.getPart(STAIRS));
+            if (set.getPart(SLAB) !=null) this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.getPart(SLAB));
         }
         addOreBricks(BlockTags.SLABS,false,false,true,false);
         //STAIRS
@@ -308,14 +311,16 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.PLATING_BLOCK,
                 APBlocks.NETHER_BRASS,
                 APBlocks.CUT_NETHER_BRASS,
-                APBlocks.SMOOTH_NETHER_BRASS
+                APBlocks.SMOOTH_NETHER_BRASS,
+                APBlocks.ANCIENT_PLATING
         );
         this.getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(APBlocks.PIPE)
                 .add(APBlocks.UNOBTANIUM_BLOCK)
                 .add(APBlocks.NETHER_BRASS_PILLAR)
                 .add(APBlocks.NETHER_BRASS_CHAIN)
-                .add(APBlocks.NETHER_BRASS_LANTERN);
+                .add(APBlocks.NETHER_BRASS_LANTERN)
+                .add(APBlocks.HAZARD_SIGN);
         //Stone
         addSets(BlockTags.NEEDS_STONE_TOOL,
                 APBlocks.ENTWINE,
