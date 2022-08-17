@@ -43,5 +43,6 @@
   },
   "suggests": {
     "another-mod": "*"
-  }
+  },
+  "accessWidener": "architectspalette.accesswidener"
 }

@@ -22,6 +22,8 @@ public class APItems {
     public static final Item SUNMETAL_BRICK = createItem("sunmetal_brick", new Item(new Item.Settings().group(ItemGroup.MATERIALS)), APBlocks.SUNMETAL);
 
     public static final Item WITHERED_BONE = createItem("withered_bone", new Item(new Item.Settings().group(ItemGroup.MATERIALS)), APBlocks.WITHERED_BONE_BLOCK);
+    public static final Item WARDSTONE_BLEND = createItem("wardstone_blend",new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.WARDSTONE);
+    public static final Item WARDSTONE_BRICK = createItem("wardstone_brick",new Item(new Item.Settings().group(ItemGroup.MATERIALS)),APBlocks.WARDSTONE);
     public static final Item ENTWINE_ROD = createItem("entwine_rod", new Item(new Item.Settings().group(ItemGroup.MATERIALS)), APBlocks.ENTWINE);
 
     public static final Item UNOBTANIUM = createItem("unobtanium", new Item(new Item.Settings().group(ItemGroup.MATERIALS)), APBlocks.UNOBTANIUM_BLOCK);

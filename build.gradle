@@ -20,6 +20,7 @@ repositories {
 	maven { url "https://maven.terraformersmc.com/"}
 }
 loom {
+	accessWidenerPath = file("src/main/resources/architectspalette.accesswidener")
 	runs {
 		datagen {
 			server()

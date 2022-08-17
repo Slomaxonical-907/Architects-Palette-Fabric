@@ -1,15 +1,12 @@
 package com.slomaxonical.architectspalette.registry;
 
 import com.slomaxonical.architectspalette.blocks.entrails.DrippyBlock;
-import com.slomaxonical.architectspalette.blocks.entrails.DrippySlabBlock;
-import com.slomaxonical.architectspalette.blocks.entrails.DrippyVerticalSlabBlock;
 import com.slomaxonical.architectspalette.blocks.flint.*;
 import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import com.slomaxonical.architectspalette.blocks.abyssaline.*;
 import com.slomaxonical.architectspalette.blocks.*;
 import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.features.TwistedTree;
-import com.slomaxonical.architectspalette.ArchitectsPalette;
 import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -64,8 +61,8 @@ public class APBlocks {
 
     public static final Block NETHER_BRASS_CHAIN = new ChainBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.CHAIN));
     public static final Block NETHER_BRASS_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool().luminance((a)->13));
-    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, ArchitectsPalette.GREEN_FLAME);
-    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), ArchitectsPalette.GREEN_FLAME);
+    public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, APParticles.GREEN_FLAME);
+    public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), APParticles.GREEN_FLAME);
 
     // Sunmetal
     public static final Block SUNMETAL                = new Block(APBlockSettings.SUNMETAL);
@@ -76,7 +73,7 @@ public class APBlocks {
     // Rotten Flesh Block
     public static final Block ROTTEN_FLESH_BLOCK = new Block(APBlockSettings.Meat(MapColor.ORANGE));
 
-  // Villager Trade blocks
+    // Villager Trade blocks
     // Entrails
     public static final Block ENTRAILS = new DrippyBlock(APBlockSettings.Meat(MapColor.TERRACOTTA_PINK));
     // Funny fish blocks
@@ -176,7 +173,12 @@ public class APBlocks {
     public static final Block HEAVY_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.STONE_BRICKS));
     public static final Block HEAVY_MOSSY_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.MOSSY_STONE_BRICKS));
     public static final Block HEAVY_CRACKED_STONE_BRICKS = new BigBrickBlock(FabricBlockSettings.copy(Blocks.CRACKED_STONE_BRICKS));
-
+    //wardstone
+    public static final Block WARDSTONE = new Block(APBlockSettings.WARDSTONE);
+    public static final Block CHISELED_WARDSTONE = new Block(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_BRICKS = new Block(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_PILLAR = new PillarBlock(APBlockSettings.WARDSTONE);
+    public static final Block WARDSTONE_LAMP = new Block(FabricBlockSettings.copy(WARDSTONE).luminance((state)->14));
     // Entwine
     public static final Block ENTWINE = new Block(APBlockSettings.ENTWINE);
     public static final Block ENTWINE_PILLAR = new PillarBlock(APBlockSettings.ENTWINE);
@@ -407,6 +409,13 @@ public class APBlocks {
          createBlock("heavy_stone_bricks",HEAVY_STONE_BRICKS);
          createBlock("heavy_mossy_stone_bricks",HEAVY_MOSSY_STONE_BRICKS);
          createBlock("heavy_cracked_stone_bricks",HEAVY_CRACKED_STONE_BRICKS);
+
+         //Wardstone
+        new StoneBlockSet(createBlock("wardstone",WARDSTONE));
+        createBlock("chiseled_wardstone",CHISELED_WARDSTONE);
+        new StoneBlockSet(createBlock("wardstone_bricks",WARDSTONE_BRICKS));
+        createBlock("wardstone_pillar",WARDSTONE_PILLAR);
+        createBlock("wardstone_lamp",WARDSTONE_LAMP);
 
         // Entwine
          new StoneBlockSet(createBlock("entwine_block",ENTWINE),NO_WALLS);

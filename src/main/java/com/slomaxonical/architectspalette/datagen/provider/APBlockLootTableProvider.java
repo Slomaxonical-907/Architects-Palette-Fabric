@@ -184,7 +184,10 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.NETHER_BRASS_PILLAR,
                 APBlocks.NETHER_BRASS_CHAIN,
                 APBlocks.NETHER_BRASS_LANTERN,
-                APBlocks.NETHER_BRASS_TORCH)
+                APBlocks.NETHER_BRASS_TORCH,
+                APBlocks.CHISELED_WARDSTONE,
+                APBlocks.WARDSTONE_PILLAR,
+                APBlocks.WARDSTONE_LAMP)
                 .forEach(this::addDrop);
 
 //        Stream.of(

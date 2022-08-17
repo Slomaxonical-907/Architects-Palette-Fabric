@@ -59,6 +59,12 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     }
     @Override
     protected void generateTags() {
+        addSets(APTags.WIZARD_BLOCKS,APBlocks.WARDSTONE,APBlocks.WARDSTONE_BRICKS);
+        this.getOrCreateTagBuilder(APTags.WIZARD_BLOCKS)
+                .add(APBlocks.CHISELED_WARDSTONE)
+                .add(APBlocks.WARDSTONE_PILLAR)
+                .add(APBlocks.WARDSTONE_LAMP);
+
         addSets(APTags.GREEN_FIRE_SUPPORTING,APBlocks.NETHER_BRASS,APBlocks.CUT_NETHER_BRASS,APBlocks.SMOOTH_NETHER_BRASS);
         this.getOrCreateTagBuilder(APTags.GREEN_FIRE_SUPPORTING)
                 .add(APBlocks.NETHER_BRASS_PILLAR);
@@ -104,7 +110,9 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.WITHERED_OSSEOUS_BRICK,
                 APBlocks.NETHER_BRASS,
                 APBlocks.CUT_NETHER_BRASS,
-                APBlocks.SMOOTH_NETHER_BRASS
+                APBlocks.SMOOTH_NETHER_BRASS,
+                APBlocks.WARDSTONE,
+                APBlocks.WARDSTONE_BRICKS
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(APBlocks.ABYSSALINE)
@@ -286,23 +294,35 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         }
         addOreBricks(BlockTags.WALLS,false,false,false,true);
 
-        //NEEDS_TIER_TOOL
-        addSets(BlockTags.NEEDS_DIAMOND_TOOL,APBlocks.ABYSSALINE_BRICKS,APBlocks.ABYSSALINE_TILES);
+    //NEEDS_TIER_TOOL
+        //Diamond
         this.getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(APBlocks.ABYSSALINE)
                 .add(APBlocks.ABYSSALINE_LAMP_BLOCK)
                 .add(APBlocks.ABYSSALINE_PILLAR)
                 .add(APBlocks.CHISELED_ABYSSALINE_BRICKS);
-
-        addSets(BlockTags.NEEDS_IRON_TOOL,APBlocks.PLATING_BLOCK,APBlocks.NETHER_BRASS,APBlocks.CUT_NETHER_BRASS,APBlocks.SMOOTH_NETHER_BRASS);
+        //Iron
+        addSets(BlockTags.NEEDS_IRON_TOOL,
+                APBlocks.PLATING_BLOCK,
+                APBlocks.NETHER_BRASS,
+                APBlocks.CUT_NETHER_BRASS,
+                APBlocks.SMOOTH_NETHER_BRASS
+        );
         this.getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(APBlocks.PIPE)
                 .add(APBlocks.UNOBTANIUM_BLOCK)
                 .add(APBlocks.NETHER_BRASS_PILLAR)
                 .add(APBlocks.NETHER_BRASS_CHAIN)
                 .add(APBlocks.NETHER_BRASS_LANTERN);
-
-        addSets(BlockTags.NEEDS_STONE_TOOL, APBlocks.ENTWINE,APBlocks.FLINT_BLOCK,APBlocks.FLINT_TILES,APBlocks.SUNMETAL);
+        //Stone
+        addSets(BlockTags.NEEDS_STONE_TOOL,
+                APBlocks.ENTWINE,
+                APBlocks.FLINT_BLOCK,
+                APBlocks.FLINT_TILES,
+                APBlocks.SUNMETAL,
+                APBlocks.WARDSTONE,
+                APBlocks.WARDSTONE_BRICKS
+        );
         this.getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(APBlocks.ENTWINE_PILLAR)
                 .add(APBlocks.ENTWINE_BARS)

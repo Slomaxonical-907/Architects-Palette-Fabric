@@ -24,11 +24,10 @@ public class ArchitectsPalette implements ModInitializer {
 
     public static final String MOD_ID = "architects_palette";
     public static final Logger LOGGER = LogManager.getLogger("Architect's Palette");
-    public static final DefaultParticleType GREEN_FLAME = FabricParticleTypes.simple();
     @Override
     public void onInitialize() {
         AutoConfig.register(ApConfigs.class, JanksonConfigSerializer::new);
-        Registry.register(Registry.PARTICLE_TYPE, new Identifier(MOD_ID, "green_flame"), GREEN_FLAME);
+        APParticles.register();
 
         APBlocks.registerBlocks();
         ConfigResourceCondition.init();
