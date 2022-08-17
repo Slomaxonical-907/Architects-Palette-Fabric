@@ -189,7 +189,9 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.UNOBTANIUM_BLOCK)
                 .add(APBlocks.NETHER_BRASS_PILLAR)
                 .add(APBlocks.NETHER_BRASS_CHAIN)
-                .add(APBlocks.NETHER_BRASS_LANTERN);
+                .add(APBlocks.NETHER_BRASS_LANTERN)
+                .add(APBlocks.WARDSTONE_PILLAR)
+                .add(APBlocks.WARDSTONE_LAMP);
         addOreBricks(BlockTags.PICKAXE_MINEABLE,true,true,true,true);
         for (List<Block> l: APBlocks.chiseledNcrackedOres.values()) l.forEach((b)->this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b));
 
@@ -274,16 +276,12 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         addSets(BlockTags.WOODEN_SLABS,false,false,true,false,APBlocks.TWISTED_PLANKS);
         this.getOrCreateTagBuilder(BlockTags.WALL_POST_OVERRIDE).addTag(APTags.CAGE_LANTERNS);//this tag see
         //SLABS
-//        this.getOrCreateTagBuilder(BlockTags.SLABS)
-//                .add(APBlocks.ABYSSALINE_BRICK_SLAB)
-//                .add(APBlocks.ABYSSALINE_TILE_SLAB)
-//                .add(APBlocks.ENTRAILS_SLAB);
+
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
             if (set.getPart(STAIRS) !=null) this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.getPart(STAIRS));
         }
         addOreBricks(BlockTags.SLABS,false,false,true,false);
         //STAIRS
-//        this.getOrCreateTagBuilder(BlockTags.STAIRS).add(APBlocks.ENTRAILS_STAIRS);
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
             if (set.getPart(STAIRS) !=null) this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.getPart(STAIRS));
         }
@@ -330,7 +328,9 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.FLINT_PILLAR)
                 .add(APBlocks.SUNMETAL_PILLAR)
                 .add(APBlocks.CHISELED_SUNMETAL_BLOCK)
-                .add(APBlocks.SUNMETAL_BARS);
+                .add(APBlocks.SUNMETAL_BARS)
+                .add(APBlocks.WARDSTONE_PILLAR)
+                .add(APBlocks.WARDSTONE_LAMP);
 
     }
 }
