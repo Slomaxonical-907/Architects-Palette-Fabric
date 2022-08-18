@@ -15,9 +15,10 @@ import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.*;
 
+import static com.slomaxonical.architectspalette.registry.util.RegistryUtil.*;
 import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
 import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetGroup.*;
-import static com.slomaxonical.architectspalette.registry.util.RegistryUtil.createBlock;
+import static net.minecraft.block.Oxidizable.OxidationLevel.*;
 
 
 public class APBlocks {
@@ -65,8 +66,8 @@ public class APBlocks {
     public static final Block NETHER_BRASS_PILLAR = new PillarBlock(APBlockSettings.NETHER_BRASS);
     public static final Block NETHER_BRASS_FIRE = new GreenFireBlock(APBlockSettings.GREEN_FIRE);
 
-    public static final Block NETHER_BRASS_CHAIN = new ChainBlock(APBlockSettings.NETHER_BRASS.sounds(BlockSoundGroup.CHAIN));
-    public static final Block NETHER_BRASS_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL, MapColor.YELLOW).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool().luminance((a)->13));
+    public static final Block NETHER_BRASS_CHAIN = new ChainBlock(FabricBlockSettings.copyOf(APBlockSettings.NETHER_BRASS).sounds(BlockSoundGroup.CHAIN));
+    public static final Block NETHER_BRASS_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIME).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool().luminance((a)->13));
     public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, APParticles.GREEN_FLAME);
     public static final Block NETHER_BRASS_WALL_TORCH = new WallTorchBlock(APBlockSettings.BRASS_TORCH.dropsLike(NETHER_BRASS_TORCH), APParticles.GREEN_FLAME);
 
@@ -226,6 +227,31 @@ public class APBlocks {
     public static final Block        TWISTED_SAPLING = new SaplingBlock(new TwistedTree(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
     public static final Block POTTED_TWISTED_SAPLING = RegistryUtil.createPottedPlant(TWISTED_SAPLING);
     public static final Block HAZARD_SIGN = new SmallPanelBlock(APBlockSettings.PLATING);
+    //No Set Nub
+    public static final Block STONE_NUB = makeNubOf(Blocks.STONE);
+    public static final Block SMOOTH_STONE_NUB = makeNubOf(Blocks.SMOOTH_STONE);
+    public static final Block SANDSTONE_NUB = makeNubOf(Blocks.SANDSTONE,Blocks.CUT_SANDSTONE);
+    public static final Block ANDESITE_NUB = makeNubOf(Blocks.ANDESITE,Blocks.POLISHED_ANDESITE);
+    public static final Block GRANITE_NUB = makeNubOf(Blocks.GRANITE,Blocks.POLISHED_GRANITE);
+    public static final Block DIORITE_NUB = makeNubOf(Blocks.DIORITE,Blocks.POLISHED_DIORITE);
+    public static final Block BLACKSTONE_NUB = makeNubOf(Blocks.BLACKSTONE,Blocks.POLISHED_BLACKSTONE);
+    public static final Block DEEPSLATE_NUB = makeNubOf(Blocks.POLISHED_DEEPSLATE,Blocks.DEEPSLATE);
+    public static final Block BONE_NUB = makeNubOf(Blocks.BONE_BLOCK);
+    public static final Block IRON_NUB = makeNubOf(Blocks.IRON_BLOCK,List.of(Items.IRON_INGOT));
+    public static final Block GOLD_NUB = makeNubOf(Blocks.GOLD_BLOCK,List.of(Items.GOLD_INGOT));
+    public static final Block DIAMOND_NUB = makeNubOf(Blocks.DIAMOND_BLOCK,List.of(Items.DIAMOND));
+    public static final Block EMERALD_NUB = makeNubOf(Blocks.EMERALD_BLOCK,List.of(Items.EMERALD));
+    public static final Block NETHERITE_NUB = makeNubOf(Blocks.NETHERITE_BLOCK,List.of(Items.NETHERITE_INGOT));
+    public static final Block NUB_OF_ENDER = new NubBlock(FabricBlockSettings.copyOf(ENDER_PEARL_BLOCK));
+        //copper
+    public static final Block COPPER_NUB = makeCopperNub(UNAFFECTED,Blocks.COPPER_BLOCK);
+    public static final Block WAXED_COPPER_NUB = makeCopperNub(UNAFFECTED,Blocks.COPPER_BLOCK);
+    public static final Block EXPOSED_COPPER_NUB = makeCopperNub(EXPOSED,Blocks.EXPOSED_COPPER);
+    public static final Block WAXED_EXPOSED_COPPER_NUB = makeCopperNub(EXPOSED,Blocks.EXPOSED_COPPER);
+    public static final Block WEATHERED_COPPER_NUB = makeCopperNub(WEATHERED,Blocks.WEATHERED_COPPER);
+    public static final Block WAXED_WEATHERED_COPPER_NUB = makeCopperNub(WEATHERED,Blocks.WEATHERED_COPPER);
+    public static final Block OXIDIZED_COPPER_NUB = makeCopperNub(OXIDIZED,Blocks.OXIDIZED_COPPER);
+    public static final Block WAXED_OXIDIZED_COPPER_NUB = makeCopperNub(OXIDIZED,Blocks.OXIDIZED_COPPER);
     //Boards
     public static final Block OAK_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS));
     public static final Block BIRCH_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.BIRCH_PLANKS));
@@ -317,7 +343,7 @@ public class APBlocks {
         createBlock("esoterrack_pillar",ESOTERRACK_PILLAR);
 
         //NetherBrass
-        new StoneBlockSet(createBlock("nether_brass_block", NETHER_BRASS));
+        new StoneBlockSet(createBlock("nether_brass_block", NETHER_BRASS),TYPICAL,NUB);
         new StoneBlockSet(createBlock("cut_nether_brass", CUT_NETHER_BRASS));
         createBlock("nether_brass_pillar", NETHER_BRASS_PILLAR);
         new StoneBlockSet(createBlock("smooth_nether_brass", SMOOTH_NETHER_BRASS), NO_WALLS);
@@ -328,7 +354,7 @@ public class APBlocks {
         RegistryUtil.createBlockNoItem("nether_brass_wall_torch",NETHER_BRASS_WALL_TORCH);
 
         // Sunmetal
-         new StoneBlockSet(createBlock("sunmetal_block",SUNMETAL, ItemGroup.BUILDING_BLOCKS), NO_WALLS);
+         new StoneBlockSet(createBlock("sunmetal_block",SUNMETAL, ItemGroup.BUILDING_BLOCKS), NO_WALLS,NUB);
          createBlock("chiseled_sunmetal_block",CHISELED_SUNMETAL_BLOCK);
          createBlock("sunmetal_pillar",SUNMETAL_PILLAR);
          createBlock("sunmetal_bars",SUNMETAL_BARS);
@@ -345,7 +371,7 @@ public class APBlocks {
          createBlock("salmon_scales",SALMON_SCALES);
          createBlock("cod_scales",COD_SCALES);
         // Plating & Piping
-         new StoneBlockSet(createBlock("plating_block",PLATING_BLOCK));
+         new StoneBlockSet(createBlock("plating_block",PLATING_BLOCK),TYPICAL,NUB);
          createBlock("pipe",PIPE);
          new StoneBlockSet(createBlock("ancient_plating",ANCIENT_PLATING),TYPICAL, FENCE);
         //Spools
@@ -368,7 +394,7 @@ public class APBlocks {
          createBlock("chiseled_gilded_sandstone",CHISELED_GILDED_SANDSTONE);
 
         // Polished Glowstone
-         new StoneBlockSet(createBlock("polished_glowstone",POLISHED_GLOWSTONE), NO_STAIRS);
+         new StoneBlockSet(createBlock("polished_glowstone",POLISHED_GLOWSTONE), NO_STAIRS,NUB);
          createBlock("runic_glowstone",RUNIC_GLOWSTONE);
 
         // Osseous Bricks
@@ -473,7 +499,32 @@ public class APBlocks {
          RegistryUtil.createBlockNoItem("potted_twisted_sapling" ,POTTED_TWISTED_SAPLING);
 
          createBlock("hazard_sign",HAZARD_SIGN);
-        //Railings
+        //No Set Nubs
+        createNub("stone",STONE_NUB);
+        createNub("smooth_stone",SMOOTH_STONE_NUB);
+        createNub("sandstone",SANDSTONE_NUB);
+        createNub("andesite",ANDESITE_NUB);
+        createNub("granite",GRANITE_NUB);
+        createNub("diorite",DIORITE_NUB);
+        createNub("blackstone",BLACKSTONE_NUB);
+        createNub("deepslate",DEEPSLATE_NUB);
+        createNub("bone",BONE_NUB);
+        createNub("iron",IRON_NUB);
+        createNub("gold",GOLD_NUB);
+        createNub("diamond",DIAMOND_NUB);
+        createNub("emerald",EMERALD_NUB);
+        createNub("netherite",NETHERITE_NUB);
+        createBlock("nub_of_ender",NUB_OF_ENDER,ItemGroup.DECORATIONS);
+
+        createNub("copper",COPPER_NUB);
+        createNub("waxed_copper",WAXED_COPPER_NUB);
+        createNub("exposed_copper",EXPOSED_COPPER_NUB);
+        createNub("waxed_exposed_copper",WAXED_EXPOSED_COPPER_NUB);
+        createNub("weathered_copper",WEATHERED_COPPER_NUB);
+        createNub("waxed_weathered_copper",WAXED_WEATHERED_COPPER_NUB);
+        createNub("oxidized_copper",OXIDIZED_COPPER_NUB);
+        createNub("waxed_oxidized_copper",WAXED_OXIDIZED_COPPER_NUB);
+//Railings
          createBlock("oak_railing", OAK_RAILING, ItemGroup.DECORATIONS);
          createBlock("birch_railing", BIRCH_RAILING, ItemGroup.DECORATIONS);
          createBlock("spruce_railing", SPRUCE_RAILING, ItemGroup.DECORATIONS);

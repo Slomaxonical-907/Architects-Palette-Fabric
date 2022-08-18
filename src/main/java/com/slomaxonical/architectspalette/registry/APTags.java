@@ -14,6 +14,7 @@ public class APTags {
     public static final TagKey<Block> CRYSTAL_REPLACEABLE = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "crystal_formation_replaceable"));
     public static final TagKey<Block> GREEN_FIRE_SUPPORTING = TagKey.of(Registry.BLOCK_KEY,new Identifier(ArchitectsPalette.MOD_ID, "green_fire_supporting"));
     public static final TagKey<Block> WIZARD_BLOCKS = TagKey.of(Registry.BLOCK_KEY, new Identifier(ArchitectsPalette.MOD_ID,"wizard_blocks"));
+    public static final TagKey<Block> NUBS = TagKey.of(Registry.BLOCK_KEY, new Identifier(ArchitectsPalette.MOD_ID,"nubs"));
 
     //Items
     public static final TagKey<Item> ITEM_TWISTED_LOGS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "twisted_logs"));

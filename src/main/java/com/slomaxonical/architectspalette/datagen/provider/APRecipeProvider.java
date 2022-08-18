@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.datagen.provider;
 
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.crafting.WarpingRecipeJsonBuilder;
 import com.slomaxonical.architectspalette.registry.APBlocks;
@@ -15,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -250,6 +252,9 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerPressurePlateRecipe(exporter,TWISTED_PRESSURE_PLATE,TWISTED_PLANKS);
         createDoorRecipe(TWISTED_DOOR, Ingredient.ofItems(TWISTED_PLANKS)).criterion(hasItem(TWISTED_PLANKS),conditionsFromItem(TWISTED_PLANKS)).offerTo(exporter);
         createTrapdoorRecipe(TWISTED_TRAPDOOR,Ingredient.ofItems(TWISTED_PLANKS)).criterion(hasItem(TWISTED_PLANKS),conditionsFromItem(TWISTED_PLANKS)).offerTo(exporter);
+        //Unobtainium
+        offerCondensingRecipe(exporter,UNOBTANIUM_BLOCK,UNOBTANIUM,1);
+        offerShapelessRecipe(exporter,UNOBTANIUM,UNOBTANIUM_BLOCK,null,5);
         //cracked
         CookingRecipeJsonBuilder.createSmoking(Ingredient.fromTag(ItemTags.LOGS_THAT_BURN), CHARCOAL_BLOCK, 0.175f, 100).criterion("has_log", RecipeProvider.conditionsFromTag(ItemTags.LOGS_THAT_BURN)).offerTo(exporter,"charcoal_block_from_smoking");
         offerCrackingRecipe(exporter,CRACKED_ALGAL_BRICKS,ALGAL_BRICKS);
@@ -259,7 +264,6 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerCrackingRecipe(exporter,CRACKED_OLIVESTONE_TILES,OLIVESTONE_TILE);
         offerCrackingRecipe(exporter,HEAVY_CRACKED_END_STONE_BRICKS,HEAVY_END_STONE_BRICKS);
         offerCrackingRecipe(exporter,HEAVY_CRACKED_STONE_BRICKS,HEAVY_STONE_BRICKS);
-
         //stoncutting
         offerStonecuttingRecipe(exporter, ABYSSALINE_BRICKS,ABYSSALINE);
         offerStonecuttingRecipe(exporter, 1,ABYSSALINE_PILLAR,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
@@ -292,9 +296,16 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerStonecuttingRecipe(exporter,1,HEAVY_TUFF_BRICKS,List.of(TUFF_BRICKS,Items.TUFF));
         offerStonecuttingRecipe(exporter,HEAVY_END_STONE_BRICKS,Items.END_STONE);
         offerStonecuttingRecipe(exporter,HEAVY_STONE_BRICKS,Items.STONE);
-
-        offerCondensingRecipe(exporter,UNOBTANIUM_BLOCK,UNOBTANIUM,1);
-        offerShapelessRecipe(exporter,UNOBTANIUM,UNOBTANIUM_BLOCK,null,5);
+        //Nubs
+        RegistryUtil.nubs.forEach((nub , mat)->{
+            offerStonecuttingRecipe(exporter,2,nub,mat);
+        });
+        offerStonecuttingRecipe(exporter,NUB_OF_ENDER,Items.ENDER_EYE,2);
+        offerShapelessRecipe(exporter,1,WAXED_COPPER_NUB,COPPER_NUB,Items.HONEYCOMB);
+        offerShapelessRecipe(exporter,1,WAXED_EXPOSED_COPPER_NUB,EXPOSED_COPPER_NUB,Items.HONEYCOMB);
+        offerShapelessRecipe(exporter,1,WAXED_WEATHERED_COPPER_NUB,WEATHERED_COPPER_NUB,Items.HONEYCOMB);
+        offerShapelessRecipe(exporter,1,WAXED_OXIDIZED_COPPER_NUB,OXIDIZED_COPPER_NUB,Items.HONEYCOMB);
+        //Ore Bricks
         offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(0), Items.COAL);
         offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(1), Items.LAPIS_LAZULI);
         offerOreBricksRecipes(exporter, verticaExport, StoneBlockSet.oreBrickSets.get(2), Items.REDSTONE);
@@ -386,7 +397,10 @@ public class APRecipeProvider extends FabricRecipeProvider {
             offerWallRecipe(exporter, blockSet.getPart(WALL), blockSet.getBase());
             offerStonecuttingRecipe(exporter,1,blockSet.getPart(WALL),cuttingInputs);
         }
-        if (pillar != null){
+//        if (blockSet.getPart(NUB)!=null){
+//            offerStonecuttingRecipe(exporter,blockSet.getPart(NUB),blockSet.getBase(),2);
+//        }
+        if (pillar != null){//todo:this is now in blockset
             offerPillarRecipe(exporter, pillar, blockSet.getBase());
             offerStonecuttingRecipe(exporter,1,pillar,cuttingInputs);
         }

@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.datagen.provider;
 
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -54,6 +55,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                     this.addDrop(set.getPart(VERTICAL_SLAB), BlockLootTableGenerator::slabDrops);
                 }
                 if (set.getPart(FENCE)!=null) this.addDrop(set.getPart(FENCE));
+                if (set.getPart(NUB)!=null) this.addDrop(set.getPart(NUB));
             }else{
                 this.addDropWithSilkTouch(set.getBase());
                 this.addDropWithSilkTouch(set.getPart(STAIRS));
@@ -69,6 +71,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
             this.addDrop(set.getPart(SLAB), BlockLootTableGenerator::slabDrops);
         }
         for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
+        for (Block nub : RegistryUtil.nubs.keySet()) this.addDrop(nub);
 
         Stream.of(
 //                APBlocks.ABYSSALINE,
@@ -192,7 +195,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WARDSTONE_LAMP,
                 APBlocks.ONYX_PILLAR,
                 APBlocks.ESOTERRACK_PILLAR,
-                APBlocks.HAZARD_SIGN)
+                APBlocks.HAZARD_SIGN,
+                APBlocks.NUB_OF_ENDER)
                 .forEach(this::addDrop);
 
 //        Stream.of(

@@ -1,24 +1,46 @@
 package com.slomaxonical.architectspalette.registry.util;
 
 import com.slomaxonical.architectspalette.ArchitectsPalette;
+import com.slomaxonical.architectspalette.blocks.CopperNubBlock;
+import com.slomaxonical.architectspalette.blocks.NubBlock;
 import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
-import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.APItemgroup;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.Oxidizable;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class RegistryUtil {
+    public static Map<Block,List<ItemConvertible>> nubs = new HashMap<>();
+    public static Block makeNubOf(Block copyOf) {
+        return makeNubOf(copyOf,List.of(copyOf));
+    }
+    public static Block makeNubOf(Block copyOf,Block additional) {
+        return makeNubOf(copyOf,List.of(copyOf,additional));
+    }
+    public static Block makeNubOf(Block copyOf,List<ItemConvertible> from) {
+        Block nub =  new NubBlock(FabricBlockSettings.copy(copyOf));
+        nubs.put(nub,from);
+        return nub;
+    }
+    public static Block makeCopperNub(Oxidizable.OxidationLevel lvl, Block base) {
+        Block nub =  new CopperNubBlock(lvl,FabricBlockSettings.copy(base));
+        nubs.put(nub,List.of(base));
+        return nub;
+    }
     //Create Blocks
     public static <B extends Block> B createBlock(String name, B anyBlock) {
         return createBlock(name, anyBlock, ItemGroup.BUILDING_BLOCKS);
@@ -34,6 +56,9 @@ public class RegistryUtil {
         }
         return block;
     }
+    public static  Block createNub(String material,Block nub){
+        return createBlock(material+"_nub",nub,ItemGroup.DECORATIONS);
+    }
 
     public static <B extends Block> B createBlockNoItem(String name, B anyBlock) {
         return Registry.register(Registry.BLOCK, new Identifier(ArchitectsPalette.MOD_ID, name), anyBlock);
@@ -44,13 +69,4 @@ public class RegistryUtil {
         return new FlowerPotBlock(plant, FabricBlockSettings.copy(Blocks.POTTED_ACACIA_SAPLING).breakInstantly().nonOpaque());
     }
 
-    //coudnt bring myself to make a class for 1 line
-    public static void registerFuel(){
-        FuelRegistry.INSTANCE.add(APBlocks.CHARCOAL_BLOCK, 1600);
-    }
-
-    public static void registerStrippables() {
-        StrippableBlockRegistry.register(APBlocks.TWISTED_LOG, APBlocks.STRIPPED_TWISTED_LOG);
-        StrippableBlockRegistry.register(APBlocks.TWISTED_WOOD, APBlocks.STRIPPED_TWISTED_WOOD);
-    }
 }

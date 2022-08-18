@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.registry.util;
 
+import com.slomaxonical.architectspalette.blocks.NubBlock;
 import com.slomaxonical.architectspalette.blocks.VerticalSlabBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -43,7 +44,8 @@ public class StoneBlockSet {
 
         } else {
             BlockSets.add(this);
-        }
+        }//I HATE THIS NEED TO GIVE IT SOME THOUGHT SOMETIME...
+        if(this.getPart(NUB) != null) RegistryUtil.nubs.put(this.getPart(NUB),List.of(this.getBase()));
     }
     public StoneBlockSet(Block base_block, SetGroup group, SetComponent... additionalParts) {
         this(base_block, concatArray(group.components, additionalParts));
@@ -86,7 +88,8 @@ public class StoneBlockSet {
         STAIRS("_stairs", ItemGroup.BUILDING_BLOCKS),
         WALL("_wall", ItemGroup.DECORATIONS),
         FENCE("_fence", ItemGroup.DECORATIONS),
-        PILLAR(SetComponent::pillarName, ItemGroup.BUILDING_BLOCKS);
+        PILLAR(SetComponent::pillarName, ItemGroup.BUILDING_BLOCKS),
+        NUB("_nub", ItemGroup.DECORATIONS);
 
         public final ItemGroup tab;
         public final Function<String, String> nameGenerator;
@@ -155,6 +158,7 @@ public class StoneBlockSet {
             case STAIRS -> new StairsBlock(base.getDefaultState(), settings);
             case FENCE -> new FenceBlock(settings);
             case PILLAR -> new PillarBlock(settings);
+            case NUB -> new NubBlock(settings);
             case BLOCK -> throw new IllegalStateException("Should not call createPart on BLOCK. Use setPart instead.");
         };
     }

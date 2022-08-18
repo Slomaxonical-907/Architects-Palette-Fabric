@@ -2,10 +2,9 @@ package com.slomaxonical.architectspalette;
 
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.APParticles;
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
 
 public class ArchitectsPaletteClient implements ClientModInitializer {
@@ -33,6 +32,8 @@ public class ArchitectsPaletteClient implements ClientModInitializer {
                 APBlocks.NETHER_BRASS_CHAIN,
                 APBlocks.NETHER_BRASS_LANTERN
         );
+        RegistryUtil.nubs.keySet().forEach(nub-> BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),nub));
+
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
                 APBlocks.HELIODOR_ROD,
                 APBlocks.EKANITE_ROD,
