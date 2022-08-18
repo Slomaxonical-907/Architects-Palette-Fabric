@@ -5,6 +5,7 @@ import com.slomaxonical.architectspalette.blocks.flint.*;
 import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import com.slomaxonical.architectspalette.blocks.abyssaline.*;
 import com.slomaxonical.architectspalette.blocks.*;
+import com.slomaxonical.architectspalette.blocks.util.DirectionalFacingBlock;
 import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
@@ -25,12 +26,13 @@ public class APBlocks {
     public static Map<Block,List<Block>> chiseledNcrackedOres = new HashMap<>();
 
     // Abyssaline
+    public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(FabricBlockSettings.copyOf(APBlockSettings.ABYSSALINE).luminance(ChiseledAbyssalineBlock.getLuminance()));
     public static final AbyssalineBlock ABYSSALINE                 = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
     public static final AbyssalineBlock ABYSSALINE_BRICKS          = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
     public static final AbyssalineBlock ABYSSALINE_TILES           = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
     public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE);
-    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE_LAMP);
-    public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(APBlockSettings.CHISELED_ABYSSALINE);
+    public static final AbyssalineBlock ABYSSALINE_PLATING = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineLampBlock     ABYSSALINE_LAMP_BLOCK      = new AbyssalineLampBlock(FabricBlockSettings.copyOf(ABYSSALINE).sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance()));
 
     // Limestone
     public static final Block MYONITE = new Block(APBlockSettings.MYONITE);
@@ -122,7 +124,7 @@ public class APBlocks {
 
     // Polished Glowstone
     public static final Block POLISHED_GLOWSTONE = new Block(FabricBlockSettings.copy(Blocks.GLOWSTONE));
-    public static final Block RUNIC_GLOWSTONE = new Block(FabricBlockSettings.copy(Blocks.GLOWSTONE));
+    public static final Block RUNIC_GLOWSTONE = new DirectionalFacingBlock(FabricBlockSettings.copy(Blocks.GLOWSTONE));
 
     // Osseous Bricks
     public static final Block OSSEOUS_BRICK = new Block(FabricBlockSettings.copy(Blocks.BONE_BLOCK));
@@ -304,13 +306,14 @@ public class APBlocks {
 
 
     public static void registerBlocks(){
+        createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
         createBlock("abyssaline",ABYSSALINE);
         new StoneBlockSet(createBlock("abyssaline_bricks", ABYSSALINE_BRICKS),SLABS);
         new StoneBlockSet(createBlock("abyssaline_tiles", ABYSSALINE_TILES),SLABS);
         createBlock("abyssaline_pillar",ABYSSALINE_PILLAR);
+        createBlock("abyssaline_plating",ABYSSALINE_PLATING);
         createBlock("abyssaline_lamp",ABYSSALINE_LAMP_BLOCK);
-        createBlock("chiseled_abyssaline_bricks",CHISELED_ABYSSALINE_BRICKS);
-        
+
         // Myonite (Previously Limestone)
          new StoneBlockSet(createBlock("myonite", MYONITE));
          new StoneBlockSet(createBlock("myonite_bricks", MYONITE_BRICKS));
@@ -498,7 +501,12 @@ public class APBlocks {
          createBlock("twisted_sapling",TWISTED_SAPLING, ItemGroup.DECORATIONS);
          RegistryUtil.createBlockNoItem("potted_twisted_sapling" ,POTTED_TWISTED_SAPLING);
 
-         createBlock("hazard_sign",HAZARD_SIGN);
+        // Cage Lanterns
+        createBlock("redstone_cage_lantern", REDSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
+        createBlock("glowstone_cage_lantern", GLOWSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
+        createBlock("algal_cage_lantern", ALGAL_CAGE_LANTERN, ItemGroup.REDSTONE);
+        //panels
+        createBlock("hazard_sign",HAZARD_SIGN);
         //No Set Nubs
         createNub("stone",STONE_NUB);
         createNub("smooth_stone",SMOOTH_STONE_NUB);
@@ -545,11 +553,6 @@ public class APBlocks {
         createBlock("crimson_boards", CRIMSON_BOARDS);
         createBlock("warped_boards", WARPED_BOARDS);
         createBlock("twisted_boards", TWISTED_BOARDS);
-
-        // Cage Lanterns
-        createBlock("redstone_cage_lantern", REDSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
-        createBlock("glowstone_cage_lantern", GLOWSTONE_CAGE_LANTERN, ItemGroup.REDSTONE);
-        createBlock("algal_cage_lantern", ALGAL_CAGE_LANTERN, ItemGroup.REDSTONE);
 
         // Celestial Stones
          createBlock("sunstone",SUNSTONE);

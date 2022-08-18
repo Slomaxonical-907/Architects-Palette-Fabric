@@ -27,7 +27,6 @@ import java.util.function.Consumer;
 
 import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
 import static com.slomaxonical.architectspalette.registry.APBlocks.*;
-import static com.slomaxonical.architectspalette.registry.APBlocks.NETHER_BRASS;
 import static com.slomaxonical.architectspalette.registry.APItems.*;
 
 public class APRecipeProvider extends FabricRecipeProvider {
@@ -52,8 +51,8 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerWarpingRecipe(exporter, ROTTEN_FLESH_BLOCK.asItem(), ENTRAILS.asItem(), NETHER);
         offerWarpingRecipe(exporter, Items.NETHERITE_INGOT, UNOBTANIUM, NETHER);
     //Setts
-        offerSetRecipes(exporter,verticaExport, ABYSSALINE_BRICKS,List.of(ABYSSALINE_BRICKS));
-        offerSetRecipes(exporter,verticaExport, ABYSSALINE_TILES, List.of(ABYSSALINE_TILES));
+        offerSetRecipes(exporter,verticaExport, ABYSSALINE_BRICKS,List.of(ABYSSALINE_BRICKS,ABYSSALINE));
+        offerSetRecipes(exporter,verticaExport, ABYSSALINE_TILES, List.of(ABYSSALINE_TILES,ABYSSALINE_BRICKS,ABYSSALINE));
         offerSetRecipes(exporter,verticaExport, MYONITE, List.of(MYONITE));
         offerSetRecipes(exporter,verticaExport, MYONITE_BRICKS, List.of(MYONITE,MYONITE_BRICKS));
         offerSetRecipes(exporter,verticaExport, MUSHY_MYONITE_BRICK, List.of(MUSHY_MYONITE_BRICK));
@@ -66,8 +65,8 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter,verticaExport,ESOTERRACK,ESOTERRACK_PILLAR,null,List.of(ESOTERRACK));
         offerSetRecipes(exporter,verticaExport,ESOTERRACK_BRICKS,List.of(ESOTERRACK_BRICKS,ESOTERRACK));
 
+        offerSetRecipes(exporter, verticaExport, NETHER_BRASS,NETHER_BRASS_PILLAR,null,List.of(NETHER_BRASS));
         offerSetRecipes(exporter, verticaExport, CUT_NETHER_BRASS,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
-        offerSetRecipes(exporter, verticaExport, NETHER_BRASS,NETHER_BRASS_PILLAR,null,List.of(CUT_NETHER_BRASS,NETHER_BRASS));
         offerSetRecipes(exporter, verticaExport, SMOOTH_NETHER_BRASS,List.of(SMOOTH_NETHER_BRASS));
 
         offerSetRecipes(exporter,verticaExport, ENTRAILS,List.of(ENTRAILS));
@@ -109,6 +108,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerPolishedStoneRecipe(exporter, ABYSSALINE_TILES, ABYSSALINE_BRICKS);
         createCondensingRecipe(ABYSSALINE_BRICKS, Ingredient.ofItems(ABYSSALINE_TILES)).criterion("has_abyssaline_tiles", conditionsFromItem(ABYSSALINE_TILES)).offerTo(exporter,"abyssaline_bricks_from_tiles");
         ShapedRecipeJsonBuilder.create(ABYSSALINE_LAMP_BLOCK, 8).input('#', Items.PRISMARINE_SHARD).input('$', Items.OBSIDIAN).input('C',Items.PRISMARINE_CRYSTALS).pattern("$C$").pattern("#C#").pattern("$C$").criterion("has_obsidian",conditionsFromItem(Items.OBSIDIAN)).offerTo(exporter);
+        offerEmptyFrameRecipe(exporter,ABYSSALINE_PLATING,ABYSSALINE,8);
         //boards
         offerBoardsRecipe(exporter, ACACIA_BOARDS, Items.ACACIA_PLANKS);
         offerBoardsRecipe(exporter, BIRCH_BOARDS, Items.BIRCH_PLANKS);
@@ -269,6 +269,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerStonecuttingRecipe(exporter, 1,ABYSSALINE_PILLAR,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
         offerStonecuttingRecipe(exporter, 1,ABYSSALINE_TILES,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
         offerStonecuttingRecipe(exporter, 1,CHISELED_ABYSSALINE_BRICKS,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
+        offerStonecuttingRecipe(exporter,ABYSSALINE_PLATING,ABYSSALINE);
 
         offerStonecuttingRecipe(exporter, 2,BASALT_TILES,List.of(Items.BASALT,Items.POLISHED_BASALT));
 
@@ -377,7 +378,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerSetRecipes(exporter, vertExporter, baseBlock, null, null, forCutting);
     }
     public static void offerSetRecipes(Consumer<RecipeJsonProvider> exporter, Consumer<RecipeJsonProvider> vertExporter, Block baseBlock, @Nullable Block pillar, @Nullable Block chiseled, List<ItemConvertible>  cuttingInputs){
-        StoneBlockSet blockSet = null;
+        StoneBlockSet blockSet = null; //For the record this looping is outrageous, surely there is a better way
         for (StoneBlockSet set: StoneBlockSet.BlockSets) {
             if (set.getBase().equals(baseBlock)) blockSet=set;
         }

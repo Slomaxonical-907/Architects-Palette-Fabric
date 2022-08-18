@@ -74,7 +74,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
         for (Block nub : RegistryUtil.nubs.keySet()) this.addDrop(nub);
 
         Stream.of(
-//                APBlocks.ABYSSALINE,
+                APBlocks.ABYSSALINE_PLATING,
                 APBlocks.ABYSSALINE_LAMP_BLOCK,
                 APBlocks.ABYSSALINE_PILLAR,
                 APBlocks.ACACIA_BOARDS,

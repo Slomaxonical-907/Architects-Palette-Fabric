@@ -97,7 +97,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.ANCIENT_PLATING
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                .add(APBlocks.ABYSSALINE)
+                .add(APBlocks.ABYSSALINE_PLATING)
                 .add(APBlocks.ABYSSALINE_LAMP_BLOCK)
                 .add(APBlocks.ABYSSALINE_PILLAR)
                 .add(APBlocks.ALGAL_CAGE_LANTERN)
@@ -247,7 +247,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         //NEEDS_TIER_TOOL
         //Diamond
         this.getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(APBlocks.ABYSSALINE)
+                .add(APBlocks.ABYSSALINE_PLATING)
                 .add(APBlocks.ABYSSALINE_LAMP_BLOCK)
                 .add(APBlocks.ABYSSALINE_PILLAR)
                 .add(APBlocks.CHISELED_ABYSSALINE_BRICKS);

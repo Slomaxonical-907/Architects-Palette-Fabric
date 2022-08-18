@@ -23,12 +23,6 @@ public class APBlockSettings {
 			.allowsSpawning(AbyssalineHelper::allowsMobSpawning)
 			.luminance(AbyssalineBlock.getLuminance());
 
-	public static final FabricBlockSettings ABYSSALINE_LAMP = FabricBlockSettings.copyOf(ABYSSALINE)
-			.sounds(BlockSoundGroup.GLASS)
-			.luminance(AbyssalineLampBlock.getLuminance());
-	public static final FabricBlockSettings CHISELED_ABYSSALINE = FabricBlockSettings.copyOf(ABYSSALINE)
-			.luminance(ChiseledAbyssalineBlock.getLuminance());
-
     public static FabricBlockSettings Meat(MapColor color) {
 		return FabricBlockSettings.of(Material.GOURD, color).strength(1.0F).sounds(BlockSoundGroup.CORAL);
 	}
