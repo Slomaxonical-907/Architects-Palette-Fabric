@@ -31,12 +31,12 @@
     ]
   },
   "mixins": [
-    "architechtspalette.mixins.json"
+    "architectspalette.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.14.0",
-    "fabric": ">=0.54.0",
+    "fabric": ">=0.60.0",
     "minecraft": "1.19.x",
     "java": ">=17",
     "cloth-config": ">=7.0.00"

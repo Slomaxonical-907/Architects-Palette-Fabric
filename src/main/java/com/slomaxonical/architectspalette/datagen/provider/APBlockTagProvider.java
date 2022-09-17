@@ -70,24 +70,24 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.BASALT_TILES,
                 APBlocks.CALCITE_BRICKS,
                 APBlocks.DRIPSTONE_BRICKS,
-                APBlocks.ENTWINE,
+                APBlocks.ENTWINE_BLOCK,
                 APBlocks.FLINT_TILES,
                 APBlocks.GILDED_SANDSTONE,
                 APBlocks.MYONITE,
                 APBlocks.MYONITE_BRICKS,
-                APBlocks.MUSHY_MYONITE_BRICK,
+                APBlocks.MUSHY_MYONITE_BRICKS,
                 APBlocks.OLIVESTONE_BRICKS,
-                APBlocks.OLIVESTONE_TILE,
-                APBlocks.OSSEOUS_BRICK,
-                APBlocks.OVERGROWN_ALGAL_BRICK,
+                APBlocks.OLIVESTONE_TILES,
+                APBlocks.OSSEOUS_BRICKS,
+                APBlocks.OVERGROWN_ALGAL_BRICKS,
                 APBlocks.PLATING_BLOCK,
                 APBlocks.POLISHED_GLOWSTONE,
                 APBlocks.POLISHED_PACKED_ICE,
-                APBlocks.SUNMETAL,
+                APBlocks.SUNMETAL_BLOCK,
                 APBlocks.TUFF_BRICKS,
                 APBlocks.WARPSTONE,
-                APBlocks.WITHERED_OSSEOUS_BRICK,
-                APBlocks.NETHER_BRASS,
+                APBlocks.WITHERED_OSSEOUS_BRICKS,
+                APBlocks.NETHER_BRASS_BLOCK,
                 APBlocks.CUT_NETHER_BRASS,
                 APBlocks.SMOOTH_NETHER_BRASS,
                 APBlocks.WARDSTONE,
@@ -98,7 +98,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(APBlocks.ABYSSALINE_PLATING)
-                .add(APBlocks.ABYSSALINE_LAMP_BLOCK)
+                .add(APBlocks.ABYSSALINE_LAMP)
                 .add(APBlocks.ABYSSALINE_PILLAR)
                 .add(APBlocks.ALGAL_CAGE_LANTERN)
                 .add(APBlocks.ALGAL_LAMP)
@@ -232,7 +232,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.ENDER_PEARL_BLOCK)
                 .add(APBlocks.TWISTED_LEAVES);
 
-        addSets(BlockTags.DRAGON_IMMUNE,APBlocks.ENTWINE);
+        addSets(BlockTags.DRAGON_IMMUNE,APBlocks.ENTWINE_BLOCK);
         this.getOrCreateTagBuilder(BlockTags.DRAGON_IMMUNE)
                 .add(APBlocks.ENTWINE_PILLAR)
                 .add(APBlocks.ENTWINE_BARS)
@@ -248,13 +248,13 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         //Diamond
         this.getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(APBlocks.ABYSSALINE_PLATING)
-                .add(APBlocks.ABYSSALINE_LAMP_BLOCK)
+                .add(APBlocks.ABYSSALINE_LAMP)
                 .add(APBlocks.ABYSSALINE_PILLAR)
                 .add(APBlocks.CHISELED_ABYSSALINE_BRICKS);
         //Iron
         addSets(BlockTags.NEEDS_IRON_TOOL,
                 APBlocks.PLATING_BLOCK,
-                APBlocks.NETHER_BRASS,
+                APBlocks.NETHER_BRASS_BLOCK,
                 APBlocks.CUT_NETHER_BRASS,
                 APBlocks.SMOOTH_NETHER_BRASS,
                 APBlocks.ANCIENT_PLATING
@@ -268,10 +268,10 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.HAZARD_SIGN);
         //Stone
         addSets(BlockTags.NEEDS_STONE_TOOL,
-                APBlocks.ENTWINE,
+                APBlocks.ENTWINE_BLOCK,
                 APBlocks.FLINT_BLOCK,
                 APBlocks.FLINT_TILES,
-                APBlocks.SUNMETAL,
+                APBlocks.SUNMETAL_BLOCK,
                 APBlocks.WARDSTONE,
                 APBlocks.WARDSTONE_BRICKS
         );
@@ -287,7 +287,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.WARDSTONE_LAMP);
 
 
-        addSets(BlockTags.MUSHROOM_GROW_BLOCK,true,false,true,false,APBlocks.MYONITE,APBlocks.MYONITE_BRICKS,APBlocks.MUSHY_MYONITE_BRICK);
+        addSets(BlockTags.MUSHROOM_GROW_BLOCK,true,false,true,false,APBlocks.MYONITE,APBlocks.MYONITE_BRICKS,APBlocks.MUSHY_MYONITE_BRICKS);
 
         this.getOrCreateTagBuilder(BlockTags.FIRE).add(APBlocks.NETHER_BRASS_FIRE);//this tag see
         this.getOrCreateTagBuilder(BlockTags.PLANKS).add(APBlocks.TWISTED_PLANKS);
@@ -337,7 +337,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.WARDSTONE_PILLAR)
                 .add(APBlocks.WARDSTONE_LAMP);
 
-        addSets(APTags.GREEN_FIRE_SUPPORTING,APBlocks.NETHER_BRASS,APBlocks.CUT_NETHER_BRASS,APBlocks.SMOOTH_NETHER_BRASS);
+        addSets(APTags.GREEN_FIRE_SUPPORTING,APBlocks.NETHER_BRASS_BLOCK,APBlocks.CUT_NETHER_BRASS,APBlocks.SMOOTH_NETHER_BRASS);
         this.getOrCreateTagBuilder(APTags.GREEN_FIRE_SUPPORTING)
                 .add(APBlocks.NETHER_BRASS_PILLAR);
         this.getOrCreateTagBuilder(APTags.CRYSTAL_REPLACEABLE)

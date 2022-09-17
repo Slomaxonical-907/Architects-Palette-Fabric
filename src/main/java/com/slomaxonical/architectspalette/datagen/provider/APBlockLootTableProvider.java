@@ -75,7 +75,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
 
         Stream.of(
                 APBlocks.ABYSSALINE_PLATING,
-                APBlocks.ABYSSALINE_LAMP_BLOCK,
+                APBlocks.ABYSSALINE_LAMP,
                 APBlocks.ABYSSALINE_PILLAR,
                 APBlocks.ACACIA_BOARDS,
                 APBlocks.ACACIA_RAILING,
@@ -214,7 +214,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
             APBlocks.PACKED_ICE_PILLAR)
         .forEach(this::addDropWithSilkTouch);
 
-        this.addDrop(APBlocks.TWISTED_DOOR, BlockLootTableGenerator::addDoorDrop);
+        this.addDrop(APBlocks.TWISTED_DOOR, BlockLootTableGenerator::doorDrops);
         this.addDrop(APBlocks.TWISTED_LEAVES, (blockx) -> BlockLootTableGenerator.leavesDrop(blockx, APBlocks.TWISTED_SAPLING, 0.05f, 0.0625f, 0.083333336f, 0.1f));
         this.addPottedPlantDrop(APBlocks.POTTED_TWISTED_SAPLING);
 

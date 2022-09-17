@@ -4,7 +4,6 @@ import com.slomaxonical.architectspalette.blocks.NubBlock;
 import com.slomaxonical.architectspalette.blocks.VerticalSlabBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -82,23 +81,26 @@ public class StoneBlockSet {
         return parts.stream().filter(Objects::nonNull);//.map(RegistryObject::get);
     }
     public enum SetComponent {
-        BLOCK("", ItemGroup.BUILDING_BLOCKS),
-        SLAB("_slab", ItemGroup.BUILDING_BLOCKS),
-        VERTICAL_SLAB("_vertical_slab", ItemGroup.BUILDING_BLOCKS),
-        STAIRS("_stairs", ItemGroup.BUILDING_BLOCKS),
-        WALL("_wall", ItemGroup.DECORATIONS),
-        FENCE("_fence", ItemGroup.DECORATIONS),
-        PILLAR(SetComponent::pillarName, ItemGroup.BUILDING_BLOCKS),
-        NUB("_nub", ItemGroup.DECORATIONS);
+        BLOCK(""),
+        SLAB("_slab"),
+        VERTICAL_SLAB("_vertical_slab"),
+        STAIRS("_stairs"),
+        WALL("_wall"),
+        FENCE("_fence"),
+        PILLAR(SetComponent::pillarName),
+        NUB("_nub");
 
-        public final ItemGroup tab;
+//        public final ItemGroup tab;
         public final Function<String, String> nameGenerator;
-        SetComponent(String suffix,ItemGroup tab) {
-            this((material) -> addSuffix(material, suffix), tab);
+//        SetComponent(String suffix,ItemGroup tab) {
+//            this((material) -> addSuffix(material, suffix), tab);
+//        }
+        SetComponent(String suffix) {
+            this((material) -> addSuffix(material, suffix));
         }
-        SetComponent(Function<String, String> nameGen, ItemGroup tab) {
+        SetComponent(Function<String, String> nameGen) {
             this.nameGenerator = nameGen;
-            this.tab = tab;
+//            this.tab = tab;
         }
         public String getName(String material) {
             return nameGenerator.apply(material);
@@ -146,9 +148,9 @@ public class StoneBlockSet {
     private Block makePart(SetComponent part) {
         Block block = getPart(BLOCK);
         if (block instanceof IBlockSetBase base) {
-            return RegistryUtil.createBlock(part.getName(material_name), base.getBlockForPart(part, properties(), getPart(BLOCK)), part.tab);
+            return RegistryUtil.createBlock(part.getName(material_name), base.getBlockForPart(part, properties(), getPart(BLOCK)));
         }
-        return RegistryUtil.createBlock(part.getName(material_name), getBlockForPart(part, properties(), getPart(BLOCK)), part.tab);
+        return RegistryUtil.createBlock(part.getName(material_name), getBlockForPart(part, properties(), getPart(BLOCK)));
     }
     public static Block getBlockForPart(SetComponent part, FabricBlockSettings settings, Block base) {
         return switch (part) {

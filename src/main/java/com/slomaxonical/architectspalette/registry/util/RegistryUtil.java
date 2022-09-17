@@ -56,14 +56,6 @@ public class RegistryUtil {
         }
         return block;
     }
-    public static  Block createNub(String material,Block nub){
-        return createBlock(material+"_nub",nub,ItemGroup.DECORATIONS);
-    }
-
-    public static <B extends Block> B createBlockNoItem(String name, B anyBlock) {
-        return Registry.register(Registry.BLOCK, new Identifier(ArchitectsPalette.MOD_ID, name), anyBlock);
-    }
-
     public static Block createPottedPlant(Block plant) {
         String name = Registry.BLOCK.getId(plant).getPath();
         return new FlowerPotBlock(plant, FabricBlockSettings.copy(Blocks.POTTED_ACACIA_SAPLING).breakInstantly().nonOpaque());

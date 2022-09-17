@@ -6,6 +6,7 @@ import com.slomaxonical.architectspalette.features.APConfiguredFeatures;
 import com.slomaxonical.architectspalette.features.APFeatures;
 import com.slomaxonical.architectspalette.loot.LootTableModifications;
 import com.slomaxonical.architectspalette.registry.*;
+import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -21,10 +22,11 @@ public class ArchitectsPalette implements ModInitializer {
         AutoConfig.register(ApConfigs.class, JanksonConfigSerializer::new);
         APParticles.register();
 
-        APBlocks.registerBlocks();
+//        APBlocks.registerBlocks();
+        FieldRegistrationHandler.register(APBlocks.class,MOD_ID,false);
         ConfigResourceCondition.init();
+        FieldRegistrationHandler.register(APItems.class,MOD_ID,false);
 
-        APItems.registerItems();
         APItemgroup.registerItemgroup();
         APMisc.registerFuel();
         APMisc.registerStrippables();

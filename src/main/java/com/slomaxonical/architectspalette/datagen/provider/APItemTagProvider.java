@@ -52,7 +52,7 @@ public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         this.getOrCreateTagBuilder(APTags.OLIVESTONE)
                 .add(APBlocks.OLIVESTONE_BRICKS.asItem())
-                .add(APBlocks.OLIVESTONE_TILE.asItem());
+                .add(APBlocks.OLIVESTONE_TILES.asItem());
 
         this.getOrCreateTagBuilder(APTags.OLIVESTONE_SLABS)
                 .add(Registry.BLOCK.get(new Identifier("architects_palette:olivestone_brick_slab")).asItem())
