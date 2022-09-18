@@ -4,8 +4,6 @@ import com.slomaxonical.architectspalette.blocks.SunstoneBlock;
 import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock;
 import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineHelper;
 import com.slomaxonical.architectspalette.blocks.CageLanternBlock;
-import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineLampBlock;
-import com.slomaxonical.architectspalette.blocks.abyssaline.ChiseledAbyssalineBlock;
 import com.slomaxonical.architectspalette.registry.APSounds;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;

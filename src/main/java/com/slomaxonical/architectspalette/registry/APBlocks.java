@@ -1,5 +1,6 @@
 package com.slomaxonical.architectspalette.registry;
 
+import com.slomaxonical.architectspalette.ArchitectsPalette;
 import com.slomaxonical.architectspalette.blocks.entrails.DrippyBlock;
 import com.slomaxonical.architectspalette.blocks.flint.*;
 import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
@@ -8,6 +9,7 @@ import com.slomaxonical.architectspalette.blocks.*;
 import com.slomaxonical.architectspalette.blocks.util.DirectionalFacingBlock;
 import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.registry.util.BlockSetBase;
+import com.slomaxonical.architectspalette.registry.util.ChangeGroup;
 import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
@@ -25,26 +27,25 @@ import java.util.*;
 
 import static com.slomaxonical.architectspalette.registry.util.RegistryUtil.*;
 import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
-import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetGroup.*;
 import static net.minecraft.block.Oxidizable.OxidationLevel.*;
 
 
 public class APBlocks implements BlockRegistryContainer {
+    public static Map<Block,List<Block>> chiseledNcrackedOres = new HashMap<>();
+
     @Override
     public void postProcessField(String namespace, Block block, String identifier, Field field) {
         if (field.isAnnotationPresent(NoBlockItem.class)) return;
-        BlockItem blockItem = new BlockItem(block, new Item.Settings());
+        int group = 0;
+        if (field.isAnnotationPresent(ChangeGroup.class)) group = field.getAnnotation(ChangeGroup.class).value();
+        BlockItem blockItem = new BlockItem(block, new Item.Settings().group(ItemGroup.GROUPS[group]));
         Registry.register(Registry.ITEM, new Identifier(namespace,identifier), blockItem);
-        if (!(namespace.contains("vertical") && !AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)) APItemgroup.ITEMGROUP_LIST.add(blockItem);
+        if (!(namespace.contains("vertical") && !AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)) ArchitectsPalette.ITEMGROUP_LIST.add(blockItem);
         if (field.isAnnotationPresent(BlockSetBase.class)) new StoneBlockSet(block, field.getAnnotation(BlockSetBase.class).parts());
     }
-
     @Override
     public void afterFieldProcessing() {
-        addOreBricks();
-    }
-    // Ore Bricks
-    public static void addOreBricks() {
+//        addOreBricks();
         List<String> ores = List.of("coal", "lapis", "redstone", "iron", "gold", "emerald", "diamond");
 
         for (String ore : ores) {
@@ -54,7 +55,6 @@ public class APBlocks implements BlockRegistryContainer {
             chiseledNcrackedOres.put(set.getBase(),List.of(chiseled,cracked));
         }
     }
-    public static Map<Block,List<Block>> chiseledNcrackedOres = new HashMap<>();
     // Abyssaline
     //TODO:mahogany woood
     public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(FabricBlockSettings.copyOf(APBlockSettings.ABYSSALINE).luminance(ChiseledAbyssalineBlock.getLuminance()));
@@ -116,8 +116,9 @@ public class APBlocks implements BlockRegistryContainer {
     public static final Block NETHER_BRASS_PILLAR = new PillarBlock(APBlockSettings.NETHER_BRASS);
     @NoBlockItem
     public static final Block NETHER_BRASS_FIRE = new GreenFireBlock(APBlockSettings.GREEN_FIRE);
-
+    @ChangeGroup
     public static final Block NETHER_BRASS_CHAIN = new ChainBlock(FabricBlockSettings.copyOf(APBlockSettings.NETHER_BRASS).sounds(BlockSoundGroup.CHAIN));
+    @ChangeGroup
     public static final Block NETHER_BRASS_LANTERN = new LanternBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIME).strength(4.0F, 10.0F).sounds(BlockSoundGroup.COPPER).requiresTool().luminance((a)->13));
     @NoBlockItem
     public static final Block NETHER_BRASS_TORCH = new TorchBlock(APBlockSettings.BRASS_TORCH, APParticles.GREEN_FLAME);
@@ -275,45 +276,76 @@ public class APBlocks implements BlockRegistryContainer {
     public static final Block  STRIPPED_TWISTED_LOG = new PillarBlock(APBlockSettings.TwistedWood());
     public static final Block STRIPPED_TWISTED_WOOD = new PillarBlock(APBlockSettings.TwistedWood());
     public static final Block        TWISTED_LEAVES = new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).mapColor(MapColor.PURPLE));
+    @ChangeGroup
     public static final Block         TWISTED_FENCE = new FenceBlock(APBlockSettings.TwistedWood());
+    @ChangeGroup
     public static final Block    TWISTED_FENCE_GATE = new FenceGateBlock(APBlockSettings.TwistedWood());
+    @ChangeGroup(2)
     public static final Block          TWISTED_DOOR = new DoorBlock(APBlockSettings.TwistedWood().nonOpaque());
+    @ChangeGroup(2)
     public static final Block      TWISTED_TRAPDOOR = new TrapdoorBlock(APBlockSettings.TwistedWood().nonOpaque());
+    @ChangeGroup(2)
     public static final Block        TWISTED_BUTTON = new WoodenButtonBlock(APBlockSettings.TwistedWood(true));
+    @ChangeGroup(2)
     public static final Block TWISTED_PRESSURE_PLATE = new PressurePlateBlock((PressurePlateBlock.ActivationRule.EVERYTHING), APBlockSettings.TwistedWood(true));
 
 
+    @ChangeGroup
     public static final Block TWISTED_SAPLING = new SaplingBlock(new TwistedTree(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
-   @NoBlockItem
+    @NoBlockItem
     public static final Block POTTED_TWISTED_SAPLING = RegistryUtil.createPottedPlant(TWISTED_SAPLING);
     //unobtanium
     public static final Block UNOBTANIUM_BLOCK = new Block(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK));
     //SmallSigns
+    @ChangeGroup
     public static final Block HAZARD_SIGN = new SmallPanelBlock(APBlockSettings.PLATING);
     //NoSetNub
+    @ChangeGroup
     public static final Block STONE_NUB = makeNubOf(Blocks.STONE);
+    @ChangeGroup
     public static final Block SMOOTH_STONE_NUB = makeNubOf(Blocks.SMOOTH_STONE);
+    @ChangeGroup
     public static final Block SANDSTONE_NUB = makeNubOf(Blocks.SANDSTONE,Blocks.CUT_SANDSTONE);
+    @ChangeGroup
     public static final Block ANDESITE_NUB = makeNubOf(Blocks.ANDESITE,Blocks.POLISHED_ANDESITE);
+    @ChangeGroup
     public static final Block GRANITE_NUB = makeNubOf(Blocks.GRANITE,Blocks.POLISHED_GRANITE);
+    @ChangeGroup
     public static final Block DIORITE_NUB = makeNubOf(Blocks.DIORITE,Blocks.POLISHED_DIORITE);
+    @ChangeGroup
     public static final Block BLACKSTONE_NUB = makeNubOf(Blocks.BLACKSTONE,Blocks.POLISHED_BLACKSTONE);
+    @ChangeGroup
     public static final Block DEEPSLATE_NUB = makeNubOf(Blocks.POLISHED_DEEPSLATE,Blocks.DEEPSLATE);
+    @ChangeGroup
     public static final Block BONE_NUB = makeNubOf(Blocks.BONE_BLOCK);
+    @ChangeGroup
     public static final Block IRON_NUB = makeNubOf(Blocks.IRON_BLOCK,List.of(Items.IRON_INGOT));
+    @ChangeGroup
     public static final Block GOLD_NUB = makeNubOf(Blocks.GOLD_BLOCK,List.of(Items.GOLD_INGOT));
+    @ChangeGroup
     public static final Block DIAMOND_NUB = makeNubOf(Blocks.DIAMOND_BLOCK,List.of(Items.DIAMOND));
+    @ChangeGroup
     public static final Block EMERALD_NUB = makeNubOf(Blocks.EMERALD_BLOCK,List.of(Items.EMERALD));
+    @ChangeGroup
     public static final Block NETHERITE_NUB = makeNubOf(Blocks.NETHERITE_BLOCK,List.of(Items.NETHERITE_INGOT));
+    @ChangeGroup
     public static final Block NUB_OF_ENDER = new NubBlock(FabricBlockSettings.copyOf(ENDER_PEARL_BLOCK));
         //copper
-    public static final Block COPPER_NUB = makeCopperNub(UNAFFECTED,Blocks.COPPER_BLOCK);
-    public static final Block WAXED_COPPER_NUB = makeCopperNub(UNAFFECTED,Blocks.COPPER_BLOCK);
-    public static final Block EXPOSED_COPPER_NUB = makeCopperNub(EXPOSED,Blocks.EXPOSED_COPPER);
-    public static final Block WAXED_EXPOSED_COPPER_NUB = makeCopperNub(EXPOSED,Blocks.EXPOSED_COPPER);
-    public static final Block WEATHERED_COPPER_NUB = makeCopperNub(WEATHERED,Blocks.WEATHERED_COPPER);
-    public static final Block WAXED_WEATHERED_COPPER_NUB = makeCopperNub(WEATHERED,Blocks.WEATHERED_COPPER);
+    @ChangeGroup
     public static final Block OXIDIZED_COPPER_NUB = makeCopperNub(OXIDIZED,Blocks.OXIDIZED_COPPER);
+    @ChangeGroup
+    public static final Block WEATHERED_COPPER_NUB = makeCopperNub(WEATHERED,Blocks.WEATHERED_COPPER);
+    @ChangeGroup
+    public static final Block EXPOSED_COPPER_NUB = makeCopperNub(EXPOSED,Blocks.EXPOSED_COPPER);
+    @ChangeGroup
+    public static final Block COPPER_NUB = makeCopperNub(UNAFFECTED,Blocks.COPPER_BLOCK);
+    @ChangeGroup
+    public static final Block WAXED_COPPER_NUB = makeCopperNub(UNAFFECTED,Blocks.COPPER_BLOCK);
+    @ChangeGroup
+    public static final Block WAXED_EXPOSED_COPPER_NUB = makeCopperNub(EXPOSED,Blocks.EXPOSED_COPPER);
+    @ChangeGroup
+    public static final Block WAXED_WEATHERED_COPPER_NUB = makeCopperNub(WEATHERED,Blocks.WEATHERED_COPPER);
+    @ChangeGroup
     public static final Block WAXED_OXIDIZED_COPPER_NUB = makeCopperNub(OXIDIZED,Blocks.OXIDIZED_COPPER);
     //Boards
     public static final Block OAK_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS));
@@ -322,20 +354,32 @@ public class APBlocks implements BlockRegistryContainer {
     public static final Block JUNGLE_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.JUNGLE_PLANKS));
     public static final Block DARK_OAK_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.DARK_OAK_PLANKS));
     public static final Block ACACIA_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.ACACIA_PLANKS));
+    public static final Block MANGROVE_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.MANGROVE_PLANKS));
     public static final Block CRIMSON_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.CRIMSON_PLANKS));
     public static final Block WARPED_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.WARPED_PLANKS));
     public static final Block TWISTED_BOARDS = new BoardBlock(APBlockSettings.TwistedWood());
     //Railings
+    @ChangeGroup
     public static final Block OAK_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS));
+    @ChangeGroup
     public static final Block BIRCH_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.BIRCH_PLANKS));
+    @ChangeGroup
     public static final Block SPRUCE_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.SPRUCE_PLANKS));
+    @ChangeGroup
     public static final Block JUNGLE_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.JUNGLE_PLANKS));
+    @ChangeGroup
     public static final Block DARK_OAK_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.DARK_OAK_PLANKS));
+    @ChangeGroup
     public static final Block ACACIA_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.ACACIA_PLANKS));
+    @ChangeGroup
+                        //TODO:ADD MANGROVE TINGS TO TAGS
+    public static final Block MANGROVE_RAILING = new RailingBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_PLANKS));
+    @ChangeGroup
     public static final Block CRIMSON_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.CRIMSON_PLANKS));
+    @ChangeGroup
     public static final Block WARPED_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.WARPED_PLANKS));
+    @ChangeGroup
     public static final Block TWISTED_RAILING = new RailingBlock(APBlockSettings.TwistedWood());
-
     // Celestial Stones
     public static final Block SUNSTONE  = new SunstoneBlock(APBlockSettings.SUNSTONE, SunstoneBlock::sunstoneLight);
     public static final Block MOONSTONE = new SunstoneBlock(APBlockSettings.SUNSTONE, SunstoneBlock::moonstoneLight);
@@ -347,11 +391,15 @@ public class APBlocks implements BlockRegistryContainer {
     public static final Block CHARCOAL_BLOCK = new PillarBlock(FabricBlockSettings.copy(Blocks.COAL_BLOCK));
 
     // Cage Lanterns
+    @ChangeGroup(2)
     public static final Block REDSTONE_CAGE_LANTERN  = new CageLanternBlock(APBlockSettings.CAGE_LANTERN, 3);
+    @ChangeGroup(2)
     public static final Block GLOWSTONE_CAGE_LANTERN = new CageLanternBlock(APBlockSettings.CAGE_LANTERN, 3);
+    @ChangeGroup(2)
     public static final Block ALGAL_CAGE_LANTERN     = new CageLanternBlock(APBlockSettings.CAGE_LANTERN, 3);
 
     // Acacia Totems
+    @ChangeGroup
     public static final TotemWingBlock ACACIA_TOTEM_WING = new TotemWingBlock(FabricBlockSettings.copy(Blocks.ACACIA_PLANKS).nonOpaque().dropsNothing().sounds(BlockSoundGroup.SCAFFOLDING).noCollision());
     public static final Block GRINNING_ACACIA_TOTEM = new TotemBlock(APBlockSettings.ACACIA_TOTEM, ACACIA_TOTEM_WING, TotemBlock.TotemFace.GRINNING);
     public static final Block PLACID_ACACIA_TOTEM = new TotemBlock(APBlockSettings.ACACIA_TOTEM, ACACIA_TOTEM_WING, TotemBlock.TotemFace.PLACID);
