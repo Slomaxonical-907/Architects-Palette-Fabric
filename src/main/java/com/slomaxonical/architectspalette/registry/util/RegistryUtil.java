@@ -3,8 +3,6 @@ package com.slomaxonical.architectspalette.registry.util;
 import com.slomaxonical.architectspalette.ArchitectsPalette;
 import com.slomaxonical.architectspalette.blocks.CopperNubBlock;
 import com.slomaxonical.architectspalette.blocks.NubBlock;
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -21,6 +19,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
 
 public class RegistryUtil {
     public static Map<Block,List<ItemConvertible>> nubs = new HashMap<>();
@@ -50,7 +50,7 @@ public class RegistryUtil {
 
         BlockItem blockItem = new BlockItem(block, new Item.Settings().group(group));
         Registry.register(Registry.ITEM, new Identifier(ArchitectsPalette.MOD_ID,name), blockItem);
-        if (!(name.contains("vertical") && !AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)) {
+        if (!(name.contains("vertical") && !CONFIGS.enableVerticalSlabs())) {
             ArchitectsPalette.ITEMGROUP_LIST.add(blockItem);
         }
         return block;

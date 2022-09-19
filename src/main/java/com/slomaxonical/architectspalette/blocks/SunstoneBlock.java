@@ -1,6 +1,5 @@
 package com.slomaxonical.architectspalette.blocks;
 
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,6 +16,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import java.util.function.Function;
+
+import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
 
 public class SunstoneBlock extends Block {
 
@@ -57,8 +58,7 @@ public class SunstoneBlock extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState stateIn, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facingState.getBlock() instanceof SunstoneBlock) {
-            ApConfigs configs = AutoConfig.getConfigHolder(ApConfigs.class).getConfig();
-            Double chance = configs.sunstoneSpreadChance;
+            Double chance = CONFIGS.sunstoneSpreadChance();
             if (chance > 0) {
                 Random rand = worldIn.getRandom();
                 worldIn.createAndScheduleBlockTick(currentPos, this, (int) (2 + Math.floor(rand.nextDouble() * 6)));

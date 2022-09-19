@@ -2,22 +2,19 @@ package com.slomaxonical.architectspalette.registry;
 
 
 import com.slomaxonical.architectspalette.ArchitectsPalette;
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.factories.BasicTradeFactory;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 
+import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
 import static net.minecraft.village.VillagerProfession.*;
 
 
 public class APTrades {
-    static ApConfigs configs = AutoConfig.getConfigHolder(ApConfigs.class).getConfig();
-
     public static void registerVillagerTrades(){
-        if (configs.enableVillagerTrades) {
+        if (CONFIGS.enableVillagerTrades()) {
             // Fish Blocks
             TradeOfferHelper.registerVillagerOffers(FISHERMAN, 2, factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 2),
                     new ItemStack(APBlocks.COD_LOG, 8), 8, 4, 0.05F))));
@@ -47,7 +44,7 @@ public class APTrades {
         }
 
     public static void registerWanderingTrades(){
-        if (configs.enableWandererTrades){
+        if (CONFIGS.enableWandererTrades()){
             TradeOfferHelper.registerWanderingTraderOffers(2, factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 2),new ItemStack(APBlocks.SUNSTONE, 6),16,2,0.0F))));
             TradeOfferHelper.registerWanderingTraderOffers(2,factories -> factories.add(new BasicTradeFactory(new TradeOffer(new ItemStack(Items.EMERALD, 2),new ItemStack(APBlocks.MOONSTONE, 6),16,2,0.0F))));
         }else{

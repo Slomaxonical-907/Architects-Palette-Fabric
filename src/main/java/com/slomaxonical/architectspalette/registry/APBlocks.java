@@ -7,7 +7,6 @@ import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import com.slomaxonical.architectspalette.blocks.abyssaline.*;
 import com.slomaxonical.architectspalette.blocks.*;
 import com.slomaxonical.architectspalette.blocks.util.DirectionalFacingBlock;
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.registry.util.BlockSetBase;
 import com.slomaxonical.architectspalette.registry.util.ChangeGroup;
 import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
@@ -25,6 +24,7 @@ import net.minecraft.util.registry.Registry;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
 import static com.slomaxonical.architectspalette.registry.util.RegistryUtil.*;
 import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
 import static net.minecraft.block.Oxidizable.OxidationLevel.*;
@@ -40,7 +40,7 @@ public class APBlocks implements BlockRegistryContainer {
         if (field.isAnnotationPresent(ChangeGroup.class)) group = field.getAnnotation(ChangeGroup.class).value();
         BlockItem blockItem = new BlockItem(block, new Item.Settings().group(ItemGroup.GROUPS[group]));
         Registry.register(Registry.ITEM, new Identifier(namespace,identifier), blockItem);
-        if (!(namespace.contains("vertical") && !AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)) ArchitectsPalette.ITEMGROUP_LIST.add(blockItem);
+        if (!(namespace.contains("vertical") && !CONFIGS.enableVerticalSlabs())) ArchitectsPalette.ITEMGROUP_LIST.add(blockItem);
         if (field.isAnnotationPresent(BlockSetBase.class)) new StoneBlockSet(block, field.getAnnotation(BlockSetBase.class).parts());
     }
     @Override
