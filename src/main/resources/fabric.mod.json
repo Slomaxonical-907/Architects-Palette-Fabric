@@ -28,7 +28,11 @@
     ],
     "fabric-datagen": [
       "com.slomaxonical.architectspalette.datagen.APDatagen"
+    ],
+    "emi": [
+      "com.slomaxonical.architectspalette.compat.emi.APEmiPlugin"
     ]
+
   },
   "mixins": [
     "architectspalette.mixins.json"
