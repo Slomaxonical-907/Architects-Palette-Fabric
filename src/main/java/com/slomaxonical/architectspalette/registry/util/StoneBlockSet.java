@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -19,17 +18,10 @@ import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.Set
 
 
 public class StoneBlockSet {
-    public static ArrayList<StoneBlockSet> BlockSets = new ArrayList<>();
-    //SETS:
-    public static List<StoneBlockSet> oreBrickSets = new ArrayList<>();
     private final String material_name;
     public List<Block> parts;
-    public StoneBlockSet(Block base_block) {
-        this(base_block, SetGroup.TYPICAL);
-    }
-    public StoneBlockSet(Block base_block, SetGroup group) {
-        this(base_block, group.components);
-    }
+
+    public StoneBlockSet(Block base_block){this(base_block,SLAB,VERTICAL_SLAB,STAIRS,WALL);}
     public StoneBlockSet(Block base_block, SetComponent... parts){
         this.parts = new ArrayList<>();
         //Piece of crap array list doesn't let me preallocate indices ((if it can, you should let me know))
@@ -39,18 +31,11 @@ public class StoneBlockSet {
         setPart(BLOCK, base_block);
         Arrays.stream(parts).forEachOrdered(this::createPart);
 
-        if (this.material_name.contains("ore_brick")) {
-            oreBrickSets.add(this);
-
-        } else {
-            BlockSets.add(this);
-        }//I HATE THIS NEED TO GIVE IT SOME THOUGHT SOMETIME...
+        if (this.material_name.contains("ore_brick")) RegistryUtil.oreBrickSets.add(this);
+        else RegistryUtil.BlockSets.put(base_block,this);
+        //I HATE THIS NEED TO GIVE IT SOME THOUGHT SOMETIME...
         if(this.getPart(NUB) != null) RegistryUtil.nubs.put(this.getPart(NUB),List.of(this.getBase()));
     }
-    public StoneBlockSet(Block base_block, SetGroup group, SetComponent... additionalParts) {
-        this(base_block, concatArray(group.components, additionalParts));
-    }
-
     // Stone Bricks Slab -> Stone Brick Slab. Oak Planks Stairs -> Oak Stairs
     private static String getMaterialFromBlock(String blockName) {
         return blockName
@@ -111,38 +96,16 @@ public class StoneBlockSet {
             return getMaterialAggressive(material) + "_pillar";
         }
     }
-    public enum SetGroup {
-        SLABS(SLAB, VERTICAL_SLAB),
-        NO_WALLS(SLAB, VERTICAL_SLAB, STAIRS),
-        NO_STAIRS(SLAB, VERTICAL_SLAB, WALL),
-        TYPICAL(SLAB, VERTICAL_SLAB, STAIRS, WALL),
-        ADD_PILLAR(SLAB, VERTICAL_SLAB, STAIRS, WALL,PILLAR); //I will wait for jsburg to actiate this
-
-
-        public final SetComponent[] components;
-
-        SetGroup(SetComponent... components) {
-            this.components = components;
-        }
-
-        public void forEach(Consumer<SetComponent> action) {
-            Arrays.stream(components).forEachOrdered(action);
-        }
-
-    }
-
     public Block getPart(SetComponent part) {
         return parts.get(part.ordinal());
     }
     private <B extends Block> void setPart(SetComponent part, B block) {
         parts.add(part.ordinal(), block);
     }
+
     private void createPart(SetComponent part) {
         setPart(part, makePart(part));
     }
-
-
-
     private Block makePart(SetComponent part) {
         Block block = getPart(BLOCK);
         if (block instanceof IBlockSetBase base) {
@@ -150,6 +113,7 @@ public class StoneBlockSet {
         }
         return RegistryUtil.createBlock(part.getName(material_name), getBlockForPart(part, properties(), getPart(BLOCK)));
     }
+
     public static Block getBlockForPart(SetComponent part, FabricBlockSettings settings, Block base) {
         return switch (part) {
             case WALL -> new WallBlock(settings);

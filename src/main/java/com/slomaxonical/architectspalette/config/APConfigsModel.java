@@ -15,11 +15,11 @@ public class APConfigsModel {
     @RangeConstraint(min = 0.0d,max=1.0d)
     @Sync(value = OVERRIDE_CLIENT)
     public double sunstoneSpreadChance = 1.0d;
-    @SectionHeader("Trading")
+    @SectionHeader("trading")
     @Comment("Villagers that already sell AP items will continue to do so regardless of this setting.")
     public boolean enableVillagerTrades = true;
     public boolean enableWandererTrades = true;
-    @SectionHeader("World Gen")
+    @SectionHeader("worldGen")
     @Comment("Controls ALL worldgen features added by Architect's Palette. "+
             " (If false, NOTHING from AP will generate. If true, individual features may still be disabled.)")
     public boolean globalWorldGenToggle = true;

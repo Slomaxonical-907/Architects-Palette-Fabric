@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,13 @@ import java.util.Map;
 import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
 
 public class RegistryUtil {
+    //SETS:
+    public static Map<Block,StoneBlockSet> BlockSets = new HashMap<>();
     public static Map<Block,List<ItemConvertible>> nubs = new HashMap<>();
+    public static Map<Block,List<Block>> chiseledNcrackedOres = new HashMap<>();
+    public static List<StoneBlockSet> oreBrickSets = new ArrayList<>();
+
+
     public static Block makeNubOf(Block copyOf) {
         return makeNubOf(copyOf,List.of(copyOf));
     }

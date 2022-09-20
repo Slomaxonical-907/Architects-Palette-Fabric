@@ -17,10 +17,13 @@ public class APTags {
     public static final TagKey<Block> NUBS = TagKey.of(Registry.BLOCK_KEY, new Identifier(ArchitectsPalette.MOD_ID,"nubs"));
 
     //Items
+//    public static TagKey<Item> SET_TAB = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID,"sets"));
+//    public static final TagKey<Item> NUB_TAB = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID,"nubs"));
+//    public static final TagKey<Item> WOOD_TAB = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID,"woods"));
+//    public static final TagKey<Item> MISC_TAB = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID,"misc"));
     public static final TagKey<Item> ITEM_TWISTED_LOGS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "twisted_logs"));
     public static final TagKey<Item> OLIVESTONE = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "olivestone"));
     public static final TagKey<Item> OLIVESTONE_SLABS = TagKey.of(Registry.ITEM_KEY,new Identifier(ArchitectsPalette.MOD_ID, "olivestone_slabs"));
     public static final TagKey<Item> WITHERED_BONES = TagKey.of(Registry.ITEM_KEY,new Identifier("c", "withered_bones"));
     public static final TagKey<Item> MUSHROOMS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "mushrooms"));
-
 }

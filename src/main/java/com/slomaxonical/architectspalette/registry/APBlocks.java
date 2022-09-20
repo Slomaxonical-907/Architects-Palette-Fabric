@@ -13,7 +13,6 @@ import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.features.TwistedTree;
 import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import io.wispforest.owo.registration.reflect.BlockRegistryContainer;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
@@ -31,7 +30,6 @@ import static net.minecraft.block.Oxidizable.OxidationLevel.*;
 
 
 public class APBlocks implements BlockRegistryContainer {
-    public static Map<Block,List<Block>> chiseledNcrackedOres = new HashMap<>();
 
     @Override
     public void postProcessField(String namespace, Block block, String identifier, Field field) {
@@ -193,7 +191,7 @@ public class APBlocks implements BlockRegistryContainer {
 
     // Flint Blocks
     public static final Block FLINT_BLOCK  	= new FlintBlock(APBlockSettings.FLINT);
-    @BlockSetBase(parts = {SLAB,VERTICAL_SLAB,STAIRS,WALL})
+    @BlockSetBase
     public static final Block FLINT_TILES  	= new FlintBlock(APBlockSettings.FLINT);
     public static final Block FLINT_PILLAR 	= new FlintPillarBlock(APBlockSettings.FLINT);
 
@@ -329,7 +327,8 @@ public class APBlocks implements BlockRegistryContainer {
     @ChangeGroup
     public static final Block NETHERITE_NUB = makeNubOf(Blocks.NETHERITE_BLOCK,List.of(Items.NETHERITE_INGOT));
     @ChangeGroup
-    public static final Block NUB_OF_ENDER = new NubBlock(FabricBlockSettings.copyOf(ENDER_PEARL_BLOCK));
+//    public static final Block NUB_OF_ENDER = new NubBlock(FabricBlockSettings.copyOf(ENDER_PEARL_BLOCK));
+    public static final Block NUB_OF_ENDER = makeNubOf(ENDER_PEARL_BLOCK,List.of(Items.ENDER_EYE)); //cant remember why im not using the make method
         //copper
     @ChangeGroup
     public static final Block OXIDIZED_COPPER_NUB = makeCopperNub(OXIDIZED,Blocks.OXIDIZED_COPPER);
@@ -372,7 +371,6 @@ public class APBlocks implements BlockRegistryContainer {
     @ChangeGroup
     public static final Block ACACIA_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.ACACIA_PLANKS));
     @ChangeGroup
-                        //TODO:ADD MANGROVE TINGS TO TAGS
     public static final Block MANGROVE_RAILING = new RailingBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_PLANKS));
     @ChangeGroup
     public static final Block CRIMSON_RAILING = new RailingBlock(FabricBlockSettings.copy(Blocks.CRIMSON_PLANKS));

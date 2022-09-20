@@ -45,8 +45,14 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
     }
     @Override
     protected void generateBlockLootTables() {
-        for (StoneBlockSet set : StoneBlockSet.BlockSets){
-            if (set.getBase() != APBlocks.POLISHED_PACKED_ICE){
+        for (StoneBlockSet set : RegistryUtil.BlockSets.values()){
+            if (set.getBase() == APBlocks.POLISHED_PACKED_ICE){
+                this.addDropWithSilkTouch(set.getBase());
+                this.addDropWithSilkTouch(set.getPart(STAIRS));
+                this.addDropWithSilkTouch(set.getPart(WALL));
+                this.dropSlabWithSilkTouch(set.getPart(SLAB));
+                this.dropSlabWithSilkTouch(set.getPart(VERTICAL_SLAB));
+            }else{
                 this.addDrop(set.getBase());
                 if (set.getPart(STAIRS)!=null) this.addDrop(set.getPart(STAIRS));
                 if (set.getPart(WALL)!=null) this.addDrop(set.getPart(WALL));
@@ -56,21 +62,15 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 }
                 if (set.getPart(FENCE)!=null) this.addDrop(set.getPart(FENCE));
                 if (set.getPart(NUB)!=null) this.addDrop(set.getPart(NUB));
-            }else{
-                this.addDropWithSilkTouch(set.getBase());
-                this.addDropWithSilkTouch(set.getPart(STAIRS));
-                this.addDropWithSilkTouch(set.getPart(WALL));
-                this.dropSlabWithSilkTouch(set.getPart(SLAB));
-                this.dropSlabWithSilkTouch(set.getPart(VERTICAL_SLAB));
             }
         }
-        for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
+        for (StoneBlockSet set : RegistryUtil.oreBrickSets) {
             this.addDrop(set.getBase());
             this.addDrop(set.getPart(STAIRS));
             this.addDrop(set.getPart(WALL));
             this.addDrop(set.getPart(SLAB), BlockLootTableGenerator::slabDrops);
         }
-        for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
+        for (List<Block> list : RegistryUtil.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
         for (Block nub : RegistryUtil.nubs.keySet()) this.addDrop(nub);
 
         Stream.of(
@@ -137,6 +137,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.LIT_WITHERED_OSSEOUS_SKULL,
                 APBlocks.MOLTEN_NETHER_BRICKS,
                 APBlocks.MOONSTONE,
+                APBlocks.MANGROVE_BOARDS,
+                APBlocks.MANGROVE_RAILING,
                 APBlocks.OAK_BOARDS,
                 APBlocks.OAK_RAILING,
                 APBlocks.OLIVESTONE_PILLAR,

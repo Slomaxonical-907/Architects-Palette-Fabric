@@ -3,6 +3,8 @@ package com.slomaxonical.architectspalette.datagen.provider;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.APItems;
 import com.slomaxonical.architectspalette.registry.APTags;
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
@@ -12,24 +14,22 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.FENCE;
+
 public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
-    public APItemTagProvider(FabricDataGenerator dataGenerator, @Nullable BlockTagProvider blockTagProvider) {super(dataGenerator, blockTagProvider);
-    }
-    /*
-    //not used
-    private FabricTagBuilder<Item> getOrCreateTagBuilder(Identifier id) {
-        TagKey<Item> tag = TagKey.of(Registry.ITEM_KEY, id);
-        return this.getOrCreateTagBuilder(tag);
-    }
-    //may use
-    private void copy(Identifier id) {
-        TagKey<Block> blockTag = TagKey.of(Registry.BLOCK_KEY, id);
-        TagKey<Item> itemTag = TagKey.of(Registry.ITEM_KEY, id);
-        this.copy(blockTag, itemTag);
-    }
-    */
+    public APItemTagProvider(FabricDataGenerator dataGenerator, @Nullable BlockTagProvider blockTagProvider) {super(dataGenerator, blockTagProvider);}
     @Override
     protected void generateTags() {
+//        for (StoneBlockSet set : RegistryUtil.BlockSets.values()){
+//            this.getOrCreateTagBuilder(APTags.SET_TAB).add(set.getBase().asItem());
+//            if (set.getPart(SLAB) !=null) this.getOrCreateTagBuilder(APTags.SET_TAB).add(set.getPart(SLAB).asItem());
+//            if (set.getPart(VERTICAL_SLAB) !=null) this.getOrCreateTagBuilder(APTags.SET_TAB).add(set.getPart(VERTICAL_SLAB).asItem());//config check here?
+//            if (set.getPart(STAIRS) !=null) this.getOrCreateTagBuilder(APTags.SET_TAB).add(set.getPart(STAIRS).asItem());
+//            if (set.getPart(WALL) !=null) this.getOrCreateTagBuilder(APTags.SET_TAB).add(set.getPart(WALL).asItem());
+//            if (set.getPart(FENCE) !=null) this.getOrCreateTagBuilder(APTags.SET_TAB).add(set.getPart(FENCE).asItem());
+//        }
+//        this.copy(APTags.NUBS,APTags.NUB_TAB);
         this.copy(APTags.TWISTED_LOGS, APTags.ITEM_TWISTED_LOGS);
         this.getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).addTag(APTags.ITEM_TWISTED_LOGS);
         this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
@@ -60,5 +60,4 @@ public class APItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         this.getOrCreateTagBuilder(APTags.WITHERED_BONES).add(APItems.WITHERED_BONE);
     }
-
 }

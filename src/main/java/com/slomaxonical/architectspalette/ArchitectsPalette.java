@@ -6,7 +6,9 @@ import com.slomaxonical.architectspalette.features.APConfiguredFeatures;
 import com.slomaxonical.architectspalette.features.APFeatures;
 import com.slomaxonical.architectspalette.loot.LootTableModifications;
 import com.slomaxonical.architectspalette.registry.*;
+import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
+import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
@@ -40,6 +42,7 @@ public class ArchitectsPalette implements ModInitializer {
         protected void setup() {
             setCustomTexture(new Identifier(MOD_ID,"textures/gui/item_group.png"));
         }
+
     };
     public static List<Item> ITEMGROUP_LIST = new ArrayList<>();
 

@@ -13,7 +13,6 @@ import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
@@ -30,34 +29,30 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     private void addSets(TagKey<Block> tag, Block... baseBlocks) {
         addSets(tag,true,true,true,true,baseBlocks);
     }
-    private void addSets(TagKey<Block> tag,boolean tryBlock,boolean tryStairs,boolean trySlabs,boolean tryWall, Block... baseBlocks){
-        ArrayList<StoneBlockSet> sets = new ArrayList<>();
+    private void addSets(TagKey<Block> tag,boolean doBlock,boolean doStairs,boolean doSlabs,boolean doWall, Block... baseBlocks){
         for (Block base: baseBlocks) {
-            StoneBlockSet.BlockSets.forEach(set->{
-                if (set.getBase().equals(base)) sets.add(set);
-            });
-        }
-        for (StoneBlockSet set:sets) {
-            if (tryBlock) this.getOrCreateTagBuilder(tag).add(set.getBase());
-            if(set.getPart(STAIRS)!=null && tryStairs) this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
-            if(set.getPart(SLAB)!=null && trySlabs){
+            StoneBlockSet set = RegistryUtil.BlockSets.get(base);
+
+            if (doBlock) this.getOrCreateTagBuilder(tag).add(base);
+            if(set.getPart(STAIRS)!=null && doStairs) this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
+            if(set.getPart(SLAB)!=null && doSlabs){
                 this.getOrCreateTagBuilder(tag).add(set.getPart(SLAB));
                 this.getOrCreateTagBuilder(tag).add(set.getPart(VERTICAL_SLAB));
             }
-            if(set.getPart(WALL)!=null && tryWall) this.getOrCreateTagBuilder(tag).add(set.getPart(WALL));
+            if(set.getPart(WALL)!=null && doWall) this.getOrCreateTagBuilder(tag).add(set.getPart(WALL));
             if(set.getPart(FENCE)!=null) this.getOrCreateTagBuilder(tag).add(set.getPart(FENCE));
             if(set.getPart(NUB)!=null) this.getOrCreateTagBuilder(tag).add(set.getPart(NUB));
         }
     }
-    private void addOreBricks(TagKey<Block> tag,boolean addBlock,boolean addStairs,boolean addSlabs,boolean addWall){
-        for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
-            if (addBlock) this.getOrCreateTagBuilder(tag).add(set.getBase());
-            if(addStairs) this.getOrCreateTagBuilder(tag).add(set.getPart(STAIRS));
-            if(addSlabs){
-                this.getOrCreateTagBuilder(tag).add(set.getPart(SLAB));
-                this.getOrCreateTagBuilder(tag).add(set.getPart(VERTICAL_SLAB));
-            }
-            if(addWall) this.getOrCreateTagBuilder(tag).add(set.getPart(WALL));
+    private void addOreBricks(){
+        RegistryUtil.chiseledNcrackedOres.values().forEach(l->l.forEach( b -> this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b)));
+        for (StoneBlockSet set : RegistryUtil.oreBrickSets) {
+            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(set.getBase(),set.getPart(STAIRS),set.getPart(SLAB),set.getPart(VERTICAL_SLAB),set.getPart(WALL));
+
+            this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.getPart(STAIRS));
+            this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.getPart(SLAB));
+            this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.getPart(VERTICAL_SLAB));
+            this.getOrCreateTagBuilder(BlockTags.WALLS).add(set.getPart(WALL));
         }
     }
     @Override
@@ -178,8 +173,6 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.ESOTERRACK_PILLAR)
                 .add(APBlocks.HAZARD_SIGN)
                 .add(APBlocks.NUB_OF_ENDER);
-        addOreBricks(BlockTags.PICKAXE_MINEABLE,true,true,true,true);
-        for (List<Block> l: APBlocks.chiseledNcrackedOres.values()) l.forEach((b)->this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(b));
 
         addSets(BlockTags.AXE_MINEABLE,APBlocks.ENTRAILS);
         this.getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
@@ -199,6 +192,8 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.GRINNING_ACACIA_TOTEM)
                 .add(APBlocks.JUNGLE_BOARDS)
                 .add(APBlocks.JUNGLE_RAILING)
+                .add(APBlocks.MANGROVE_BOARDS)
+                .add(APBlocks.MANGROVE_RAILING)
                 .add(APBlocks.OAK_BOARDS)
                 .add(APBlocks.OAK_RAILING)
                 .add(APBlocks.PLACID_ACACIA_TOTEM)
@@ -269,7 +264,6 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         //Stone
         addSets(BlockTags.NEEDS_STONE_TOOL,
                 APBlocks.ENTWINE_BLOCK,
-                APBlocks.FLINT_BLOCK,
                 APBlocks.FLINT_TILES,
                 APBlocks.SUNMETAL_BLOCK,
                 APBlocks.WARDSTONE,
@@ -279,6 +273,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.ENTWINE_PILLAR)
                 .add(APBlocks.ENTWINE_BARS)
                 .add(APBlocks.CHISELED_ENTWINE)
+                .add(APBlocks.FLINT_BLOCK)
                 .add(APBlocks.FLINT_PILLAR)
                 .add(APBlocks.SUNMETAL_PILLAR)
                 .add(APBlocks.CHISELED_SUNMETAL_BLOCK)
@@ -304,30 +299,18 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         addSets(BlockTags.WOODEN_STAIRS,false,true,false,false,APBlocks.TWISTED_PLANKS);
         addSets(BlockTags.WOODEN_SLABS,false,false,true,false,APBlocks.TWISTED_PLANKS);
         this.getOrCreateTagBuilder(BlockTags.WALL_POST_OVERRIDE).addTag(APTags.CAGE_LANTERNS);//this tag see
-    //intentional repetition of same for loop cause i like
+
         //SLABS
-        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
+        for (StoneBlockSet set: RegistryUtil.BlockSets.values()) {
             if (set.getPart(SLAB) !=null) this.getOrCreateTagBuilder(BlockTags.SLABS).add(set.getPart(SLAB));
-        }
-        addOreBricks(BlockTags.SLABS,false,false,true,false);
-        //STAIRS
-        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
             if (set.getPart(STAIRS) !=null) this.getOrCreateTagBuilder(BlockTags.STAIRS).add(set.getPart(STAIRS));
-        }
-        addOreBricks(BlockTags.STAIRS,false,true,false,false);
-        //WALLS
-        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
             if (set.getPart(WALL) !=null) this.getOrCreateTagBuilder(BlockTags.WALLS).add(set.getPart(WALL));
-        }
-        addOreBricks(BlockTags.WALLS,false,false,false,true);
-        //FENCES
-        for (StoneBlockSet set: StoneBlockSet.BlockSets) {
             if (set.getPart(FENCE) !=null) this.getOrCreateTagBuilder(BlockTags.FENCES).add(set.getPart(FENCE));
         }
         //NUBS
         for (Block nub: RegistryUtil.nubs.keySet()) {
             this.getOrCreateTagBuilder(APTags.NUBS).add(nub);
-            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(nub); //Todo:for now all with pick
+            this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(nub); //Todo:for now they all pickaxe
         }
         this.getOrCreateTagBuilder(APTags.NUBS).add(APBlocks.NUB_OF_ENDER);
 
