@@ -29,7 +29,7 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 	//	private static final Item KEY = Items.HEART_OF_THE_FUCKING_SEA;
 	private static final BlockPos OFFSET = new BlockPos(0, 0, 0);
 
-	public boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
+	public boolean outputsChargeTo(BlockState stateIn, Direction faceIn) {
 		return stateIn.get(CHARGED);
 	}
 

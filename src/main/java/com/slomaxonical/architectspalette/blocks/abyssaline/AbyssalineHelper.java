@@ -35,31 +35,47 @@ public class AbyssalineHelper {
         return block.isCharged(stateIn);
     }
 
-    public static boolean getOutputsFrom(BlockState stateIn, Direction faceIn) {
-        if (!isAbyssaline(stateIn)) return false;
-        IAbyssalineChargeable block = (IAbyssalineChargeable) stateIn.getBlock();
-        return block.outputsChargeFrom(stateIn, faceIn);
+//    public static boolean getOutputsFrom(BlockState stateIn, Direction faceIn) {
+//        if (!isAbyssaline(stateIn)) return false;
+//        IAbyssalineChargeable block = (IAbyssalineChargeable) stateIn.getBlock();
+//        return block.outputsChargeFrom(stateIn, faceIn);
+//    }
+//
+//    public static boolean getAcceptsCharge(BlockState stateIn, Direction faceIn) {
+//        if (!isAbyssaline(stateIn)) return false;
+//        IAbyssalineChargeable block = (IAbyssalineChargeable) stateIn.getBlock();
+//        return block.acceptsChargeFrom(stateIn, faceIn);
+//    }
+    public static IAbyssalineChargeable getAbyssaline(BlockState state){
+        if (state.getBlock() instanceof IAbyssalineChargeable chargeable){
+            return chargeable;
+        }
+        return null;
     }
 
-    public static boolean getAcceptsCharge(BlockState stateIn, Direction faceIn) {
-        if (!isAbyssaline(stateIn)) return false;
-        IAbyssalineChargeable block = (IAbyssalineChargeable) stateIn.getBlock();
-        return block.acceptsChargeFrom(stateIn, faceIn);
-    }
-
-    public static boolean getPushesPower(BlockState stateIn) {
-        if (!isAbyssaline(stateIn)) return false;
-        return ((IAbyssalineChargeable) stateIn.getBlock()).pushesPower(stateIn);
-    }
-
-    public static boolean getPullsPower(BlockState stateIn, Direction faceIn) {
-        if (!isAbyssaline(stateIn)) return false;
-        return ((IAbyssalineChargeable) stateIn.getBlock()).pullsPowerFrom(stateIn, faceIn);
-    }
+//    public static boolean getPushesPower(BlockState stateIn) {
+//        if (!isAbyssaline(stateIn)) return false;
+//        return ((IAbyssalineChargeable) stateIn.getBlock()).pushesPower(stateIn);
+//    }
+//
+//    public static boolean getPullsPower(BlockState stateIn, Direction faceIn) {
+//        if (!isAbyssaline(stateIn)) return false;
+//        return ((IAbyssalineChargeable) stateIn.getBlock()).pullsPowerFrom(stateIn, faceIn);
+//    }
 
     public static boolean isValidConnection(BlockState unpoweredState, BlockState poweringState, Direction unpoweredFace) {
-        return (getAcceptsCharge(unpoweredState, unpoweredFace) || getPushesPower(poweringState))
-                && (getOutputsFrom(poweringState, unpoweredFace.getOpposite()) || (getCharged(poweringState) && getPullsPower(unpoweredState, unpoweredFace)));
+        IAbyssalineChargeable toCharge = getAbyssaline(unpoweredState);
+        IAbyssalineChargeable chargeScource = getAbyssaline(poweringState);
+
+        if (toCharge == null || chargeScource == null) return false;
+        if (!chargeScource.isCharged(poweringState)) return false;
+        // Check if normal connection could be made.
+        if ((toCharge.acceptsChargeFrom(unpoweredState, unpoweredFace)||chargeScource.pushesPower(poweringState))
+            && (chargeScource.outputsChargeTo(poweringState,unpoweredFace.getOpposite()) || toCharge.pullsPowerFrom(unpoweredState,unpoweredFace))){
+            // Check if the new state can accept charge from the source. Covers edge cases like Nubs being rotated by pillars pushing power into them.
+            return toCharge.acceptsChargeFrom(toCharge.getStateWithChargeDirection(unpoweredState,unpoweredFace),unpoweredFace);
+        }
+        return false;
     }
 
     @Nullable
@@ -81,10 +97,8 @@ public class AbyssalineHelper {
 
     private static boolean checkForLoop(BlockState startState, WorldAccess world, BlockPos pos, int tries, BlockPos.Mutable accumulator, BlockState chainStarter) {
         // These blocks form chains, if any block isn't a part, the chain should break
-        if (!(startState.getBlock() instanceof IAbyssalineChargeable))
+        if (!(startState.getBlock() instanceof IAbyssalineChargeable startBlock))
             return false;
-
-        IAbyssalineChargeable startBlock = (IAbyssalineChargeable) startState.getBlock();
 
         BlockPos offset = startBlock.getSourceOffset(startState);
         BlockPos nextPos = pos.add(offset);
@@ -95,17 +109,18 @@ public class AbyssalineHelper {
         // If the total change in position is 0, that means it has done a loop, so break the chain
         if (isAllZero(accumulator.move(offset.getX(), offset.getY(), offset.getZ())))
             return true;
+        //Get the next block to check
+        BlockState nextState = world.getBlockState(nextPos);
         // If the magnitude is one, that means the chain has come back adjacent to the block, which means another direction can check the source better.
         // Has the side effect of stopping some loops early and making placing while charged more consistent
         if (isMagnitudeOne(accumulator) && tries < RECURSION_MAX) {
             // Need to check if the side in question is even a possible route, though.
-            Direction facing = directionFromOffset(accumulator).getOpposite();
-            if (isValidConnection(getStateWithChargeDirection(chainStarter, facing), world.getBlockState(pos.offset(facing)), facing)){
+            Direction facing = directionFromOffset(accumulator);
+            if (isValidConnection(chainStarter, nextState, facing)){                //Since there is a valid connection available here, return true here so that the original direction is skipped.
                 return true;
             }
         }
 
-        BlockState nextState = world.getBlockState(nextPos);
         // If the block isn't charged, it doesn't lead back to a source, so break the chain
         if (!getCharged(nextState))
             return true;
@@ -156,7 +171,10 @@ public class AbyssalineHelper {
     }
 
     public static void abyssalineTick(BlockState state, ServerWorld worldIn, BlockPos pos) {
-        worldIn.setBlockState(pos, getStateWithNeighborCharge(state, worldIn, pos), 4 | 3);
+        BlockState newState = getStateWithNeighborCharge(state, worldIn, pos);
+        if (newState != state){
+            worldIn.setBlockState(pos, newState,4|3);
+        }
     }
 
     public static void abyssalineNeighborUpdate(IAbyssalineChargeable thiz, BlockState stateIn, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {

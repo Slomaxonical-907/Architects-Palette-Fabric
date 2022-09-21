@@ -3,6 +3,8 @@ package com.slomaxonical.architectspalette.registry.util;
 import com.slomaxonical.architectspalette.ArchitectsPalette;
 import com.slomaxonical.architectspalette.blocks.CopperNubBlock;
 import com.slomaxonical.architectspalette.blocks.NubBlock;
+import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineNubBlock;
+import com.slomaxonical.architectspalette.blocks.util.APBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -45,6 +47,11 @@ public class RegistryUtil {
     public static Block makeCopperNub(Oxidizable.OxidationLevel lvl, Block base) {
         Block nub =  new CopperNubBlock(lvl,FabricBlockSettings.copy(base));
         nubs.put(nub,List.of(base));
+        return nub;
+    }
+    public static AbyssalineNubBlock makeAbyssalineNub( List<ItemConvertible> recipeBases){
+        AbyssalineNubBlock nub = new AbyssalineNubBlock(FabricBlockSettings.copyOf(APBlockSettings.ABYSSALINE).luminance(AbyssalineNubBlock.getLuminance()));
+        nubs.put(nub,recipeBases);
         return nub;
     }
     //Create Blocks

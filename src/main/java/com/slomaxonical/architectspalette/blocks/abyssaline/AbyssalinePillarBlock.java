@@ -36,8 +36,7 @@ public class AbyssalinePillarBlock extends PillarBlock implements IAbyssalineCha
 
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext context) {
-		context.getWorld().createAndScheduleBlockTick(context.getBlockPos(), this, 1);
-		return super.getPlacementState(context);
+		return AbyssalineHelper.getStateWithNeighborCharge(super.getPlacementState(context),context.getWorld(),context.getBlockPos());
 	}
 
 	@Override
@@ -57,14 +56,10 @@ public class AbyssalinePillarBlock extends PillarBlock implements IAbyssalineCha
 	}
 
 	@Override
-	public boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
+	public boolean outputsChargeTo(BlockState stateIn, Direction faceIn) {
 		return this.isCharged(stateIn) &&
 				!(faceIn == this.getSourceDirection(stateIn)) &&
 				faceIn.getAxis() == stateIn.get(AXIS);
-
-//		return this.isCharged(stateIn) &&
-//				!(faceIn.getAxisDirection().getOffset() == stateIn.get(CHARGE_SIDE).toScalar()) &&
-//				faceIn.getAxis() == stateIn.get(AXIS);
 	}
 
 	@Override

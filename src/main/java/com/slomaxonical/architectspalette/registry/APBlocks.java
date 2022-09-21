@@ -64,6 +64,7 @@ public class APBlocks implements BlockRegistryContainer {
     public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE);
     public static final AbyssalineBlock ABYSSALINE_PLATING = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
     public static final AbyssalineLampBlock ABYSSALINE_LAMP = new AbyssalineLampBlock(FabricBlockSettings.copyOf(ABYSSALINE).sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance()));
+    public static final AbyssalineNubBlock ABYSSALINE_NUB = makeAbyssalineNub(List.of(ABYSSALINE,ABYSSALINE_BRICKS));
 
     // Limestone
     @BlockSetBase

@@ -31,8 +31,7 @@ public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineCharg
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        context.getWorld().createAndScheduleBlockTick(context.getBlockPos(), this, 1);
-        return super.getPlacementState(context);
+        return AbyssalineHelper.getStateWithNeighborCharge(super.getPlacementState(context),context.getWorld(),context.getBlockPos());
     }
 
     @Override
