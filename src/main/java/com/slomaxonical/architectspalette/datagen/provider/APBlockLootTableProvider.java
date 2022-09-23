@@ -74,6 +74,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
         for (Block nub : RegistryUtil.nubs.keySet()) this.addDrop(nub);
 
         Stream.of(
+                APBlocks.ABYSSALINE,
                 APBlocks.ABYSSALINE_PLATING,
                 APBlocks.ABYSSALINE_LAMP,
                 APBlocks.ABYSSALINE_PILLAR,
@@ -89,6 +90,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.CALCITE_PILLAR,
                 APBlocks.CHARCOAL_BLOCK,
                 APBlocks.CHISELED_ABYSSALINE_BRICKS,
+                APBlocks.CHISELED_HADALINE_BRICKS,
                 APBlocks.CHISELED_ALGAL_BRICKS,
                 APBlocks.CHISELED_BASALT_TILES,
                 APBlocks.CHISELED_CALCITE,
@@ -130,6 +132,10 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.HEAVY_MOSSY_STONE_BRICKS,
                 APBlocks.HEAVY_STONE_BRICKS,
                 APBlocks.HEAVY_TUFF_BRICKS,
+                APBlocks.HADALINE,
+                APBlocks.HADALINE_PLATING,
+                APBlocks.HADALINE_PILLAR,
+                APBlocks.HADALINE_LAMP,
                 APBlocks.ILLUMINATED_OLIVESTONE,
                 APBlocks.JUNGLE_BOARDS,
                 APBlocks.JUNGLE_RAILING,

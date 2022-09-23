@@ -4,6 +4,8 @@ import com.slomaxonical.architectspalette.blocks.SunstoneBlock;
 import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock;
 import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineHelper;
 import com.slomaxonical.architectspalette.blocks.CageLanternBlock;
+import com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineLampBlock;
+import com.slomaxonical.architectspalette.blocks.abyssaline.ChiseledAbyssalineBlock;
 import com.slomaxonical.architectspalette.registry.APSounds;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -20,8 +22,10 @@ public class APBlockSettings {
 			.postProcess(AbyssalineHelper::needsPostProcessing)
 			.allowsSpawning(AbyssalineHelper::allowsMobSpawning)
 			.luminance(AbyssalineBlock.getLuminance());
+	public static final FabricBlockSettings CHISELED_ABYSSALINE = FabricBlockSettings.copyOf(ABYSSALINE).luminance(ChiseledAbyssalineBlock.getLuminance());
+	public static final FabricBlockSettings ABYSSALINE_LAMP = FabricBlockSettings.copyOf(ABYSSALINE).sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance());
 
-    public static FabricBlockSettings Meat(MapColor color) {
+	public static FabricBlockSettings Meat(MapColor color) {
 		return FabricBlockSettings.of(Material.GOURD, color).strength(1.0F).sounds(BlockSoundGroup.CORAL);
 	}
 

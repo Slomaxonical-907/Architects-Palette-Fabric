@@ -55,7 +55,7 @@ public class APBlocks implements BlockRegistryContainer {
     }
     // Abyssaline
     //TODO:mahogany woood
-    public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(FabricBlockSettings.copyOf(APBlockSettings.ABYSSALINE).luminance(ChiseledAbyssalineBlock.getLuminance()));
+    public static final ChiseledAbyssalineBlock CHISELED_ABYSSALINE_BRICKS = new ChiseledAbyssalineBlock(APBlockSettings.CHISELED_ABYSSALINE);
     public static final AbyssalineBlock ABYSSALINE                 = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
     @BlockSetBase(parts = {SLAB,VERTICAL_SLAB})
     public static final AbyssalineBlock ABYSSALINE_BRICKS          = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
@@ -63,8 +63,19 @@ public class APBlocks implements BlockRegistryContainer {
     public static final AbyssalineBlock ABYSSALINE_TILES           = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
     public static final AbyssalinePillarBlock   ABYSSALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE);
     public static final AbyssalineBlock ABYSSALINE_PLATING = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
-    public static final AbyssalineLampBlock ABYSSALINE_LAMP = new AbyssalineLampBlock(FabricBlockSettings.copyOf(ABYSSALINE).sounds(BlockSoundGroup.GLASS).luminance(AbyssalineLampBlock.getLuminance()));
-    public static final AbyssalineNubBlock ABYSSALINE_NUB = makeAbyssalineNub(List.of(ABYSSALINE,ABYSSALINE_BRICKS));
+    public static final AbyssalineLampBlock ABYSSALINE_LAMP = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE_LAMP);
+//    public static final AbyssalineNubBlock ABYSSALINE_NUB = makeAbyssalineNub(List.of(ABYSSALINE,ABYSSALINE_BRICKS));
+
+    //Hadaline
+    public static final ChiseledAbyssalineBlock CHISELED_HADALINE_BRICKS = new ChiseledAbyssalineBlock(APBlockSettings.CHISELED_ABYSSALINE);
+    public static final AbyssalineBlock HADALINE = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    @BlockSetBase(parts = {SLAB,VERTICAL_SLAB})
+    public static final AbyssalineBlock HADALINE_BRICKS = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    @BlockSetBase(parts = {SLAB,VERTICAL_SLAB})
+    public static final AbyssalineBlock HADALINE_TILES  = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalinePillarBlock   HADALINE_PILLAR          = new AbyssalinePillarBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineBlock HADALINE_PLATING = new AbyssalineBlock(APBlockSettings.ABYSSALINE);
+    public static final AbyssalineLampBlock HADALINE_LAMP = new AbyssalineLampBlock(APBlockSettings.ABYSSALINE_LAMP);
 
     // Limestone
     @BlockSetBase

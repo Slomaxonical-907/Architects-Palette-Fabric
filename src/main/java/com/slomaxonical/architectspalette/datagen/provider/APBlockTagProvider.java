@@ -89,9 +89,12 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 APBlocks.WARDSTONE_BRICKS,
                 APBlocks.ONYX,
                 APBlocks.ESOTERRACK,
-                APBlocks.ANCIENT_PLATING
+                APBlocks.ANCIENT_PLATING,
+                APBlocks.HADALINE_BRICKS,
+                APBlocks.HADALINE_TILES
         );
         this.getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(APBlocks.ABYSSALINE)
                 .add(APBlocks.ABYSSALINE_PLATING)
                 .add(APBlocks.ABYSSALINE_LAMP)
                 .add(APBlocks.ABYSSALINE_PILLAR)
@@ -100,6 +103,7 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.CALCITE_LAMP)
                 .add(APBlocks.CALCITE_PILLAR)
                 .add(APBlocks.CHISELED_ABYSSALINE_BRICKS)
+                .add(APBlocks.CHISELED_HADALINE_BRICKS)
                 .add(APBlocks.CHISELED_ALGAL_BRICKS)
                 .add(APBlocks.CHISELED_BASALT_TILES)
                 .add(APBlocks.CHISELED_CALCITE)
@@ -133,6 +137,9 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(APBlocks.HEAVY_MOSSY_STONE_BRICKS)
                 .add(APBlocks.HEAVY_STONE_BRICKS)
                 .add(APBlocks.HEAVY_TUFF_BRICKS)
+                .add(APBlocks.HADALINE_LAMP)
+                .add(APBlocks.HADALINE_PLATING)
+                .add(APBlocks.HADALINE_PILLAR)
                 .add(APBlocks.ILLUMINATED_OLIVESTONE)
                 .add(APBlocks.LIT_OSSEOUS_SKULL)
                 .add(APBlocks.LIT_WITHERED_OSSEOUS_SKULL)
@@ -241,11 +248,22 @@ public class APBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         //NEEDS_TIER_TOOL
         //Diamond
+        addSets(BlockTags.NEEDS_DIAMOND_TOOL,
+                APBlocks.ABYSSALINE_BRICKS,
+                APBlocks.ABYSSALINE_TILES,
+                APBlocks.HADALINE_BRICKS,
+                APBlocks.HADALINE_TILES
+        );
         this.getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(APBlocks.ABYSSALINE_PLATING)
                 .add(APBlocks.ABYSSALINE_LAMP)
                 .add(APBlocks.ABYSSALINE_PILLAR)
-                .add(APBlocks.CHISELED_ABYSSALINE_BRICKS);
+                .add(APBlocks.CHISELED_ABYSSALINE_BRICKS)
+                .add(APBlocks.CHISELED_HADALINE_BRICKS)
+                .add(APBlocks.HADALINE_PLATING)
+                .add(APBlocks.HADALINE_PILLAR)
+                .add(APBlocks.HADALINE_LAMP)
+        ;
         //Iron
         addSets(BlockTags.NEEDS_IRON_TOOL,
                 APBlocks.PLATING_BLOCK,

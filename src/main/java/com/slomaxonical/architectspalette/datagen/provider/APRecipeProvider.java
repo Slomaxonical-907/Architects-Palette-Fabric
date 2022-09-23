@@ -46,12 +46,20 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerWarpingRecipe(exporter, ItemTags.LOGS, TWISTED_LOG.asItem(), NETHER);
         offerWarpingRecipe(exporter, ItemTags.PLANKS, TWISTED_PLANKS.asItem(), NETHER);
         offerWarpingRecipe(exporter, ItemTags.LEAVES, TWISTED_LEAVES.asItem(), NETHER);
-        offerWarpingRecipe(exporter, SUNSTONE.asItem(), MOONSTONE.asItem(), NETHER);
+        offerWarpingRecipe(exporter, SUNSTONE, MOONSTONE.asItem(), NETHER);
         offerWarpingRecipe(exporter, ROTTEN_FLESH_BLOCK.asItem(), ENTRAILS.asItem(), NETHER);
         offerWarpingRecipe(exporter, Items.NETHERITE_INGOT, UNOBTANIUM, NETHER);
+        offerWarpingRecipe(exporter, ABYSSALINE, HADALINE.asItem(), NETHER);
+        offerWarpingRecipe(exporter, ABYSSALINE_BRICKS, HADALINE_BRICKS.asItem(), NETHER);
+        offerWarpingRecipe(exporter, ABYSSALINE_LAMP, HADALINE_LAMP.asItem(), NETHER);
+        offerWarpingRecipe(exporter, ABYSSALINE_PILLAR, HADALINE_PILLAR.asItem(), NETHER);
+        offerWarpingRecipe(exporter, ABYSSALINE_PLATING, HADALINE_PLATING.asItem(), NETHER);
+        offerWarpingRecipe(exporter, ABYSSALINE_TILES, HADALINE_TILES.asItem(), NETHER);
     //Setts
         offerSetRecipes(exporter,verticaExport, ABYSSALINE_BRICKS,List.of(ABYSSALINE_BRICKS,ABYSSALINE));
-        offerSetRecipes(exporter,verticaExport, ABYSSALINE_TILES, List.of(ABYSSALINE_TILES,ABYSSALINE_BRICKS,ABYSSALINE));
+        offerSetRecipes(exporter,verticaExport, ABYSSALINE_TILES, List.of(ABYSSALINE_TILES,ABYSSALINE));
+        offerSetRecipes(exporter,verticaExport,HADALINE_BRICKS,List.of(HADALINE,HADALINE_BRICKS));
+        offerSetRecipes(exporter,verticaExport,HADALINE_TILES,List.of(HADALINE,HADALINE_TILES));
         offerSetRecipes(exporter,verticaExport, MYONITE, List.of(MYONITE));
         offerSetRecipes(exporter,verticaExport, MYONITE_BRICKS, List.of(MYONITE,MYONITE_BRICKS));
         offerSetRecipes(exporter,verticaExport, MUSHY_MYONITE_BRICKS, List.of(MUSHY_MYONITE_BRICKS));
@@ -105,9 +113,24 @@ public class APRecipeProvider extends FabricRecipeProvider {
         ShapedRecipeJsonBuilder.create(ABYSSALINE,16).input('#', Items.PRISMARINE_SHARD).input('$', Items.OBSIDIAN).pattern("$#$").pattern("# #").pattern("$#$").criterion("has_obsidian",conditionsFromItem(Items.OBSIDIAN)).offerTo(exporter);
         offerPolishedStoneRecipe(exporter, ABYSSALINE_BRICKS, ABYSSALINE);
         offerPolishedStoneRecipe(exporter, ABYSSALINE_TILES, ABYSSALINE_BRICKS);
-        createCondensingRecipe(ABYSSALINE_BRICKS, Ingredient.ofItems(ABYSSALINE_TILES)).criterion("has_abyssaline_tiles", conditionsFromItem(ABYSSALINE_TILES)).offerTo(exporter,"abyssaline_bricks_from_tiles");
+//        createCondensingRecipe(ABYSSALINE_BRICKS, Ingredient.ofItems(ABYSSALINE_TILES)).criterion("has_abyssaline_tiles", conditionsFromItem(ABYSSALINE_TILES)).offerTo(exporter,"abyssaline_bricks_from_tiles");
         ShapedRecipeJsonBuilder.create(ABYSSALINE_LAMP, 8).input('#', Items.PRISMARINE_SHARD).input('$', Items.OBSIDIAN).input('C',Items.PRISMARINE_CRYSTALS).pattern("$C$").pattern("#C#").pattern("$C$").criterion("has_obsidian",conditionsFromItem(Items.OBSIDIAN)).offerTo(exporter);
         offerEmptyFrameRecipe(exporter,ABYSSALINE_PLATING,ABYSSALINE,8);
+        offerStonecuttingRecipe(exporter, ABYSSALINE_BRICKS,ABYSSALINE);
+        offerStonecuttingRecipe(exporter, 1,ABYSSALINE_PILLAR,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
+        offerStonecuttingRecipe(exporter, 1,ABYSSALINE_TILES,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
+        offerStonecuttingRecipe(exporter, 1,CHISELED_ABYSSALINE_BRICKS,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
+        offerStonecuttingRecipe(exporter,ABYSSALINE_PLATING,ABYSSALINE);
+        //Hadaline
+        offerPolishedStoneRecipe(exporter, HADALINE_BRICKS, HADALINE);
+        offerPolishedStoneRecipe(exporter, HADALINE_TILES, HADALINE_BRICKS);
+        offerEmptyFrameRecipe(exporter,HADALINE_PLATING,HADALINE,8);
+        offerStonecuttingRecipe(exporter, HADALINE_BRICKS,HADALINE_BRICKS);
+        offerStonecuttingRecipe(exporter, 1,HADALINE_PILLAR,List.of(HADALINE,HADALINE_BRICKS));
+        offerStonecuttingRecipe(exporter, 1,HADALINE_TILES,List.of(HADALINE,HADALINE_BRICKS));
+        offerStonecuttingRecipe(exporter, 1,CHISELED_HADALINE_BRICKS,List.of(HADALINE,HADALINE_BRICKS));
+        offerStonecuttingRecipe(exporter,HADALINE_PLATING,HADALINE);
+
         //boards
         offerBoardsRecipe(exporter, ACACIA_BOARDS, Items.ACACIA_PLANKS);
         offerBoardsRecipe(exporter, BIRCH_BOARDS, Items.BIRCH_PLANKS);
@@ -266,12 +289,6 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerCrackingRecipe(exporter,HEAVY_CRACKED_END_STONE_BRICKS,HEAVY_END_STONE_BRICKS);
         offerCrackingRecipe(exporter,HEAVY_CRACKED_STONE_BRICKS,HEAVY_STONE_BRICKS);
         //stoncutting
-        offerStonecuttingRecipe(exporter, ABYSSALINE_BRICKS,ABYSSALINE);
-        offerStonecuttingRecipe(exporter, 1,ABYSSALINE_PILLAR,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
-        offerStonecuttingRecipe(exporter, 1,ABYSSALINE_TILES,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
-        offerStonecuttingRecipe(exporter, 1,CHISELED_ABYSSALINE_BRICKS,List.of(ABYSSALINE,ABYSSALINE_BRICKS));
-        offerStonecuttingRecipe(exporter,ABYSSALINE_PLATING,ABYSSALINE);
-
         offerStonecuttingRecipe(exporter, 2,BASALT_TILES,List.of(Items.BASALT,Items.POLISHED_BASALT));
 
         offerStonecuttingRecipe(exporter,CALCITE_BRICKS,Items.CALCITE);
@@ -315,7 +332,7 @@ public class APRecipeProvider extends FabricRecipeProvider {
         offerOreBricksRecipes(exporter, verticaExport, RegistryUtil.oreBrickSets.get(6), Items.DIAMOND);
 
     }
-    public static void offerWarpingRecipe(Consumer<RecipeJsonProvider> exporter, Item input, Item output, Identifier dimension) {
+    public static void offerWarpingRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible input, Item output, Identifier dimension) {
         WarpingRecipeJsonBuilder.create(Ingredient.ofItems(input), output, dimension).offerTo(exporter, "warping/"+RecipeProvider.convertBetween(output,input)+"_warping");
     }
     public static void offerWarpingRecipe(Consumer<RecipeJsonProvider> exporter, TagKey<Item> input, Item output, Identifier dimension) {
