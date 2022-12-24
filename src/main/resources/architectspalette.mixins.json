@@ -7,7 +7,9 @@
     "BaseFireBlockMixin",
     "ProjectileEntityMixin",
     "ServerWorldMixin",
-    "ThrownEntityMixin"
+    "ThrownEntityMixin",
+    "BakedModelManagerMixin",
+    "SpriteAtlasTextureMixin"
   ],
   "client": [
   ],

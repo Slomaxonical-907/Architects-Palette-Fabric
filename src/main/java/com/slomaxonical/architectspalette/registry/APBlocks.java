@@ -360,7 +360,7 @@ public class APBlocks implements BlockRegistryContainer {
     public static final Block WAXED_OXIDIZED_COPPER_NUB = makeCopperNub(OXIDIZED,Blocks.OXIDIZED_COPPER);
     //Boards
     public static final Block OAK_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS));
-    public static final Block BIRCH_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.BIRCH_PLANKS));
+    public static final Block BIRCH_BOARDS = new Block(FabricBlockSettings.copy(Blocks.BIRCH_PLANKS));
     public static final Block SPRUCE_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.SPRUCE_PLANKS));
     public static final Block JUNGLE_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.JUNGLE_PLANKS));
     public static final Block DARK_OAK_BOARDS = new BoardBlock(FabricBlockSettings.copy(Blocks.DARK_OAK_PLANKS));

@@ -1,7 +1,6 @@
 package com.slomaxonical.architectspalette.features;
 
 import com.slomaxonical.architectspalette.registry.APBlocks;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.Blocks;

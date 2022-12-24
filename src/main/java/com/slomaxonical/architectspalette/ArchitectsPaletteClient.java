@@ -1,16 +1,20 @@
 package com.slomaxonical.architectspalette;
 
+import com.slomaxonical.architectspalette.models.ModelSwapper;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import com.slomaxonical.architectspalette.registry.APParticles;
 import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.util.Identifier;
 
 public class ArchitectsPaletteClient implements ClientModInitializer {
-
+    public static final Identifier MODEL_ID = new Identifier(ArchitectsPalette.MOD_ID,"block/boards/boards");
     @Override
     public void onInitializeClient() {
+        ModelSwapper.init();
+
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 APBlocks.ENTWINE_BARS,
                 APBlocks.SUNMETAL_BARS,
@@ -39,6 +43,7 @@ public class ArchitectsPaletteClient implements ClientModInitializer {
                 APBlocks.EKANITE_ROD,
                 APBlocks.MONAZITE_ROD
         );
+
         APParticles.clientReg();
     }
 }

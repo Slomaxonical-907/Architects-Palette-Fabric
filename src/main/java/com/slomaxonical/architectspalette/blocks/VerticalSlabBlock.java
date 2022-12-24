@@ -1,6 +1,5 @@
 package com.slomaxonical.architectspalette.blocks;
 
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
