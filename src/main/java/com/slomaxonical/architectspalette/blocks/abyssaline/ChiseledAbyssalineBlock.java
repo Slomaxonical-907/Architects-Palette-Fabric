@@ -29,7 +29,7 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 	//	private static final Item KEY = Items.HEART_OF_THE_FUCKING_SEA;
 	private static final BlockPos OFFSET = new BlockPos(0, 0, 0);
 
-	public boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
+	public boolean outputsChargeTo(BlockState stateIn, Direction faceIn) {
 		return stateIn.get(CHARGED);
 	}
 
@@ -74,7 +74,7 @@ public class ChiseledAbyssalineBlock extends Block implements IAbyssalineChargea
 				stack.decrement(1);
 			world.setBlockState(pos, this.getStateWithCharge(state, true));
 			world.playSound(null, pos, SoundEvents.BLOCK_CONDUIT_ACTIVATE, SoundCategory.BLOCKS, 0.5F, new Random().nextFloat() * 0.2F + 0.8F);
-			return ActionResult.CONSUME;
+			return ActionResult.SUCCESS;
 		}
 		else if (this.isCharged(state) && stack.isEmpty()) {
 			world.setBlockState(pos, this.getStateWithCharge(state, false));

@@ -1,8 +1,6 @@
 package com.slomaxonical.architectspalette.features;
 
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
 import com.slomaxonical.architectspalette.registry.APBlocks;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.Blocks;
@@ -13,6 +11,8 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
+
+import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
 
 
 public class APConfiguredFeatures {
@@ -60,9 +60,8 @@ public class APConfiguredFeatures {
 
 
     public static void registerBiomeModifications() {
-        ApConfigs configs = AutoConfig.getConfigHolder(ApConfigs.class).getConfig();
-        if (configs.globalWorldGenToggle){
-            if (configs.netherCrystalGeneration) {
+        if (CONFIGS.globalWorldGenToggle()){
+            if (CONFIGS.netherCrystalGeneration()) {
                 BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.BASALT_DELTAS), GenerationStep.Feature.UNDERGROUND_DECORATION, HELIODOR_CLUSTER_PLACED.getKey().orElseThrow());
                 BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.WARPED_FOREST), GenerationStep.Feature.UNDERGROUND_DECORATION, EKANITE_CLUSTER_PLACED.getKey().orElseThrow());
                 BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.NETHER_WASTES), GenerationStep.Feature.UNDERGROUND_DECORATION, HANGING_MONAZITE_CLUSTER_PLACED.getKey().orElseThrow());

@@ -33,12 +33,8 @@ public class APPlugin implements REIClientPlugin {
                 APBlocks.ABYSSALINE,
                 APBlocks.ABYSSALINE_BRICKS,
                 APBlocks.ABYSSALINE_PILLAR,
-                APBlocks.ABYSSALINE_BRICK_SLAB,
                 APBlocks.ABYSSALINE_TILES,
-                APBlocks.ABYSSALINE_TILE_SLAB,
-                APBlocks.ABYSSALINE_LAMP_BLOCK,
-                APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB,
-                APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB
+                APBlocks.ABYSSALINE_LAMP
         );
         addBulkInfo(registry,"totem_carving",
                 APBlocks.PLACID_ACACIA_TOTEM,
@@ -72,7 +68,7 @@ public class APPlugin implements REIClientPlugin {
         );
 
         addBulkInfo(registry,"nether_brass",
-                APBlocks.NETHER_BRASS,
+                APBlocks.NETHER_BRASS_BLOCK,
                 APBlocks.CUT_NETHER_BRASS,
                 APBlocks.SMOOTH_NETHER_BRASS,
                 APBlocks.NETHER_BRASS_PILLAR

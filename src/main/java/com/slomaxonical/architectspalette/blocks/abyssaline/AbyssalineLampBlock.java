@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import java.util.function.ToIntFunction;
 
 import static com.slomaxonical.architectspalette.blocks.util.APBlockSettings.CHARGED;
-import static com.slomaxonical.architectspalette.blocks.abyssaline.NewAbyssalineBlock.CHARGE_SOURCE;
+import static com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock.CHARGE_SOURCE;
 
 public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineChargeable {
 
@@ -31,8 +31,7 @@ public class AbyssalineLampBlock extends PillarBlock implements IAbyssalineCharg
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext context) {
-        context.getWorld().createAndScheduleBlockTick(context.getBlockPos(), this, 1);
-        return super.getPlacementState(context);
+        return AbyssalineHelper.getStateWithNeighborCharge(super.getPlacementState(context),context.getWorld(),context.getBlockPos());
     }
 
     @Override

@@ -17,6 +17,8 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
+import static com.slomaxonical.architectspalette.blocks.util.ShapeRotator.cutout;
+
 public class PipeBlock extends PillarBlock implements Waterloggable {
 
     public static final EnumProperty<PipeBlockPart> PART = EnumProperty.of("part", PipeBlockPart.class);
@@ -102,13 +104,7 @@ public class PipeBlock extends PillarBlock implements Waterloggable {
         return checking.getBlock() instanceof PipeBlock && checking.get(AXIS) == base.get(AXIS);
     }
 
-    private static VoxelShape cutout(VoxelShape... cutouts){
-        VoxelShape shape = VoxelShapes.fullCube();
-        for (VoxelShape cutout : cutouts) {
-            shape = VoxelShapes.combine(shape, cutout, BooleanBiFunction.ONLY_FIRST);
-        }
-        return shape.simplify();
-    }
+
 
     public enum PipeBlockPart implements StringIdentifiable {
         TOP,

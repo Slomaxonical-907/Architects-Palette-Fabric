@@ -28,20 +28,24 @@
     ],
     "fabric-datagen": [
       "com.slomaxonical.architectspalette.datagen.APDatagen"
+    ],
+    "emi": [
+      "com.slomaxonical.architectspalette.compat.emi.APEmiPlugin"
     ]
+
   },
   "mixins": [
-    "architechtspalette.mixins.json"
+    "architectspalette.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.14.0",
-    "fabric": ">=0.54.0",
+    "fabric": ">=0.60.0",
     "minecraft": "1.19.x",
-    "java": ">=17",
-    "cloth-config": ">=7.0.00"
+    "java": ">=17"
   },
   "suggests": {
     "another-mod": "*"
-  }
+  },
+  "accessWidener": "architectspalette.accesswidener"
 }

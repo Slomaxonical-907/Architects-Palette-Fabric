@@ -1,7 +1,10 @@
 package com.slomaxonical.architectspalette.blocks.entrails;
 
+import com.slomaxonical.architectspalette.registry.util.IBlockSetBase;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.particle.ParticleTypes;
@@ -13,11 +16,18 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class DrippyBlock extends Block {
+public class DrippyBlock extends Block implements IBlockSetBase {
     public DrippyBlock(Settings properties) {
         super(properties);
     }
-
+    //IBlockSetBase method
+    public Block getBlockForPart(StoneBlockSet.SetComponent part, FabricBlockSettings settings, Block base) {
+        return switch (part) {
+            case SLAB -> new DrippySlabBlock(settings);
+            case VERTICAL_SLAB -> new DrippyVerticalSlabBlock(settings);
+            default -> IBlockSetBase.super.getBlockForPart(part, settings, base);
+        };
+    }
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         doParticleEffect(stateIn, worldIn, pos, rand);

@@ -1,16 +1,20 @@
 package com.slomaxonical.architectspalette;
 
+import com.slomaxonical.architectspalette.models.ModelSwapper;
 import com.slomaxonical.architectspalette.registry.APBlocks;
+import com.slomaxonical.architectspalette.registry.APParticles;
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.util.Identifier;
 
 public class ArchitectsPaletteClient implements ClientModInitializer {
-
+    public static final Identifier MODEL_ID = new Identifier(ArchitectsPalette.MOD_ID,"block/boards/boards");
     @Override
     public void onInitializeClient() {
+        ModelSwapper.init();
+
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 APBlocks.ENTWINE_BARS,
                 APBlocks.SUNMETAL_BARS,
@@ -32,12 +36,14 @@ public class ArchitectsPaletteClient implements ClientModInitializer {
                 APBlocks.NETHER_BRASS_CHAIN,
                 APBlocks.NETHER_BRASS_LANTERN
         );
+        RegistryUtil.nubs.keySet().forEach(nub-> BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),nub));
+
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
                 APBlocks.HELIODOR_ROD,
                 APBlocks.EKANITE_ROD,
                 APBlocks.MONAZITE_ROD
         );
-        ParticleFactoryRegistry.getInstance().register(ArchitectsPalette.GREEN_FLAME, FlameParticle.Factory::new);
 
+        APParticles.clientReg();
     }
 }

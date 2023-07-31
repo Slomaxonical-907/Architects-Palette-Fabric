@@ -13,7 +13,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 import static com.slomaxonical.architectspalette.blocks.util.APBlockSettings.CHARGED;
-import static com.slomaxonical.architectspalette.blocks.abyssaline.NewAbyssalineBlock.CHARGE_SOURCE;
+import static com.slomaxonical.architectspalette.blocks.abyssaline.AbyssalineBlock.CHARGE_SOURCE;
 
 public class AbyssalineSlabBlock extends SlabBlock implements IAbyssalineChargeable {
 
@@ -34,8 +34,7 @@ public class AbyssalineSlabBlock extends SlabBlock implements IAbyssalineChargea
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext context) {
-		context.getWorld().createAndScheduleBlockTick(context.getBlockPos(), this, 1);
-		return super.getPlacementState(context);
+		return AbyssalineHelper.getStateWithNeighborCharge(super.getPlacementState(context), context.getWorld(), context.getBlockPos());
 	}
 
 	@Override
@@ -59,17 +58,17 @@ public class AbyssalineSlabBlock extends SlabBlock implements IAbyssalineChargea
 	}
 
 	@Override
-	public boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
-		return IAbyssalineChargeable.super.outputsChargeFrom(stateIn, faceIn) && this.acceptsChargeFrom(stateIn, faceIn);
+	public boolean outputsChargeTo(BlockState stateIn, Direction faceIn) {
+		return IAbyssalineChargeable.super.outputsChargeTo(stateIn, faceIn) && this.acceptsChargeFrom(stateIn, faceIn);
 	}
 
 	// Slabs should never transfer power through the faces that don't collide, so don't provide a state here that can.
 	@Override
-	public BlockState getStateWithChargeDirection(BlockState stateIn, Direction faceOut) {
+	public BlockState getStateWithChargeDirection(BlockState stateIn, Direction directionToSource) {
 		SlabType type = stateIn.get(TYPE);
-		if (type == SlabType.TOP && faceOut == Direction.DOWN) return stateIn;
-		if (type == SlabType.BOTTOM && faceOut == Direction.UP) return stateIn;
-		return stateIn.with(CHARGE_SOURCE, faceOut);
+		if (type == SlabType.TOP && directionToSource == Direction.DOWN) return stateIn;
+		if (type == SlabType.BOTTOM && directionToSource == Direction.UP) return stateIn;
+		return stateIn.with(CHARGE_SOURCE, directionToSource);
 	}
 
 }

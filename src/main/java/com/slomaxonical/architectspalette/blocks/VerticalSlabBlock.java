@@ -1,7 +1,5 @@
 package com.slomaxonical.architectspalette.blocks;
 
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -37,6 +35,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
+
 public class VerticalSlabBlock extends Block implements Waterloggable {
     public static final EnumProperty<VerticalSlabType> TYPE = EnumProperty.of("type", VerticalSlabType.class);
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
@@ -47,14 +47,14 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
     }
     @Override
     public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-        if(AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)
+        if(CONFIGS.enableVerticalSlabs())
             super.appendStacks(group, stacks);
     }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 
             super.appendTooltip(stack, world, tooltip, options);
-        if(!AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs)
+        if(!CONFIGS.enableVerticalSlabs())
             tooltip.add(Text.translatable("architects_palette.misc.vertical_config", Formatting.RED));
     }
     @Override

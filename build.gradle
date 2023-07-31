@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -18,8 +18,10 @@ repositories {
 	// for more information about repositories.
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/"}
+	maven { url 'https://maven.wispforest.io' }
 }
 loom {
+	accessWidenerPath = file("src/main/resources/architectspalette.accesswidener")
 	runs {
 		datagen {
 			server()
@@ -42,13 +44,15 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}") {
-		exclude(group: "net.fabricmc.fabric-api")}
+	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+	annotationProcessor "io.wispforest:owo-lib:${project.owo_version}"
+
+	modImplementation "dev.emi:emi:${project.emi_version}"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
-
+	modApi "dev.architectury:architectury-fabric:6.2.46"
 
 }
 sourceSets.main.resources {

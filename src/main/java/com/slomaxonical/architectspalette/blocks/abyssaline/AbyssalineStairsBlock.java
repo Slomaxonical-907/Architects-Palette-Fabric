@@ -53,7 +53,7 @@ public class AbyssalineStairsBlock extends StairsBlock implements IAbyssalineCha
 
 	//Interface things
 	@Override
-	public boolean outputsChargeFrom(BlockState stateIn, Direction faceIn) {
+	public boolean outputsChargeTo(BlockState stateIn, Direction faceIn) {
 		boolean topface = (stateIn.get(StairsBlock.HALF) == BlockHalf.TOP);
 		boolean directionmatches = (topface && faceIn == Direction.UP) || (!topface && faceIn == Direction.DOWN);
 		return this.isCharged(stateIn) && directionmatches;
@@ -71,7 +71,7 @@ public class AbyssalineStairsBlock extends StairsBlock implements IAbyssalineCha
 
 	@Override
 	// The stairs shouldn't rotate just to recieve charge.
-	public BlockState getStateWithChargeDirection(BlockState stateIn, Direction faceOut) {
+	public BlockState getStateWithChargeDirection(BlockState stateIn, Direction directionToSource) {
 		return stateIn;
 	}
 }

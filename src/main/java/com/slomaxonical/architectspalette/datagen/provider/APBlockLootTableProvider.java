@@ -1,6 +1,7 @@
 package com.slomaxonical.architectspalette.datagen.provider;
 
-import com.slomaxonical.architectspalette.blocks.util.StoneBlockSet;
+import com.slomaxonical.architectspalette.registry.util.RegistryUtil;
+import com.slomaxonical.architectspalette.registry.util.StoneBlockSet;
 import com.slomaxonical.architectspalette.registry.APBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -24,6 +25,8 @@ import net.minecraft.predicate.item.ItemPredicate;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static com.slomaxonical.architectspalette.registry.util.StoneBlockSet.SetComponent.*;
+
 public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
     public APBlockLootTableProvider(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
@@ -36,43 +39,45 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 .rolls(ConstantLootNumberProvider.create(1.0f))
                 .with(applyExplosionDecay(drop, ItemEntry.builder(drop)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))
-                                .conditionally(BlockStatePropertyLootCondition.builder((Block) drop)
+                                .conditionally(BlockStatePropertyLootCondition.builder(drop)
                                         .properties(StatePredicate.Builder.create()
                                                 .exactMatch(SlabBlock.TYPE, SlabType.DOUBLE))))))));
     }
     @Override
     protected void generateBlockLootTables() {
-        for (StoneBlockSet set : StoneBlockSet.BlockSets){
-            if (set.BLOCK != APBlocks.POLISHED_PACKED_ICE){
-                this.addDrop(set.BLOCK);
-                if (set.STAIRS!=null) this.addDrop(set.STAIRS);
-                if (set.WALL!=null) this.addDrop(set.WALL);
-                if (set.SLAB!=null) {
-                    this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
-                    this.addDrop(set.VERTICAL_SLAB, BlockLootTableGenerator::slabDrops);
-                }
+        for (StoneBlockSet set : RegistryUtil.BlockSets.values()){
+            if (set.getBase() == APBlocks.POLISHED_PACKED_ICE){
+                this.addDropWithSilkTouch(set.getBase());
+                this.addDropWithSilkTouch(set.getPart(STAIRS));
+                this.addDropWithSilkTouch(set.getPart(WALL));
+                this.dropSlabWithSilkTouch(set.getPart(SLAB));
+                this.dropSlabWithSilkTouch(set.getPart(VERTICAL_SLAB));
             }else{
-                this.addDropWithSilkTouch(set.BLOCK);
-                this.addDropWithSilkTouch(set.STAIRS);
-                this.addDropWithSilkTouch(set.WALL);
-                this.dropSlabWithSilkTouch(set.SLAB);
-                this.dropSlabWithSilkTouch(set.VERTICAL_SLAB);
+                this.addDrop(set.getBase());
+                if (set.getPart(STAIRS)!=null) this.addDrop(set.getPart(STAIRS));
+                if (set.getPart(WALL)!=null) this.addDrop(set.getPart(WALL));
+                if (set.getPart(SLAB)!=null) {
+                    this.addDrop(set.getPart(SLAB), BlockLootTableGenerator::slabDrops);
+                    this.addDrop(set.getPart(VERTICAL_SLAB), BlockLootTableGenerator::slabDrops);
+                }
+                if (set.getPart(FENCE)!=null) this.addDrop(set.getPart(FENCE));
+                if (set.getPart(NUB)!=null) this.addDrop(set.getPart(NUB));
             }
         }
-        for (StoneBlockSet set : StoneBlockSet.oreBrickSets) {
-            this.addDrop(set.BLOCK);
-            this.addDrop(set.STAIRS);
-            this.addDrop(set.WALL);
-            this.addDrop(set.SLAB, BlockLootTableGenerator::slabDrops);
+        for (StoneBlockSet set : RegistryUtil.oreBrickSets) {
+            this.addDrop(set.getBase());
+            this.addDrop(set.getPart(STAIRS));
+            this.addDrop(set.getPart(WALL));
+            this.addDrop(set.getPart(SLAB), BlockLootTableGenerator::slabDrops);
         }
-        for (List<Block> list : APBlocks.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
+        for (List<Block> list : RegistryUtil.chiseledNcrackedOres.values()) list.forEach(this::addDrop); ;
+        for (Block nub : RegistryUtil.nubs.keySet()) this.addDrop(nub);
 
         Stream.of(
                 APBlocks.ABYSSALINE,
-                APBlocks.ABYSSALINE_BRICKS,
-                APBlocks.ABYSSALINE_LAMP_BLOCK,
+                APBlocks.ABYSSALINE_PLATING,
+                APBlocks.ABYSSALINE_LAMP,
                 APBlocks.ABYSSALINE_PILLAR,
-                APBlocks.ABYSSALINE_TILES,
                 APBlocks.ACACIA_BOARDS,
                 APBlocks.ACACIA_RAILING,
                 APBlocks.ACACIA_TOTEM_WING,
@@ -85,6 +90,7 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.CALCITE_PILLAR,
                 APBlocks.CHARCOAL_BLOCK,
                 APBlocks.CHISELED_ABYSSALINE_BRICKS,
+                APBlocks.CHISELED_HADALINE_BRICKS,
                 APBlocks.CHISELED_ALGAL_BRICKS,
                 APBlocks.CHISELED_BASALT_TILES,
                 APBlocks.CHISELED_CALCITE,
@@ -111,8 +117,6 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.DRIPSTONE_LAMP,
                 APBlocks.DRIPSTONE_PILLAR,
                 APBlocks.ENDER_PEARL_BLOCK,
-                APBlocks.ENTRAILS,
-                APBlocks.ENTRAILS_STAIRS,
                 APBlocks.ENTWINE_BARS,
                 APBlocks.ENTWINE_PILLAR,
                 APBlocks.FLINT_BLOCK,
@@ -128,6 +132,10 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.HEAVY_MOSSY_STONE_BRICKS,
                 APBlocks.HEAVY_STONE_BRICKS,
                 APBlocks.HEAVY_TUFF_BRICKS,
+                APBlocks.HADALINE,
+                APBlocks.HADALINE_PLATING,
+                APBlocks.HADALINE_PILLAR,
+                APBlocks.HADALINE_LAMP,
                 APBlocks.ILLUMINATED_OLIVESTONE,
                 APBlocks.JUNGLE_BOARDS,
                 APBlocks.JUNGLE_RAILING,
@@ -135,6 +143,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.LIT_WITHERED_OSSEOUS_SKULL,
                 APBlocks.MOLTEN_NETHER_BRICKS,
                 APBlocks.MOONSTONE,
+                APBlocks.MANGROVE_BOARDS,
+                APBlocks.MANGROVE_RAILING,
                 APBlocks.OAK_BOARDS,
                 APBlocks.OAK_RAILING,
                 APBlocks.OLIVESTONE_PILLAR,
@@ -178,7 +188,8 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.WITHERED_BONE_BLOCK,
                 APBlocks.WITHERED_OSSEOUS_PILLAR,
                 APBlocks.WITHERED_OSSEOUS_SKULL,
-                APBlocks.WITHER_LAMP,
+                APBlocks.WITHER_LAMP,//just realized i fked alphabetical order
+
                 APBlocks.HELIODOR_ROD,
                 APBlocks.EKANITE_ROD,
                 APBlocks.MONAZITE_ROD,
@@ -186,25 +197,32 @@ public class APBlockLootTableProvider extends FabricBlockLootTableProvider {
                 APBlocks.NETHER_BRASS_PILLAR,
                 APBlocks.NETHER_BRASS_CHAIN,
                 APBlocks.NETHER_BRASS_LANTERN,
-                APBlocks.NETHER_BRASS_TORCH)
+                APBlocks.NETHER_BRASS_TORCH,
+                APBlocks.CHISELED_WARDSTONE,
+                APBlocks.WARDSTONE_PILLAR,
+                APBlocks.WARDSTONE_LAMP,
+                APBlocks.ONYX_PILLAR,
+                APBlocks.ESOTERRACK_PILLAR,
+                APBlocks.HAZARD_SIGN,
+                APBlocks.NUB_OF_ENDER)
                 .forEach(this::addDrop);
 
-        Stream.of(
-                APBlocks.ABYSSALINE_BRICK_SLAB,
-                APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB,
-                APBlocks.ABYSSALINE_TILE_SLAB,
-                APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB,
-                APBlocks.ENTRAILS_SLAB,
-                APBlocks.ENTRAILS_VERTICAL_SLAB
-                )
-            .forEach((i) -> this.addDrop(i, BlockLootTableGenerator::slabDrops));
+//        Stream.of(
+//                APBlocks.ABYSSALINE_BRICK_SLAB,
+//                APBlocks.ABYSSALINE_BRICK_VERTICAL_SLAB,
+//                APBlocks.ABYSSALINE_TILE_SLAB,
+//                APBlocks.ABYSSALINE_TILE_VERTICAL_SLAB,
+//                APBlocks.ENTRAILS_SLAB,
+//                APBlocks.ENTRAILS_VERTICAL_SLAB
+//                )
+//            .forEach((i) -> this.addDrop(i, BlockLootTableGenerator::slabDrops));
 
         Stream.of(
             APBlocks.CHISELED_PACKED_ICE,
             APBlocks.PACKED_ICE_PILLAR)
         .forEach(this::addDropWithSilkTouch);
 
-        this.addDrop(APBlocks.TWISTED_DOOR, BlockLootTableGenerator::addDoorDrop);
+        this.addDrop(APBlocks.TWISTED_DOOR, BlockLootTableGenerator::doorDrops);
         this.addDrop(APBlocks.TWISTED_LEAVES, (blockx) -> BlockLootTableGenerator.leavesDrop(blockx, APBlocks.TWISTED_SAPLING, 0.05f, 0.0625f, 0.083333336f, 0.1f));
         this.addPottedPlantDrop(APBlocks.POTTED_TWISTED_SAPLING);
 

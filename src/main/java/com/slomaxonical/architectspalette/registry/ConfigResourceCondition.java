@@ -1,12 +1,12 @@
 package com.slomaxonical.architectspalette.registry;
 
 import com.google.gson.*;
-import com.slomaxonical.architectspalette.compat.cloth_config.ApConfigs;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
+
+import static com.slomaxonical.architectspalette.ArchitectsPalette.CONFIGS;
 
 
 public class ConfigResourceCondition {
@@ -32,7 +32,7 @@ public class ConfigResourceCondition {
     public static boolean configCheck(JsonObject object) {
         String config = JsonHelper.getString(object, "config");
         if (config.equals("enableVerticalSlabs")){
-            return AutoConfig.getConfigHolder(ApConfigs.class).getConfig().enableVerticalSlabs;
+            return CONFIGS.enableVerticalSlabs();
         }else {
         throw new JsonParseException("Invalid config: " + config);
         }
